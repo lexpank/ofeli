@@ -1,0 +1,128 @@
+\hypertarget{interface-example}{\section{interface}
+}
+
+\begin{DoxyCode}
+\textcolor{comment}{// It interfaces the algorithm in order to display each iteration}
+
+\textcolor{preprocessor}{#include "ac\_withoutedges.hpp"}
+\textcolor{preprocessor}{#include "linked\_list.hpp"}
+\textcolor{preprocessor}{#include <iostream>}
+
+\textcolor{keywordtype}{int} offset \textcolor{comment}{// offset of the current pixel}
+\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} I \textcolor{comment}{// intensity of the current pixel}
+
+\textcolor{comment}{// Lout displayed in blue}
+\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} Rout = 0;
+\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} Gout = 0;
+\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} Bout = 255;
+
+\textcolor{comment}{// Lin displayed in red}
+\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} Rin = 255;
+\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} Gin = 0;
+\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} Bin = 0;
+
+
+\hyperlink{classofeli_1_1_a_cwithout_edges}{ofeli::ACwithoutEdges} ac(img1, img\_width1, img\_height1);
+
+
+-----------------------------   Display the initial active contour   -----------------------------
+
+\textcolor{keyword}{const} \hyperlink{classofeli_1_1list}{ofeli::list<int>}* Lout = &ac.get\_Lout();
+\textcolor{keyword}{const} \hyperlink{classofeli_1_1list}{ofeli::list<int>}* Lin = &ac.get\_Lin();
+
+\textcolor{comment}{// put the color of lists into the displayed buffer}
+\textcolor{keywordflow}{for}( \hyperlink{classofeli_1_1list_1_1const__iterator}{ofeli::list<int>::const\_iterator} it = Lout->get\_begin(); !it.
+      \hyperlink{classofeli_1_1list_1_1const__iterator_aa79779e28253e61c8d1816f577de4ffd}{end}(); ++it )
+\{
+    offset = *it*3;
+
+    img\_displayed[offset] = Rout;
+    img\_displayed[offset+1] = Gout;
+    img\_displayed[offset+2] = Bout;
+\}
+
+\textcolor{keywordflow}{for}( \hyperlink{classofeli_1_1list_1_1const__iterator}{ofeli::list<int>::const\_iterator} it = Lin->get\_begin(); !it.end(); ++
+      it )
+\{
+    offset = *it*3;
+
+    img\_displayed[offset] = Rin;
+    img\_displayed[offset+1] = Gin;
+    img\_displayed[offset+2] = Bin;
+\}
+
+\textcolor{comment}{// paint event, refresh the widget witch display the buffer img\_displayed}
+update();
+
+\textcolor{comment}{// display the position of the active contour in the standard output}
+std::cout << ac << std::endl;
+
+--------------------------------------------------------------------------------------------------
+
+
+\textcolor{comment}{// Loop for the evolution of the active contour}
+\textcolor{keywordflow}{while}( !ac.get\_isStopped() )
+\{
+    \textcolor{comment}{// erase the previous lists Lout1 and Lin1 of the displayed buffer}
+    \textcolor{keywordflow}{for}( \hyperlink{classofeli_1_1list_1_1const__iterator}{ofeli::list<int>::const\_iterator} it = Lout->get\_begin(); !it.
+      \hyperlink{classofeli_1_1list_1_1const__iterator_aa79779e28253e61c8d1816f577de4ffd}{end}(); ++it )
+    \{
+        offset = *it;
+
+        I = img1[offset];
+
+        img\_displayed[3*offset] = I;
+        img\_displayed[3*offset+1] = I;
+        img\_displayed[3*offset+2] = I;
+    \}
+
+    \textcolor{keywordflow}{for}( \hyperlink{classofeli_1_1list_1_1const__iterator}{ofeli::list<int>::const\_iterator} it = Lin->get\_begin(); !it.end();
+       ++it )
+    \{
+        offset = *it;
+
+        I = img1[offset];
+
+        img\_displayed[3*offset] = I;
+        img\_displayed[3*offset+1] = I;
+        img\_displayed[3*offset+2] = I;
+    \}
+
+    \textcolor{comment}{// to evolve the active contour of one iteration or one step}
+    ++ac;
+
+    \textcolor{comment}{// to get the temporary result}
+    Lout = &ac.get\_Lout();
+    Lin = &ac.get\_Lin();
+
+    \textcolor{comment}{// put the color of lists into the displayed buffer}
+    \textcolor{keywordflow}{for}( \hyperlink{classofeli_1_1list_1_1const__iterator}{ofeli::list<int>::const\_iterator} it = Lout->get\_begin(); !it.
+      \hyperlink{classofeli_1_1list_1_1const__iterator_aa79779e28253e61c8d1816f577de4ffd}{end}(); ++it )
+
+        offset = *it*3;
+
+        img\_displayed[offset] = Rout;
+        img\_displayed[offset+1] = Gout;
+        img\_displayed[offset+2] = Bout;
+    \}
+
+    \textcolor{keywordflow}{for}( \hyperlink{classofeli_1_1list_1_1const__iterator}{ofeli::list<int>::const\_iterator} it = Lin->get\_begin(); !it.end();
+       ++it )
+
+        offset = *it*3;
+
+        img\_displayed[offset] = Rin;
+        img\_displayed[offset+1] = Gin;
+        img\_displayed[offset+2] = Bin;
+    \}
+
+    \textcolor{comment}{// paint event, refresh the widget witch display the buffer img\_displayed}
+    update();
+\}
+\end{DoxyCode}
+
+
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ 

@@ -1,0 +1,18 @@
+<map id="ofeli::ACwithoutEdgesYUV::ACwithoutEdgesYUV" name="ofeli::ACwithoutEdgesYUV::ACwithoutEdgesYUV">
+<area shape="rect" id="node3" href="$classofeli_1_1_a_cwithout_edges_y_u_v.html#ad24ef70875e3435c524cb1385c3c43d3" title="Initialization for each new frame buffer, used for video tracking." alt="" coords="229,170,405,211"/>
+<area shape="rect" id="node5" href="$classofeli_1_1_active_contour.html#a7047af04f107b5bb5f18fc719854e1a9" title="Getter function for iteration." alt="" coords="475,71,608,113"/>
+<area shape="rect" id="node7" href="$classofeli_1_1_active_contour.html#ac1d127818cc396568532a662951f6f8e" title="Initialization for each new frame buffer, used for video tracking." alt="" coords="455,137,627,178"/>
+<area shape="rect" id="node30" href="$classofeli_1_1_a_cwithout_edges_y_u_v.html#a68356b357307d95e2b431bb46c0223bb" title="Initializes the six sums and n_in and n_out with scanning through the image." alt="" coords="453,202,629,243"/>
+<area shape="rect" id="node34" href="$classofeli_1_1_a_cwithout_edges_y_u_v.html#ae8904a4a32fa48696641066ec5ae571d" title="Calculates means CoutYUV and CinYUV in O(1) or accounting for the previous updates of (sum_out_R..." alt="" coords="453,267,629,309"/>
+<area shape="rect" id="node9" href="$classofeli_1_1list.html#ab3e6e91f6df59f3bf1b290a36577e474" title="Returns whether the list container is empty, i.e. whether its size is 0." alt="" coords="708,5,823,32"/>
+<area shape="rect" id="node11" href="$classofeli_1_1_active_contour.html#a39f22c1bc9d6740180a62520c3f67498" title="Initialization of phi with a shape." alt="" coords="699,56,832,112"/>
+<area shape="rect" id="node17" href="$classofeli_1_1_active_contour.html#a181d717496a28d8aac1095d0fc227220" title="Initialization of Lout and Lin." alt="" coords="699,137,832,178"/>
+<area shape="rect" id="node13" href="$classofeli_1_1_active_contour.html#adcb560ea7c8b763c7e4e769321807925" title="Calculates the position (x,y) of a point of phi or the image with the offset." alt="" coords="1107,181,1240,222"/>
+<area shape="rect" id="node15" href="$classofeli_1_1_active_contour.html#a8a880bf04c5ed62915987145ff05e502" title="Gives the square of a value." alt="" coords="913,63,1047,105"/>
+<area shape="rect" id="node19" href="$classofeli_1_1_active_contour.html#a9af52a939f0fd059680383b9d087d6fd" title="Finds if a current point (x,y) of Lout is redundant." alt="" coords="901,246,1059,287"/>
+<area shape="rect" id="node24" href="$classofeli_1_1list.html#a87b7f6a90670e08d99e23f3377b001f9" title="Inserts a new element at the beginning of the list." alt="" coords="911,129,1049,156"/>
+<area shape="rect" id="node26" href="$classofeli_1_1_active_contour.html#ac734c690a9d10f37b99b6803af335d1d" title="Finds if a current point (x,y) of Lin is redundant." alt="" coords="905,181,1055,222"/>
+<area shape="rect" id="node22" href="$classofeli_1_1_active_contour.html#ae58a17c4d023abdd142ae24bf8335370" title="Calculates the offset of phi or the image data buffer with the position (x,y)." alt="" coords="1107,246,1240,287"/>
+<area shape="rect" id="node32" href="$classofeli_1_1_a_cwithout_edges_y_u_v.html#a7913716e6f12f0020909fd1ff42149f4" title="Affects the variable R, G, B from the buffer img_rgb_data." alt="" coords="677,202,853,243"/>
+<area shape="rect" id="node36" href="$classofeli_1_1_a_cwithout_edges_y_u_v.html#a2db2c26b4add310859ba36d701834d81" title="Calculates YUV value with a (R,G,B) value." alt="" coords="677,267,853,309"/>
+</map>

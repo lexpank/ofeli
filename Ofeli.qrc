@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Ofeli_fr.qm</file>
+        <file>licence.txt</file>
+        <file>license.txt</file>
+        <file>Ofeli.png</file>
+    </qresource>
+</RCC>

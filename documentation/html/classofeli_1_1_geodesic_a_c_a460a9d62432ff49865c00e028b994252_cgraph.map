@@ -1,0 +1,16 @@
+<map id="ofeli::GeodesicAC::GeodesicAC" name="ofeli::GeodesicAC::GeodesicAC">
+<area shape="rect" id="node3" href="$classofeli_1_1_geodesic_a_c.html#a5f45547b45b9743a6fdf0388715dfcbc" title="Initialization for each new frame buffer, used for video tracking." alt="" coords="190,158,354,199"/>
+<area shape="rect" id="node5" href="$classofeli_1_1_active_contour.html#abfff3ce9cfabd50c3ffc30b93e87b27e" title="Getter function for the linked list Lout." alt="" coords="423,5,556,46"/>
+<area shape="rect" id="node7" href="$classofeli_1_1_active_contour.html#af2a8c0c10143490eb7bd3b9c6f14c88d" title="Getter function for the linked list Lin." alt="" coords="423,70,556,111"/>
+<area shape="rect" id="node9" href="$classofeli_1_1_active_contour.html#a39f22c1bc9d6740180a62520c3f67498" title="Initialization of phi with a shape." alt="" coords="624,115,757,171"/>
+<area shape="rect" id="node15" href="$classofeli_1_1_active_contour.html#a181d717496a28d8aac1095d0fc227220" title="Initialization of Lout and Lin." alt="" coords="624,246,757,287"/>
+<area shape="rect" id="node28" href="$classofeli_1_1_geodesic_a_c.html#a4cdf84261bfd4407e89984ea01f6c227" title="Calculates boolean isInside." alt="" coords="412,305,567,346"/>
+<area shape="rect" id="node30" href="$classofeli_1_1_active_contour.html#ac1d127818cc396568532a662951f6f8e" title="Initialization for each new frame buffer, used for video tracking." alt="" coords="403,187,575,229"/>
+<area shape="rect" id="node11" href="$classofeli_1_1_active_contour.html#adcb560ea7c8b763c7e4e769321807925" title="Calculates the position (x,y) of a point of phi or the image with the offset." alt="" coords="1011,181,1144,222"/>
+<area shape="rect" id="node13" href="$classofeli_1_1_active_contour.html#a8a880bf04c5ed62915987145ff05e502" title="Gives the square of a value." alt="" coords="817,63,951,105"/>
+<area shape="rect" id="node17" href="$classofeli_1_1_active_contour.html#a9af52a939f0fd059680383b9d087d6fd" title="Finds if a current point (x,y) of Lout is redundant." alt="" coords="805,246,963,287"/>
+<area shape="rect" id="node22" href="$classofeli_1_1list.html#a87b7f6a90670e08d99e23f3377b001f9" title="Inserts a new element at the beginning of the list." alt="" coords="815,312,953,339"/>
+<area shape="rect" id="node24" href="$classofeli_1_1_active_contour.html#ac734c690a9d10f37b99b6803af335d1d" title="Finds if a current point (x,y) of Lin is redundant." alt="" coords="809,181,959,222"/>
+<area shape="rect" id="node20" href="$classofeli_1_1_active_contour.html#ae58a17c4d023abdd142ae24bf8335370" title="Calculates the offset of phi or the image data buffer with the position (x,y)." alt="" coords="1011,246,1144,287"/>
+<area shape="rect" id="node32" href="$classofeli_1_1list.html#ab3e6e91f6df59f3bf1b290a36577e474" title="Returns whether the list container is empty, i.e. whether its size is 0." alt="" coords="633,195,748,221"/>
+</map>

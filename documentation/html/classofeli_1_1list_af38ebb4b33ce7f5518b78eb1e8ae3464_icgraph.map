@@ -1,0 +1,8 @@
+<map id="ofeli::list::splice_front" name="ofeli::list::splice_front">
+<area shape="rect" id="node3" href="$classofeli_1_1_active_contour.html#a7d9a557b580af708155ff4ab8bbfd73b" title="Outward local movement of the curve for a current point (x,y) of Lout that is switched in Lin..." alt="" coords="165,21,299,62"/>
+<area shape="rect" id="node15" href="$classofeli_1_1_active_contour.html#a98af656dfc038e6f03c9e4bb67e39bd0" title="Inward local movement of the curve for a current point (x,y) of Lin that is switched in Lout..." alt="" coords="165,86,299,127"/>
+<area shape="rect" id="node5" href="$classofeli_1_1_active_contour.html#a2ab521c583572158549d416ccc755f3a" title="Function called by evolve_one_iteration() for external or data dependant evolution with Fd speed..." alt="" coords="347,5,490,61"/>
+<area shape="rect" id="node11" href="$classofeli_1_1_active_contour.html#a7cf8243140d8ef8f72a638e9a1442dc2" title="Function called by evolve_one_iteration() for a curve smoothing or internal evolution with Fint speed..." alt="" coords="347,85,490,141"/>
+<area shape="rect" id="node7" href="$classofeli_1_1_active_contour.html#a23013e2eb528bc2fa4e108e928af6f8d" title="Evolves the active contour of one iteration or one step. This function calls the functions do_one_ite..." alt="" coords="539,17,672,58"/>
+<area shape="rect" id="node9" href="$classofeli_1_1_active_contour.html#a02cd4d93b90fee487e07f625f337aab1" title="Evolves directly the active contour at the final state, i.e. it evolves while isStopped is not true..." alt="" coords="539,86,672,127"/>
+</map>

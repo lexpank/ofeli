@@ -1,0 +1,7 @@
+<map id="ofeli::ImageViewer" name="ofeli::ImageViewer">
+<area shape="rect" id="node4" href="$classofeli_1_1list.html" title="ofeli::list\&lt; int \&gt;" alt="" coords="259,97,367,124"/>
+<area shape="rect" id="node9" href="$classofeli_1_1_active_contour.html" title="ofeli::ActiveContour" alt="" coords="448,133,581,160"/>
+<area shape="rect" id="node6" href="$structofeli_1_1list_1_1_node.html" title="This structure implements a node of class list. It is composed by an element of type T and a pointer ..." alt="" coords="5,97,144,124"/>
+<area shape="rect" id="node12" href="$classofeli_1_1_pixmap_widget.html" title="ofeli::PixmapWidget" alt="" coords="445,196,584,223"/>
+<area shape="rect" id="node16" href="$classofeli_1_1_filters.html" title="ofeli::Filters" alt="" coords="470,256,559,283"/>
+</map>

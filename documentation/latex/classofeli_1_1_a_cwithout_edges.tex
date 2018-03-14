@@ -1,0 +1,378 @@
+\hypertarget{classofeli_1_1_a_cwithout_edges}{\section{ofeli\-:\-:A\-Cwithout\-Edges Class Reference}
+\label{classofeli_1_1_a_cwithout_edges}\index{ofeli\-::\-A\-Cwithout\-Edges@{ofeli\-::\-A\-Cwithout\-Edges}}
+}
+
+
+{\ttfamily \#include $<$ac\-\_\-withoutedges.\-hpp$>$}
+
+
+
+Inheritance diagram for ofeli\-:\-:A\-Cwithout\-Edges\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=192pt]{classofeli_1_1_a_cwithout_edges__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ofeli\-:\-:A\-Cwithout\-Edges\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{classofeli_1_1_a_cwithout_edges__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classofeli_1_1_a_cwithout_edges_a50545482590fb3d7ea40df3382452dfb}{\hyperlink{classofeli_1_1_a_cwithout_edges_a50545482590fb3d7ea40df3382452dfb}{A\-Cwithout\-Edges} (const unsigned char $\ast$img\-\_\-data1, int img\-\_\-width1, int img\-\_\-height1)}\label{classofeli_1_1_a_cwithout_edges_a50545482590fb3d7ea40df3382452dfb}
+
+\begin{DoxyCompactList}\small\item\em Constructor to initialize the active contour with a centered rectangle and the default values of the algorithm parameters. \end{DoxyCompactList}\item 
+\hyperlink{classofeli_1_1_a_cwithout_edges_ad3be07385b0a0d693036ddee99bdaf2b}{A\-Cwithout\-Edges} (const unsigned char $\ast$img\-\_\-data1, int img\-\_\-width1, int img\-\_\-height1, bool has\-Ellipse1, double init\-\_\-width1, double init\-\_\-height1, double center\-\_\-x1, double center\-\_\-y1, bool has\-Cycle2\-\_\-1, int kernel\-\_\-length1, double sigma1, int Na1, int Ns1, int lambda\-\_\-out1, int lambda\-\_\-in1)
+\begin{DoxyCompactList}\small\item\em Constructor to initialize the active contour from geometrical parameters of an unique shape, an ellipse or a rectangle. \end{DoxyCompactList}\item 
+\hyperlink{classofeli_1_1_a_cwithout_edges_a3aafada5bffe3d4251ff22cd22ebb401}{A\-Cwithout\-Edges} (const unsigned char $\ast$img\-\_\-data1, int img\-\_\-width1, int img\-\_\-height1, const char $\ast$phi\-\_\-init1, bool has\-Cycle2\-\_\-1, int kernel\-\_\-length1, double sigma1, int Na1, int Ns1, int lambda\-\_\-out1, int lambda\-\_\-in1)
+\begin{DoxyCompactList}\small\item\em Constructor to initialize the active contour from an initial phi level-\/set function. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_a_cwithout_edges_ad5d3e6800f33e0fdd396adcd031ca401}{\hyperlink{classofeli_1_1_a_cwithout_edges_ad5d3e6800f33e0fdd396adcd031ca401}{A\-Cwithout\-Edges} (const \hyperlink{classofeli_1_1_a_cwithout_edges}{A\-Cwithout\-Edges} \&ac)}\label{classofeli_1_1_a_cwithout_edges_ad5d3e6800f33e0fdd396adcd031ca401}
+
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_a_cwithout_edges_a73ac34cabdc4aae95531996e394d59a7}{virtual void \hyperlink{classofeli_1_1_a_cwithout_edges_a73ac34cabdc4aae95531996e394d59a7}{initialize\-\_\-for\-\_\-each\-\_\-frame} ()}\label{classofeli_1_1_a_cwithout_edges_a73ac34cabdc4aae95531996e394d59a7}
+
+\begin{DoxyCompactList}\small\item\em Initialization for each new frame buffer, used for video tracking. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_a_cwithout_edges_af6248d9b93cf8a651824216b2dd175b9}{int \hyperlink{classofeli_1_1_a_cwithout_edges_af6248d9b93cf8a651824216b2dd175b9}{get\-\_\-\-Cout} () const }\label{classofeli_1_1_a_cwithout_edges_af6248d9b93cf8a651824216b2dd175b9}
+
+\begin{DoxyCompactList}\small\item\em Getter function for \hyperlink{classofeli_1_1_a_cwithout_edges_a02c32b73dcc676251330a42b6fb4e6f4}{Cout}. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_a_cwithout_edges_ad4da88f6edd9e97f16d783182a1bcb3a}{int \hyperlink{classofeli_1_1_a_cwithout_edges_ad4da88f6edd9e97f16d783182a1bcb3a}{get\-\_\-\-Cin} () const }\label{classofeli_1_1_a_cwithout_edges_ad4da88f6edd9e97f16d783182a1bcb3a}
+
+\begin{DoxyCompactList}\small\item\em Getter function for \hyperlink{classofeli_1_1_a_cwithout_edges_af26f696be73588b2a150c3eef6f62c85}{Cin}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classofeli_1_1_a_cwithout_edges_a39c8f6940d7574aadec3953b4704e8af}{void \hyperlink{classofeli_1_1_a_cwithout_edges_a39c8f6940d7574aadec3953b4704e8af}{initialize\-\_\-sums} ()}\label{classofeli_1_1_a_cwithout_edges_a39c8f6940d7574aadec3953b4704e8af}
+
+\begin{DoxyCompactList}\small\item\em Initializes the variables \hyperlink{classofeli_1_1_a_cwithout_edges_a14f61eabccbac71bf616674e8feb44f5}{sum\-\_\-in}, \hyperlink{classofeli_1_1_a_cwithout_edges_a799b4078bc22cbde48cc29c93727efc5}{sum\-\_\-out}, \hyperlink{classofeli_1_1_a_cwithout_edges_a8d2c28710176ae9b562b4001f8171348}{n\-\_\-in} and \hyperlink{classofeli_1_1_a_cwithout_edges_a07818e5c3700b0164037e982077de10c}{n\-\_\-out} with scanning through the image. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_a_cwithout_edges_a6dd4cde332938ec033cb8a5e870ec132}{virtual void \hyperlink{classofeli_1_1_a_cwithout_edges_a6dd4cde332938ec033cb8a5e870ec132}{calculate\-\_\-means} ()}\label{classofeli_1_1_a_cwithout_edges_a6dd4cde332938ec033cb8a5e870ec132}
+
+\begin{DoxyCompactList}\small\item\em Calculates means \hyperlink{classofeli_1_1_a_cwithout_edges_a02c32b73dcc676251330a42b6fb4e6f4}{Cout} and \hyperlink{classofeli_1_1_a_cwithout_edges_af26f696be73588b2a150c3eef6f62c85}{Cin} in {\itshape O(1)} or accounting for the previous updates of \hyperlink{classofeli_1_1_a_cwithout_edges_a799b4078bc22cbde48cc29c93727efc5}{sum\-\_\-out} and \hyperlink{classofeli_1_1_a_cwithout_edges_a14f61eabccbac71bf616674e8feb44f5}{sum\-\_\-in}, in {\itshape O}(\hyperlink{classofeli_1_1_active_contour_aefe0738d8a43f3981d591a0cc78ed717}{lists\-\_\-length}) and not in {\itshape O}(\hyperlink{classofeli_1_1_active_contour_a9182e11132f64d7607fbd19a78f58387}{img\-\_\-size}). \end{DoxyCompactList}\item 
+virtual int \hyperlink{classofeli_1_1_a_cwithout_edges_a4190840f934080ff6eb64fa48c993f98}{compute\-\_\-external\-\_\-speed\-\_\-\-Fd} (int offset)
+\begin{DoxyCompactList}\small\item\em Computes external speed {\itshape Fd} with the Chan-\/\-Vese model for a current point {\itshape }(x,y) of \hyperlink{classofeli_1_1_active_contour_a31e0eb18a7ea6ae90acf66ed018fcd85}{Lout} or \hyperlink{classofeli_1_1_active_contour_a7662d4f5c8b87d3e642b08b7e341bd79}{Lin}. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_a_cwithout_edges_a4adb3d3d67dfd3bf9b62aa4e737f128c}{virtual void \hyperlink{classofeli_1_1_a_cwithout_edges_a4adb3d3d67dfd3bf9b62aa4e737f128c}{updates\-\_\-for\-\_\-means\-\_\-in1} ()}\label{classofeli_1_1_a_cwithout_edges_a4adb3d3d67dfd3bf9b62aa4e737f128c}
+
+\begin{DoxyCompactList}\small\item\em Updates variables \hyperlink{classofeli_1_1_a_cwithout_edges_a14f61eabccbac71bf616674e8feb44f5}{sum\-\_\-in}, \hyperlink{classofeli_1_1_a_cwithout_edges_a799b4078bc22cbde48cc29c93727efc5}{sum\-\_\-out}, \hyperlink{classofeli_1_1_a_cwithout_edges_a8d2c28710176ae9b562b4001f8171348}{n\-\_\-in} and \hyperlink{classofeli_1_1_a_cwithout_edges_a07818e5c3700b0164037e982077de10c}{n\-\_\-out}, before each \hyperlink{classofeli_1_1_active_contour_a7d9a557b580af708155ff4ab8bbfd73b}{switch\-\_\-in}, in the cycle 1, in order to calculate means \hyperlink{classofeli_1_1_a_cwithout_edges_a02c32b73dcc676251330a42b6fb4e6f4}{Cout} and \hyperlink{classofeli_1_1_a_cwithout_edges_af26f696be73588b2a150c3eef6f62c85}{Cin}. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_a_cwithout_edges_a2d205edb71c6424fb8532fd5ddbed787}{virtual void \hyperlink{classofeli_1_1_a_cwithout_edges_a2d205edb71c6424fb8532fd5ddbed787}{updates\-\_\-for\-\_\-means\-\_\-out1} ()}\label{classofeli_1_1_a_cwithout_edges_a2d205edb71c6424fb8532fd5ddbed787}
+
+\begin{DoxyCompactList}\small\item\em Updates variables \hyperlink{classofeli_1_1_a_cwithout_edges_a14f61eabccbac71bf616674e8feb44f5}{sum\-\_\-in}, \hyperlink{classofeli_1_1_a_cwithout_edges_a799b4078bc22cbde48cc29c93727efc5}{sum\-\_\-out}, \hyperlink{classofeli_1_1_a_cwithout_edges_a8d2c28710176ae9b562b4001f8171348}{n\-\_\-in} and \hyperlink{classofeli_1_1_a_cwithout_edges_a07818e5c3700b0164037e982077de10c}{n\-\_\-out}, before each \hyperlink{classofeli_1_1_active_contour_a98af656dfc038e6f03c9e4bb67e39bd0}{switch\-\_\-out}, in the cycle 1, in order to calculate means \hyperlink{classofeli_1_1_a_cwithout_edges_a02c32b73dcc676251330a42b6fb4e6f4}{Cout} and \hyperlink{classofeli_1_1_a_cwithout_edges_af26f696be73588b2a150c3eef6f62c85}{Cin}. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classofeli_1_1_a_cwithout_edges_aae62ec3548eb47ca5f67c2ede19a251b}{updates\-\_\-for\-\_\-means\-\_\-in2} (int offset)
+\begin{DoxyCompactList}\small\item\em Updates variables \hyperlink{classofeli_1_1_a_cwithout_edges_a14f61eabccbac71bf616674e8feb44f5}{sum\-\_\-in}, \hyperlink{classofeli_1_1_a_cwithout_edges_a799b4078bc22cbde48cc29c93727efc5}{sum\-\_\-out}, \hyperlink{classofeli_1_1_a_cwithout_edges_a8d2c28710176ae9b562b4001f8171348}{n\-\_\-in} and \hyperlink{classofeli_1_1_a_cwithout_edges_a07818e5c3700b0164037e982077de10c}{n\-\_\-out}, before each \hyperlink{classofeli_1_1_active_contour_a7d9a557b580af708155ff4ab8bbfd73b}{switch\-\_\-in}, in the cycle 2, in order to calculate means \hyperlink{classofeli_1_1_a_cwithout_edges_a02c32b73dcc676251330a42b6fb4e6f4}{Cout} and \hyperlink{classofeli_1_1_a_cwithout_edges_af26f696be73588b2a150c3eef6f62c85}{Cin}. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classofeli_1_1_a_cwithout_edges_a80021d0ca688f3cbf46bccc870706e4c}{updates\-\_\-for\-\_\-means\-\_\-out2} (int offset)
+\begin{DoxyCompactList}\small\item\em Updates variables \hyperlink{classofeli_1_1_a_cwithout_edges_a14f61eabccbac71bf616674e8feb44f5}{sum\-\_\-in}, \hyperlink{classofeli_1_1_a_cwithout_edges_a799b4078bc22cbde48cc29c93727efc5}{sum\-\_\-out}, \hyperlink{classofeli_1_1_a_cwithout_edges_a8d2c28710176ae9b562b4001f8171348}{n\-\_\-in} and \hyperlink{classofeli_1_1_a_cwithout_edges_a07818e5c3700b0164037e982077de10c}{n\-\_\-out}, before each \hyperlink{classofeli_1_1_active_contour_a98af656dfc038e6f03c9e4bb67e39bd0}{switch\-\_\-out}, in the cycle 2, in order to calculate means \hyperlink{classofeli_1_1_a_cwithout_edges_a02c32b73dcc676251330a42b6fb4e6f4}{Cout} and \hyperlink{classofeli_1_1_a_cwithout_edges_af26f696be73588b2a150c3eef6f62c85}{Cin}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classofeli_1_1_a_cwithout_edges_a02c32b73dcc676251330a42b6fb4e6f4}{int \hyperlink{classofeli_1_1_a_cwithout_edges_a02c32b73dcc676251330a42b6fb4e6f4}{Cout}}\label{classofeli_1_1_a_cwithout_edges_a02c32b73dcc676251330a42b6fb4e6f4}
+
+\begin{DoxyCompactList}\small\item\em Mean of the intensities or grey-\/levels of the pixels outside the curve, i.\-e. pixels $i$ with $\phi \left( i\right) >0$ . \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_a_cwithout_edges_af26f696be73588b2a150c3eef6f62c85}{int \hyperlink{classofeli_1_1_a_cwithout_edges_af26f696be73588b2a150c3eef6f62c85}{Cin}}\label{classofeli_1_1_a_cwithout_edges_af26f696be73588b2a150c3eef6f62c85}
+
+\begin{DoxyCompactList}\small\item\em Mean of the intensities or grey-\/levels of the pixels inside the curve, i.\-e. pixels $i$ with $\phi \left( i\right) <0$ . \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_a_cwithout_edges_a5bac46e9934764b6055b781f2528324c}{int \hyperlink{classofeli_1_1_a_cwithout_edges_a5bac46e9934764b6055b781f2528324c}{I}}\label{classofeli_1_1_a_cwithout_edges_a5bac46e9934764b6055b781f2528324c}
+
+\begin{DoxyCompactList}\small\item\em Intensity or grey-\/level of the current pixel. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_a_cwithout_edges_a94489baa2bd0a04b86020e61de55680d}{const int \hyperlink{classofeli_1_1_a_cwithout_edges_a94489baa2bd0a04b86020e61de55680d}{lambda\-\_\-out}}\label{classofeli_1_1_a_cwithout_edges_a94489baa2bd0a04b86020e61de55680d}
+
+\begin{DoxyCompactList}\small\item\em Weight of the outside homogeneity criterion in the Chan-\/\-Vese model. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_a_cwithout_edges_a43a550a7ba56e0b0861d120e47c96d95}{const int \hyperlink{classofeli_1_1_a_cwithout_edges_a43a550a7ba56e0b0861d120e47c96d95}{lambda\-\_\-in}}\label{classofeli_1_1_a_cwithout_edges_a43a550a7ba56e0b0861d120e47c96d95}
+
+\begin{DoxyCompactList}\small\item\em Weight of the inside homogeneity criterion in the Chan-\/\-Vese model. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_a_cwithout_edges_a799b4078bc22cbde48cc29c93727efc5}{int \hyperlink{classofeli_1_1_a_cwithout_edges_a799b4078bc22cbde48cc29c93727efc5}{sum\-\_\-out}}\label{classofeli_1_1_a_cwithout_edges_a799b4078bc22cbde48cc29c93727efc5}
+
+\begin{DoxyCompactList}\small\item\em Sum of the intensities or grey-\/levels of the pixels outside the curve, i.\-e. pixels $i$ with $\phi \left( i\right) >0$ . \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_a_cwithout_edges_a14f61eabccbac71bf616674e8feb44f5}{int \hyperlink{classofeli_1_1_a_cwithout_edges_a14f61eabccbac71bf616674e8feb44f5}{sum\-\_\-in}}\label{classofeli_1_1_a_cwithout_edges_a14f61eabccbac71bf616674e8feb44f5}
+
+\begin{DoxyCompactList}\small\item\em Sum of the intensities or grey-\/levels of the pixels intside the curve, i.\-e. pixels $i$ with $\phi \left( i\right) <0$ . \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_a_cwithout_edges_a07818e5c3700b0164037e982077de10c}{int \hyperlink{classofeli_1_1_a_cwithout_edges_a07818e5c3700b0164037e982077de10c}{n\-\_\-out}}\label{classofeli_1_1_a_cwithout_edges_a07818e5c3700b0164037e982077de10c}
+
+\begin{DoxyCompactList}\small\item\em Number of pixels outside the curve, i.\-e. pixels $i$ with $\phi \left( i\right) >0$ . \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_a_cwithout_edges_a8d2c28710176ae9b562b4001f8171348}{int \hyperlink{classofeli_1_1_a_cwithout_edges_a8d2c28710176ae9b562b4001f8171348}{n\-\_\-in}}\label{classofeli_1_1_a_cwithout_edges_a8d2c28710176ae9b562b4001f8171348}
+
+\begin{DoxyCompactList}\small\item\em Number of pixels inside the curve, i.\-e. pixels $i$ with $\phi \left( i\right) <0$ . \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+The child class \hyperlink{classofeli_1_1_a_cwithout_edges}{A\-Cwithout\-Edges} implements a function to calculate specifically speed {\itshape Fd} based on the Chan-\/\-Vese model, a region-\/based energy functional. The regularization of our active contour is performed by a gaussian smoothing of \hyperlink{classofeli_1_1_active_contour_aacb03a6ded4ca51cb52f58aeff955ef7}{phi} so we are interested uniquely by the external or data dependant term of this energy functional.\par
+\par
+ $F_{d}=\lambda _{out}\left( I-C_{out}\right) ^{2}- \lambda _{in}\left( I-C_{in}\right) ^{2}$ \par
+\par
+
+\begin{DoxyItemize}
+\item $F_{d}$ \-: data dependant evolution speed calculated for each point of the active contour, only it sign is used by the algorithm. \par
+
+\item $I$ \-: intensity or grey-\/level of the current pixel of the active contour. \par
+
+\item $C_{out}$ \-: mean of the intensities or grey-\/levels of the pixels outside the curve, i.\-e. pixels $i$ with $\phi \left( i\right) >0$. \par
+
+\item $C_{in}$ \-: mean of the intensities or grey-\/levels of the pixels inside the curve, i.\-e. pixels $i$ with $\phi \left( i\right) <0$. \par
+
+\item $\lambda _{out}$ \-: weight of the outside homogeneity criterion in the Chan-\/\-Vese model. \par
+
+\item $\lambda _{in}$ \-: weight of the inside homogeneity criterion in the Chan-\/\-Vese model. 
+\end{DoxyItemize}\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{interface-example}{interface}.\end{Desc}
+
+
+Definition at line 48 of file ac\-\_\-withoutedges.\-hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classofeli_1_1_a_cwithout_edges_ad3be07385b0a0d693036ddee99bdaf2b}{\index{ofeli\-::\-A\-Cwithout\-Edges@{ofeli\-::\-A\-Cwithout\-Edges}!A\-Cwithout\-Edges@{A\-Cwithout\-Edges}}
+\index{A\-Cwithout\-Edges@{A\-Cwithout\-Edges}!ofeli::ACwithoutEdges@{ofeli\-::\-A\-Cwithout\-Edges}}
+\subsubsection[{A\-Cwithout\-Edges}]{\setlength{\rightskip}{0pt plus 5cm}A\-Cwithout\-Edges\-::\-A\-Cwithout\-Edges (
+\begin{DoxyParamCaption}
+\item[{const unsigned char $\ast$}]{img\-\_\-data1, }
+\item[{int}]{img\-\_\-width1, }
+\item[{int}]{img\-\_\-height1, }
+\item[{bool}]{has\-Ellipse1, }
+\item[{double}]{init\-\_\-width1, }
+\item[{double}]{init\-\_\-height1, }
+\item[{double}]{center\-\_\-x1, }
+\item[{double}]{center\-\_\-y1, }
+\item[{bool}]{has\-Cycle2\-\_\-1, }
+\item[{int}]{kernel\-\_\-length1, }
+\item[{double}]{sigma1, }
+\item[{int}]{Na1, }
+\item[{int}]{Ns1, }
+\item[{int}]{lambda\-\_\-out1, }
+\item[{int}]{lambda\-\_\-in1}
+\end{DoxyParamCaption}
+)}}\label{classofeli_1_1_a_cwithout_edges_ad3be07385b0a0d693036ddee99bdaf2b}
+
+
+Constructor to initialize the active contour from geometrical parameters of an unique shape, an ellipse or a rectangle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em img\-\_\-data1} & Input pointer on the grayscale or grey-\/level image data buffer. This buffer must be row-\/wise. Passed to \hyperlink{classofeli_1_1_active_contour_a96480d79e9a60817925903da233a5b1e}{img\-\_\-data}. \\
+\hline
+{\em img\-\_\-width1} & Image width, i.\-e. number of columns. Passed to \hyperlink{classofeli_1_1_active_contour_a3623de7ebc0d27ba7fac21a5929afbc6}{img\-\_\-width}. \\
+\hline
+{\em img\-\_\-height1} & Image height, i.\-e. number of rows. Passed to \hyperlink{classofeli_1_1_active_contour_a88d02b47bab737ec97fe3a7ea9554c0c}{img\-\_\-height}. \\
+\hline
+{\em has\-Ellipse1} & Boolean to choose the shape of the active contour initialization, {\ttfamily true} for an ellipse or {\ttfamily false} for a rectangle. \\
+\hline
+{\em init\-\_\-width1} & Width of the shape divided by the image \hyperlink{classofeli_1_1_active_contour_a3623de7ebc0d27ba7fac21a5929afbc6}{img\-\_\-width}. \\
+\hline
+{\em init\-\_\-height1} & Height of the shape divided by the image \hyperlink{classofeli_1_1_active_contour_a88d02b47bab737ec97fe3a7ea9554c0c}{img\-\_\-height}. \\
+\hline
+{\em center\-\_\-x1} & X-\/axis position (or column index) of the center of the shape divided by the image \hyperlink{classofeli_1_1_active_contour_a3623de7ebc0d27ba7fac21a5929afbc6}{img\-\_\-width} subtracted by 0.\-5. \\
+\hline
+{\em center\-\_\-y1} & Y-\/axis position (or row index) of the center of the shape divided by the image \hyperlink{classofeli_1_1_active_contour_a88d02b47bab737ec97fe3a7ea9554c0c}{img\-\_\-height} subtracted by 0.\-5.\par
+ To have the center of the shape in the image \-: -\/0.\-5 $<$ center\-\_\-x1 $<$ 0.\-5 and -\/0.\-5 $<$ center\-\_\-y1 $<$ 0.\-5. \\
+\hline
+{\em has\-Cycle2\-\_\-1} & Boolean to have or not the curve smoothing, evolutions in the cycle 2 with an internal speed {\itshape Fint}. Passed to \hyperlink{classofeli_1_1_active_contour_aa763ff1bed211faa444013cbd5de0be3}{has\-Cycle2}. \\
+\hline
+{\em kernel\-\_\-length1} & Kernel length of the gaussian filter for the curve smoothing. \\
+\hline
+{\em sigma1} & Standard deviation of the gaussian kernel for the curve smoothing. \\
+\hline
+{\em Na1} & Number of times the active contour evolves in the cycle 1, external or data dependant evolutions with {\itshape Fd} speed. Passed to \hyperlink{classofeli_1_1_active_contour_a811a28ec9c39400d244783a8a2fe7e2d}{Na\-\_\-max}. \\
+\hline
+{\em Ns1} & Number of times the active contour evolves in the cycle 2, curve smoothing or internal evolutions with {\itshape Fint} speed. Passed to \hyperlink{classofeli_1_1_active_contour_a908322f93a50ce7808960236478649fe}{Ns\-\_\-max}. \\
+\hline
+{\em lambda\-\_\-out1} & Weight of the outside homogeneity criterion. Passed to \hyperlink{classofeli_1_1_a_cwithout_edges_a94489baa2bd0a04b86020e61de55680d}{lambda\-\_\-out}. \\
+\hline
+{\em lambda\-\_\-in1} & Weight of the inside homogeneity criterion. Passed to \hyperlink{classofeli_1_1_a_cwithout_edges_a43a550a7ba56e0b0861d120e47c96d95}{lambda\-\_\-in}. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 55 of file ac\-\_\-withoutedges.\-cpp.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classofeli_1_1_a_cwithout_edges_ad3be07385b0a0d693036ddee99bdaf2b_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{classofeli_1_1_a_cwithout_edges_a3aafada5bffe3d4251ff22cd22ebb401}{\index{ofeli\-::\-A\-Cwithout\-Edges@{ofeli\-::\-A\-Cwithout\-Edges}!A\-Cwithout\-Edges@{A\-Cwithout\-Edges}}
+\index{A\-Cwithout\-Edges@{A\-Cwithout\-Edges}!ofeli::ACwithoutEdges@{ofeli\-::\-A\-Cwithout\-Edges}}
+\subsubsection[{A\-Cwithout\-Edges}]{\setlength{\rightskip}{0pt plus 5cm}A\-Cwithout\-Edges\-::\-A\-Cwithout\-Edges (
+\begin{DoxyParamCaption}
+\item[{const unsigned char $\ast$}]{img\-\_\-data1, }
+\item[{int}]{img\-\_\-width1, }
+\item[{int}]{img\-\_\-height1, }
+\item[{const char $\ast$}]{phi\-\_\-init1, }
+\item[{bool}]{has\-Cycle2\-\_\-1, }
+\item[{int}]{kernel\-\_\-length1, }
+\item[{double}]{sigma1, }
+\item[{int}]{Na1, }
+\item[{int}]{Ns1, }
+\item[{int}]{lambda\-\_\-out1, }
+\item[{int}]{lambda\-\_\-in1}
+\end{DoxyParamCaption}
+)}}\label{classofeli_1_1_a_cwithout_edges_a3aafada5bffe3d4251ff22cd22ebb401}
+
+
+Constructor to initialize the active contour from an initial phi level-\/set function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em img\-\_\-data1} & Input pointer on the grayscale image data buffer. This buffer must be row-\/wise. Passed to \hyperlink{classofeli_1_1_active_contour_a96480d79e9a60817925903da233a5b1e}{img\-\_\-data}. \\
+\hline
+{\em img\-\_\-width1} & Image width, i.\-e. number of columns. Passed to \hyperlink{classofeli_1_1_active_contour_a3623de7ebc0d27ba7fac21a5929afbc6}{img\-\_\-width}. \\
+\hline
+{\em img\-\_\-height1} & Image height, i.\-e. number of rows. Passed to \hyperlink{classofeli_1_1_active_contour_a88d02b47bab737ec97fe3a7ea9554c0c}{img\-\_\-height}. \\
+\hline
+{\em phi\-\_\-init1} & Pointer on the initialized level-\/set function buffer. Copied to \hyperlink{classofeli_1_1_active_contour_aacb03a6ded4ca51cb52f58aeff955ef7}{phi}. \\
+\hline
+{\em has\-Cycle2\-\_\-1} & Boolean to have or not the curve smoothing, evolutions in the cycle 2 with an internal speed {\itshape Fint}. Passed to \hyperlink{classofeli_1_1_active_contour_aa763ff1bed211faa444013cbd5de0be3}{has\-Cycle2}. \\
+\hline
+{\em kernel\-\_\-length1} & Kernel length of the gaussian filter for the curve smoothing. \\
+\hline
+{\em sigma1} & Standard deviation of the gaussian kernel for the curve smoothing. \\
+\hline
+{\em Na1} & Number of times the active contour evolves in the cycle 1, external or data dependant evolutions with {\itshape Fd} speed. Passed to \hyperlink{classofeli_1_1_active_contour_a811a28ec9c39400d244783a8a2fe7e2d}{Na\-\_\-max}. \\
+\hline
+{\em Ns1} & Number of times the active contour evolves in the cycle 2, curve smoothing or internal evolutions with {\itshape Fint} speed. Passed to \hyperlink{classofeli_1_1_active_contour_a908322f93a50ce7808960236478649fe}{Ns\-\_\-max}. \\
+\hline
+{\em lambda\-\_\-out1} & Weight of the outside homogeneity criterion. Passed to \hyperlink{classofeli_1_1_a_cwithout_edges_a94489baa2bd0a04b86020e61de55680d}{lambda\-\_\-out}. \\
+\hline
+{\em lambda\-\_\-in1} & Weight of the inside homogeneity criterion. Passed to \hyperlink{classofeli_1_1_a_cwithout_edges_a43a550a7ba56e0b0861d120e47c96d95}{lambda\-\_\-in}. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 69 of file ac\-\_\-withoutedges.\-cpp.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classofeli_1_1_a_cwithout_edges_a3aafada5bffe3d4251ff22cd22ebb401_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classofeli_1_1_a_cwithout_edges_a4190840f934080ff6eb64fa48c993f98}{\index{ofeli\-::\-A\-Cwithout\-Edges@{ofeli\-::\-A\-Cwithout\-Edges}!compute\-\_\-external\-\_\-speed\-\_\-\-Fd@{compute\-\_\-external\-\_\-speed\-\_\-\-Fd}}
+\index{compute\-\_\-external\-\_\-speed\-\_\-\-Fd@{compute\-\_\-external\-\_\-speed\-\_\-\-Fd}!ofeli::ACwithoutEdges@{ofeli\-::\-A\-Cwithout\-Edges}}
+\subsubsection[{compute\-\_\-external\-\_\-speed\-\_\-\-Fd}]{\setlength{\rightskip}{0pt plus 5cm}void A\-Cwithout\-Edges\-::compute\-\_\-external\-\_\-speed\-\_\-\-Fd (
+\begin{DoxyParamCaption}
+\item[{int}]{offset}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [virtual]}}}\label{classofeli_1_1_a_cwithout_edges_a4190840f934080ff6eb64fa48c993f98}
+
+
+Computes external speed {\itshape Fd} with the Chan-\/\-Vese model for a current point {\itshape }(x,y) of \hyperlink{classofeli_1_1_active_contour_a31e0eb18a7ea6ae90acf66ed018fcd85}{Lout} or \hyperlink{classofeli_1_1_active_contour_a7662d4f5c8b87d3e642b08b7e341bd79}{Lin}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em offset} & offset of the image data buffer with {\itshape offset} = {\itshape x} + {\itshape y} × \hyperlink{classofeli_1_1_active_contour_a3623de7ebc0d27ba7fac21a5929afbc6}{img\-\_\-width} \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classofeli_1_1_active_contour_ae3871b40f2f3e27ae0d75775798cdee1}{ofeli\-::\-Active\-Contour}.
+
+
+
+Definition at line 140 of file ac\-\_\-withoutedges.\-cpp.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classofeli_1_1_a_cwithout_edges_a4190840f934080ff6eb64fa48c993f98_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{classofeli_1_1_a_cwithout_edges_aae62ec3548eb47ca5f67c2ede19a251b}{\index{ofeli\-::\-A\-Cwithout\-Edges@{ofeli\-::\-A\-Cwithout\-Edges}!updates\-\_\-for\-\_\-means\-\_\-in2@{updates\-\_\-for\-\_\-means\-\_\-in2}}
+\index{updates\-\_\-for\-\_\-means\-\_\-in2@{updates\-\_\-for\-\_\-means\-\_\-in2}!ofeli::ACwithoutEdges@{ofeli\-::\-A\-Cwithout\-Edges}}
+\subsubsection[{updates\-\_\-for\-\_\-means\-\_\-in2}]{\setlength{\rightskip}{0pt plus 5cm}void A\-Cwithout\-Edges\-::updates\-\_\-for\-\_\-means\-\_\-in2 (
+\begin{DoxyParamCaption}
+\item[{int}]{offset}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [virtual]}}}\label{classofeli_1_1_a_cwithout_edges_aae62ec3548eb47ca5f67c2ede19a251b}
+
+
+Updates variables \hyperlink{classofeli_1_1_a_cwithout_edges_a14f61eabccbac71bf616674e8feb44f5}{sum\-\_\-in}, \hyperlink{classofeli_1_1_a_cwithout_edges_a799b4078bc22cbde48cc29c93727efc5}{sum\-\_\-out}, \hyperlink{classofeli_1_1_a_cwithout_edges_a8d2c28710176ae9b562b4001f8171348}{n\-\_\-in} and \hyperlink{classofeli_1_1_a_cwithout_edges_a07818e5c3700b0164037e982077de10c}{n\-\_\-out}, before each \hyperlink{classofeli_1_1_active_contour_a7d9a557b580af708155ff4ab8bbfd73b}{switch\-\_\-in}, in the cycle 2, in order to calculate means \hyperlink{classofeli_1_1_a_cwithout_edges_a02c32b73dcc676251330a42b6fb4e6f4}{Cout} and \hyperlink{classofeli_1_1_a_cwithout_edges_af26f696be73588b2a150c3eef6f62c85}{Cin}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em offset} & offset of the image data buffer with {\itshape offset} = {\itshape x} + {\itshape y} × \hyperlink{classofeli_1_1_active_contour_a3623de7ebc0d27ba7fac21a5929afbc6}{img\-\_\-width} \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classofeli_1_1_active_contour_a77e9dc7bcbd0ba48499a499891e021cb}{ofeli\-::\-Active\-Contour}.
+
+
+
+Definition at line 169 of file ac\-\_\-withoutedges.\-cpp.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classofeli_1_1_a_cwithout_edges_aae62ec3548eb47ca5f67c2ede19a251b_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{classofeli_1_1_a_cwithout_edges_a80021d0ca688f3cbf46bccc870706e4c}{\index{ofeli\-::\-A\-Cwithout\-Edges@{ofeli\-::\-A\-Cwithout\-Edges}!updates\-\_\-for\-\_\-means\-\_\-out2@{updates\-\_\-for\-\_\-means\-\_\-out2}}
+\index{updates\-\_\-for\-\_\-means\-\_\-out2@{updates\-\_\-for\-\_\-means\-\_\-out2}!ofeli::ACwithoutEdges@{ofeli\-::\-A\-Cwithout\-Edges}}
+\subsubsection[{updates\-\_\-for\-\_\-means\-\_\-out2}]{\setlength{\rightskip}{0pt plus 5cm}void A\-Cwithout\-Edges\-::updates\-\_\-for\-\_\-means\-\_\-out2 (
+\begin{DoxyParamCaption}
+\item[{int}]{offset}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [virtual]}}}\label{classofeli_1_1_a_cwithout_edges_a80021d0ca688f3cbf46bccc870706e4c}
+
+
+Updates variables \hyperlink{classofeli_1_1_a_cwithout_edges_a14f61eabccbac71bf616674e8feb44f5}{sum\-\_\-in}, \hyperlink{classofeli_1_1_a_cwithout_edges_a799b4078bc22cbde48cc29c93727efc5}{sum\-\_\-out}, \hyperlink{classofeli_1_1_a_cwithout_edges_a8d2c28710176ae9b562b4001f8171348}{n\-\_\-in} and \hyperlink{classofeli_1_1_a_cwithout_edges_a07818e5c3700b0164037e982077de10c}{n\-\_\-out}, before each \hyperlink{classofeli_1_1_active_contour_a98af656dfc038e6f03c9e4bb67e39bd0}{switch\-\_\-out}, in the cycle 2, in order to calculate means \hyperlink{classofeli_1_1_a_cwithout_edges_a02c32b73dcc676251330a42b6fb4e6f4}{Cout} and \hyperlink{classofeli_1_1_a_cwithout_edges_af26f696be73588b2a150c3eef6f62c85}{Cin}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em offset} & offset of the image data buffer with {\itshape offset} = {\itshape x} + {\itshape y} × \hyperlink{classofeli_1_1_active_contour_a3623de7ebc0d27ba7fac21a5929afbc6}{img\-\_\-width} \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classofeli_1_1_active_contour_a347e650493750ad29b8b73ed52bdcf7a}{ofeli\-::\-Active\-Contour}.
+
+
+
+Definition at line 178 of file ac\-\_\-withoutedges.\-cpp.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classofeli_1_1_a_cwithout_edges_a80021d0ca688f3cbf46bccc870706e4c_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+ac\-\_\-withoutedges.\-hpp\item 
+ac\-\_\-withoutedges.\-cpp\end{DoxyCompactItemize}

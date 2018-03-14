@@ -1,0 +1,7 @@
+<map id="ofeli::ActiveContour::switch_in" name="ofeli::ActiveContour::switch_in">
+<area shape="rect" id="node3" href="$classofeli_1_1_active_contour.html#adcb560ea7c8b763c7e4e769321807925" title="Calculates the position (x,y) of a point of phi or the image with the offset." alt="" coords="216,5,349,46"/>
+<area shape="rect" id="node5" href="$classofeli_1_1_active_contour.html#a956318f175100333c4b98aba9253d54a" title="Second step of procedure switch_in." alt="" coords="187,70,378,111"/>
+<area shape="rect" id="node9" href="$classofeli_1_1_active_contour.html#ae58a17c4d023abdd142ae24bf8335370" title="Calculates the offset of phi or the image data buffer with the position (x,y)." alt="" coords="216,135,349,177"/>
+<area shape="rect" id="node11" href="$classofeli_1_1list.html#af38ebb4b33ce7f5518b78eb1e8ae3464" title="ofeli::list::splice\l_front" alt="" coords="227,201,339,242"/>
+<area shape="rect" id="node7" href="$classofeli_1_1list.html#a87b7f6a90670e08d99e23f3377b001f9" title="Inserts a new element at the beginning of the list." alt="" coords="427,77,565,104"/>
+</map>

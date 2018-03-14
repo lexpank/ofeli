@@ -1,0 +1,251 @@
+\hypertarget{classofeli_1_1list}{\section{ofeli\-:\-:list$<$ T $>$ Class Template Reference}
+\label{classofeli_1_1list}\index{ofeli\-::list$<$ T $>$@{ofeli\-::list$<$ T $>$}}
+}
+
+
+{\ttfamily \#include $<$linked\-\_\-list.\-hpp$>$}
+
+
+
+Collaboration diagram for ofeli\-:\-:list$<$ T $>$\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{classofeli_1_1list__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classofeli_1_1list_1_1const__iterator}{const\-\_\-iterator}
+\begin{DoxyCompactList}\small\item\em const iterator to read a const list. \end{DoxyCompactList}\item 
+class \hyperlink{classofeli_1_1list_1_1iterator}{iterator}
+\begin{DoxyCompactList}\small\item\em Iterator to modify a list. \end{DoxyCompactList}\item 
+struct \hyperlink{structofeli_1_1list_1_1_node}{Node}
+\begin{DoxyCompactList}\small\item\em This structure implements a node of class {\itshape list}. It is composed by an element of type {\itshape T} and a pointer on the next node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classofeli_1_1list_a39932b3048b4ddbac43b00e7bad6a9da}{\hyperlink{classofeli_1_1list_a39932b3048b4ddbac43b00e7bad6a9da}{list} (int mem\-\_\-pool\-\_\-size1)}\label{classofeli_1_1list_a39932b3048b4ddbac43b00e7bad6a9da}
+
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1list_add13c528e17c77a568aea94adec5db71}{\hyperlink{classofeli_1_1list_add13c528e17c77a568aea94adec5db71}{list} (int mem\-\_\-pool\-\_\-size1, int n, const T \&value)}\label{classofeli_1_1list_add13c528e17c77a568aea94adec5db71}
+
+\begin{DoxyCompactList}\small\item\em Constructor to create a list with {\itshape n} value. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1list_ac02bf0a0e738893734778313def2b557}{\hyperlink{classofeli_1_1list_ac02bf0a0e738893734778313def2b557}{list} (int mem\-\_\-pool\-\_\-size1, const T array\mbox{[}$\,$\mbox{]}, int array\-\_\-length)}\label{classofeli_1_1list_ac02bf0a0e738893734778313def2b557}
+
+\begin{DoxyCompactList}\small\item\em Constructor to create a list from an array. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1list_a6634b04ef70d4a4a11af6974e0b2b685}{\hyperlink{classofeli_1_1list_a6634b04ef70d4a4a11af6974e0b2b685}{list} (int mem\-\_\-pool\-\_\-size1, const \hyperlink{classofeli_1_1list}{list} \&copied)}\label{classofeli_1_1list_a6634b04ef70d4a4a11af6974e0b2b685}
+
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1list_a0093d68c35e21c0b52c12a371be58826}{\hyperlink{classofeli_1_1list}{list} \& \hyperlink{classofeli_1_1list_a0093d68c35e21c0b52c12a371be58826}{operator=} (const \hyperlink{classofeli_1_1list}{list} \&rhs)}\label{classofeli_1_1list_a0093d68c35e21c0b52c12a371be58826}
+
+\begin{DoxyCompactList}\small\item\em Assignment operator overloading. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1list_a68fef2e0c33ffa015c2d4e9e8f11356a}{\hyperlink{classofeli_1_1list_a68fef2e0c33ffa015c2d4e9e8f11356a}{$\sim$list} ()}\label{classofeli_1_1list_a68fef2e0c33ffa015c2d4e9e8f11356a}
+
+\begin{DoxyCompactList}\small\item\em Destructor. All the elements in the list container are dropped (including the sentinel node) \-: their destructors are called, and then they are removed from the list container, leaving it with a size of 0. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1list_a1b4ab444619f6d412a461752ba019514}{void \hyperlink{classofeli_1_1list_a1b4ab444619f6d412a461752ba019514}{clear} ()}\label{classofeli_1_1list_a1b4ab444619f6d412a461752ba019514}
+
+\begin{DoxyCompactList}\small\item\em All the elements in the list container are dropped (except the sentinel node) \-: their destructors are called, and then they are removed from the list container, leaving it with a size of 0. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1list_a4f7f0567a64758636e3835ecea28a36f}{\hyperlink{classofeli_1_1list_1_1iterator}{iterator} \hyperlink{classofeli_1_1list_a4f7f0567a64758636e3835ecea28a36f}{begin} ()}\label{classofeli_1_1list_a4f7f0567a64758636e3835ecea28a36f}
+
+\begin{DoxyCompactList}\small\item\em Returns the head link. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1list_a2abcaf1bc66a9c292018efa55d6250ff}{\hyperlink{classofeli_1_1list_1_1const__iterator}{const\-\_\-iterator} \hyperlink{classofeli_1_1list_a2abcaf1bc66a9c292018efa55d6250ff}{begin} () const }\label{classofeli_1_1list_a2abcaf1bc66a9c292018efa55d6250ff}
+
+\begin{DoxyCompactList}\small\item\em Returns the head link. \end{DoxyCompactList}\item 
+void \hyperlink{classofeli_1_1list_a8c619ab7fedd643db5f3894889d91c74}{assign} (int n, const T \&value)
+\item 
+void \hyperlink{classofeli_1_1list_a7fbe8cc25a5c413924db708e47161306}{assign} (const T array\mbox{[}$\,$\mbox{]}, int array\-\_\-length)
+\item 
+\hypertarget{classofeli_1_1list_a38beb590b14408cbe2e0e5d573fbf5e2}{void \hyperlink{classofeli_1_1list_a38beb590b14408cbe2e0e5d573fbf5e2}{pop\-\_\-front} ()}\label{classofeli_1_1list_a38beb590b14408cbe2e0e5d573fbf5e2}
+
+\begin{DoxyCompactList}\small\item\em Removes the first element in the {\itshape list} container, effectively reducing its size by one. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1list_a87b7f6a90670e08d99e23f3377b001f9}{void \hyperlink{classofeli_1_1list_a87b7f6a90670e08d99e23f3377b001f9}{push\-\_\-front} (const T \&value)}\label{classofeli_1_1list_a87b7f6a90670e08d99e23f3377b001f9}
+
+\begin{DoxyCompactList}\small\item\em Inserts a new element at the beginning of the list. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1list_a05ae0af886d7932bdf5a5183e2a64c91}{void \hyperlink{classofeli_1_1list_a05ae0af886d7932bdf5a5183e2a64c91}{push\-\_\-front} (const \hyperlink{classofeli_1_1list}{list} \&copied)}\label{classofeli_1_1list_a05ae0af886d7932bdf5a5183e2a64c91}
+
+\begin{DoxyCompactList}\small\item\em Inserts copies of list {\itshape copied} elements at the beginning of the list {\itshape $\ast$this}. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1list_a3925aa31728a510af35d3229cd00a43f}{{\footnotesize template$<$typename Binary\-Predicate $>$ }\\void \hyperlink{classofeli_1_1list_a3925aa31728a510af35d3229cd00a43f}{put\-\_\-away} (const T \&value, Binary\-Predicate compare)}\label{classofeli_1_1list_a3925aa31728a510af35d3229cd00a43f}
+
+\begin{DoxyCompactList}\small\item\em Puts away a new element to maintain sorted list into the specified order. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1list_a0970694ba9e35222daa2ecc156f71661}{void \hyperlink{classofeli_1_1list_a0970694ba9e35222daa2ecc156f71661}{put\-\_\-away} (const T \&value)}\label{classofeli_1_1list_a0970694ba9e35222daa2ecc156f71661}
+
+\begin{DoxyCompactList}\small\item\em Puts away a new element to maintain sorted list into ascending order. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1list_a347778b1ef2f0530cb73403665f28caf}{\hyperlink{classofeli_1_1list_1_1iterator}{iterator} \hyperlink{classofeli_1_1list_a347778b1ef2f0530cb73403665f28caf}{insert\-\_\-before} (\hyperlink{classofeli_1_1list_1_1iterator}{iterator} position, const T \&value)}\label{classofeli_1_1list_a347778b1ef2f0530cb73403665f28caf}
+
+\begin{DoxyCompactList}\small\item\em Inserts a new element before {\itshape position}. Returns the position of the inserted element. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1list_a89cdc246b5f3b431d18e148d3dcad54e}{\hyperlink{classofeli_1_1list_1_1iterator}{iterator} \hyperlink{classofeli_1_1list_a89cdc246b5f3b431d18e148d3dcad54e}{insert\-\_\-after} (\hyperlink{classofeli_1_1list_1_1iterator}{iterator} position, const T \&value)}\label{classofeli_1_1list_a89cdc246b5f3b431d18e148d3dcad54e}
+
+\begin{DoxyCompactList}\small\item\em Inserts a new element after {\itshape position}. Returns the position of the inserted element. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1list_ae160d4ea7224becad437add3b1d594e4}{\hyperlink{classofeli_1_1list_1_1iterator}{iterator} \hyperlink{classofeli_1_1list_ae160d4ea7224becad437add3b1d594e4}{erase} (\hyperlink{classofeli_1_1list_1_1iterator}{iterator} position)}\label{classofeli_1_1list_ae160d4ea7224becad437add3b1d594e4}
+
+\begin{DoxyCompactList}\small\item\em Removes from the list container the element at {\itshape position} and returns a valid iterator, i.\-e. the position of the next element. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1list_a5f61ba4f2a9f7d67c4737baa9096386c}{\hyperlink{classofeli_1_1list_1_1iterator}{iterator} \hyperlink{classofeli_1_1list_a5f61ba4f2a9f7d67c4737baa9096386c}{erase\-\_\-after} (\hyperlink{classofeli_1_1list_1_1iterator}{iterator} position)}\label{classofeli_1_1list_a5f61ba4f2a9f7d67c4737baa9096386c}
+
+\begin{DoxyCompactList}\small\item\em Removes from the list container the element at {\itshape ++position} and returns the position. \end{DoxyCompactList}\item 
+\hyperlink{classofeli_1_1list_1_1iterator}{iterator} \hyperlink{classofeli_1_1list_af38ebb4b33ce7f5518b78eb1e8ae3464}{splice\-\_\-front} (\hyperlink{classofeli_1_1list_1_1iterator}{iterator} moved)
+\item 
+\hypertarget{classofeli_1_1list_a92338c30de397c0ac7bf224280c5607e}{void \hyperlink{classofeli_1_1list_a92338c30de397c0ac7bf224280c5607e}{splice\-\_\-front} (\hyperlink{classofeli_1_1list}{list} \&moved)}\label{classofeli_1_1list_a92338c30de397c0ac7bf224280c5607e}
+
+\begin{DoxyCompactList}\small\item\em Moves all elements of list {\itshape moved} to the beginnning of list {\itshape $\ast$this}. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1list_a6e9d56b7ca0771d3a768b588239a29f3}{void \hyperlink{classofeli_1_1list_a6e9d56b7ca0771d3a768b588239a29f3}{remove} (const T \&value)}\label{classofeli_1_1list_a6e9d56b7ca0771d3a768b588239a29f3}
+
+\begin{DoxyCompactList}\small\item\em Removes elements by their value. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Unary\-Predicate $>$ }\\void \hyperlink{classofeli_1_1list_a2982d8f3bf7593929fe6ea3a7ad03fc6}{remove\-\_\-if} (Unary\-Predicate predicate)
+\item 
+{\footnotesize template$<$typename Binary\-Predicate $>$ }\\void \hyperlink{classofeli_1_1list_a640cb310a5241b411436ff39577706b1}{unique} (Binary\-Predicate compare)
+\item 
+\hypertarget{classofeli_1_1list_abc2cd2b67b1e9aab234cfeb647870f96}{void \hyperlink{classofeli_1_1list_abc2cd2b67b1e9aab234cfeb647870f96}{unique} ()}\label{classofeli_1_1list_abc2cd2b67b1e9aab234cfeb647870f96}
+
+\begin{DoxyCompactList}\small\item\em Remove consecutive duplicate values. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1list_a3cd2eabfec966e211118a90ab9d0a5f5}{void \hyperlink{classofeli_1_1list_a3cd2eabfec966e211118a90ab9d0a5f5}{reverse} ()}\label{classofeli_1_1list_a3cd2eabfec966e211118a90ab9d0a5f5}
+
+\begin{DoxyCompactList}\small\item\em Reverses the order of the elements in the {\itshape list} container. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1list_aaeedac18b70d233644d84c7ad3a9a3fa}{{\footnotesize template$<$typename Binary\-Predicate $>$ }\\void \hyperlink{classofeli_1_1list_aaeedac18b70d233644d84c7ad3a9a3fa}{sort} (Binary\-Predicate compare)}\label{classofeli_1_1list_aaeedac18b70d233644d84c7ad3a9a3fa}
+
+\begin{DoxyCompactList}\small\item\em Sorts the elements with a specified order. The order of equal elements is guaranteed to be preserved (stability). The sorting is performed by merge sort algorithm in {\itshape O(n log n)} in worst-\/case, where {\itshape n} is the size of the container. It does not require {\itshape O(n)} extra space. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1list_a6b47643ddf2f9ceeb952fb6a8617daf9}{void \hyperlink{classofeli_1_1list_a6b47643ddf2f9ceeb952fb6a8617daf9}{sort} ()}\label{classofeli_1_1list_a6b47643ddf2f9ceeb952fb6a8617daf9}
+
+\begin{DoxyCompactList}\small\item\em Sorts the elements into ascending order. Calls the function void \hyperlink{classofeli_1_1list_aaeedac18b70d233644d84c7ad3a9a3fa}{sort(\-Binary\-Predicate compare)} with an object of the class {\itshape less} because parameter by default for a template function is not allowed. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1list_ab3e6e91f6df59f3bf1b290a36577e474}{bool \hyperlink{classofeli_1_1list_ab3e6e91f6df59f3bf1b290a36577e474}{empty} () const }\label{classofeli_1_1list_ab3e6e91f6df59f3bf1b290a36577e474}
+
+\begin{DoxyCompactList}\small\item\em Returns whether the list container is empty, i.\-e. whether its size is 0. \end{DoxyCompactList}\item 
+int \hyperlink{classofeli_1_1list_ab4901f65fa96e300ce11dc75e0760dda}{size} () const 
+\item 
+\hypertarget{classofeli_1_1list_ac904f35ef541477948b304f69cdc7384}{void \hyperlink{classofeli_1_1list_ac904f35ef541477948b304f69cdc7384}{display} () const }\label{classofeli_1_1list_ac904f35ef541477948b304f69cdc7384}
+
+\begin{DoxyCompactList}\small\item\em A second way to display a linked list. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1list_ad0f411dfb78ecfa34f66078a64f7ccb6}{T $\ast$ \hyperlink{classofeli_1_1list_ad0f411dfb78ecfa34f66078a64f7ccb6}{get\-\_\-array} (int array\-\_\-length) const }\label{classofeli_1_1list_ad0f411dfb78ecfa34f66078a64f7ccb6}
+
+\begin{DoxyCompactList}\small\item\em Gets an array with the value of list {\itshape $\ast$this}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{classofeli_1_1list_a471424ff8c258a2c00e9246035304cff}{swap} (\hyperlink{classofeli_1_1list}{list} \&list1, \hyperlink{classofeli_1_1list}{list} \&list2)
+\end{DoxyCompactItemize}
+\subsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classofeli_1_1list_a7765ecb875543506d04dbd466f754503}{typedef \hyperlink{structofeli_1_1list_1_1_node}{Node} $\ast$ \hyperlink{classofeli_1_1list_a7765ecb875543506d04dbd466f754503}{Link}}\label{classofeli_1_1list_a7765ecb875543506d04dbd466f754503}
+
+\begin{DoxyCompactList}\small\item\em Link is a pointer to a \hyperlink{structofeli_1_1list_1_1_node}{Node}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classofeli_1_1list_ac969c1209e5bd5b41a8e56e192061aea}{void \hyperlink{classofeli_1_1list_ac969c1209e5bd5b41a8e56e192061aea}{alloc\-\_\-mem\-\_\-pool} ()}\label{classofeli_1_1list_ac969c1209e5bd5b41a8e56e192061aea}
+
+\begin{DoxyCompactList}\small\item\em Creates a memory pool with a shared linked list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classofeli_1_1list_aed33fb6086a95ce25dd474aef8063661}{\hyperlink{classofeli_1_1list_a7765ecb875543506d04dbd466f754503}{Link} \hyperlink{classofeli_1_1list_aed33fb6086a95ce25dd474aef8063661}{head}}\label{classofeli_1_1list_aed33fb6086a95ce25dd474aef8063661}
+
+\begin{DoxyCompactList}\small\item\em Head of the list. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1list_a4751e1b2279d0dcff01b0081d0dcbd19}{const int \hyperlink{classofeli_1_1list_a4751e1b2279d0dcff01b0081d0dcbd19}{mem\-\_\-pool\-\_\-size}}\label{classofeli_1_1list_a4751e1b2279d0dcff01b0081d0dcbd19}
+
+\begin{DoxyCompactList}\small\item\em Number of nodes of the memory pool list created by list $\ast$this. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classofeli_1_1list_a8a313f391f6672c8c26ab5d9c7f58396}{static \hyperlink{classofeli_1_1list_a7765ecb875543506d04dbd466f754503}{Link} \hyperlink{classofeli_1_1list_a8a313f391f6672c8c26ab5d9c7f58396}{mem\-\_\-head}}\label{classofeli_1_1list_a8a313f391f6672c8c26ab5d9c7f58396}
+
+\begin{DoxyCompactList}\small\item\em Head of the memory pool list which is shared for all lists. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classofeli_1_1list_a4ad2e66a0acf1d35b209f40c861aeae8}{{\footnotesize template$<$class U $>$ }\\bool \hyperlink{classofeli_1_1list_a4ad2e66a0acf1d35b209f40c861aeae8}{operator==} (const \hyperlink{classofeli_1_1list}{list}$<$ U $>$ \&lhs, const \hyperlink{classofeli_1_1list}{list}$<$ U $>$ \&rhs)}\label{classofeli_1_1list_a4ad2e66a0acf1d35b209f40c861aeae8}
+
+\begin{DoxyCompactList}\small\item\em {\itshape Equal} {\itshape to} operator overloading. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1list_a5f0cc9d1a3a2bcb2450cec7eb0f2dcb6}{{\footnotesize template$<$class U $>$ }\\bool \hyperlink{classofeli_1_1list_a5f0cc9d1a3a2bcb2450cec7eb0f2dcb6}{operator!=} (const \hyperlink{classofeli_1_1list}{list}$<$ U $>$ \&lhs, const \hyperlink{classofeli_1_1list}{list}$<$ U $>$ \&rhs)}\label{classofeli_1_1list_a5f0cc9d1a3a2bcb2450cec7eb0f2dcb6}
+
+\begin{DoxyCompactList}\small\item\em {\itshape Not} {\itshape equal} {\itshape to} operator overloading. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1list_ab34eccc5c4d4d114a5f6654becd48c9c}{{\footnotesize template$<$class U $>$ }\\std\-::ostream \& \hyperlink{classofeli_1_1list_ab34eccc5c4d4d114a5f6654becd48c9c}{operator$<$$<$} (std\-::ostream \&os, const \hyperlink{classofeli_1_1list}{list}$<$ U $>$ \&displayed)}\label{classofeli_1_1list_ab34eccc5c4d4d114a5f6654becd48c9c}
+
+\begin{DoxyCompactList}\small\item\em Overloading of cout $<$$<$. It displays a linked list in the same way as integral-\/type variable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename T = int$>$class ofeli\-::list$<$ T $>$}
+
+This class implements a singly linked list used by the implementation of Shi and Karl' algorithm. The elements stored are integers by default that correspond of the offset of the level set function buffer. 
+
+Definition at line 50 of file linked\-\_\-list.\-hpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classofeli_1_1list_a8c619ab7fedd643db5f3894889d91c74}{\index{ofeli\-::list@{ofeli\-::list}!assign@{assign}}
+\index{assign@{assign}!ofeli::list@{ofeli\-::list}}
+\subsubsection[{assign}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T = int$>$ void {\bf ofeli\-::list}$<$ T $>$\-::assign (
+\begin{DoxyParamCaption}
+\item[{int}]{n, }
+\item[{const T \&}]{value}
+\end{DoxyParamCaption}
+)}}\label{classofeli_1_1list_a8c619ab7fedd643db5f3894889d91c74}
+Assigns new content to the container, dropping all the elements contained in the container object before the call and replacing them by those specified by the parameters\-:
+\begin{DoxyItemize}
+\item the new content is the repetition {\itshape n} times of copies of element value. 
+\end{DoxyItemize}\hypertarget{classofeli_1_1list_a7fbe8cc25a5c413924db708e47161306}{\index{ofeli\-::list@{ofeli\-::list}!assign@{assign}}
+\index{assign@{assign}!ofeli::list@{ofeli\-::list}}
+\subsubsection[{assign}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T = int$>$ void {\bf ofeli\-::list}$<$ T $>$\-::assign (
+\begin{DoxyParamCaption}
+\item[{const T}]{array\mbox{[}$\,$\mbox{]}, }
+\item[{int}]{array\-\_\-length}
+\end{DoxyParamCaption}
+)}}\label{classofeli_1_1list_a7fbe8cc25a5c413924db708e47161306}
+Assigns new content to the container, dropping all the elements contained in the container object before the call and replacing them by those specified by the parameters\-:
+\begin{DoxyItemize}
+\item the new content is a copy of an array. 
+\end{DoxyItemize}\hypertarget{classofeli_1_1list_a2982d8f3bf7593929fe6ea3a7ad03fc6}{\index{ofeli\-::list@{ofeli\-::list}!remove\-\_\-if@{remove\-\_\-if}}
+\index{remove\-\_\-if@{remove\-\_\-if}!ofeli::list@{ofeli\-::list}}
+\subsubsection[{remove\-\_\-if}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T = int$>$ template$<$typename Unary\-Predicate $>$ void {\bf ofeli\-::list}$<$ T $>$\-::remove\-\_\-if (
+\begin{DoxyParamCaption}
+\item[{Unary\-Predicate}]{predicate}
+\end{DoxyParamCaption}
+)}}\label{classofeli_1_1list_a2982d8f3bf7593929fe6ea3a7ad03fc6}
+Removes from the container all the elements for which {\itshape Predicate} {\itshape predicate} returns {\ttfamily true}. This calls the destructor of these objects and reduces the container size by the number of elements removed. Unary\-Predicate {\itshape predicate} can be implemented as any typed expression taking one argument of the same type as the elements container in the {\itshape list} and returning a bool (this may either be a function pointer or an object whose class implements {\ttfamily operator()}). \hypertarget{classofeli_1_1list_ab4901f65fa96e300ce11dc75e0760dda}{\index{ofeli\-::list@{ofeli\-::list}!size@{size}}
+\index{size@{size}!ofeli::list@{ofeli\-::list}}
+\subsubsection[{size}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T = int$>$ int {\bf ofeli\-::list}$<$ T $>$\-::size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classofeli_1_1list_ab4901f65fa96e300ce11dc75e0760dda}
+Returns the number of elements in the list without counting the sentinel node. The complexity of this function is in {\itshape O(n)} so if you want to get often the size of the list, you should update the size in a variable after each modification. \hypertarget{classofeli_1_1list_af38ebb4b33ce7f5518b78eb1e8ae3464}{\index{ofeli\-::list@{ofeli\-::list}!splice\-\_\-front@{splice\-\_\-front}}
+\index{splice\-\_\-front@{splice\-\_\-front}!ofeli::list@{ofeli\-::list}}
+\subsubsection[{splice\-\_\-front}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T = int$>$ {\bf iterator} {\bf ofeli\-::list}$<$ T $>$\-::splice\-\_\-front (
+\begin{DoxyParamCaption}
+\item[{{\bf iterator}}]{moved}
+\end{DoxyParamCaption}
+)}}\label{classofeli_1_1list_af38ebb4b33ce7f5518b78eb1e8ae3464}
+Removes an element {\itshape moved} (of another list or list {\itshape $\ast$this}) and inserts at the beginning of list {\itshape $\ast$this}. Equivalent to push\-\_\-front($\ast$it) and it = erase(it) without use of the operators {\itshape new} and {\itshape delete}. Returns a valid iterator, i.\-e the position of the next element. 
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classofeli_1_1list_af38ebb4b33ce7f5518b78eb1e8ae3464_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{classofeli_1_1list_a471424ff8c258a2c00e9246035304cff}{\index{ofeli\-::list@{ofeli\-::list}!swap@{swap}}
+\index{swap@{swap}!ofeli::list@{ofeli\-::list}}
+\subsubsection[{swap}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T = int$>$ static void {\bf ofeli\-::list}$<$ T $>$\-::swap (
+\begin{DoxyParamCaption}
+\item[{{\bf list}$<$ T $>$ \&}]{list1, }
+\item[{{\bf list}$<$ T $>$ \&}]{list2}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classofeli_1_1list_a471424ff8c258a2c00e9246035304cff}
+Exchanges the content of container {\itshape list1} by the content of {\itshape list2}, which is another list object containing elements of the same type. Sizes may differ. Performs it in a constant time without copying. Use this function if you don't have accesss to C++11 (formerly known as C++0x) \char`\"{}void std\-::swap(\-T\& a, T\& b)\char`\"{} version with semantic move. \hypertarget{classofeli_1_1list_a640cb310a5241b411436ff39577706b1}{\index{ofeli\-::list@{ofeli\-::list}!unique@{unique}}
+\index{unique@{unique}!ofeli::list@{ofeli\-::list}}
+\subsubsection[{unique}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T = int$>$ template$<$typename Binary\-Predicate $>$ void {\bf ofeli\-::list}$<$ T $>$\-::unique (
+\begin{DoxyParamCaption}
+\item[{Binary\-Predicate}]{compare}
+\end{DoxyParamCaption}
+)}}\label{classofeli_1_1list_a640cb310a5241b411436ff39577706b1}
+This version accepting a binary predicate, a specific comparison function to determine the \char`\"{}uniqueness\char`\"{} of an element can be specified. In fact, any behavior can be implemented (and not only an equality comparison), but notice that the function will call binary\-\_\-pred({\itshape i,}(i-\/1)) for all pairs of elements (where i is an iterator to an element, starting from the second) and remove i from the list if the predicate returns {\ttfamily true}. 
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+linked\-\_\-list.\-hpp\end{DoxyCompactItemize}

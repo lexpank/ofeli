@@ -1,0 +1,47 @@
+\hypertarget{index_intro_sec}{}\section{Introduction}\label{index_intro_sec}
+Ofeli, as an acronym for {\bfseries O}pen, {\bfseries F}ast and {\bfseries E}fficient {\bfseries L}evel set {\bfseries I}mplementation, demonstrates how to operate an image segmentation algorithm of Y. Shi and W. C. Karl {\bfseries \mbox{[}1\mbox{]},} using a discrete approach for the approximation of level-\/set-\/based curve evolution (implicit active contours).
+
+This is a novel (2005) and fast algorithm without the need of solving partial differential equations (P\-D\-E) while preserving the advantages of level set methods, such as the automatic handling of topological changes. Considerable speedups (×100) have been demonstrated as compared to P\-D\-E-\/based narrow band level-\/set implementations.
+
+The Home Page of Ofeli can be found at \-: \href{http://code.google.com/p/ofeli/}{\tt http\-://code.\-google.\-com/p/ofeli/} .\hypertarget{index_structure_sec}{}\section{Structure}\label{index_structure_sec}
+In this project, the {\bfseries G}raphical {\bfseries U}ser {\bfseries I}nterface (G\-U\-I) is clearly separated of the image processing part.
+
+G\-U\-I part \-:
+\begin{DoxyItemize}
+\item file \hyperlink{imageviewer_8cpp_source}{imageviewer.\-cpp} file with the class \hyperlink{classofeli_1_1_image_viewer}{ofeli\-::\-Image\-Viewer} (dependant of framework Qt 5.\-0, Qt\-Core and Qt\-Widgets modules)
+\item file \hyperlink{pixmapwidget_8cpp_source}{pixmapwidget.\-cpp} with the class \hyperlink{classofeli_1_1_pixmap_widget}{ofeli\-::\-Pixmap\-Widget} (dependant of framework Qt 5.\-0, Qt\-Core and Qt\-Widgets modules)
+\end{DoxyItemize}
+
+Image processing part \-:
+\begin{DoxyItemize}
+\item file linked\-\_\-list.\-tpp with the class \hyperlink{classofeli_1_1list}{ofeli\-::list}
+\item file \hyperlink{activecontour_8cpp_source}{activecontour.\-cpp} with the class \hyperlink{classofeli_1_1_active_contour}{ofeli\-::\-Active\-Contour}
+\begin{DoxyItemize}
+\item file \hyperlink{ac__withoutedges_8cpp_source}{ac\-\_\-withoutedges.\-cpp} with the class \hyperlink{classofeli_1_1_a_cwithout_edges}{ofeli\-::\-A\-Cwithout\-Edges}
+\item file \hyperlink{ac__withoutedges__yuv_8cpp_source}{ac\-\_\-withoutedges\-\_\-yuv.\-cpp} with the class \hyperlink{classofeli_1_1_a_cwithout_edges_y_u_v}{ofeli\-::\-A\-Cwithout\-Edges\-Y\-U\-V}
+\item file \hyperlink{geodesic__ac_8cpp_source}{geodesic\-\_\-ac.\-cpp} with the class \hyperlink{classofeli_1_1_geodesic_a_c}{ofeli\-::\-Geodesic\-A\-C}
+\end{DoxyItemize}
+\item file \hyperlink{hausdorff__distance_8cpp_source}{hausdorff\-\_\-distance.\-cpp} with the class \hyperlink{classofeli_1_1_hausdorff_distance}{ofeli\-::\-Hausdorff\-Distance}
+\item file \hyperlink{filters_8cpp_source}{filters.\-cpp} with the class \hyperlink{classofeli_1_1_filters}{ofeli\-::\-Filters} (dependant of library Boost 1.\-52 for the random variables)
+\end{DoxyItemize}\hypertarget{index_reusability_sec}{}\section{Reusability}\label{index_reusability_sec}
+This Qt project is built as an application and not as a static or shared library. So if you are interested to use this C++ code, especially for the image processing part of the project, you must just include this file(s) thanks to the preprocessor directive in your file(s). After you must just pass to each constructor an input argument pointer on a row-\/wise image data buffer and for the class A\-Cwithout\-Edges\-Y\-U\-V, a pointer on a R\-G\-B interleaved data buffer (R1 G1 B1 R2 G2 B2 ...).
+
+If you prefer a command-\/line interface or if you are interested in a tracking example of this algorithm, you can find a fork of this project interfaced with Matlab (M\-E\-X-\/file). Each constructor takes an input pointer on a column-\/wise image data buffer and for the class A\-Cwithout\-Edges\-Y\-U\-V, a pointer on a R\-G\-B planar data buffer (R1 R2 R3 ... G1 G2 G3 ... B1 B2 B3 ...).\hypertarget{index_license_sec}{}\section{License}\label{index_license_sec}
+This software is distributed under the \href{http://www.cecill.info/licences/Licence_CeCILL_V2-en.html}{\tt Ce\-C\-I\-L\-L license version 2} \href{http://www.cecill.info/licences/Licence_CeCILL_V2-fr.html}{\tt (link to the french version here)}.\hypertarget{index_acknowl_sec}{}\section{Acknowledgments}\label{index_acknowl_sec}
+Thanks to \-:
+\begin{DoxyItemize}
+\item J. Olivier, R. Boné, J-\/\-M. Girault, F. Amed, A. Lissy, C. Rouzière, L. Suta.
+\item {\itshape pattern recognition and image analysis research team}, {\itshape computer science laboratory}, {\itshape François Rabelais University}.
+\item students and professors of the M\-Sc in medical imaging.
+\end{DoxyItemize}
+
+
+
+ \hypertarget{index_ref_sec}{}\section{References}\label{index_ref_sec}
+{\bfseries \mbox{[}1\mbox{]}} Y. Shi, W. C. Karl -\/ \href{https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0Bzx5IoqehNE_MGIwYmUwYzctYTRkMC00ODMwLWI3YmUtNTFjYThlMTBkOTIy&hl=en&authkey=CPT1xeYN}{\tt A real-\/time algorithm for the approximation of level-\/set based curve evolution} -\/ {\itshape I\-E\-E\-E Trans. Image Processing}, vol. 17, no. 5, May 2008
+
+{\bfseries \mbox{[}2\mbox{]}} T. F. Chan, L. A. Vese -\/ \href{https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0Bzx5IoqehNE_NWY5ZGMyMmYtNzkwNi00NjI0LWE4ZGMtODllZTVmZWQ5NGRm&hl=en&authkey=CNfMkNEI}{\tt Active contours without edges} -\/ {\itshape I\-E\-E\-E Trans. Image Processing}, vol. 10, no. 2, Feb 2001
+
+{\bfseries \mbox{[}3\mbox{]}} V. Caselles, R. Kimmel, G. Sapiro -\/ \href{https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0Bzx5IoqehNE_ZWEzNzk2ZjgtNzlkMi00NDY0LTkzZjQtYWQ5N2EyNDA5NGE3&hl=en&authkey=CKi1w7cE}{\tt Geodesic active contours} -\/ {\itshape International Journal of Computer Vision}, 22(1), 61–79 (1997)
+
+{\bfseries \mbox{[}4\mbox{]}} P. Perona, J. Malik -\/ \href{https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0Bzx5IoqehNE_NmJmZWZkM2ItN2ZhZS00NjA4LTk3Y2UtNTNmYzkxYjFjNjU4&hl=en&authkey=CPDnxN8H}{\tt Scale-\/space and edge detection using anistropic diffusion} -\/ {\itshape I\-E\-E\-E Trans. Pattern Analysis and Machine Intelligence}, vol. 12, no. 17, Jul 1990

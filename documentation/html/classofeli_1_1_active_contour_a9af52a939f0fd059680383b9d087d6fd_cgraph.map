@@ -1,0 +1,4 @@
+<map id="ofeli::ActiveContour::isRedundantLoutPoint" name="ofeli::ActiveContour::isRedundantLoutPoint">
+<area shape="rect" id="node3" href="$classofeli_1_1_active_contour.html#adcb560ea7c8b763c7e4e769321807925" title="Calculates the position (x,y) of a point of phi or the image with the offset." alt="" coords="211,5,344,46"/>
+<area shape="rect" id="node5" href="$classofeli_1_1_active_contour.html#ae58a17c4d023abdd142ae24bf8335370" title="Calculates the offset of phi or the image data buffer with the position (x,y)." alt="" coords="211,70,344,111"/>
+</map>

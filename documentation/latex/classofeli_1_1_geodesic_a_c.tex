@@ -1,0 +1,245 @@
+\hypertarget{classofeli_1_1_geodesic_a_c}{\section{ofeli\-:\-:Geodesic\-A\-C Class Reference}
+\label{classofeli_1_1_geodesic_a_c}\index{ofeli\-::\-Geodesic\-A\-C@{ofeli\-::\-Geodesic\-A\-C}}
+}
+
+
+{\ttfamily \#include $<$geodesic\-\_\-ac.\-hpp$>$}
+
+
+
+Inheritance diagram for ofeli\-:\-:Geodesic\-A\-C\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=180pt]{classofeli_1_1_geodesic_a_c__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ofeli\-:\-:Geodesic\-A\-C\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{classofeli_1_1_geodesic_a_c__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classofeli_1_1_geodesic_a_c_af7619ec4bd4c8b3a27e764054cbb5a57}{\hyperlink{classofeli_1_1_geodesic_a_c_af7619ec4bd4c8b3a27e764054cbb5a57}{Geodesic\-A\-C} (const unsigned char $\ast$img\-\_\-gradient\-\_\-data1, int img\-\_\-width1, int img\-\_\-height1)}\label{classofeli_1_1_geodesic_a_c_af7619ec4bd4c8b3a27e764054cbb5a57}
+
+\begin{DoxyCompactList}\small\item\em Constructor to initialize the active contour with a centered rectangle and the default values of the algorithm parameters. \end{DoxyCompactList}\item 
+\hyperlink{classofeli_1_1_geodesic_a_c_a460a9d62432ff49865c00e028b994252}{Geodesic\-A\-C} (const unsigned char $\ast$img\-\_\-gradient\-\_\-data1, int img\-\_\-width1, int img\-\_\-height1, bool has\-Ellipse1, double init\-\_\-width1, double init\-\_\-height1, double center\-\_\-x1, double center\-\_\-y1, bool has\-Cycle2\-\_\-1, int kernel\-\_\-length1, double sigma1, int Na1, int Ns1)
+\begin{DoxyCompactList}\small\item\em Constructor to initialize the active contour from geometrical parameters of an unique shape, an ellipse or a rectangle. \end{DoxyCompactList}\item 
+\hyperlink{classofeli_1_1_geodesic_a_c_a69faf0df5a2e9c8ce8128946bfb72653}{Geodesic\-A\-C} (const unsigned char $\ast$img\-\_\-gradient\-\_\-data1, int img\-\_\-width1, int img\-\_\-height1, const char $\ast$phi\-\_\-init1, bool has\-Cycle2\-\_\-1, int kernel\-\_\-length1, double sigma1, int Na1, int Ns1)
+\begin{DoxyCompactList}\small\item\em Constructor to initialize the active contour from an initial phi level-\/set function. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_geodesic_a_c_af032dd46aec5735443cae0e04c2ea37a}{\hyperlink{classofeli_1_1_geodesic_a_c_af032dd46aec5735443cae0e04c2ea37a}{Geodesic\-A\-C} (const \hyperlink{classofeli_1_1_geodesic_a_c}{Geodesic\-A\-C} \&ac)}\label{classofeli_1_1_geodesic_a_c_af032dd46aec5735443cae0e04c2ea37a}
+
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_geodesic_a_c_a5f45547b45b9743a6fdf0388715dfcbc}{virtual void \hyperlink{classofeli_1_1_geodesic_a_c_a5f45547b45b9743a6fdf0388715dfcbc}{initialize\-\_\-for\-\_\-each\-\_\-frame} ()}\label{classofeli_1_1_geodesic_a_c_a5f45547b45b9743a6fdf0388715dfcbc}
+
+\begin{DoxyCompactList}\small\item\em Initialization for each new frame buffer, used for video tracking. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_geodesic_a_c_ab2654dfef80654187878db4e961b2bfd}{unsigned char \hyperlink{classofeli_1_1_geodesic_a_c_ab2654dfef80654187878db4e961b2bfd}{get\-\_\-otsu\-\_\-threshold} () const }\label{classofeli_1_1_geodesic_a_c_ab2654dfef80654187878db4e961b2bfd}
+
+\begin{DoxyCompactList}\small\item\em Getter function for \hyperlink{classofeli_1_1_geodesic_a_c_a1cde491f4e294413d5897e09fa0d3a39}{otsu\-\_\-threshold1}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual int \hyperlink{classofeli_1_1_geodesic_a_c_a1e4d1d3011526eaff49b5404f00f27f9}{compute\-\_\-external\-\_\-speed\-\_\-\-Fd} (int offset)
+\begin{DoxyCompactList}\small\item\em Computes external speed {\itshape Fd} with a geodesic model for a current point {\itshape }(x,y) of \hyperlink{classofeli_1_1_active_contour_a31e0eb18a7ea6ae90acf66ed018fcd85}{Lout} or \hyperlink{classofeli_1_1_active_contour_a7662d4f5c8b87d3e642b08b7e341bd79}{Lin}. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_geodesic_a_c_a4cdf84261bfd4407e89984ea01f6c227}{bool \hyperlink{classofeli_1_1_geodesic_a_c_a4cdf84261bfd4407e89984ea01f6c227}{find\-\_\-direction\-\_\-evolution} ()}\label{classofeli_1_1_geodesic_a_c_a4cdf84261bfd4407e89984ea01f6c227}
+
+\begin{DoxyCompactList}\small\item\em Calculates boolean \hyperlink{classofeli_1_1_geodesic_a_c_ada6b8ca4769ee7a03b0f47da3cbabc05}{is\-Inside}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classofeli_1_1_geodesic_a_c_afab80d244aaf8d50902c9bb0de207bf2}{static unsigned char \hyperlink{classofeli_1_1_geodesic_a_c_afab80d244aaf8d50902c9bb0de207bf2}{otsu\-\_\-method} (const unsigned char $\ast$img\-\_\-data1, int img\-\_\-size1)}\label{classofeli_1_1_geodesic_a_c_afab80d244aaf8d50902c9bb0de207bf2}
+
+\begin{DoxyCompactList}\small\item\em Otsu's method. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classofeli_1_1_geodesic_a_c_a1cde491f4e294413d5897e09fa0d3a39}{const unsigned char \hyperlink{classofeli_1_1_geodesic_a_c_a1cde491f4e294413d5897e09fa0d3a39}{otsu\-\_\-threshold1}}\label{classofeli_1_1_geodesic_a_c_a1cde491f4e294413d5897e09fa0d3a39}
+
+\begin{DoxyCompactList}\small\item\em Otsu's threshod of \hyperlink{classofeli_1_1_active_contour_a96480d79e9a60817925903da233a5b1e}{img\-\_\-data}. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_geodesic_a_c_ada6b8ca4769ee7a03b0f47da3cbabc05}{bool \hyperlink{classofeli_1_1_geodesic_a_c_ada6b8ca4769ee7a03b0f47da3cbabc05}{is\-Inside}}\label{classofeli_1_1_geodesic_a_c_ada6b8ca4769ee7a03b0f47da3cbabc05}
+
+\begin{DoxyCompactList}\small\item\em Determines where are the high values of the gradient. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+The child class \hyperlink{classofeli_1_1_geodesic_a_c}{Geodesic\-A\-C} implements a function to calculate specifically speed {\itshape Fd} based on a geodesic model, an edge-\/based energy functional. An Otsu's method is performed in order to find the high values of the gradient to converge even when the initialization of the curve is far of the solution. 
+
+Definition at line 48 of file geodesic\-\_\-ac.\-hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classofeli_1_1_geodesic_a_c_a460a9d62432ff49865c00e028b994252}{\index{ofeli\-::\-Geodesic\-A\-C@{ofeli\-::\-Geodesic\-A\-C}!Geodesic\-A\-C@{Geodesic\-A\-C}}
+\index{Geodesic\-A\-C@{Geodesic\-A\-C}!ofeli::GeodesicAC@{ofeli\-::\-Geodesic\-A\-C}}
+\subsubsection[{Geodesic\-A\-C}]{\setlength{\rightskip}{0pt plus 5cm}Geodesic\-A\-C\-::\-Geodesic\-A\-C (
+\begin{DoxyParamCaption}
+\item[{const unsigned char $\ast$}]{img\-\_\-gradient\-\_\-data1, }
+\item[{int}]{img\-\_\-width1, }
+\item[{int}]{img\-\_\-height1, }
+\item[{bool}]{has\-Ellipse1, }
+\item[{double}]{init\-\_\-width1, }
+\item[{double}]{init\-\_\-height1, }
+\item[{double}]{center\-\_\-x1, }
+\item[{double}]{center\-\_\-y1, }
+\item[{bool}]{has\-Cycle2\-\_\-1, }
+\item[{int}]{kernel\-\_\-length1, }
+\item[{double}]{sigma1, }
+\item[{int}]{Na1, }
+\item[{int}]{Ns1}
+\end{DoxyParamCaption}
+)}}\label{classofeli_1_1_geodesic_a_c_a460a9d62432ff49865c00e028b994252}
+
+
+Constructor to initialize the active contour from geometrical parameters of an unique shape, an ellipse or a rectangle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em img\-\_\-gradient\-\_\-data1} & Input pointer on the grayscale image data buffer. Usually, this buffer is a smoothed gradient of an original image. This buffer must be row-\/wise. Passed to \hyperlink{classofeli_1_1_active_contour_a96480d79e9a60817925903da233a5b1e}{img\-\_\-data}. \\
+\hline
+{\em img\-\_\-width1} & Image width, i.\-e. number of columns. Passed to \hyperlink{classofeli_1_1_active_contour_a3623de7ebc0d27ba7fac21a5929afbc6}{img\-\_\-width}. \\
+\hline
+{\em img\-\_\-height1} & Image height, i.\-e. number of rows. Passed to \hyperlink{classofeli_1_1_active_contour_a88d02b47bab737ec97fe3a7ea9554c0c}{img\-\_\-height}. \\
+\hline
+{\em has\-Ellipse1} & Boolean to choose the shape of the active contour initialization, {\ttfamily true} for an ellipse or {\ttfamily false} for a rectangle. \\
+\hline
+{\em init\-\_\-width1} & Width of the shape divided by the image \hyperlink{classofeli_1_1_active_contour_a3623de7ebc0d27ba7fac21a5929afbc6}{img\-\_\-width}. \\
+\hline
+{\em init\-\_\-height1} & Height of the shape divided by the image \hyperlink{classofeli_1_1_active_contour_a88d02b47bab737ec97fe3a7ea9554c0c}{img\-\_\-height}. \\
+\hline
+{\em center\-\_\-x1} & X-\/axis position (or column index) of the center of the shape divided by the image \hyperlink{classofeli_1_1_active_contour_a3623de7ebc0d27ba7fac21a5929afbc6}{img\-\_\-width} subtracted by 0.\-5 \\
+\hline
+{\em center\-\_\-y1} & Y-\/axis position (or row index) of the center of the shape divided by the image \hyperlink{classofeli_1_1_active_contour_a88d02b47bab737ec97fe3a7ea9554c0c}{img\-\_\-height} subtracted by 0.\-5\par
+ To have the center of the shape in the image \-: -\/0.\-5 $<$ center\-\_\-x1 $<$ 0.\-5 and -\/0.\-5 $<$ center\-\_\-y1 $<$ 0.\-5 \\
+\hline
+{\em has\-Cycle2\-\_\-1} & Boolean to have or not the curve smoothing, evolutions in the cycle 2 with an internal speed {\itshape Fint}. Passed to \hyperlink{classofeli_1_1_active_contour_aa763ff1bed211faa444013cbd5de0be3}{has\-Cycle2}. \\
+\hline
+{\em kernel\-\_\-length1} & Kernel length of the gaussian filter for the curve smoothing. Passed to \hyperlink{classofeli_1_1_active_contour_a2b32161d0a9ac64a4e4f4c242fabe27c}{kernel\-\_\-length}. \\
+\hline
+{\em sigma1} & Standard deviation of the gaussian kernel for the curve smoothing. Passed to \hyperlink{classofeli_1_1_active_contour_a66303b7f6b88270133462feb303b039a}{sigma}. \\
+\hline
+{\em Na1} & Number of times the active contour evolves in the cycle 1, external or data dependant evolutions with {\itshape Fd} speed. Passed to \hyperlink{classofeli_1_1_active_contour_a811a28ec9c39400d244783a8a2fe7e2d}{Na\-\_\-max}. \\
+\hline
+{\em Ns1} & Number of times the active contour evolves in the cycle 2, curve smoothing or internal evolutions with {\itshape Fint} speed. Passed to \hyperlink{classofeli_1_1_active_contour_a908322f93a50ce7808960236478649fe}{Ns\-\_\-max}. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 55 of file geodesic\-\_\-ac.\-cpp.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classofeli_1_1_geodesic_a_c_a460a9d62432ff49865c00e028b994252_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{classofeli_1_1_geodesic_a_c_a69faf0df5a2e9c8ce8128946bfb72653}{\index{ofeli\-::\-Geodesic\-A\-C@{ofeli\-::\-Geodesic\-A\-C}!Geodesic\-A\-C@{Geodesic\-A\-C}}
+\index{Geodesic\-A\-C@{Geodesic\-A\-C}!ofeli::GeodesicAC@{ofeli\-::\-Geodesic\-A\-C}}
+\subsubsection[{Geodesic\-A\-C}]{\setlength{\rightskip}{0pt plus 5cm}Geodesic\-A\-C\-::\-Geodesic\-A\-C (
+\begin{DoxyParamCaption}
+\item[{const unsigned char $\ast$}]{img\-\_\-gradient\-\_\-data1, }
+\item[{int}]{img\-\_\-width1, }
+\item[{int}]{img\-\_\-height1, }
+\item[{const char $\ast$}]{phi\-\_\-init1, }
+\item[{bool}]{has\-Cycle2\-\_\-1, }
+\item[{int}]{kernel\-\_\-length1, }
+\item[{double}]{sigma1, }
+\item[{int}]{Na1, }
+\item[{int}]{Ns1}
+\end{DoxyParamCaption}
+)}}\label{classofeli_1_1_geodesic_a_c_a69faf0df5a2e9c8ce8128946bfb72653}
+
+
+Constructor to initialize the active contour from an initial phi level-\/set function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em img\-\_\-gradient\-\_\-data1} & Input pointer on the grayscale image data buffer. Usually, this buffer is a smoothed gradient of an original image. This buffer must be row-\/wise. Passed to \hyperlink{classofeli_1_1_active_contour_a96480d79e9a60817925903da233a5b1e}{img\-\_\-data}. \\
+\hline
+{\em img\-\_\-width1} & Image width, i.\-e. number of columns. Passed to \hyperlink{classofeli_1_1_active_contour_a3623de7ebc0d27ba7fac21a5929afbc6}{img\-\_\-width}. \\
+\hline
+{\em img\-\_\-height1} & Image height, i.\-e. number of rows. Passed to \hyperlink{classofeli_1_1_active_contour_a88d02b47bab737ec97fe3a7ea9554c0c}{img\-\_\-height}. \\
+\hline
+{\em phi\-\_\-init1} & Pointer on the initialized level-\/set function buffer. Copied to \hyperlink{classofeli_1_1_active_contour_aacb03a6ded4ca51cb52f58aeff955ef7}{phi}. \\
+\hline
+{\em has\-Cycle2\-\_\-1} & Boolean to have or not the curve smoothing, evolutions in the cycle 2 with an internal speed {\itshape Fint}. Passed to \hyperlink{classofeli_1_1_active_contour_aa763ff1bed211faa444013cbd5de0be3}{has\-Cycle2}. \\
+\hline
+{\em kernel\-\_\-length1} & Kernel length of the gaussian filter for the curve smoothing. Passed to \hyperlink{classofeli_1_1_active_contour_a2b32161d0a9ac64a4e4f4c242fabe27c}{kernel\-\_\-length}. \\
+\hline
+{\em sigma1} & Standard deviation of the gaussian kernel for the curve smoothing. Passed to \hyperlink{classofeli_1_1_active_contour_a66303b7f6b88270133462feb303b039a}{sigma}. \\
+\hline
+{\em Na1} & Number of times the active contour evolves in the cycle 1, external or data dependant evolutions with {\itshape Fd} speed. Passed to \hyperlink{classofeli_1_1_active_contour_a811a28ec9c39400d244783a8a2fe7e2d}{Na\-\_\-max}. \\
+\hline
+{\em Ns1} & Number of times the active contour evolves in the cycle 2, curve smoothing or internal evolutions with {\itshape Fint} speed. Passed to \hyperlink{classofeli_1_1_active_contour_a908322f93a50ce7808960236478649fe}{Ns\-\_\-max}. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 67 of file geodesic\-\_\-ac.\-cpp.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classofeli_1_1_geodesic_a_c_a69faf0df5a2e9c8ce8128946bfb72653_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classofeli_1_1_geodesic_a_c_a1e4d1d3011526eaff49b5404f00f27f9}{\index{ofeli\-::\-Geodesic\-A\-C@{ofeli\-::\-Geodesic\-A\-C}!compute\-\_\-external\-\_\-speed\-\_\-\-Fd@{compute\-\_\-external\-\_\-speed\-\_\-\-Fd}}
+\index{compute\-\_\-external\-\_\-speed\-\_\-\-Fd@{compute\-\_\-external\-\_\-speed\-\_\-\-Fd}!ofeli::GeodesicAC@{ofeli\-::\-Geodesic\-A\-C}}
+\subsubsection[{compute\-\_\-external\-\_\-speed\-\_\-\-Fd}]{\setlength{\rightskip}{0pt plus 5cm}int Geodesic\-A\-C\-::compute\-\_\-external\-\_\-speed\-\_\-\-Fd (
+\begin{DoxyParamCaption}
+\item[{int}]{offset}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [virtual]}}}\label{classofeli_1_1_geodesic_a_c_a1e4d1d3011526eaff49b5404f00f27f9}
+
+
+Computes external speed {\itshape Fd} with a geodesic model for a current point {\itshape }(x,y) of \hyperlink{classofeli_1_1_active_contour_a31e0eb18a7ea6ae90acf66ed018fcd85}{Lout} or \hyperlink{classofeli_1_1_active_contour_a7662d4f5c8b87d3e642b08b7e341bd79}{Lin}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em offset} & offset of the image data buffer with {\itshape offset} = {\itshape x} + {\itshape y} × \hyperlink{classofeli_1_1_active_contour_a3623de7ebc0d27ba7fac21a5929afbc6}{img\-\_\-width} \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classofeli_1_1_active_contour_ae3871b40f2f3e27ae0d75775798cdee1}{ofeli\-::\-Active\-Contour}.
+
+
+
+Definition at line 105 of file geodesic\-\_\-ac.\-cpp.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classofeli_1_1_geodesic_a_c_a1e4d1d3011526eaff49b5404f00f27f9_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+geodesic\-\_\-ac.\-hpp\item 
+geodesic\-\_\-ac.\-cpp\end{DoxyCompactItemize}

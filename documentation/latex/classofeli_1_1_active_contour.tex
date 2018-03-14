@@ -1,0 +1,721 @@
+\hypertarget{classofeli_1_1_active_contour}{\section{ofeli\-:\-:Active\-Contour Class Reference}
+\label{classofeli_1_1_active_contour}\index{ofeli\-::\-Active\-Contour@{ofeli\-::\-Active\-Contour}}
+}
+
+
+{\ttfamily \#include $<$activecontour.\-hpp$>$}
+
+
+
+Inheritance diagram for ofeli\-:\-:Active\-Contour\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classofeli_1_1_active_contour__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ofeli\-:\-:Active\-Contour\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{classofeli_1_1_active_contour__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classofeli_1_1_active_contour_abfbc2ecc4b6d511c277eb512ee3749cf}{Active\-Contour} (const unsigned char $\ast$img\-\_\-data1, int img\-\_\-width1, int img\-\_\-height1, bool has\-Ellipse1, double init\-\_\-width1, double init\-\_\-height1, double center\-\_\-x1, double center\-\_\-y1, bool has\-Cycle2\-\_\-1, int kernel\-\_\-length1, double sigma1, int Na1, int Ns1)
+\begin{DoxyCompactList}\small\item\em Constructor to initialize the active contour from geometrical parameters of an unique shape, an ellipse or a rectangle. \end{DoxyCompactList}\item 
+\hyperlink{classofeli_1_1_active_contour_a38a162e1c928418608067e35c01c1970}{Active\-Contour} (const unsigned char $\ast$img\-\_\-data1, int img\-\_\-width1, int img\-\_\-height1, const char $\ast$phi\-\_\-init1, bool has\-Cycle2\-\_\-1, int kernel\-\_\-length1, double sigma1, int Na1, int Ns1)
+\begin{DoxyCompactList}\small\item\em Constructor to initialize the active contour from an initial phi level-\/set function. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a5d077e0b276dea77ea4cdf62ccc50901}{\hyperlink{classofeli_1_1_active_contour_a5d077e0b276dea77ea4cdf62ccc50901}{Active\-Contour} (const \hyperlink{classofeli_1_1_active_contour}{Active\-Contour} \&ac)}\label{classofeli_1_1_active_contour_a5d077e0b276dea77ea4cdf62ccc50901}
+
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_af1af6dc1037dda5738dc9964a9476b84}{virtual \hyperlink{classofeli_1_1_active_contour_af1af6dc1037dda5738dc9964a9476b84}{$\sim$\-Active\-Contour} ()}\label{classofeli_1_1_active_contour_af1af6dc1037dda5738dc9964a9476b84}
+
+\begin{DoxyCompactList}\small\item\em Destructor to delete \hyperlink{classofeli_1_1_active_contour_aacb03a6ded4ca51cb52f58aeff955ef7}{phi} and \hyperlink{classofeli_1_1_active_contour_a0f8558877cf436d932838173ba5b8061}{gaussian\-\_\-kernel}. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_ac1d127818cc396568532a662951f6f8e}{virtual void \hyperlink{classofeli_1_1_active_contour_ac1d127818cc396568532a662951f6f8e}{initialize\-\_\-for\-\_\-each\-\_\-frame} ()}\label{classofeli_1_1_active_contour_ac1d127818cc396568532a662951f6f8e}
+
+\begin{DoxyCompactList}\small\item\em Initialization for each new frame buffer, used for video tracking. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_abf6a4ff642511a4bb2437e11c0943b7e}{void \hyperlink{classofeli_1_1_active_contour_abf6a4ff642511a4bb2437e11c0943b7e}{initialize\-\_\-for\-\_\-each\-\_\-frame} (const unsigned char $\ast$img\-\_\-data1)}\label{classofeli_1_1_active_contour_abf6a4ff642511a4bb2437e11c0943b7e}
+
+\begin{DoxyCompactList}\small\item\em Initialization for each new frame buffer, used for video tracking. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a23013e2eb528bc2fa4e108e928af6f8d}{\hyperlink{classofeli_1_1_active_contour}{Active\-Contour} \& \hyperlink{classofeli_1_1_active_contour_a23013e2eb528bc2fa4e108e928af6f8d}{operator++} ()}\label{classofeli_1_1_active_contour_a23013e2eb528bc2fa4e108e928af6f8d}
+
+\begin{DoxyCompactList}\small\item\em Evolves the active contour of one iteration or one step. This function calls the functions \hyperlink{classofeli_1_1_active_contour_a2ab521c583572158549d416ccc755f3a}{do\-\_\-one\-\_\-iteration\-\_\-in\-\_\-cycle1} or \hyperlink{classofeli_1_1_active_contour_a7cf8243140d8ef8f72a638e9a1442dc2}{do\-\_\-one\-\_\-iteration\-\_\-in\-\_\-cycle2}. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a02cd4d93b90fee487e07f625f337aab1}{void \hyperlink{classofeli_1_1_active_contour_a02cd4d93b90fee487e07f625f337aab1}{evolve} ()}\label{classofeli_1_1_active_contour_a02cd4d93b90fee487e07f625f337aab1}
+
+\begin{DoxyCompactList}\small\item\em Evolves directly the active contour at the final state, i.\-e. it evolves while \hyperlink{classofeli_1_1_active_contour_a610cd07a1013f1b50a5ec5a78c847a40}{is\-Stopped} is not {\ttfamily true}. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a0b5bbfea1f284dd6b94a3ca7883b1373}{void \hyperlink{classofeli_1_1_active_contour_a0b5bbfea1f284dd6b94a3ca7883b1373}{display} () const }\label{classofeli_1_1_active_contour_a0b5bbfea1f284dd6b94a3ca7883b1373}
+
+\begin{DoxyCompactList}\small\item\em Displays the active contour position. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a7b823a8fea40e28c6f27b99158145011}{const char $\ast$ \hyperlink{classofeli_1_1_active_contour_a7b823a8fea40e28c6f27b99158145011}{get\-\_\-phi} () const }\label{classofeli_1_1_active_contour_a7b823a8fea40e28c6f27b99158145011}
+
+\begin{DoxyCompactList}\small\item\em Getter function for the pointer \hyperlink{classofeli_1_1_active_contour_aacb03a6ded4ca51cb52f58aeff955ef7}{phi}. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_abfff3ce9cfabd50c3ffc30b93e87b27e}{const \hyperlink{classofeli_1_1list}{ofeli\-::list}$<$ int $>$ \& \hyperlink{classofeli_1_1_active_contour_abfff3ce9cfabd50c3ffc30b93e87b27e}{get\-\_\-\-Lout} () const }\label{classofeli_1_1_active_contour_abfff3ce9cfabd50c3ffc30b93e87b27e}
+
+\begin{DoxyCompactList}\small\item\em Getter function for the linked list \hyperlink{classofeli_1_1_active_contour_a31e0eb18a7ea6ae90acf66ed018fcd85}{Lout}. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_af2a8c0c10143490eb7bd3b9c6f14c88d}{const \hyperlink{classofeli_1_1list}{ofeli\-::list}$<$ int $>$ \& \hyperlink{classofeli_1_1_active_contour_af2a8c0c10143490eb7bd3b9c6f14c88d}{get\-\_\-\-Lin} () const }\label{classofeli_1_1_active_contour_af2a8c0c10143490eb7bd3b9c6f14c88d}
+
+\begin{DoxyCompactList}\small\item\em Getter function for the linked list \hyperlink{classofeli_1_1_active_contour_a7662d4f5c8b87d3e642b08b7e341bd79}{Lin}. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_abdecbca7ff1f73b2b7ba52d19dfd56f3}{bool \hyperlink{classofeli_1_1_active_contour_abdecbca7ff1f73b2b7ba52d19dfd56f3}{get\-\_\-has\-Lists\-Changes} () const }\label{classofeli_1_1_active_contour_abdecbca7ff1f73b2b7ba52d19dfd56f3}
+
+\begin{DoxyCompactList}\small\item\em Getter function for the boolean \hyperlink{classofeli_1_1_active_contour_acaaac3e08e34cf03c1320c220b188b78}{has\-Lists\-Changes}. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a26b50306becb71e376fc9093f5732e7a}{bool \hyperlink{classofeli_1_1_active_contour_a26b50306becb71e376fc9093f5732e7a}{get\-\_\-has\-Oscillation} () const }\label{classofeli_1_1_active_contour_a26b50306becb71e376fc9093f5732e7a}
+
+\begin{DoxyCompactList}\small\item\em Getter function for the boolean \hyperlink{classofeli_1_1_active_contour_a23e817e4d98cdc2ba8da0b44c5d0ffb8}{has\-Oscillation}. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a7047af04f107b5bb5f18fc719854e1a9}{int \hyperlink{classofeli_1_1_active_contour_a7047af04f107b5bb5f18fc719854e1a9}{get\-\_\-iteration} () const }\label{classofeli_1_1_active_contour_a7047af04f107b5bb5f18fc719854e1a9}
+
+\begin{DoxyCompactList}\small\item\em Getter function for \hyperlink{classofeli_1_1_active_contour_a8723eee8bd5a69dc7c8d7120c642a393}{iteration}. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a88e664f29a5678878b802c886e4d009e}{int \hyperlink{classofeli_1_1_active_contour_a88e664f29a5678878b802c886e4d009e}{get\-\_\-iteration\-\_\-max} () const }\label{classofeli_1_1_active_contour_a88e664f29a5678878b802c886e4d009e}
+
+\begin{DoxyCompactList}\small\item\em Getter function for \hyperlink{classofeli_1_1_active_contour_a7fd09d653e483695eefea4f0e3225bcf}{iteration\-\_\-max}. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a639b05d0dec77fd38b3ace4e4688add3}{bool \hyperlink{classofeli_1_1_active_contour_a639b05d0dec77fd38b3ace4e4688add3}{get\-\_\-is\-Stopped} () const }\label{classofeli_1_1_active_contour_a639b05d0dec77fd38b3ace4e4688add3}
+
+\begin{DoxyCompactList}\small\item\em Getter function for the boolean \hyperlink{classofeli_1_1_active_contour_a610cd07a1013f1b50a5ec5a78c847a40}{is\-Stopped}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classofeli_1_1_active_contour_a39f22c1bc9d6740180a62520c3f67498}{void \hyperlink{classofeli_1_1_active_contour_a39f22c1bc9d6740180a62520c3f67498}{initialize\-\_\-phi\-\_\-with\-\_\-a\-\_\-shape} (bool has\-Ellipse, double init\-\_\-width, double init\-\_\-height, double center\-\_\-x, double center\-\_\-y)}\label{classofeli_1_1_active_contour_a39f22c1bc9d6740180a62520c3f67498}
+
+\begin{DoxyCompactList}\small\item\em Initialization of \hyperlink{classofeli_1_1_active_contour_aacb03a6ded4ca51cb52f58aeff955ef7}{phi} with a shape. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a181d717496a28d8aac1095d0fc227220}{void \hyperlink{classofeli_1_1_active_contour_a181d717496a28d8aac1095d0fc227220}{initialize\-\_\-lists} ()}\label{classofeli_1_1_active_contour_a181d717496a28d8aac1095d0fc227220}
+
+\begin{DoxyCompactList}\small\item\em Initialization of \hyperlink{classofeli_1_1_active_contour_a31e0eb18a7ea6ae90acf66ed018fcd85}{Lout} and \hyperlink{classofeli_1_1_active_contour_a7662d4f5c8b87d3e642b08b7e341bd79}{Lin}. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_ae58a17c4d023abdd142ae24bf8335370}{int \hyperlink{classofeli_1_1_active_contour_ae58a17c4d023abdd142ae24bf8335370}{find\-\_\-offset} (int x, int y) const }\label{classofeli_1_1_active_contour_ae58a17c4d023abdd142ae24bf8335370}
+
+\begin{DoxyCompactList}\small\item\em Calculates the offset of \hyperlink{classofeli_1_1_active_contour_aacb03a6ded4ca51cb52f58aeff955ef7}{phi} or the image data buffer with the position ({\itshape x},{\itshape y}). \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_adcb560ea7c8b763c7e4e769321807925}{void \hyperlink{classofeli_1_1_active_contour_adcb560ea7c8b763c7e4e769321807925}{find\-\_\-xy\-\_\-position} (int offset, int \&x, int \&y) const }\label{classofeli_1_1_active_contour_adcb560ea7c8b763c7e4e769321807925}
+
+\begin{DoxyCompactList}\small\item\em Calculates the position ({\itshape x},{\itshape y}) of a point of \hyperlink{classofeli_1_1_active_contour_aacb03a6ded4ca51cb52f58aeff955ef7}{phi} or the image with the offset. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classofeli_1_1_active_contour_a8a880bf04c5ed62915987145ff05e502}{{\footnotesize template$<$typename T $>$ }\\static T \hyperlink{classofeli_1_1_active_contour_a8a880bf04c5ed62915987145ff05e502}{square} (const T \&value)}\label{classofeli_1_1_active_contour_a8a880bf04c5ed62915987145ff05e502}
+
+\begin{DoxyCompactList}\small\item\em Gives the square of a value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classofeli_1_1_active_contour_a96480d79e9a60817925903da233a5b1e}{const unsigned char $\ast$ \hyperlink{classofeli_1_1_active_contour_a96480d79e9a60817925903da233a5b1e}{img\-\_\-data}}\label{classofeli_1_1_active_contour_a96480d79e9a60817925903da233a5b1e}
+
+\begin{DoxyCompactList}\small\item\em Input pointer on the image data buffer. This buffer must be row-\/wise, except if you define the macro C\-O\-L\-U\-M\-N\-\_\-\-W\-I\-S\-E\-\_\-\-I\-M\-A\-G\-E\-\_\-\-D\-A\-T\-A\-\_\-\-B\-U\-F\-F\-E\-R. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a3623de7ebc0d27ba7fac21a5929afbc6}{const int \hyperlink{classofeli_1_1_active_contour_a3623de7ebc0d27ba7fac21a5929afbc6}{img\-\_\-width}}\label{classofeli_1_1_active_contour_a3623de7ebc0d27ba7fac21a5929afbc6}
+
+\begin{DoxyCompactList}\small\item\em Image width, i.\-e. number of columns. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a88d02b47bab737ec97fe3a7ea9554c0c}{const int \hyperlink{classofeli_1_1_active_contour_a88d02b47bab737ec97fe3a7ea9554c0c}{img\-\_\-height}}\label{classofeli_1_1_active_contour_a88d02b47bab737ec97fe3a7ea9554c0c}
+
+\begin{DoxyCompactList}\small\item\em Image height, i.\-e. number of rows. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a9182e11132f64d7607fbd19a78f58387}{const int \hyperlink{classofeli_1_1_active_contour_a9182e11132f64d7607fbd19a78f58387}{img\-\_\-size}}\label{classofeli_1_1_active_contour_a9182e11132f64d7607fbd19a78f58387}
+
+\begin{DoxyCompactList}\small\item\em Image size, i.\-e. number of pixels. Obviously, it egals to \hyperlink{classofeli_1_1_active_contour_a3623de7ebc0d27ba7fac21a5929afbc6}{img\-\_\-width} × \hyperlink{classofeli_1_1_active_contour_a88d02b47bab737ec97fe3a7ea9554c0c}{img\-\_\-height}. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_aacb03a6ded4ca51cb52f58aeff955ef7}{char $\ast$const \hyperlink{classofeli_1_1_active_contour_aacb03a6ded4ca51cb52f58aeff955ef7}{phi}}\label{classofeli_1_1_active_contour_aacb03a6ded4ca51cb52f58aeff955ef7}
+
+\begin{DoxyCompactList}\small\item\em Pointer on the level-\/set function buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classofeli_1_1_active_contour_a2ab521c583572158549d416ccc755f3a}{void \hyperlink{classofeli_1_1_active_contour_a2ab521c583572158549d416ccc755f3a}{do\-\_\-one\-\_\-iteration\-\_\-in\-\_\-cycle1} ()}\label{classofeli_1_1_active_contour_a2ab521c583572158549d416ccc755f3a}
+
+\begin{DoxyCompactList}\small\item\em Function called by evolve\-\_\-one\-\_\-iteration() for external or data dependant evolution with {\itshape Fd} speed. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a7cf8243140d8ef8f72a638e9a1442dc2}{void \hyperlink{classofeli_1_1_active_contour_a7cf8243140d8ef8f72a638e9a1442dc2}{do\-\_\-one\-\_\-iteration\-\_\-in\-\_\-cycle2} ()}\label{classofeli_1_1_active_contour_a7cf8243140d8ef8f72a638e9a1442dc2}
+
+\begin{DoxyCompactList}\small\item\em Function called by evolve\-\_\-one\-\_\-iteration() for a curve smoothing or internal evolution with {\itshape Fint} speed. \end{DoxyCompactList}\item 
+\hyperlink{classofeli_1_1list}{ofeli\-::list}$<$ int $>$\-::iterator \hyperlink{classofeli_1_1_active_contour_a7d9a557b580af708155ff4ab8bbfd73b}{switch\-\_\-in} (\hyperlink{classofeli_1_1list}{ofeli\-::list}$<$ int $>$\-::iterator Lout\-\_\-point)
+\begin{DoxyCompactList}\small\item\em Outward local movement of the curve for a current point ({\itshape x},{\itshape y}) of \hyperlink{classofeli_1_1_active_contour_a31e0eb18a7ea6ae90acf66ed018fcd85}{Lout} that is switched in \hyperlink{classofeli_1_1_active_contour_a7662d4f5c8b87d3e642b08b7e341bd79}{Lin}. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a956318f175100333c4b98aba9253d54a}{void \hyperlink{classofeli_1_1_active_contour_a956318f175100333c4b98aba9253d54a}{add\-\_\-\-Rout\-\_\-neighbor\-\_\-to\-\_\-\-Lout} (int neighbor\-\_\-offset)}\label{classofeli_1_1_active_contour_a956318f175100333c4b98aba9253d54a}
+
+\begin{DoxyCompactList}\small\item\em Second step of procedure \hyperlink{classofeli_1_1_active_contour_a7d9a557b580af708155ff4ab8bbfd73b}{switch\-\_\-in}. \end{DoxyCompactList}\item 
+\hyperlink{classofeli_1_1list}{ofeli\-::list}$<$ int $>$\-::iterator \hyperlink{classofeli_1_1_active_contour_a98af656dfc038e6f03c9e4bb67e39bd0}{switch\-\_\-out} (\hyperlink{classofeli_1_1list}{ofeli\-::list}$<$ int $>$\-::iterator Lin\-\_\-point)
+\begin{DoxyCompactList}\small\item\em Inward local movement of the curve for a current point ({\itshape x},{\itshape y}) of \hyperlink{classofeli_1_1_active_contour_a7662d4f5c8b87d3e642b08b7e341bd79}{Lin} that is switched in \hyperlink{classofeli_1_1_active_contour_a31e0eb18a7ea6ae90acf66ed018fcd85}{Lout}. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a4c5a0d11f457bc694fb801a153bcd065}{void \hyperlink{classofeli_1_1_active_contour_a4c5a0d11f457bc694fb801a153bcd065}{add\-\_\-\-Rin\-\_\-neighbor\-\_\-to\-\_\-\-Lin} (int neighbor\-\_\-offset)}\label{classofeli_1_1_active_contour_a4c5a0d11f457bc694fb801a153bcd065}
+
+\begin{DoxyCompactList}\small\item\em Second step of procedure \hyperlink{classofeli_1_1_active_contour_a98af656dfc038e6f03c9e4bb67e39bd0}{switch\-\_\-out}. \end{DoxyCompactList}\item 
+int \hyperlink{classofeli_1_1_active_contour_ad920bced735a1a78b0bf32e9f452dccb}{compute\-\_\-internal\-\_\-speed\-\_\-\-Fint} (int offset)
+\begin{DoxyCompactList}\small\item\em Computes the internal speed Fint for a current point ({\itshape x},{\itshape y}) of \hyperlink{classofeli_1_1_active_contour_a31e0eb18a7ea6ae90acf66ed018fcd85}{Lout} or \hyperlink{classofeli_1_1_active_contour_a7662d4f5c8b87d3e642b08b7e341bd79}{Lin}. \end{DoxyCompactList}\item 
+virtual int \hyperlink{classofeli_1_1_active_contour_ae3871b40f2f3e27ae0d75775798cdee1}{compute\-\_\-external\-\_\-speed\-\_\-\-Fd} (int offset)
+\begin{DoxyCompactList}\small\item\em Computes the external speed {\itshape Fd} for a current point ({\itshape x},{\itshape y}) of \hyperlink{classofeli_1_1_active_contour_a31e0eb18a7ea6ae90acf66ed018fcd85}{Lout} or \hyperlink{classofeli_1_1_active_contour_a7662d4f5c8b87d3e642b08b7e341bd79}{Lin}. \end{DoxyCompactList}\item 
+bool \hyperlink{classofeli_1_1_active_contour_ac734c690a9d10f37b99b6803af335d1d}{is\-Redundant\-Lin\-Point} (int offset) const 
+\begin{DoxyCompactList}\small\item\em Finds if a current point ({\itshape x},{\itshape y}) of \hyperlink{classofeli_1_1_active_contour_a7662d4f5c8b87d3e642b08b7e341bd79}{Lin} is redundant. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a1769065c078585aeab98477d0f944b44}{void \hyperlink{classofeli_1_1_active_contour_a1769065c078585aeab98477d0f944b44}{clean\-\_\-\-Lin} ()}\label{classofeli_1_1_active_contour_a1769065c078585aeab98477d0f944b44}
+
+\begin{DoxyCompactList}\small\item\em Eliminates redundant points in \hyperlink{classofeli_1_1_active_contour_a7662d4f5c8b87d3e642b08b7e341bd79}{Lin}. Each point of a list must be connected at least by one point of the other list. \end{DoxyCompactList}\item 
+bool \hyperlink{classofeli_1_1_active_contour_a9af52a939f0fd059680383b9d087d6fd}{is\-Redundant\-Lout\-Point} (int offset) const 
+\begin{DoxyCompactList}\small\item\em Finds if a current point ({\itshape x},{\itshape y}) of \hyperlink{classofeli_1_1_active_contour_a31e0eb18a7ea6ae90acf66ed018fcd85}{Lout} is redundant. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a17cb6f47e07108bff19a8c45b45c01d1}{void \hyperlink{classofeli_1_1_active_contour_a17cb6f47e07108bff19a8c45b45c01d1}{clean\-\_\-\-Lout} ()}\label{classofeli_1_1_active_contour_a17cb6f47e07108bff19a8c45b45c01d1}
+
+\begin{DoxyCompactList}\small\item\em Eliminates redundant points in \hyperlink{classofeli_1_1_active_contour_a31e0eb18a7ea6ae90acf66ed018fcd85}{Lout}. Each point of a list must be connected at least by one point of the other list. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a403ca7b2a7ed233c9b9cec622140ba60}{virtual void \hyperlink{classofeli_1_1_active_contour_a403ca7b2a7ed233c9b9cec622140ba60}{calculate\-\_\-means} ()}\label{classofeli_1_1_active_contour_a403ca7b2a7ed233c9b9cec622140ba60}
+
+\begin{DoxyCompactList}\small\item\em Specific step reimplemented in the children active contours \hyperlink{classofeli_1_1_a_cwithout_edges}{A\-Cwithout\-Edges} and \hyperlink{classofeli_1_1_a_cwithout_edges_y_u_v}{A\-Cwithout\-Edges\-Y\-U\-V} to calculate the means {\itshape Cout} and {\itshape Cin} in {\itshape O(1)} or {\itshape O}(\hyperlink{classofeli_1_1_active_contour_aefe0738d8a43f3981d591a0cc78ed717}{lists\-\_\-length}) with updates counting and not in {\itshape O}(\hyperlink{classofeli_1_1_active_contour_a9182e11132f64d7607fbd19a78f58387}{img\-\_\-size}). \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a72746b8ce52b9cf4ca3549ad6b8ef96b}{virtual void \hyperlink{classofeli_1_1_active_contour_a72746b8ce52b9cf4ca3549ad6b8ef96b}{updates\-\_\-for\-\_\-means\-\_\-in1} ()}\label{classofeli_1_1_active_contour_a72746b8ce52b9cf4ca3549ad6b8ef96b}
+
+\begin{DoxyCompactList}\small\item\em Specific step reimplemented in the children active contours \hyperlink{classofeli_1_1_a_cwithout_edges}{A\-Cwithout\-Edges} and \hyperlink{classofeli_1_1_a_cwithout_edges_y_u_v}{A\-Cwithout\-Edges\-Y\-U\-V} to update the variables to calculate the means {\itshape Cout} and {\itshape Cin} before each \hyperlink{classofeli_1_1_active_contour_a7d9a557b580af708155ff4ab8bbfd73b}{switch\-\_\-in}, in the cycle 1. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classofeli_1_1_active_contour_a77e9dc7bcbd0ba48499a499891e021cb}{updates\-\_\-for\-\_\-means\-\_\-in2} (int offset)
+\begin{DoxyCompactList}\small\item\em Specific step reimplemented in the children active contours \hyperlink{classofeli_1_1_a_cwithout_edges}{A\-Cwithout\-Edges} and \hyperlink{classofeli_1_1_a_cwithout_edges_y_u_v}{A\-Cwithout\-Edges\-Y\-U\-V} to update the variables to calculate the means {\itshape Cout} and {\itshape Cin} before each \hyperlink{classofeli_1_1_active_contour_a7d9a557b580af708155ff4ab8bbfd73b}{switch\-\_\-in}, in the cycle 2. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_aa9bc993165ef307dd52eea763eece326}{virtual void \hyperlink{classofeli_1_1_active_contour_aa9bc993165ef307dd52eea763eece326}{updates\-\_\-for\-\_\-means\-\_\-out1} ()}\label{classofeli_1_1_active_contour_aa9bc993165ef307dd52eea763eece326}
+
+\begin{DoxyCompactList}\small\item\em Specific step reimplemented in the children active contours \hyperlink{classofeli_1_1_a_cwithout_edges}{A\-Cwithout\-Edges} and \hyperlink{classofeli_1_1_a_cwithout_edges_y_u_v}{A\-Cwithout\-Edges\-Y\-U\-V} to update the variables to calculate the means {\itshape Cout} and {\itshape Cin} before each \hyperlink{classofeli_1_1_active_contour_a98af656dfc038e6f03c9e4bb67e39bd0}{switch\-\_\-out}, in the cycle 1. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classofeli_1_1_active_contour_a347e650493750ad29b8b73ed52bdcf7a}{updates\-\_\-for\-\_\-means\-\_\-out2} (int offset)
+\begin{DoxyCompactList}\small\item\em Specific step reimplemented in the children active contours \hyperlink{classofeli_1_1_a_cwithout_edges}{A\-Cwithout\-Edges} and \hyperlink{classofeli_1_1_a_cwithout_edges_y_u_v}{A\-Cwithout\-Edges\-Y\-U\-V} to update the variables to calculate the means {\itshape Cout} and {\itshape Cin} before each \hyperlink{classofeli_1_1_active_contour_a98af656dfc038e6f03c9e4bb67e39bd0}{switch\-\_\-out}, in the cycle 2. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a7c7275006d98705cd7f04f8a7fe7e697}{void \hyperlink{classofeli_1_1_active_contour_a7c7275006d98705cd7f04f8a7fe7e697}{calculate\-\_\-stopping\-\_\-conditions1} ()}\label{classofeli_1_1_active_contour_a7c7275006d98705cd7f04f8a7fe7e697}
+
+\begin{DoxyCompactList}\small\item\em First stopping condition called at the end of each iteration of the cycle 1. The boolean \hyperlink{classofeli_1_1_active_contour_a0da1bffb7f554ec0b87daa7a0f274d7e}{has\-Last\-Cycle2} is calculated. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a218109b08dd520c95ee7613235bb0593}{void \hyperlink{classofeli_1_1_active_contour_a218109b08dd520c95ee7613235bb0593}{calculate\-\_\-stopping\-\_\-conditions2} ()}\label{classofeli_1_1_active_contour_a218109b08dd520c95ee7613235bb0593}
+
+\begin{DoxyCompactList}\small\item\em Second stopping condition called at the end of the cycle 2. The boolean \hyperlink{classofeli_1_1_active_contour_a610cd07a1013f1b50a5ec5a78c847a40}{is\-Stopped} is calculated. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classofeli_1_1_active_contour_a6c5e80a286279409a40f279f5e9f848c}{static const int $\ast$const \hyperlink{classofeli_1_1_active_contour_a6c5e80a286279409a40f279f5e9f848c}{make\-\_\-gaussian\-\_\-kernel} (int kernel\-\_\-length1, double sigma1)}\label{classofeli_1_1_active_contour_a6c5e80a286279409a40f279f5e9f848c}
+
+\begin{DoxyCompactList}\small\item\em Creates a normalised gaussian kernel without to divide by {\itshape π} \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a419ffe857716df7f33844d93db3d9ace}{static int \hyperlink{classofeli_1_1_active_contour_a419ffe857716df7f33844d93db3d9ace}{signum\-\_\-function} (char value)}\label{classofeli_1_1_active_contour_a419ffe857716df7f33844d93db3d9ace}
+
+\begin{DoxyCompactList}\small\item\em Gives the sign of a value. Return the integer -\/1 or 1. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classofeli_1_1_active_contour_aa763ff1bed211faa444013cbd5de0be3}{const bool \hyperlink{classofeli_1_1_active_contour_aa763ff1bed211faa444013cbd5de0be3}{has\-Cycle2}}\label{classofeli_1_1_active_contour_aa763ff1bed211faa444013cbd5de0be3}
+
+\begin{DoxyCompactList}\small\item\em Boolean egals to {\ttfamily true} to have the curve smoothing, evolutions in the cycle 2 with the internal speed Fint. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a2b32161d0a9ac64a4e4f4c242fabe27c}{const int \hyperlink{classofeli_1_1_active_contour_a2b32161d0a9ac64a4e4f4c242fabe27c}{kernel\-\_\-length}}\label{classofeli_1_1_active_contour_a2b32161d0a9ac64a4e4f4c242fabe27c}
+
+\begin{DoxyCompactList}\small\item\em Kernel length of the gaussian filter for the curve smoothing. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a66303b7f6b88270133462feb303b039a}{const double \hyperlink{classofeli_1_1_active_contour_a66303b7f6b88270133462feb303b039a}{sigma}}\label{classofeli_1_1_active_contour_a66303b7f6b88270133462feb303b039a}
+
+\begin{DoxyCompactList}\small\item\em Standard deviation of the gaussian kernel for the curve smoothing. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a0f8558877cf436d932838173ba5b8061}{const int $\ast$const \hyperlink{classofeli_1_1_active_contour_a0f8558877cf436d932838173ba5b8061}{gaussian\-\_\-kernel}}\label{classofeli_1_1_active_contour_a0f8558877cf436d932838173ba5b8061}
+
+\begin{DoxyCompactList}\small\item\em Pointer on the gaussian kernel buffer used to calculate Fint. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a8723eee8bd5a69dc7c8d7120c642a393}{int \hyperlink{classofeli_1_1_active_contour_a8723eee8bd5a69dc7c8d7120c642a393}{iteration}}\label{classofeli_1_1_active_contour_a8723eee8bd5a69dc7c8d7120c642a393}
+
+\begin{DoxyCompactList}\small\item\em Number of times the active contour has evolved. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a7fd09d653e483695eefea4f0e3225bcf}{const int \hyperlink{classofeli_1_1_active_contour_a7fd09d653e483695eefea4f0e3225bcf}{iteration\-\_\-max}}\label{classofeli_1_1_active_contour_a7fd09d653e483695eefea4f0e3225bcf}
+
+\begin{DoxyCompactList}\small\item\em Maximum number of times the active contour can evolve. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a610cd07a1013f1b50a5ec5a78c847a40}{bool \hyperlink{classofeli_1_1_active_contour_a610cd07a1013f1b50a5ec5a78c847a40}{is\-Stopped}}\label{classofeli_1_1_active_contour_a610cd07a1013f1b50a5ec5a78c847a40}
+
+\begin{DoxyCompactList}\small\item\em Boolean egals to {\ttfamily true} to stop the algorithm. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a31e0eb18a7ea6ae90acf66ed018fcd85}{\hyperlink{classofeli_1_1list}{ofeli\-::list}$<$ int $>$ \hyperlink{classofeli_1_1_active_contour_a31e0eb18a7ea6ae90acf66ed018fcd85}{Lout}}\label{classofeli_1_1_active_contour_a31e0eb18a7ea6ae90acf66ed018fcd85}
+
+\begin{DoxyCompactList}\small\item\em List of points belong to the outside boundary. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a7662d4f5c8b87d3e642b08b7e341bd79}{\hyperlink{classofeli_1_1list}{ofeli\-::list}$<$ int $>$ \hyperlink{classofeli_1_1_active_contour_a7662d4f5c8b87d3e642b08b7e341bd79}{Lin}}\label{classofeli_1_1_active_contour_a7662d4f5c8b87d3e642b08b7e341bd79}
+
+\begin{DoxyCompactList}\small\item\em List of points belong to the inside boundary. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a00740d5331e8d4f60c1345cc8cabf7ad}{const int \hyperlink{classofeli_1_1_active_contour_a00740d5331e8d4f60c1345cc8cabf7ad}{kernel\-\_\-radius}}\label{classofeli_1_1_active_contour_a00740d5331e8d4f60c1345cc8cabf7ad}
+
+\begin{DoxyCompactList}\small\item\em {\itshape kernel\-\_\-radius} = ( \hyperlink{classofeli_1_1_active_contour_a2b32161d0a9ac64a4e4f4c242fabe27c}{kernel\-\_\-length} -\/ 1) / 2 with \hyperlink{classofeli_1_1_active_contour_a2b32161d0a9ac64a4e4f4c242fabe27c}{kernel\-\_\-length} impair. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a9dcea2f4d6803007fe98e38152adf000}{bool \hyperlink{classofeli_1_1_active_contour_a9dcea2f4d6803007fe98e38152adf000}{has\-Outward\-Evolution}}\label{classofeli_1_1_active_contour_a9dcea2f4d6803007fe98e38152adf000}
+
+\begin{DoxyCompactList}\small\item\em Boolean egals to {\ttfamily true} if one point of \hyperlink{classofeli_1_1_active_contour_a31e0eb18a7ea6ae90acf66ed018fcd85}{Lout} at least is switched in during the scan through the \hyperlink{classofeli_1_1_active_contour_a31e0eb18a7ea6ae90acf66ed018fcd85}{Lout} list. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_af437460aa2cdf312166a3fe4d54beeb4}{bool \hyperlink{classofeli_1_1_active_contour_af437460aa2cdf312166a3fe4d54beeb4}{has\-Inward\-Evolution}}\label{classofeli_1_1_active_contour_af437460aa2cdf312166a3fe4d54beeb4}
+
+\begin{DoxyCompactList}\small\item\em Boolean egals to {\ttfamily true} if one point of \hyperlink{classofeli_1_1_active_contour_a7662d4f5c8b87d3e642b08b7e341bd79}{Lin} at least is switched out during the scan through the \hyperlink{classofeli_1_1_active_contour_a7662d4f5c8b87d3e642b08b7e341bd79}{Lin} list. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a59f111cd0910d2e6534b51bb1da3c254}{int \hyperlink{classofeli_1_1_active_contour_a59f111cd0910d2e6534b51bb1da3c254}{Na}}\label{classofeli_1_1_active_contour_a59f111cd0910d2e6534b51bb1da3c254}
+
+\begin{DoxyCompactList}\small\item\em Number of iterations the active contour evolves in the cycle 1 with {\itshape Fd} speed. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a811a28ec9c39400d244783a8a2fe7e2d}{const int \hyperlink{classofeli_1_1_active_contour_a811a28ec9c39400d244783a8a2fe7e2d}{Na\-\_\-max}}\label{classofeli_1_1_active_contour_a811a28ec9c39400d244783a8a2fe7e2d}
+
+\begin{DoxyCompactList}\small\item\em Number of maximum iterations the active contour evolves in the cycle 1 with {\itshape Fd} speed. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a38cc27ae9706801882322f02b5db2df8}{int \hyperlink{classofeli_1_1_active_contour_a38cc27ae9706801882322f02b5db2df8}{Ns}}\label{classofeli_1_1_active_contour_a38cc27ae9706801882322f02b5db2df8}
+
+\begin{DoxyCompactList}\small\item\em Number of iterations the active contour evolves in the cycle 2 with {\itshape Fint} speed. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a908322f93a50ce7808960236478649fe}{const int \hyperlink{classofeli_1_1_active_contour_a908322f93a50ce7808960236478649fe}{Ns\-\_\-max}}\label{classofeli_1_1_active_contour_a908322f93a50ce7808960236478649fe}
+
+\begin{DoxyCompactList}\small\item\em Number of maximum iterations the active contour evolves in the cycle 2 with {\itshape Fint} speed. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_acaaac3e08e34cf03c1320c220b188b78}{bool \hyperlink{classofeli_1_1_active_contour_acaaac3e08e34cf03c1320c220b188b78}{has\-Lists\-Changes}}\label{classofeli_1_1_active_contour_acaaac3e08e34cf03c1320c220b188b78}
+
+\begin{DoxyCompactList}\small\item\em Boolean egals to true if \hyperlink{classofeli_1_1_active_contour_a9dcea2f4d6803007fe98e38152adf000}{has\-Outward\-Evolution} egals to {\ttfamily true} or \hyperlink{classofeli_1_1_active_contour_af437460aa2cdf312166a3fe4d54beeb4}{has\-Inward\-Evolution} egals to {\ttfamily true}. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_aefe0738d8a43f3981d591a0cc78ed717}{int \hyperlink{classofeli_1_1_active_contour_aefe0738d8a43f3981d591a0cc78ed717}{lists\-\_\-length}}\label{classofeli_1_1_active_contour_aefe0738d8a43f3981d591a0cc78ed717}
+
+\begin{DoxyCompactList}\small\item\em Length of \hyperlink{classofeli_1_1_active_contour_a7662d4f5c8b87d3e642b08b7e341bd79}{Lin} + length of \hyperlink{classofeli_1_1_active_contour_a31e0eb18a7ea6ae90acf66ed018fcd85}{Lout}. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a653c2bcd37ed61e9eacda89a013590d4}{int \hyperlink{classofeli_1_1_active_contour_a653c2bcd37ed61e9eacda89a013590d4}{previous\-\_\-lists\-\_\-length}}\label{classofeli_1_1_active_contour_a653c2bcd37ed61e9eacda89a013590d4}
+
+\begin{DoxyCompactList}\small\item\em Length of \hyperlink{classofeli_1_1_active_contour_a7662d4f5c8b87d3e642b08b7e341bd79}{Lin} + length of \hyperlink{classofeli_1_1_active_contour_a31e0eb18a7ea6ae90acf66ed018fcd85}{Lout} of the previous iteration. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a23e817e4d98cdc2ba8da0b44c5d0ffb8}{bool \hyperlink{classofeli_1_1_active_contour_a23e817e4d98cdc2ba8da0b44c5d0ffb8}{has\-Oscillation}}\label{classofeli_1_1_active_contour_a23e817e4d98cdc2ba8da0b44c5d0ffb8}
+
+\begin{DoxyCompactList}\small\item\em Boolean calculated at the end of the cycle 2 with function {\itshape \hyperlink{classofeli_1_1_active_contour_a218109b08dd520c95ee7613235bb0593}{calculate\-\_\-stopping\-\_\-conditions2()}}. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a01b0cfb6e5593b267bceb72e288cfe88}{int \hyperlink{classofeli_1_1_active_contour_a01b0cfb6e5593b267bceb72e288cfe88}{oscillations\-\_\-in\-\_\-a\-\_\-row}}\label{classofeli_1_1_active_contour_a01b0cfb6e5593b267bceb72e288cfe88}
+
+\begin{DoxyCompactList}\small\item\em To count the number of times the relative gap of the lists length are less of a constant, fixed at 1\%, i.\-e. the number of consecutive oscillations. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_active_contour_a0da1bffb7f554ec0b87daa7a0f274d7e}{bool \hyperlink{classofeli_1_1_active_contour_a0da1bffb7f554ec0b87daa7a0f274d7e}{has\-Last\-Cycle2}}\label{classofeli_1_1_active_contour_a0da1bffb7f554ec0b87daa7a0f274d7e}
+
+\begin{DoxyCompactList}\small\item\em Boolean calculated at the end of each iteration of the cycle 1 with function {\itshape \hyperlink{classofeli_1_1_active_contour_a7c7275006d98705cd7f04f8a7fe7e697}{calculate\-\_\-stopping\-\_\-conditions1()}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classofeli_1_1_active_contour_a4ae6d808948cb0fe309be0d4c4d39755}{std\-::ostream \& \hyperlink{classofeli_1_1_active_contour_a4ae6d808948cb0fe309be0d4c4d39755}{operator$<$$<$} (std\-::ostream \&os, const \hyperlink{classofeli_1_1_active_contour}{Active\-Contour} \&ac)}\label{classofeli_1_1_active_contour_a4ae6d808948cb0fe309be0d4c4d39755}
+
+\begin{DoxyCompactList}\small\item\em Overloading of cout $<$$<$. It displays the active contour position. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The class \hyperlink{classofeli_1_1_active_contour}{Active\-Contour} contains the implementation of the Fast-\/\-Two-\/\-Cycle (F\-T\-C) algorithm of Shi and Karl as it describes in their article \char`\"{}\-A real-\/time algorithm for the approximation of level-\/set based curve evolution\char`\"{} published in I\-E\-E\-E Transactions on Image Processing in may 2008. This class should be never instantiated because the function to calculate the external speed {\itshape Fd} is too general. The 3 classes \hyperlink{classofeli_1_1_a_cwithout_edges}{ofeli\-::\-A\-Cwithout\-Edges}, \hyperlink{classofeli_1_1_a_cwithout_edges_y_u_v}{ofeli\-::\-A\-Cwithout\-Edges\-Y\-U\-V} and \hyperlink{classofeli_1_1_geodesic_a_c}{ofeli\-::\-Geodesic\-A\-C}, inherit of the class \hyperlink{classofeli_1_1_active_contour}{Active\-Contour}, with for each class it own implementation of this function. 
+
+Definition at line 49 of file activecontour.\-hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classofeli_1_1_active_contour_abfbc2ecc4b6d511c277eb512ee3749cf}{\index{ofeli\-::\-Active\-Contour@{ofeli\-::\-Active\-Contour}!Active\-Contour@{Active\-Contour}}
+\index{Active\-Contour@{Active\-Contour}!ofeli::ActiveContour@{ofeli\-::\-Active\-Contour}}
+\subsubsection[{Active\-Contour}]{\setlength{\rightskip}{0pt plus 5cm}Active\-Contour\-::\-Active\-Contour (
+\begin{DoxyParamCaption}
+\item[{const unsigned char $\ast$}]{img\-\_\-data1, }
+\item[{int}]{img\-\_\-width1, }
+\item[{int}]{img\-\_\-height1, }
+\item[{bool}]{has\-Ellipse1, }
+\item[{double}]{init\-\_\-width1, }
+\item[{double}]{init\-\_\-height1, }
+\item[{double}]{center\-\_\-x1, }
+\item[{double}]{center\-\_\-y1, }
+\item[{bool}]{has\-Cycle2\-\_\-1, }
+\item[{int}]{kernel\-\_\-length1, }
+\item[{double}]{sigma1, }
+\item[{int}]{Na1, }
+\item[{int}]{Ns1}
+\end{DoxyParamCaption}
+)}}\label{classofeli_1_1_active_contour_abfbc2ecc4b6d511c277eb512ee3749cf}
+
+
+Constructor to initialize the active contour from geometrical parameters of an unique shape, an ellipse or a rectangle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em img\-\_\-data1} & Input pointer on the image data buffer. This buffer must be row-\/wise, except if you define the macro C\-O\-L\-U\-M\-N\-\_\-\-W\-I\-S\-E\-\_\-\-I\-M\-A\-G\-E\-\_\-\-D\-A\-T\-A\-\_\-\-B\-U\-F\-F\-E\-R. Passed to \hyperlink{classofeli_1_1_active_contour_a96480d79e9a60817925903da233a5b1e}{img\-\_\-data}. \\
+\hline
+{\em img\-\_\-width1} & Image width, i.\-e. number of columns. Passed to \hyperlink{classofeli_1_1_active_contour_a3623de7ebc0d27ba7fac21a5929afbc6}{img\-\_\-width}. \\
+\hline
+{\em img\-\_\-height1} & Image height, i.\-e. number of rows. Passed to \hyperlink{classofeli_1_1_active_contour_a88d02b47bab737ec97fe3a7ea9554c0c}{img\-\_\-height}. \\
+\hline
+{\em has\-Ellipse1} & Boolean to choose the shape of the active contour initialization, {\ttfamily true} for an ellipse or {\ttfamily false} for a rectangle. \\
+\hline
+{\em init\-\_\-width1} & Width of the shape divided by the image \hyperlink{classofeli_1_1_active_contour_a3623de7ebc0d27ba7fac21a5929afbc6}{img\-\_\-width}. \\
+\hline
+{\em init\-\_\-height1} & Height of the shape divided by the image \hyperlink{classofeli_1_1_active_contour_a88d02b47bab737ec97fe3a7ea9554c0c}{img\-\_\-height}. \\
+\hline
+{\em center\-\_\-x1} & X-\/axis position or column index of the center of the shape divided by the image \hyperlink{classofeli_1_1_active_contour_a3623de7ebc0d27ba7fac21a5929afbc6}{img\-\_\-width} subtracted by 0.\-5. \\
+\hline
+{\em center\-\_\-y1} & Y-\/axis position or row index of the center of the shape divided by the image \hyperlink{classofeli_1_1_active_contour_a88d02b47bab737ec97fe3a7ea9554c0c}{img\-\_\-height} subtracted by 0.\-5.\par
+ To have the center of the shape into the image \-: -\/0.\-5 $<$ center\-\_\-x1 $<$ 0.\-5 and -\/0.\-5 $<$ center\-\_\-y1 $<$ 0.\-5. \\
+\hline
+{\em has\-Cycle2\-\_\-1} & Boolean to have or not the curve smoothing, evolutions in the cycle 2 with an internal speed Fint. Passed to \hyperlink{classofeli_1_1_active_contour_aa763ff1bed211faa444013cbd5de0be3}{has\-Cycle2}. \\
+\hline
+{\em kernel\-\_\-length1} & Kernel length of the gaussian filter for the curve smoothing. Passed to \hyperlink{classofeli_1_1_active_contour_a2b32161d0a9ac64a4e4f4c242fabe27c}{kernel\-\_\-length}. \\
+\hline
+{\em sigma1} & Standard deviation of the gaussian kernel for the curve smoothing. Passed to \hyperlink{classofeli_1_1_active_contour_a66303b7f6b88270133462feb303b039a}{sigma}. \\
+\hline
+{\em Na1} & Number of maximum iterations the active contour evolves in the cycle 1, external or data dependant evolutions with {\itshape Fd} speed. Passed to \hyperlink{classofeli_1_1_active_contour_a811a28ec9c39400d244783a8a2fe7e2d}{Na\-\_\-max}. \\
+\hline
+{\em Ns1} & Number of maximum iterations the active contour evolves in the cycle 2, curve smoothing or internal evolutions with {\itshape Fint} speed. Passed to \hyperlink{classofeli_1_1_active_contour_a908322f93a50ce7808960236478649fe}{Ns\-\_\-max}. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 66 of file activecontour.\-cpp.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classofeli_1_1_active_contour_abfbc2ecc4b6d511c277eb512ee3749cf_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{classofeli_1_1_active_contour_a38a162e1c928418608067e35c01c1970}{\index{ofeli\-::\-Active\-Contour@{ofeli\-::\-Active\-Contour}!Active\-Contour@{Active\-Contour}}
+\index{Active\-Contour@{Active\-Contour}!ofeli::ActiveContour@{ofeli\-::\-Active\-Contour}}
+\subsubsection[{Active\-Contour}]{\setlength{\rightskip}{0pt plus 5cm}Active\-Contour\-::\-Active\-Contour (
+\begin{DoxyParamCaption}
+\item[{const unsigned char $\ast$}]{img\-\_\-data1, }
+\item[{int}]{img\-\_\-width1, }
+\item[{int}]{img\-\_\-height1, }
+\item[{const char $\ast$}]{phi\-\_\-init1, }
+\item[{bool}]{has\-Cycle2\-\_\-1, }
+\item[{int}]{kernel\-\_\-length1, }
+\item[{double}]{sigma1, }
+\item[{int}]{Na1, }
+\item[{int}]{Ns1}
+\end{DoxyParamCaption}
+)}}\label{classofeli_1_1_active_contour_a38a162e1c928418608067e35c01c1970}
+
+
+Constructor to initialize the active contour from an initial phi level-\/set function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em img\-\_\-data1} & Input pointer on the image data buffer. This buffer must be row-\/wise, except if you define the macro C\-O\-L\-U\-M\-N\-\_\-\-W\-I\-S\-E\-\_\-\-I\-M\-A\-G\-E\-\_\-\-D\-A\-T\-A\-\_\-\-B\-U\-F\-F\-E\-R. Passed to \hyperlink{classofeli_1_1_active_contour_a96480d79e9a60817925903da233a5b1e}{img\-\_\-data}. \\
+\hline
+{\em img\-\_\-width1} & Image width, i.\-e. number of columns. Passed to \hyperlink{classofeli_1_1_active_contour_a3623de7ebc0d27ba7fac21a5929afbc6}{img\-\_\-width}. \\
+\hline
+{\em img\-\_\-height1} & Image height, i.\-e. number of rows. Passed to \hyperlink{classofeli_1_1_active_contour_a88d02b47bab737ec97fe3a7ea9554c0c}{img\-\_\-height}. \\
+\hline
+{\em phi\-\_\-init1} & Pointer on the initialized level-\/set function buffer. Copied to \hyperlink{classofeli_1_1_active_contour_aacb03a6ded4ca51cb52f58aeff955ef7}{phi}. \hyperlink{classofeli_1_1_active_contour_aacb03a6ded4ca51cb52f58aeff955ef7}{phi} is checked and cleaned if needed after so {\itshape phi\-\_\-init1} can be a binarized buffer with 1 for outside region and -\/1 for inside region to simplify your task. \\
+\hline
+{\em has\-Cycle2\-\_\-1} & Boolean to have or not the curve smoothing, evolutions in the cycle 2 with an internal speed Fint. Passed to \hyperlink{classofeli_1_1_active_contour_aa763ff1bed211faa444013cbd5de0be3}{has\-Cycle2}. \\
+\hline
+{\em kernel\-\_\-length1} & Kernel length of the gaussian filter for the curve smoothing. Passed to \hyperlink{classofeli_1_1_active_contour_a2b32161d0a9ac64a4e4f4c242fabe27c}{kernel\-\_\-length}. \\
+\hline
+{\em sigma1} & Standard deviation of the gaussian kernel for the curve smoothing. Passed to \hyperlink{classofeli_1_1_active_contour_a66303b7f6b88270133462feb303b039a}{sigma}. \\
+\hline
+{\em Na1} & Number of maximum iterations the active contour evolves in the cycle 1, external or data dependant evolutions with {\itshape Fd} speed. Passed to \hyperlink{classofeli_1_1_active_contour_a811a28ec9c39400d244783a8a2fe7e2d}{Na\-\_\-max}. \\
+\hline
+{\em Ns1} & Number of maximum iterations the active contour evolves in the cycle 2, curve smoothing or internal evolutions with {\itshape Fint} speed. Passed to \hyperlink{classofeli_1_1_active_contour_a908322f93a50ce7808960236478649fe}{Ns\-\_\-max}. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 87 of file activecontour.\-cpp.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classofeli_1_1_active_contour_a38a162e1c928418608067e35c01c1970_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classofeli_1_1_active_contour_ae3871b40f2f3e27ae0d75775798cdee1}{\index{ofeli\-::\-Active\-Contour@{ofeli\-::\-Active\-Contour}!compute\-\_\-external\-\_\-speed\-\_\-\-Fd@{compute\-\_\-external\-\_\-speed\-\_\-\-Fd}}
+\index{compute\-\_\-external\-\_\-speed\-\_\-\-Fd@{compute\-\_\-external\-\_\-speed\-\_\-\-Fd}!ofeli::ActiveContour@{ofeli\-::\-Active\-Contour}}
+\subsubsection[{compute\-\_\-external\-\_\-speed\-\_\-\-Fd}]{\setlength{\rightskip}{0pt plus 5cm}int Active\-Contour\-::compute\-\_\-external\-\_\-speed\-\_\-\-Fd (
+\begin{DoxyParamCaption}
+\item[{int}]{offset}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [virtual]}}}\label{classofeli_1_1_active_contour_ae3871b40f2f3e27ae0d75775798cdee1}
+
+
+Computes the external speed {\itshape Fd} for a current point ({\itshape x},{\itshape y}) of \hyperlink{classofeli_1_1_active_contour_a31e0eb18a7ea6ae90acf66ed018fcd85}{Lout} or \hyperlink{classofeli_1_1_active_contour_a7662d4f5c8b87d3e642b08b7e341bd79}{Lin}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em offset} & offset of the image data buffer with {\itshape offset} = {\itshape x} + {\itshape y} × \hyperlink{classofeli_1_1_active_contour_a3623de7ebc0d27ba7fac21a5929afbc6}{img\-\_\-width} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Fd, the external speed for the data dependant evolution of the active contour used in the cycle 1 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{classofeli_1_1_a_cwithout_edges_y_u_v_ae61e98ace069646a009de7cd7148e065}{ofeli\-::\-A\-Cwithout\-Edges\-Y\-U\-V}, \hyperlink{classofeli_1_1_a_cwithout_edges_a4190840f934080ff6eb64fa48c993f98}{ofeli\-::\-A\-Cwithout\-Edges}, and \hyperlink{classofeli_1_1_geodesic_a_c_a1e4d1d3011526eaff49b5404f00f27f9}{ofeli\-::\-Geodesic\-A\-C}.
+
+
+
+Definition at line 996 of file activecontour.\-cpp.
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classofeli_1_1_active_contour_ae3871b40f2f3e27ae0d75775798cdee1_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{classofeli_1_1_active_contour_ad920bced735a1a78b0bf32e9f452dccb}{\index{ofeli\-::\-Active\-Contour@{ofeli\-::\-Active\-Contour}!compute\-\_\-internal\-\_\-speed\-\_\-\-Fint@{compute\-\_\-internal\-\_\-speed\-\_\-\-Fint}}
+\index{compute\-\_\-internal\-\_\-speed\-\_\-\-Fint@{compute\-\_\-internal\-\_\-speed\-\_\-\-Fint}!ofeli::ActiveContour@{ofeli\-::\-Active\-Contour}}
+\subsubsection[{compute\-\_\-internal\-\_\-speed\-\_\-\-Fint}]{\setlength{\rightskip}{0pt plus 5cm}int Active\-Contour\-::compute\-\_\-internal\-\_\-speed\-\_\-\-Fint (
+\begin{DoxyParamCaption}
+\item[{int}]{offset}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classofeli_1_1_active_contour_ad920bced735a1a78b0bf32e9f452dccb}
+
+
+Computes the internal speed Fint for a current point ({\itshape x},{\itshape y}) of \hyperlink{classofeli_1_1_active_contour_a31e0eb18a7ea6ae90acf66ed018fcd85}{Lout} or \hyperlink{classofeli_1_1_active_contour_a7662d4f5c8b87d3e642b08b7e341bd79}{Lin}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em offset} & offset of the buffer pointed by \hyperlink{classofeli_1_1_active_contour_aacb03a6ded4ca51cb52f58aeff955ef7}{phi} with {\itshape offset} = {\itshape x} + {\itshape y} × \hyperlink{classofeli_1_1_active_contour_a3623de7ebc0d27ba7fac21a5929afbc6}{img\-\_\-width} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Fint, the internal speed for the regularization of the active contour used in the cycle 2 
+\end{DoxyReturn}
+
+
+Definition at line 715 of file activecontour.\-cpp.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classofeli_1_1_active_contour_ad920bced735a1a78b0bf32e9f452dccb_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classofeli_1_1_active_contour_ad920bced735a1a78b0bf32e9f452dccb_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{classofeli_1_1_active_contour_ac734c690a9d10f37b99b6803af335d1d}{\index{ofeli\-::\-Active\-Contour@{ofeli\-::\-Active\-Contour}!is\-Redundant\-Lin\-Point@{is\-Redundant\-Lin\-Point}}
+\index{is\-Redundant\-Lin\-Point@{is\-Redundant\-Lin\-Point}!ofeli::ActiveContour@{ofeli\-::\-Active\-Contour}}
+\subsubsection[{is\-Redundant\-Lin\-Point}]{\setlength{\rightskip}{0pt plus 5cm}bool Active\-Contour\-::is\-Redundant\-Lin\-Point (
+\begin{DoxyParamCaption}
+\item[{int}]{offset}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [private]}}}\label{classofeli_1_1_active_contour_ac734c690a9d10f37b99b6803af335d1d}
+
+
+Finds if a current point ({\itshape x},{\itshape y}) of \hyperlink{classofeli_1_1_active_contour_a7662d4f5c8b87d3e642b08b7e341bd79}{Lin} is redundant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em offset} & offset of the buffer pointed by \hyperlink{classofeli_1_1_active_contour_aacb03a6ded4ca51cb52f58aeff955ef7}{phi} with {\itshape offset} = {\itshape x} + {\itshape y} × \hyperlink{classofeli_1_1_active_contour_a3623de7ebc0d27ba7fac21a5929afbc6}{img\-\_\-width} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the point ({\itshape x},{\itshape y}) of \hyperlink{classofeli_1_1_active_contour_a7662d4f5c8b87d3e642b08b7e341bd79}{Lin} is redundant, otherwise, {\ttfamily false} 
+\end{DoxyReturn}
+
+
+Definition at line 760 of file activecontour.\-cpp.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=328pt]{classofeli_1_1_active_contour_ac734c690a9d10f37b99b6803af335d1d_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classofeli_1_1_active_contour_ac734c690a9d10f37b99b6803af335d1d_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{classofeli_1_1_active_contour_a9af52a939f0fd059680383b9d087d6fd}{\index{ofeli\-::\-Active\-Contour@{ofeli\-::\-Active\-Contour}!is\-Redundant\-Lout\-Point@{is\-Redundant\-Lout\-Point}}
+\index{is\-Redundant\-Lout\-Point@{is\-Redundant\-Lout\-Point}!ofeli::ActiveContour@{ofeli\-::\-Active\-Contour}}
+\subsubsection[{is\-Redundant\-Lout\-Point}]{\setlength{\rightskip}{0pt plus 5cm}bool Active\-Contour\-::is\-Redundant\-Lout\-Point (
+\begin{DoxyParamCaption}
+\item[{int}]{offset}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [private]}}}\label{classofeli_1_1_active_contour_a9af52a939f0fd059680383b9d087d6fd}
+
+
+Finds if a current point ({\itshape x},{\itshape y}) of \hyperlink{classofeli_1_1_active_contour_a31e0eb18a7ea6ae90acf66ed018fcd85}{Lout} is redundant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em offset} & offset of the buffer pointed by \hyperlink{classofeli_1_1_active_contour_aacb03a6ded4ca51cb52f58aeff955ef7}{phi} with {\itshape offset} = {\itshape x} + {\itshape y} × \hyperlink{classofeli_1_1_active_contour_a3623de7ebc0d27ba7fac21a5929afbc6}{img\-\_\-width} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the point ({\itshape x},{\itshape y}) of \hyperlink{classofeli_1_1_active_contour_a31e0eb18a7ea6ae90acf66ed018fcd85}{Lout} is redundant, otherwise, {\ttfamily false} 
+\end{DoxyReturn}
+
+
+Definition at line 852 of file activecontour.\-cpp.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classofeli_1_1_active_contour_a9af52a939f0fd059680383b9d087d6fd_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classofeli_1_1_active_contour_a9af52a939f0fd059680383b9d087d6fd_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{classofeli_1_1_active_contour_a7d9a557b580af708155ff4ab8bbfd73b}{\index{ofeli\-::\-Active\-Contour@{ofeli\-::\-Active\-Contour}!switch\-\_\-in@{switch\-\_\-in}}
+\index{switch\-\_\-in@{switch\-\_\-in}!ofeli::ActiveContour@{ofeli\-::\-Active\-Contour}}
+\subsubsection[{switch\-\_\-in}]{\setlength{\rightskip}{0pt plus 5cm}void Active\-Contour\-::switch\-\_\-in (
+\begin{DoxyParamCaption}
+\item[{{\bf ofeli\-::list}$<$ int $>$\-::iterator}]{Lout\-\_\-point}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classofeli_1_1_active_contour_a7d9a557b580af708155ff4ab8bbfd73b}
+
+
+Outward local movement of the curve for a current point ({\itshape x},{\itshape y}) of \hyperlink{classofeli_1_1_active_contour_a31e0eb18a7ea6ae90acf66ed018fcd85}{Lout} that is switched in \hyperlink{classofeli_1_1_active_contour_a7662d4f5c8b87d3e642b08b7e341bd79}{Lin}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Lout\-\_\-point} & iterator which contains offset of the buffer pointed by \hyperlink{classofeli_1_1_active_contour_aacb03a6ded4ca51cb52f58aeff955ef7}{phi} with {\itshape offset} = {\itshape x} + {\itshape y} × \hyperlink{classofeli_1_1_active_contour_a3623de7ebc0d27ba7fac21a5929afbc6}{img\-\_\-width} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 563 of file activecontour.\-cpp.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classofeli_1_1_active_contour_a7d9a557b580af708155ff4ab8bbfd73b_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classofeli_1_1_active_contour_a7d9a557b580af708155ff4ab8bbfd73b_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{classofeli_1_1_active_contour_a98af656dfc038e6f03c9e4bb67e39bd0}{\index{ofeli\-::\-Active\-Contour@{ofeli\-::\-Active\-Contour}!switch\-\_\-out@{switch\-\_\-out}}
+\index{switch\-\_\-out@{switch\-\_\-out}!ofeli::ActiveContour@{ofeli\-::\-Active\-Contour}}
+\subsubsection[{switch\-\_\-out}]{\setlength{\rightskip}{0pt plus 5cm}void Active\-Contour\-::switch\-\_\-out (
+\begin{DoxyParamCaption}
+\item[{{\bf ofeli\-::list}$<$ int $>$\-::iterator}]{Lin\-\_\-point}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classofeli_1_1_active_contour_a98af656dfc038e6f03c9e4bb67e39bd0}
+
+
+Inward local movement of the curve for a current point ({\itshape x},{\itshape y}) of \hyperlink{classofeli_1_1_active_contour_a7662d4f5c8b87d3e642b08b7e341bd79}{Lin} that is switched in \hyperlink{classofeli_1_1_active_contour_a31e0eb18a7ea6ae90acf66ed018fcd85}{Lout}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Lin\-\_\-point} & which contains offset of the buffer pointed by \hyperlink{classofeli_1_1_active_contour_aacb03a6ded4ca51cb52f58aeff955ef7}{phi} with {\itshape offset} = {\itshape x} + {\itshape y} × \hyperlink{classofeli_1_1_active_contour_a3623de7ebc0d27ba7fac21a5929afbc6}{img\-\_\-width} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 639 of file activecontour.\-cpp.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classofeli_1_1_active_contour_a98af656dfc038e6f03c9e4bb67e39bd0_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classofeli_1_1_active_contour_a98af656dfc038e6f03c9e4bb67e39bd0_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{classofeli_1_1_active_contour_a77e9dc7bcbd0ba48499a499891e021cb}{\index{ofeli\-::\-Active\-Contour@{ofeli\-::\-Active\-Contour}!updates\-\_\-for\-\_\-means\-\_\-in2@{updates\-\_\-for\-\_\-means\-\_\-in2}}
+\index{updates\-\_\-for\-\_\-means\-\_\-in2@{updates\-\_\-for\-\_\-means\-\_\-in2}!ofeli::ActiveContour@{ofeli\-::\-Active\-Contour}}
+\subsubsection[{updates\-\_\-for\-\_\-means\-\_\-in2}]{\setlength{\rightskip}{0pt plus 5cm}void Active\-Contour\-::updates\-\_\-for\-\_\-means\-\_\-in2 (
+\begin{DoxyParamCaption}
+\item[{int}]{offset}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [virtual]}}}\label{classofeli_1_1_active_contour_a77e9dc7bcbd0ba48499a499891e021cb}
+
+
+Specific step reimplemented in the children active contours \hyperlink{classofeli_1_1_a_cwithout_edges}{A\-Cwithout\-Edges} and \hyperlink{classofeli_1_1_a_cwithout_edges_y_u_v}{A\-Cwithout\-Edges\-Y\-U\-V} to update the variables to calculate the means {\itshape Cout} and {\itshape Cin} before each \hyperlink{classofeli_1_1_active_contour_a7d9a557b580af708155ff4ab8bbfd73b}{switch\-\_\-in}, in the cycle 2. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em offset} & offset of the image data buffer with {\itshape offset} = {\itshape x} + {\itshape y} × \hyperlink{classofeli_1_1_active_contour_a3623de7ebc0d27ba7fac21a5929afbc6}{img\-\_\-width} \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{classofeli_1_1_a_cwithout_edges_y_u_v_a249aa0e9664cf4f024997ac4475fe70c}{ofeli\-::\-A\-Cwithout\-Edges\-Y\-U\-V}, and \hyperlink{classofeli_1_1_a_cwithout_edges_aae62ec3548eb47ca5f67c2ede19a251b}{ofeli\-::\-A\-Cwithout\-Edges}.
+
+
+
+Definition at line 1130 of file activecontour.\-cpp.
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classofeli_1_1_active_contour_a77e9dc7bcbd0ba48499a499891e021cb_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{classofeli_1_1_active_contour_a347e650493750ad29b8b73ed52bdcf7a}{\index{ofeli\-::\-Active\-Contour@{ofeli\-::\-Active\-Contour}!updates\-\_\-for\-\_\-means\-\_\-out2@{updates\-\_\-for\-\_\-means\-\_\-out2}}
+\index{updates\-\_\-for\-\_\-means\-\_\-out2@{updates\-\_\-for\-\_\-means\-\_\-out2}!ofeli::ActiveContour@{ofeli\-::\-Active\-Contour}}
+\subsubsection[{updates\-\_\-for\-\_\-means\-\_\-out2}]{\setlength{\rightskip}{0pt plus 5cm}void Active\-Contour\-::updates\-\_\-for\-\_\-means\-\_\-out2 (
+\begin{DoxyParamCaption}
+\item[{int}]{offset}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [virtual]}}}\label{classofeli_1_1_active_contour_a347e650493750ad29b8b73ed52bdcf7a}
+
+
+Specific step reimplemented in the children active contours \hyperlink{classofeli_1_1_a_cwithout_edges}{A\-Cwithout\-Edges} and \hyperlink{classofeli_1_1_a_cwithout_edges_y_u_v}{A\-Cwithout\-Edges\-Y\-U\-V} to update the variables to calculate the means {\itshape Cout} and {\itshape Cin} before each \hyperlink{classofeli_1_1_active_contour_a98af656dfc038e6f03c9e4bb67e39bd0}{switch\-\_\-out}, in the cycle 2. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em offset} & offset of the image data buffer with {\itshape offset} = {\itshape x} + {\itshape y} × \hyperlink{classofeli_1_1_active_contour_a3623de7ebc0d27ba7fac21a5929afbc6}{img\-\_\-width} \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{classofeli_1_1_a_cwithout_edges_y_u_v_a43b463f3b8d5cb9604fd73b18083409a}{ofeli\-::\-A\-Cwithout\-Edges\-Y\-U\-V}, and \hyperlink{classofeli_1_1_a_cwithout_edges_a80021d0ca688f3cbf46bccc870706e4c}{ofeli\-::\-A\-Cwithout\-Edges}.
+
+
+
+Definition at line 1135 of file activecontour.\-cpp.
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classofeli_1_1_active_contour_a347e650493750ad29b8b73ed52bdcf7a_icgraph}
+\end{center}
+\end{figure}
+
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+activecontour.\-hpp\item 
+activecontour.\-cpp\end{DoxyCompactItemize}

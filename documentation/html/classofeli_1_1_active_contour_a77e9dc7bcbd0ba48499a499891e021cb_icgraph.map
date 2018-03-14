@@ -1,0 +1,5 @@
+<map id="ofeli::ActiveContour::updates_for_means_in2" name="ofeli::ActiveContour::updates_for_means_in2">
+<area shape="rect" id="node3" href="$classofeli_1_1_active_contour.html#a7cf8243140d8ef8f72a638e9a1442dc2" title="Function called by evolve_one_iteration() for a curve smoothing or internal evolution with Fint speed..." alt="" coords="222,31,365,87"/>
+<area shape="rect" id="node5" href="$classofeli_1_1_active_contour.html#a23013e2eb528bc2fa4e108e928af6f8d" title="Evolves the active contour of one iteration or one step. This function calls the functions do_one_ite..." alt="" coords="413,5,547,46"/>
+<area shape="rect" id="node7" href="$classofeli_1_1_active_contour.html#a02cd4d93b90fee487e07f625f337aab1" title="Evolves directly the active contour at the final state, i.e. it evolves while isStopped is not true..." alt="" coords="413,70,547,111"/>
+</map>

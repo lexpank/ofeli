@@ -1,0 +1,5 @@
+<map id="ofeli::ACwithoutEdgesYUV::compute_external_speed_Fd" name="ofeli::ACwithoutEdgesYUV::compute_external_speed_Fd">
+<area shape="rect" id="node3" href="$classofeli_1_1_a_cwithout_edges_y_u_v.html#a7913716e6f12f0020909fd1ff42149f4" title="Affects the variable R, G, B from the buffer img_rgb_data." alt="" coords="251,5,427,46"/>
+<area shape="rect" id="node5" href="$classofeli_1_1_a_cwithout_edges_y_u_v.html#a2db2c26b4add310859ba36d701834d81" title="Calculates YUV value with a (R,G,B) value." alt="" coords="251,70,427,111"/>
+<area shape="rect" id="node7" href="$classofeli_1_1_active_contour.html#a8a880bf04c5ed62915987145ff05e502" title="Gives the square of a value." alt="" coords="272,135,405,177"/>
+</map>

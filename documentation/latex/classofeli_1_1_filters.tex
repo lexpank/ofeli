@@ -1,0 +1,245 @@
+\hypertarget{classofeli_1_1_filters}{\section{ofeli\-:\-:Filters Class Reference}
+\label{classofeli_1_1_filters}\index{ofeli\-::\-Filters@{ofeli\-::\-Filters}}
+}
+
+
+{\ttfamily \#include $<$filters.\-hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classofeli_1_1_filters_afdfd38460d9612c305776f4488a14546}{\hyperlink{classofeli_1_1_filters_afdfd38460d9612c305776f4488a14546}{Filters} (const unsigned char $\ast$img\-\_\-data1, int img\-\_\-width1, int img\-\_\-height1, int byte\-\_\-per\-\_\-pixel1)}\label{classofeli_1_1_filters_afdfd38460d9612c305776f4488a14546}
+
+\begin{DoxyCompactList}\small\item\em Constructor with an input pointer on a row-\/wise image data buffer and the dimensions of the image. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_aca1ba583de5930e46a3df2110ebbf21c}{\hyperlink{classofeli_1_1_filters_aca1ba583de5930e46a3df2110ebbf21c}{$\sim$\-Filters} ()}\label{classofeli_1_1_filters_aca1ba583de5930e46a3df2110ebbf21c}
+
+\begin{DoxyCompactList}\small\item\em Desctructor. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_a4bd1f0541cb045674548e292180fff0f}{void \hyperlink{classofeli_1_1_filters_a4bd1f0541cb045674548e292180fff0f}{initialyze\-\_\-filtered} ()}\label{classofeli_1_1_filters_a4bd1f0541cb045674548e292180fff0f}
+
+\begin{DoxyCompactList}\small\item\em Copies {\itshape img} buffer to {\itshape filtered} buffer. \end{DoxyCompactList}\item 
+void \hyperlink{classofeli_1_1_filters_ae4a65a5259b3a91a523eefdf2d90b920}{anisotropic\-\_\-diffusion} (int max\-\_\-itera, double lambda, double kappa, int option)
+\begin{DoxyCompactList}\small\item\em Performs a Perona-\/\-Malik anisotropic diffusion with a 8-\/connected neighborhood. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_a95fcd4385d6a115af0617407d91e6901}{void \hyperlink{classofeli_1_1_filters_a95fcd4385d6a115af0617407d91e6901}{morphological\-\_\-gradient} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_a95fcd4385d6a115af0617407d91e6901}
+
+\begin{DoxyCompactList}\small\item\em Performs a morphological\-\_\-gradient with a square structuring element with a naïve algorithm. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_a13b390c3705e19c211c04f47daa17844}{void \hyperlink{classofeli_1_1_filters_a13b390c3705e19c211c04f47daa17844}{morphological\-\_\-gradient\-\_\-o1} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_a13b390c3705e19c211c04f47daa17844}
+
+\begin{DoxyCompactList}\small\item\em Performs a morphological\-\_\-gradient with a square structuring element with the Perreault's algorithm. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_aceefc0f308d675d2cb752bd4a7a22dd1}{void \hyperlink{classofeli_1_1_filters_aceefc0f308d675d2cb752bd4a7a22dd1}{dilation} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_aceefc0f308d675d2cb752bd4a7a22dd1}
+
+\begin{DoxyCompactList}\small\item\em Performs a dilation with a square structuring element with a naïve algorithm. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_a806b4e3976167324fa019d825e00286d}{void \hyperlink{classofeli_1_1_filters_a806b4e3976167324fa019d825e00286d}{dilation\-\_\-o1} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_a806b4e3976167324fa019d825e00286d}
+
+\begin{DoxyCompactList}\small\item\em Performs a dilation with a square structuring element with the Perreault's algorithm. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_ab9bc3d5a53898251178515d5d6be8293}{void \hyperlink{classofeli_1_1_filters_ab9bc3d5a53898251178515d5d6be8293}{erosion} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_ab9bc3d5a53898251178515d5d6be8293}
+
+\begin{DoxyCompactList}\small\item\em Performs an erosion with a square structuring element with a naïve algorithm. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_a8f6d16a2ebbc52ea041cda0c7336343a}{void \hyperlink{classofeli_1_1_filters_a8f6d16a2ebbc52ea041cda0c7336343a}{erosion\-\_\-o1} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_a8f6d16a2ebbc52ea041cda0c7336343a}
+
+\begin{DoxyCompactList}\small\item\em Performs an erosion with a square structuring element with the Perreault's algorithm. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_a01cbcf40deec00feca16f982e3e081a2}{void \hyperlink{classofeli_1_1_filters_a01cbcf40deec00feca16f982e3e081a2}{closing} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_a01cbcf40deec00feca16f982e3e081a2}
+
+\begin{DoxyCompactList}\small\item\em Performs a closing with a square structuring element with a naïve algorithm. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_a04f01e51d6feee4246ede96f767d36c5}{void \hyperlink{classofeli_1_1_filters_a04f01e51d6feee4246ede96f767d36c5}{closing\-\_\-o1} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_a04f01e51d6feee4246ede96f767d36c5}
+
+\begin{DoxyCompactList}\small\item\em Performs a closing with a square structuring element with the Perreault's algorithm. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_aab4788b300a3229c61b7cae344eb2142}{void \hyperlink{classofeli_1_1_filters_aab4788b300a3229c61b7cae344eb2142}{opening} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_aab4788b300a3229c61b7cae344eb2142}
+
+\begin{DoxyCompactList}\small\item\em Performs a closing with a square structuring element with a naïve algorithm. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_a157720e1dbc58827f515de30a18b546a}{void \hyperlink{classofeli_1_1_filters_a157720e1dbc58827f515de30a18b546a}{opening\-\_\-o1} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_a157720e1dbc58827f515de30a18b546a}
+
+\begin{DoxyCompactList}\small\item\em Performs an opening with a square structuring element with the Perreault's algorithm. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_a29dbdd34e2cffc4f37b104f3fab6ead0}{void \hyperlink{classofeli_1_1_filters_a29dbdd34e2cffc4f37b104f3fab6ead0}{black\-\_\-top\-\_\-hat} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_a29dbdd34e2cffc4f37b104f3fab6ead0}
+
+\begin{DoxyCompactList}\small\item\em Performs a black top hat transform with a square structuring element with a naïve algorithm. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_a6343e4176fd069a285b6da83de0cd63d}{void \hyperlink{classofeli_1_1_filters_a6343e4176fd069a285b6da83de0cd63d}{black\-\_\-top\-\_\-hat\-\_\-o1} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_a6343e4176fd069a285b6da83de0cd63d}
+
+\begin{DoxyCompactList}\small\item\em Performs a black top hat transform with a square structuring element with the Perreault's algorithm. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_adaade4352062899127d46615a8e31b42}{void \hyperlink{classofeli_1_1_filters_adaade4352062899127d46615a8e31b42}{white\-\_\-top\-\_\-hat} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_adaade4352062899127d46615a8e31b42}
+
+\begin{DoxyCompactList}\small\item\em Performs a white top hat transform with a square structuring element with a naïve algorithm. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_a2e3a6b4aa3329dcb021430748c83d992}{void \hyperlink{classofeli_1_1_filters_a2e3a6b4aa3329dcb021430748c83d992}{white\-\_\-top\-\_\-hat\-\_\-o1} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_a2e3a6b4aa3329dcb021430748c83d992}
+
+\begin{DoxyCompactList}\small\item\em Performs a white top hat transform with a square structuring element with the Perreault's algorithm. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_a525926351892d87d4fee244474d9ac8f}{void \hyperlink{classofeli_1_1_filters_a525926351892d87d4fee244474d9ac8f}{fas} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_a525926351892d87d4fee244474d9ac8f}
+
+\begin{DoxyCompactList}\small\item\em Performs a filter alternate sequential. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_a9b4e4ebbfe46d648181eb4193d829972}{void \hyperlink{classofeli_1_1_filters_a9b4e4ebbfe46d648181eb4193d829972}{mean\-\_\-filtering} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_a9b4e4ebbfe46d648181eb4193d829972}
+
+\begin{DoxyCompactList}\small\item\em Performs a mean filtering. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_ac34d1b5157e16d92176acc0548f62ff3}{void \hyperlink{classofeli_1_1_filters_ac34d1b5157e16d92176acc0548f62ff3}{nagao\-\_\-filtering} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_ac34d1b5157e16d92176acc0548f62ff3}
+
+\begin{DoxyCompactList}\small\item\em Performs a Nagao filtering. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_a22c697b23c38bc3122975e3b923d2bf2}{void \hyperlink{classofeli_1_1_filters_a22c697b23c38bc3122975e3b923d2bf2}{gaussian\-\_\-filtering} (int kernel\-\_\-length, double sigma)}\label{classofeli_1_1_filters_a22c697b23c38bc3122975e3b923d2bf2}
+
+\begin{DoxyCompactList}\small\item\em Performs a gaussian filtering with the kernel length and the standard deviation {\ttfamily sigma}. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_a2dff0282c738fff489f18d9173cfec24}{void \hyperlink{classofeli_1_1_filters_a2dff0282c738fff489f18d9173cfec24}{median\-\_\-filtering\-\_\-o\-Nlog\-N} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_a2dff0282c738fff489f18d9173cfec24}
+
+\begin{DoxyCompactList}\small\item\em Performs a median filtering based on the quick sort algorithm. Complexity is in {\ttfamily O}(kernel\-\_\-length×log(kernel\-\_\-length)). \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_a65e7324360cac62a715a61565399ad85}{void \hyperlink{classofeli_1_1_filters_a65e7324360cac62a715a61565399ad85}{median\-\_\-filtering\-\_\-o1} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_a65e7324360cac62a715a61565399ad85}
+
+\begin{DoxyCompactList}\small\item\em Performs a median filtering based on the Perreault's algorithm. Complexity is in {\ttfamily O(1)}. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_a0351b099fb22a9397b27ae1661b6c836}{void \hyperlink{classofeli_1_1_filters_a0351b099fb22a9397b27ae1661b6c836}{gaussian\-\_\-white\-\_\-noise} (double sigma)}\label{classofeli_1_1_filters_a0351b099fb22a9397b27ae1661b6c836}
+
+\begin{DoxyCompactList}\small\item\em Adds a gaussian white noise with the standard deviation {\ttfamily sigma}. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_a268bff23cc4814805605782aaa9e7fa6}{void \hyperlink{classofeli_1_1_filters_a268bff23cc4814805605782aaa9e7fa6}{salt\-\_\-pepper\-\_\-noise} (double proba)}\label{classofeli_1_1_filters_a268bff23cc4814805605782aaa9e7fa6}
+
+\begin{DoxyCompactList}\small\item\em Does an impulsional noise with a probabity of noise for each pixel, i.\-e the density. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_a04349ff8309e50ed6daf714ff66f3239}{void \hyperlink{classofeli_1_1_filters_a04349ff8309e50ed6daf714ff66f3239}{speckle} (double sigma)}\label{classofeli_1_1_filters_a04349ff8309e50ed6daf714ff66f3239}
+
+\begin{DoxyCompactList}\small\item\em Performs a speckle noise, a multiplicative noise into the image. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_a0ef873a93af4eab1de166af4b500506b}{void \hyperlink{classofeli_1_1_filters_a0ef873a93af4eab1de166af4b500506b}{local\-\_\-binary\-\_\-pattern} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_a0ef873a93af4eab1de166af4b500506b}
+
+\begin{DoxyCompactList}\small\item\em Computes the local binary pattern. \end{DoxyCompactList}\item 
+void \hyperlink{classofeli_1_1_filters_a0f29ec08c3d9febd2f95ba54ec88e524}{morphological\-\_\-gradient\-\_\-yuv} (int kernel\-\_\-length, int alpha, int beta, int gamma)
+\begin{DoxyCompactList}\small\item\em Computes a morphological gradient \hyperlink{classofeli_1_1_filters_a9c02bc4005c55eeb5a426485af0d03a9}{gradient}. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_a6ed876388f175010735b4987a1a6f493}{const unsigned char $\ast$ \hyperlink{classofeli_1_1_filters_a6ed876388f175010735b4987a1a6f493}{get\-\_\-filtered} () const }\label{classofeli_1_1_filters_a6ed876388f175010735b4987a1a6f493}
+
+\begin{DoxyCompactList}\small\item\em Getter function for \hyperlink{classofeli_1_1_filters_aa4afdd919dfccb08023dee3634b03a30}{filtered}. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_a2c2f355ff0267554a4b2257560fc0085}{const unsigned char $\ast$ \hyperlink{classofeli_1_1_filters_a2c2f355ff0267554a4b2257560fc0085}{get\-\_\-gradient} () const }\label{classofeli_1_1_filters_a2c2f355ff0267554a4b2257560fc0085}
+
+\begin{DoxyCompactList}\small\item\em Getter function for \hyperlink{classofeli_1_1_filters_a9c02bc4005c55eeb5a426485af0d03a9}{gradient}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classofeli_1_1_filters_ac7e55934e49bacdb8dffafa6d60eb948}{int \hyperlink{classofeli_1_1_filters_ac7e55934e49bacdb8dffafa6d60eb948}{find\-\_\-offset} (int x, int y, int color\-\_\-channel) const }\label{classofeli_1_1_filters_ac7e55934e49bacdb8dffafa6d60eb948}
+
+\begin{DoxyCompactList}\small\item\em Calculates the offset the image data buffer with the position ({\itshape x},{\itshape y}, {\itshape color\-\_\-channel}). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classofeli_1_1_filters_abfd6b12417b42693a903e35f01608969}{static const double $\ast$const \hyperlink{classofeli_1_1_filters_abfd6b12417b42693a903e35f01608969}{gaussian\-\_\-kernel} (int kernel\-\_\-length, double sigma)}\label{classofeli_1_1_filters_abfd6b12417b42693a903e35f01608969}
+
+\begin{DoxyCompactList}\small\item\em Creates a gaussian kernel with the kernel length and the standard deviation sigma. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_afe930659890f200f2f8874ef68be5a10}{static void \hyperlink{classofeli_1_1_filters_afe930659890f200f2f8874ef68be5a10}{swap} (unsigned char $\ast$const array, int a, int b)}\label{classofeli_1_1_filters_afe930659890f200f2f8874ef68be5a10}
+
+\begin{DoxyCompactList}\small\item\em Swaps two values of an array. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_a93dda800c3f3a0053cccde23a457656f}{static void \hyperlink{classofeli_1_1_filters_a93dda800c3f3a0053cccde23a457656f}{quick\-\_\-sort} (unsigned char $\ast$const array, int begin, int end)}\label{classofeli_1_1_filters_a93dda800c3f3a0053cccde23a457656f}
+
+\begin{DoxyCompactList}\small\item\em Sorts an array with the quick sort algorithm. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_a4db66fc6e849d67e5bc89dbc72fe6282}{{\footnotesize template$<$typename T $>$ }\\static T \hyperlink{classofeli_1_1_filters_a4db66fc6e849d67e5bc89dbc72fe6282}{square} (const T \&value)}\label{classofeli_1_1_filters_a4db66fc6e849d67e5bc89dbc72fe6282}
+
+\begin{DoxyCompactList}\small\item\em Gives the square of a value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classofeli_1_1_filters_a375494bcc04ceef4f48e859f2c8afe09}{const unsigned char $\ast$const \hyperlink{classofeli_1_1_filters_a375494bcc04ceef4f48e859f2c8afe09}{img\-\_\-data}}\label{classofeli_1_1_filters_a375494bcc04ceef4f48e859f2c8afe09}
+
+\begin{DoxyCompactList}\small\item\em Input pointer on the grayscale or grey-\/level image data buffer. This buffer must be row-\/wise. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_aa4afdd919dfccb08023dee3634b03a30}{unsigned char $\ast$ \hyperlink{classofeli_1_1_filters_aa4afdd919dfccb08023dee3634b03a30}{filtered}}\label{classofeli_1_1_filters_aa4afdd919dfccb08023dee3634b03a30}
+
+\begin{DoxyCompactList}\small\item\em Pointer on the current result image. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_adfafb4edd683c3cc02997328296df055}{const int \hyperlink{classofeli_1_1_filters_adfafb4edd683c3cc02997328296df055}{img\-\_\-width}}\label{classofeli_1_1_filters_adfafb4edd683c3cc02997328296df055}
+
+\begin{DoxyCompactList}\small\item\em Image width, i.\-e. number of columns. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_a433940423042a8efbdbf1576db1cfa70}{const int \hyperlink{classofeli_1_1_filters_a433940423042a8efbdbf1576db1cfa70}{img\-\_\-height}}\label{classofeli_1_1_filters_a433940423042a8efbdbf1576db1cfa70}
+
+\begin{DoxyCompactList}\small\item\em Image height, i.\-e. number of rows. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_a1c8ad08ed27f16f0def6416ff009599c}{const int \hyperlink{classofeli_1_1_filters_a1c8ad08ed27f16f0def6416ff009599c}{img\-\_\-size}}\label{classofeli_1_1_filters_a1c8ad08ed27f16f0def6416ff009599c}
+
+\begin{DoxyCompactList}\small\item\em Image size, i.\-e. number of pixels. Obviously, it egals to \hyperlink{classofeli_1_1_filters_adfafb4edd683c3cc02997328296df055}{img\-\_\-width} × \hyperlink{classofeli_1_1_filters_a433940423042a8efbdbf1576db1cfa70}{img\-\_\-height}. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_a229e0fc77f59c4747d0251e38cee38a9}{const int \hyperlink{classofeli_1_1_filters_a229e0fc77f59c4747d0251e38cee38a9}{byte\-\_\-per\-\_\-pixel}}\label{classofeli_1_1_filters_a229e0fc77f59c4747d0251e38cee38a9}
+
+\begin{DoxyCompactList}\small\item\em Number of byte or octet per pixel, i.\-e number of channels. It is equal 1 for a grayscale or grey-\/level image and 3 for a color image. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_a888566343f6d0f63576c613d2418a83c}{unsigned char $\ast$ \hyperlink{classofeli_1_1_filters_a888566343f6d0f63576c613d2418a83c}{filtered\-\_\-modif}}\label{classofeli_1_1_filters_a888566343f6d0f63576c613d2418a83c}
+
+\begin{DoxyCompactList}\small\item\em Pointer on the temporary result because the filters are not in place. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_af5553609150251d5e5dbcf6a320136db}{unsigned char $\ast$ \hyperlink{classofeli_1_1_filters_af5553609150251d5e5dbcf6a320136db}{previous\-\_\-filtered}}\label{classofeli_1_1_filters_af5553609150251d5e5dbcf6a320136db}
+
+\begin{DoxyCompactList}\small\item\em Pointer used by top-\/hat functions to keep in memory the previous result before opening or closing to subtract the both images then. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_a9c02bc4005c55eeb5a426485af0d03a9}{unsigned char $\ast$ \hyperlink{classofeli_1_1_filters_a9c02bc4005c55eeb5a426485af0d03a9}{gradient}}\label{classofeli_1_1_filters_a9c02bc4005c55eeb5a426485af0d03a9}
+
+\begin{DoxyCompactList}\small\item\em Pointer on the gradient used by the geodesic model in the case of an R\-G\-B image. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_ab7294c70e210d8300f8fab04f6d8a734}{double $\ast$ \hyperlink{classofeli_1_1_filters_ab7294c70e210d8300f8fab04f6d8a734}{diff\-\_\-img}}\label{classofeli_1_1_filters_ab7294c70e210d8300f8fab04f6d8a734}
+
+\begin{DoxyCompactList}\small\item\em Pointer on the diffused image buffer for the anisotropic diffusion filter. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_af81a398844127108ad6a2742f8079b8d}{double $\ast$ \hyperlink{classofeli_1_1_filters_af81a398844127108ad6a2742f8079b8d}{diff\-\_\-img1}}\label{classofeli_1_1_filters_af81a398844127108ad6a2742f8079b8d}
+
+\begin{DoxyCompactList}\small\item\em Pointer on the temporary diffused image buffer for the anisotropic diffusion filter because this filter is not in place. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_a0c4833447639123fc17033fa375d0b8b}{int $\ast$const \hyperlink{classofeli_1_1_filters_a0c4833447639123fc17033fa375d0b8b}{columns\-\_\-histo}}\label{classofeli_1_1_filters_a0c4833447639123fc17033fa375d0b8b}
+
+\begin{DoxyCompactList}\small\item\em Columns histogram used by the Perreault's algorithm. \end{DoxyCompactList}\item 
+\hypertarget{classofeli_1_1_filters_aa48e946134f25fa04373cfd149f1ea0f}{int \hyperlink{classofeli_1_1_filters_aa48e946134f25fa04373cfd149f1ea0f}{kernel\-\_\-histo} \mbox{[}256\mbox{]}}\label{classofeli_1_1_filters_aa48e946134f25fa04373cfd149f1ea0f}
+
+\begin{DoxyCompactList}\small\item\em Kernel histogram used by the Perreault's algorithm. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This class implements filters and noise functions for R\-G\-B images. \par
+ There are two linear filters \-: a mean filter and a gaussian filter. \par
+ Moreover, there are seven operators of mathematical morphology (erosion, dilation, morphological gradient, opening, closing and the both top-\/hat transforms) with a square for a structuring element. \par
+ Furthermore, there are two edge preserving filters \-: a median filter and a Perona-\/\-Malik anisotropic diffusion. \par
+ The order filters (i.\-e. the median filter and the morphological filters) are implemented in a naïve version and in an optimized version (using Simon Perreault's algorithm). \par
+ In addition, there are three functions to add noise, implemented with the random variables of Boost library \-: gaussian white noise, impulsional noise or salt and pepper and speckle. 
+
+Definition at line 46 of file filters.\-hpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classofeli_1_1_filters_ae4a65a5259b3a91a523eefdf2d90b920}{\index{ofeli\-::\-Filters@{ofeli\-::\-Filters}!anisotropic\-\_\-diffusion@{anisotropic\-\_\-diffusion}}
+\index{anisotropic\-\_\-diffusion@{anisotropic\-\_\-diffusion}!ofeli::Filters@{ofeli\-::\-Filters}}
+\subsubsection[{anisotropic\-\_\-diffusion}]{\setlength{\rightskip}{0pt plus 5cm}void Filters\-::anisotropic\-\_\-diffusion (
+\begin{DoxyParamCaption}
+\item[{int}]{max\-\_\-itera, }
+\item[{double}]{lambda, }
+\item[{double}]{kappa, }
+\item[{int}]{option}
+\end{DoxyParamCaption}
+)}}\label{classofeli_1_1_filters_ae4a65a5259b3a91a523eefdf2d90b920}
+
+
+Performs a Perona-\/\-Malik anisotropic diffusion with a 8-\/connected neighborhood. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em max\-\_\-itera} & maximum number of iterations \\
+\hline
+{\em lambda} & constant of integration ( $0\leq \lambda \leq \frac {1} {4}$ ), max value for the numerical stability \\
+\hline
+{\em kappa} & constant of diffusion \\
+\hline
+{\em option} & choice of the function of conduction coefficient \-: \par
+ 1 -\/ $g\left( \nabla I\right) =e^{\left( -\left( \left\| \nabla I\right\| / \kappa\right) ^{2}\right) }$ \par
+ 2 -\/ $g\left( \nabla I\right) =\frac {1} {1+\left( \frac {\left\| \nabla I\right\| } {\kappa}\right) ^{2}}$ \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 105 of file filters.\-cpp.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=338pt]{classofeli_1_1_filters_ae4a65a5259b3a91a523eefdf2d90b920_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{classofeli_1_1_filters_a0f29ec08c3d9febd2f95ba54ec88e524}{\index{ofeli\-::\-Filters@{ofeli\-::\-Filters}!morphological\-\_\-gradient\-\_\-yuv@{morphological\-\_\-gradient\-\_\-yuv}}
+\index{morphological\-\_\-gradient\-\_\-yuv@{morphological\-\_\-gradient\-\_\-yuv}!ofeli::Filters@{ofeli\-::\-Filters}}
+\subsubsection[{morphological\-\_\-gradient\-\_\-yuv}]{\setlength{\rightskip}{0pt plus 5cm}void ofeli\-::\-Filters\-::morphological\-\_\-gradient\-\_\-yuv (
+\begin{DoxyParamCaption}
+\item[{int}]{kernel\-\_\-length, }
+\item[{int}]{alpha, }
+\item[{int}]{beta, }
+\item[{int}]{gamma}
+\end{DoxyParamCaption}
+)}}\label{classofeli_1_1_filters_a0f29ec08c3d9febd2f95ba54ec88e524}
+
+
+Computes a morphological gradient \hyperlink{classofeli_1_1_filters_a9c02bc4005c55eeb5a426485af0d03a9}{gradient}. 
+
+Gradient morphologique avec un élement structurant carré de taille kernel\-\_\-length. 
+
+Definition at line 2755 of file filters.\-cpp.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+filters.\-hpp\item 
+filters.\-cpp\end{DoxyCompactItemize}

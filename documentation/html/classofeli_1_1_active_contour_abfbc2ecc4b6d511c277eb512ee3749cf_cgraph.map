@@ -1,0 +1,10 @@
+<map id="ofeli::ActiveContour::ActiveContour" name="ofeli::ActiveContour::ActiveContour">
+<area shape="rect" id="node3" href="$classofeli_1_1_active_contour.html#a39f22c1bc9d6740180a62520c3f67498" title="Initialization of phi with a shape." alt="" coords="187,56,320,112"/>
+<area shape="rect" id="node9" href="$classofeli_1_1_active_contour.html#a181d717496a28d8aac1095d0fc227220" title="Initialization of Lout and Lin." alt="" coords="187,162,320,203"/>
+<area shape="rect" id="node5" href="$classofeli_1_1_active_contour.html#adcb560ea7c8b763c7e4e769321807925" title="Calculates the position (x,y) of a point of phi or the image with the offset." alt="" coords="573,122,707,163"/>
+<area shape="rect" id="node7" href="$classofeli_1_1_active_contour.html#a8a880bf04c5ed62915987145ff05e502" title="Gives the square of a value." alt="" coords="380,5,513,46"/>
+<area shape="rect" id="node11" href="$classofeli_1_1_active_contour.html#a9af52a939f0fd059680383b9d087d6fd" title="Finds if a current point (x,y) of Lout is redundant." alt="" coords="368,187,525,229"/>
+<area shape="rect" id="node16" href="$classofeli_1_1list.html#a87b7f6a90670e08d99e23f3377b001f9" title="Inserts a new element at the beginning of the list." alt="" coords="377,253,516,280"/>
+<area shape="rect" id="node18" href="$classofeli_1_1_active_contour.html#ac734c690a9d10f37b99b6803af335d1d" title="Finds if a current point (x,y) of Lin is redundant." alt="" coords="372,122,521,163"/>
+<area shape="rect" id="node14" href="$classofeli_1_1_active_contour.html#ae58a17c4d023abdd142ae24bf8335370" title="Calculates the offset of phi or the image data buffer with the position (x,y)." alt="" coords="573,187,707,229"/>
+</map>

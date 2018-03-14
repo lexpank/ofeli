@@ -1,0 +1,4 @@
+<map id="ofeli::ACwithoutEdgesYUV::updates_for_means_out2" name="ofeli::ACwithoutEdgesYUV::updates_for_means_out2">
+<area shape="rect" id="node3" href="$classofeli_1_1_a_cwithout_edges_y_u_v.html#a7913716e6f12f0020909fd1ff42149f4" title="Affects the variable R, G, B from the buffer img_rgb_data." alt="" coords="229,5,405,46"/>
+<area shape="rect" id="node5" href="$classofeli_1_1_a_cwithout_edges_y_u_v.html#a884eb5753c80701150b8be4699688e6b" title="Updates the six sums, n_in and n_out, before each switch_out, in the cycle 1, in order to calculate m..." alt="" coords="229,70,405,111"/>
+</map>
