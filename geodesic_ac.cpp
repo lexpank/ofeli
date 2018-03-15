@@ -39,171 +39,131 @@
 
 #include "geodesic_ac.hpp"
 
-namespace ofeli
-{
-
-GeodesicAC::GeodesicAC(const unsigned char* img_gradient_data1, int img_width1, int img_height1) :
-    ActiveContour(img_gradient_data1, img_width1, img_height1,
-                  true, 1.25, 1.25, 0.0, 0.0, true, 5, 2.0, 30, 3),
-    otsu_threshold1( otsu_method(img_gradient_data1,img_width1*img_height1) )
-{
+namespace ofeli {
+  GeodesicAC::GeodesicAC(const unsigned char* img_gradient_data1, int img_width1, int img_height1) :
+    ActiveContour(img_gradient_data1, img_width1, img_height1, true, 1.25, 1.25, 0.0, 0.0, true, 5, 2.0, 30, 3),
+    otsu_threshold1( otsu_method(img_gradient_data1,img_width1*img_height1) ) {
     // a virtual function call in a constructor
     // but the virtual function table is solved at this level of the class hierarchy
     initialize_for_each_frame();
-}
+  }
 
-GeodesicAC::GeodesicAC(const unsigned char* img_gradient_data1, int img_width1, int img_height1,
-                       bool hasEllipse1, double init_width1, double init_height1, double center_x1, double center_y1,
-                       bool hasCycle2_1, int kernel_length1, double sigma1, int Na1, int Ns1) :
+  GeodesicAC::GeodesicAC(const unsigned char* img_gradient_data1, int img_width1, int img_height1,
+                         bool hasEllipse1, double init_width1, double init_height1, double center_x1, double center_y1,
+                         bool hasCycle2_1, int kernel_length1, double sigma1, int Na1, int Ns1) :
     ActiveContour(img_gradient_data1, img_width1, img_height1,
                   hasEllipse1, init_width1, init_height1, center_x1, center_y1, hasCycle2_1, kernel_length1, sigma1, Na1, Ns1),
-    otsu_threshold1( otsu_method(img_gradient_data1,img_width1*img_height1) )
-{
+    otsu_threshold1( otsu_method(img_gradient_data1,img_width1*img_height1) ) {
     // a virtual function call in a constructor
     // but the virtual function table is solved at this level of the class hierarchy
     initialize_for_each_frame();
-}
+  }
 
-GeodesicAC::GeodesicAC(const unsigned char* img_gradient_data1, int img_width1, int img_height1,
-                       const char* phi_init1,
-                       bool hasCycle2_1, int kernel_length1, double sigma1, int Na1, int Ns1) :
+  GeodesicAC::GeodesicAC(const unsigned char* img_gradient_data1, int img_width1, int img_height1,
+                         const char* phi_init1,
+                         bool hasCycle2_1, int kernel_length1, double sigma1, int Na1, int Ns1) :
     ActiveContour(img_gradient_data1, img_width1, img_height1,
                   phi_init1,
                   hasCycle2_1, kernel_length1, sigma1, Na1, Ns1),
-    otsu_threshold1( otsu_method(img_gradient_data1,img_width1*img_height1) )
-{
+    otsu_threshold1( otsu_method(img_gradient_data1,img_width1*img_height1) ) {
     // a virtual function call in a constructor
     // but the virtual function table is solved at this level of the class hierarchy
     initialize_for_each_frame();
-}
+  }
 
-GeodesicAC::GeodesicAC(const GeodesicAC& ac) :
+  GeodesicAC::GeodesicAC(const GeodesicAC& ac) :
     ActiveContour(ac),
-    otsu_threshold1(ac.otsu_threshold1), isInside(ac.isInside)
-{
-}
+    otsu_threshold1(ac.otsu_threshold1), isInside(ac.isInside) {
+  }
 
-void GeodesicAC::initialize_for_each_frame()
-{
-    if( get_Lout().empty() && get_Lin().empty() )
-    {
-        std::cerr << std::endl <<
-        "The both lists Lout and Lin are empty so the algorithm could not converge. The active contour is initialized with an ellipse."
-        << std::endl;
+  void GeodesicAC::initialize_for_each_frame() {
+    if( get_Lout().empty() && get_Lin().empty() ) {
+      std::cerr << "\nThe both lists Lout and Lin are empty so the algorithm could not converge. The active contour is initialized with an ellipse.\n";
 
-        initialize_phi_with_a_shape(true, 1.25, 1.25, 0.0, 0.0);
-        initialize_lists();
+      initialize_phi_with_a_shape(true, 1.25, 1.25, 0.0, 0.0);
+      initialize_lists();
     }
 
     isInside = find_direction_evolution();
 
     ActiveContour::initialize_for_each_frame();
+  }
 
-    return;
-}
-
-int GeodesicAC::compute_external_speed_Fd(int offset)
-{
+  int GeodesicAC::compute_external_speed_Fd(int offset) {
     int x, y;
     find_xy_position(offset,x,y); // x and y passed by reference
 
     int sum_local_out, n_local_out, sum_local_in, n_local_in;
 
     // if high gradient value
-    if( double(img_data[offset]) > 0.7*double(otsu_threshold1) )
-    {
-        sum_local_out = 0;
-        n_local_out = 0;
-        sum_local_in = 0;
-        n_local_in = 0;
+    if( double(img_data[offset]) > 0.7*double(otsu_threshold1) ) {
+      sum_local_out = 0;
+      n_local_out = 0;
+      sum_local_in = 0;
+      n_local_in = 0;
 
-        if( y > 0 )
-        {
-            if( phi[ find_offset(x,y-1) ] < 0 )
-            {
-                sum_local_in += int( img_data[ find_offset(x,y-1) ] );
-                n_local_in++;
-            }
-            else
-            {
-                sum_local_out += int( img_data[ find_offset(x,y-1) ] );
-                n_local_out++;
-            }
+      if( y > 0 ) {
+        if( phi[ find_offset(x,y-1) ] < 0 ) {
+          sum_local_in += int( img_data[ find_offset(x,y-1) ] );
+          n_local_in++;
+        } else {
+          sum_local_out += int( img_data[ find_offset(x,y-1) ] );
+          n_local_out++;
         }
-        if( x > 0 )
-        {
-            if( phi[ find_offset(x-1,y) ] < 0 )
-            {
-                sum_local_in += int( img_data[ find_offset(x-1,y) ] );
-                n_local_in++;
-            }
-            else
-            {
-                sum_local_out += int( img_data[ find_offset(x-1,y) ] );
-                n_local_out++;
-            }
+      }
+      if( x > 0 ) {
+        if( phi[ find_offset(x-1,y) ] < 0 ) {
+          sum_local_in += int( img_data[ find_offset(x-1,y) ] );
+          n_local_in++;
+        } else {
+          sum_local_out += int( img_data[ find_offset(x-1,y) ] );
+          n_local_out++;
         }
-        if( x < img_width-1 )
-        {
-            if( phi[ find_offset(x+1,y) ] < 0 )
-            {
-                sum_local_in += int( img_data[ find_offset(x+1,y) ] );
-                n_local_in++;
-            }
-            else
-            {
-                sum_local_out += int( img_data[ find_offset(x+1,y) ] );
-                n_local_out++;
-            }
+      }
+      if( x < img_width-1 ) {
+        if( phi[ find_offset(x+1,y) ] < 0 ) {
+          sum_local_in += int( img_data[ find_offset(x+1,y) ] );
+          n_local_in++;
+        } else {
+          sum_local_out += int( img_data[ find_offset(x+1,y) ] );
+          n_local_out++;
         }
-        if( y < img_height-1 )
-        {
-            if( phi[ find_offset(x,y+1) ] < 0 )
-            {
-                sum_local_in += int( img_data[ find_offset(x,y+1) ] );
-                n_local_in++;
-            }
-            else
-            {
-                sum_local_out += int( img_data[ find_offset(x,y+1) ] );
-                n_local_out++;
-            }
+      }
+      if( y < img_height-1 ) {
+        if( phi[ find_offset(x,y+1) ] < 0 ) {
+          sum_local_in += int( img_data[ find_offset(x,y+1) ] );
+          n_local_in++;
+        } else {
+          sum_local_out += int( img_data[ find_offset(x,y+1) ] );
+          n_local_out++;
         }
+      }
 
-        return sum_local_out*n_local_in - sum_local_in*n_local_out;
+      return sum_local_out*n_local_in - sum_local_in*n_local_out;
+    } else { // if low gradient value
+      if( isInside ) { // if high gradient values are inside the curve
+        return -1; // inward movement
+      } else {
+        return 1; // outward movement
+      }
     }
-    else // if low gradient value
-    {
-        if( isInside ) // if high gradient values are inside the curve
-        {
-            return -1; // inward movement
-        }
-        else
-        {
-            return 1; // outward movement
-        }
-    }
-}
+  }
 
-// to find the high gradient values and to converge
-unsigned char GeodesicAC::otsu_method(const unsigned char* img_data1, int img_size1)
-{
+  // to find the high gradient values and to converge
+  unsigned char GeodesicAC::otsu_method(const unsigned char* img_data1, int img_size1) {
     int histogram[256];
 
-    for( int I = 0; I < 256; I++ )
-    {
-        histogram[I] = 0;
+    for( int I = 0; I < 256; I++ ) {
+      histogram[I] = 0;
     }
 
-    for( int offset = 0; offset < img_size1; offset++ )
-    {
-        histogram[ img_data1[offset] ]++;
+    for( int offset = 0; offset < img_size1; offset++ ) {
+      histogram[ img_data1[offset] ]++;
     }
 
     int sum = 0;
-    for( int I = 0; I < 256; I++ )
-    {
-        sum += I*histogram[I];
+    for( int I = 0; I < 256; I++ ) {
+      sum += I*histogram[I];
     }
 
     int weight1, weight2, sum1, threshold;
@@ -217,67 +177,54 @@ unsigned char GeodesicAC::otsu_method(const unsigned char* img_data1, int img_si
 
     // 256 values ==> 255 thresholds t evaluated
     // class1 <= t and class2 > t
-    for( int t = 0; t < 255; t++ )
-    {
-        weight1 += histogram[t];
-        if( weight1 == 0 )
-        {
-            continue;
-        }
+    for( int t = 0; t < 255; t++ ) {
+      weight1 += histogram[t];
+      if( weight1 == 0 ) {
+        continue;
+      }
 
-        weight2 = img_size1-weight1;
-        if( weight2 == 0 )
-        {
-            break;
-        }
+      weight2 = img_size1-weight1;
+      if( weight2 == 0 ) {
+        break;
+      }
 
-        sum1 += t*histogram[t];
+      sum1 += t*histogram[t];
 
-        mean1 = sum1/weight1;
-        mean2 = (sum-sum1)/weight2; // sum2 = sum-sum1
+      mean1 = sum1/weight1;
+      mean2 = (sum-sum1)/weight2; // sum2 = sum-sum1
 
-        var_t = double(weight1)*double(weight2)*(mean1-mean2)*(mean1-mean2);
+      var_t = double(weight1)*double(weight2)*(mean1-mean2)*(mean1-mean2);
 
-        if( var_t > var_max )
-        {
-            var_max = var_t;
-            threshold = t;
-        }
+      if( var_t > var_max ) {
+        var_max = var_t;
+        threshold = t;
+      }
     }
 
     return (unsigned char)(threshold);
-}
+  }
 
-bool GeodesicAC::find_direction_evolution()
-{
+  bool GeodesicAC::find_direction_evolution() {
     int sum_in = 0;
     int sum_out = 0;
 
-    for( int offset = 0; offset < img_size; offset++ )
-    {
-        if( phi[offset] < 0 )
-        {
-            sum_in += int(img_data[offset]);
-        }
-        else
-        {
-            sum_out += int(img_data[offset]);
-        }
+    for( int offset = 0; offset < img_size; offset++ ) {
+      if( phi[offset] < 0 ) {
+        sum_in += int(img_data[offset]);
+      } else {
+        sum_out += int(img_data[offset]);
+      }
     }
 
-    if( sum_in > sum_out )
-    {
-        return true;
+    if( sum_in > sum_out ) {
+      return true;
+    } else {
+      return false;
     }
-    else
-    {
-        return false;
-    }
-}
+  }
 
-unsigned char GeodesicAC::get_otsu_threshold() const
-{
+  unsigned char GeodesicAC::get_otsu_threshold() const {
     return otsu_threshold1;
-}
+  }
 
 }

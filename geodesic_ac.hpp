@@ -42,52 +42,46 @@
 
 #include "activecontour.hpp"
 
-namespace ofeli
-{
+namespace ofeli {
+  class GeodesicAC : public ActiveContour {
+    public:
+      //! Constructor to initialize the active contour with a centered rectangle and the default values of the algorithm parameters.
+      GeodesicAC(const unsigned char* img_gradient_data1, int img_width1, int img_height1);
 
-class GeodesicAC : public ActiveContour
-{
+      //! Constructor to initialize the active contour from geometrical parameters of an unique shape, an ellipse or a rectangle.
+      GeodesicAC(const unsigned char* img_gradient_data1, int img_width1, int img_height1,
+                 bool hasEllipse1, double init_width1, double init_height1, double center_x1, double center_y1,
+                 bool hasCycle2_1, int kernel_length1, double sigma1, int Na1, int Ns1);
 
-public :
+      //! Constructor to initialize the active contour from an initial phi level-set function.
+      GeodesicAC(const unsigned char* img_gradient_data1, int img_width1, int img_height1,
+                 const char* phi_init1,
+                 bool hasCycle2_1, int kernel_length1, double sigma1, int Na1, int Ns1);
 
-    //! Constructor to initialize the active contour with a centered rectangle and the default values of the algorithm parameters.
-    GeodesicAC(const unsigned char* img_gradient_data1, int img_width1, int img_height1);
+      //! Copy constructor.
+      GeodesicAC(const GeodesicAC& ac);
 
-    //! Constructor to initialize the active contour from geometrical parameters of an unique shape, an ellipse or a rectangle.
-    GeodesicAC(const unsigned char* img_gradient_data1, int img_width1, int img_height1,
-               bool hasEllipse1, double init_width1, double init_height1, double center_x1, double center_y1,
-               bool hasCycle2_1, int kernel_length1, double sigma1, int Na1, int Ns1);
+      //! Initialization for each new frame buffer, used for video tracking.
+      virtual void initialize_for_each_frame();
 
-    //! Constructor to initialize the active contour from an initial phi level-set function.
-    GeodesicAC(const unsigned char* img_gradient_data1, int img_width1, int img_height1,
-               const char* phi_init1,
-               bool hasCycle2_1, int kernel_length1, double sigma1, int Na1, int Ns1);
+      //! Getter function for #otsu_threshold1
+      unsigned char get_otsu_threshold() const;
 
-    //! Copy constructor.
-    GeodesicAC(const GeodesicAC& ac);
+    private:
+      //! Computes external speed \a Fd with a geodesic model for a current point \a (x,y) of #Lout or #Lin.
+      virtual int compute_external_speed_Fd(int offset);
 
-    //! Initialization for each new frame buffer, used for video tracking.
-    virtual void initialize_for_each_frame();
+      //! Calculates boolean #isInside.
+      bool find_direction_evolution();
 
-    //! Getter function for #otsu_threshold1
-    unsigned char get_otsu_threshold() const;
+      //! Otsu's method.
+      static unsigned char otsu_method(const unsigned char* img_data1, int img_size1);
 
-private :
-
-    //! Computes external speed \a Fd with a geodesic model for a current point \a (x,y) of #Lout or #Lin.
-    virtual int compute_external_speed_Fd(int offset);
-
-    //! Calculates boolean #isInside.
-    bool find_direction_evolution();
-
-    //! Otsu's method.
-    static unsigned char otsu_method(const unsigned char* img_data1, int img_size1);
-
-    //! Otsu's threshod of #img_data.
-    const unsigned char otsu_threshold1;
-    //! Determines where are the high values of the gradient.
-    bool isInside;
-};
+      //! Otsu's threshod of #img_data.
+      const unsigned char otsu_threshold1;
+      //! Determines where are the high values of the gradient.
+      bool isInside;
+  };
 
 }
 
