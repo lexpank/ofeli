@@ -57,7 +57,7 @@ namespace ofeli {
         bool hasCycle2_1, int kernel_length1, double sigma1, int Na1, int Ns1);
 
       //! Copy constructor.
-      ActiveContour(const ActiveContour& ac) = default;
+      ActiveContour(const ActiveContour& ac);
 
       //! Destructor to delete #phi and #gaussian_kernel.
       virtual ~ActiveContour();

@@ -158,8 +158,11 @@ namespace ofeli {
           }
         }
       }
+  }
 
-    return;
+  ActiveContour::~ActiveContour() {
+    delete[] gaussian_kernel;
+    delete[] phi;
   }
 
   void ActiveContour::initialize_lists() {
@@ -184,8 +187,6 @@ namespace ofeli {
         }
       }
     }
-
-    return;
   }
 
   void ActiveContour::initialize_for_each_frame() {
@@ -207,8 +208,6 @@ namespace ofeli {
 
     oscillations_in_a_row = 0;
     iteration = 0;
-
-    return;
   }
 
   const int* const ActiveContour::make_gaussian_kernel(int kernel_length1, double sigma1) {
@@ -248,15 +247,9 @@ namespace ofeli {
     return gaussian_kernel1;
   }
 
-  ActiveContour::~ActiveContour() {
-    delete[] gaussian_kernel;
-    delete[] phi;
-  }
-
   void ActiveContour::do_one_iteration_in_cycle1() {
     // means of the Chan-Vese model for children classes ACwithoutEdges and ACwithoutEdgesYUV
     calculate_means(); // virtual function for region-based models
-
 
     hasOutwardEvolution = false;
 
@@ -275,9 +268,7 @@ namespace ofeli {
       }
     }
 
-
     clean_Lin(); // eliminate Lin redundant points
-
 
     hasInwardEvolution = false;
 
@@ -296,20 +287,15 @@ namespace ofeli {
       }
     }
 
-
     clean_Lout(); // eliminate Lout redundant points
 
-
     iteration++;
-
-    return;
   }
 
   void ActiveContour::do_one_iteration_in_cycle2() {
     int offset;
 
     lists_length = 0;
-
 
     // scan through Lout with a conditional increment
     for (ofeli::list<int>::iterator Lout_point = Lout.begin(); !Lout_point.end();) {
@@ -328,12 +314,10 @@ namespace ofeli {
       }
     }
 
-
     clean_Lin(); // eliminate Lin redundant points
 
-
     // scan through Lin with a conditional increment
-    for ( ofeli::list<int>::iterator Lin_point = Lin.begin(); !Lin_point.end();   ) {
+    for ( ofeli::list<int>::iterator Lin_point = Lin.begin(); !Lin_point.end();) {
       offset = *Lin_point;
 
       if ( compute_internal_speed_Fint(offset) < 0 ) {
@@ -343,26 +327,19 @@ namespace ofeli {
         Lin_point = switch_out(Lin_point); // inward local movement
         // switch_out function returns a new Lin_point
         // which is the next point of the former Lin_point
-      }
-      else {
+      } else {
         lists_length++;
         ++Lin_point;
       }
     }
 
-
     clean_Lout(); // eliminate Lout redundant points
 
-
     iteration++;
-
-    return;
   }
 
   ActiveContour& ActiveContour::operator++() {
-
     // Fast Two Cycle algorithm
-
     while( !isStopped ) {
 
       ////////   cycle 1 : Na_max times, data dependant evolution   ////////
@@ -434,8 +411,6 @@ namespace ofeli {
       Na = 0;
       Ns = 0;
     }
-
-    return;
   }
 
   void ActiveContour::add_Rout_neighbor_to_Lout(int neighbor_offset) {
@@ -449,8 +424,6 @@ namespace ofeli {
       // with a sentinel/dummy node after the last node and not before the first node ;
       // 'push_front' never invalidates iterator 'Lout_point', even if 'Lout_point' points to the first node.
     }
-
-    return;
   }
 
   void ActiveContour::add_Rin_neighbor_to_Lin(int neighbor_offset) {
@@ -463,8 +436,6 @@ namespace ofeli {
       // with a sentinel/dummy node after the last node and not before the first node ;
       // 'push_front' never invalidates iterator 'Lin_point', even if 'Lin_point' points to the first node.
     }
-
-    return;
   }
 
   ofeli::list<int>::iterator ActiveContour::switch_in(ofeli::list<int>::iterator Lout_point) {
@@ -778,8 +749,6 @@ namespace ofeli {
         ++Lin_point;
       }
     }
-
-    return;
   }
 
   void ActiveContour::clean_Lout() {
@@ -799,17 +768,13 @@ namespace ofeli {
         ++Lout_point;
       }
     }
-
-    return;
   }
 
   int ActiveContour::compute_external_speed_Fd(int offset) {
     // this function should never be instantiated
-
     return -1;
     // always an inward movement in each point of the active contour,
     // this speed is not very discriminant...
-
     // reimplement a better and data-dependent speed function in a child class
   }
 
@@ -822,8 +787,6 @@ namespace ofeli {
     if ( !hasListsChanges || iteration >= iteration_max ) {
       hasLastCycle2 = true;
     }
-
-    return;
   }
 
   // at the end of the cycle 2
@@ -847,8 +810,6 @@ namespace ofeli {
     if ( hasOscillation || iteration >= iteration_max ) {
       isStopped = true;
     }
-
-    return;
   }
 
   // to display the active contour position in the standard output
@@ -900,28 +861,17 @@ namespace ofeli {
 
   void ActiveContour::display() const {
     std::cout << *this;
-    return;
   }
 
-  void ActiveContour::calculate_means() {
-    return;
-  }
+  void ActiveContour::calculate_means() { }
 
-  void ActiveContour::updates_for_means_in1() {
-    return;
-  }
+  void ActiveContour::updates_for_means_in1() { }
 
-  void ActiveContour::updates_for_means_out1() {
-    return;
-  }
+  void ActiveContour::updates_for_means_out1() { }
 
-  void ActiveContour::updates_for_means_in2(int offset) {
-    return;
-  }
+  void ActiveContour::updates_for_means_in2(int offset) { }
 
-  void ActiveContour::updates_for_means_out2(int offset) {
-    return;
-  }
+  void ActiveContour::updates_for_means_out2(int offset) { }
 
   void ActiveContour::initialize_for_each_frame(const unsigned char* img_data1) {
     if ( img_data1 == NULL ) {
@@ -931,8 +881,6 @@ namespace ofeli {
     img_data = img_data1;
 
     initialize_for_each_frame();
-
-    return;
   }
 
   const char* ActiveContour::get_phi() const {
