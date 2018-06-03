@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-VERSION = 1.0.7
+VERSION = 1.0.8
 
 TARGET = Ofeli
 
@@ -34,7 +34,7 @@ SOURCES += activecontour.cpp \
 # statically linked version of Boost library
 DEFINES = BOOST_THREAD_USE_LIB
 
-INCLUDEPATH += $$PWD/boost_1_52_0 \
+INCLUDEPATH += $$PWD/boost_1_67_0 \
 
 TRANSLATIONS = $$PWD/Ofeli_fr.ts
 CODECFORTR = UTF-8
