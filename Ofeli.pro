@@ -18,7 +18,7 @@ HEADERS += activecontour.hpp \
     ac_withoutedges_yuv.hpp \
     linked_list.hpp \
     imageviewer.hpp \
-    pixmapwidget.hpp \
+    pixmapwidget.hpp
 
 SOURCES += activecontour.cpp \
     hausdorff_distance.cpp \
@@ -34,7 +34,7 @@ SOURCES += activecontour.cpp \
 # statically linked version of Boost library
 DEFINES = BOOST_THREAD_USE_LIB
 
-INCLUDEPATH += $$PWD/boost_1_67_0 \
+INCLUDEPATH += $$PWD/boost_1_67_0 \\
 
 TRANSLATIONS = $$PWD/Ofeli_fr.ts
 CODECFORTR = UTF-8
@@ -43,7 +43,6 @@ CODECFORSRC = UTF-8
 RESOURCES = $$PWD/Ofeli.qrc
 
 macx : ICON = $$PWD/Ofeli.icns
-
 win32 : RC_FILE = $$PWD/Ofeli.rc
 
 QMAKE_CXXFLAGS_RELEASE += -O3

@@ -40,6 +40,8 @@
 #ifndef IMAGEVIEWER_HPP
 #define IMAGEVIEWER_HPP
 
+#define QT_NO_PRINTER
+
 #include <QMainWindow>
 #ifndef QT_NO_PRINTER
 #include <QPrinter>
