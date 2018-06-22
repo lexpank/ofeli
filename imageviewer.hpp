@@ -562,6 +562,8 @@ private :
 
     QTabWidget* onglets_eval;
 
+    QDialog* mass_process_window;
+
     // widgets de la partie gauche pour l'image A
     QString fileNameA;
     ofeli::PixmapWidget* imageLabelA;

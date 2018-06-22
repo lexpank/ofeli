@@ -29,7 +29,8 @@ SOURCES += activecontour.cpp \
     main.cpp \
     imageviewer.cpp \
     pixmapwidget.cpp \
-    linked_list.tpp
+    linked_list.tpp \
+    console_version.cpp
 
 # statically linked version of Boost library
 DEFINES = BOOST_THREAD_USE_LIB

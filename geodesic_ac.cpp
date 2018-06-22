@@ -78,9 +78,10 @@ namespace ofeli {
 
   void GeodesicAC::initialize_for_each_frame() {
     if( get_Lout().empty() && get_Lin().empty() ) {
-      std::cerr << "\nThe both lists Lout and Lin are empty so the algorithm could not converge. The active contour is initialized with an ellipse.\n";
+      std::cerr << "\nThe both lists Lout and Lin are empty so the algorithm could not converge. The active contour is initialized with a square.\n";
 
-      initialize_phi_with_a_shape(true, 1.25, 1.25, 0.0, 0.0);
+      // initialize_phi_with_a_shape(true, 1.25, 1.25, 0.0, 0.0);
+      initialize_phi_with_a_shape(false, 1., 1., 0.0, 0.0);
       initialize_lists();
     }
 

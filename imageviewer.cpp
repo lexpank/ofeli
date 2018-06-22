@@ -2395,8 +2395,7 @@ void ImageViewer::start()
         }
         // on affiche rien du tout pour evaluer le temps de calcul
         // if( !hasDisplayEach )
-        else
-        {
+        else {
             startTime = std::clock();
 
             ac->evolve();
@@ -2407,29 +2406,45 @@ void ImageViewer::start()
             stopTime = std::clock();
             elapsedTime = (stopTime - startTime) / double(CLOCKS_PER_SEC);
 
+            /**
+             * Segmentation
+             **/
+
+            const char* phi = ac->get_phi();
+
+            for (int i = 0; i < img_width*img_height; ++i) {
+                offset = i*3;
+
+                image_result_uchar[offset] = phi[i] > 0 ? Rout1 : Rin1;
+                image_result_uchar[offset+1] = phi[i] > 0 ? Gout1 : Gin1;
+                image_result_uchar[offset+2] = phi[i] > 0 ? Bout1 : Bin1;
+            }
+
+            /**/
+
             // marque les contours dans la QImage
-            if( outside_combo != 9 )
-            {
-                for( ofeli::list<int>::const_iterator it = Lout1->begin(); !it.end(); ++it )
-                {
-                    offset = *it*3;
+//            if( outside_combo != 9 )
+//            {
+//                for( ofeli::list<int>::const_iterator it = Lout1->begin(); !it.end(); ++it )
+//                {
+//                    offset = *it*3;
 
-                    image_result_uchar[offset] = Rout1;
-                    image_result_uchar[offset+1] = Gout1;
-                    image_result_uchar[offset+2] = Bout1;
-                }
-            }
-            if( inside_combo != 9 )
-            {
-                for( ofeli::list<int>::const_iterator it = Lin1->begin(); !it.end(); ++it )
-                {
-                    offset = *it*3;
+//                    image_result_uchar[offset] = Rout1;
+//                    image_result_uchar[offset+1] = Gout1;
+//                    image_result_uchar[offset+2] = Bout1;
+//                }
+//            }
+//            if( inside_combo != 9 )
+//            {
+//                for( ofeli::list<int>::const_iterator it = Lin1->begin(); !it.end(); ++it )
+//                {
+//                    offset = *it*3;
 
-                    image_result_uchar[offset] = Rin1;
-                    image_result_uchar[offset+1] = Gin1;
-                    image_result_uchar[offset+2] = Bin1;
-                }
-            }
+//                    image_result_uchar[offset] = Rin1;
+//                    image_result_uchar[offset+1] = Gin1;
+//                    image_result_uchar[offset+2] = Bin1;
+//                }
+//            }
 
             // Pour afficher plusieurs fois dans une boucle
             QApplication::processEvents();

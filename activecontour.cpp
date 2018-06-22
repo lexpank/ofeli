@@ -192,10 +192,11 @@ namespace ofeli {
   void ActiveContour::initialize_for_each_frame() {
     if ( Lout.empty() && Lin.empty() ) {
       std::cerr << std::endl <<
-      "The both lists Lout and Lin are empty so the algorithm could not converge. The active contour is initialized with an ellipse."
+      "The both lists Lout and Lin are empty so the algorithm could not converge. The active contour is initialized with a square."
       << std::endl;
 
-      initialize_phi_with_a_shape(true, 0.65, 0.65, 0.0, 0.0);
+      // initialize_phi_with_a_shape(true, 0.65, 0.65, 0.0, 0.0);
+      initialize_phi_with_a_shape(false, 1, 1, 0.0, 0.0);
       initialize_lists();
     }
 
