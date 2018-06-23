@@ -196,7 +196,7 @@ namespace ofeli {
       << std::endl;
 
       // initialize_phi_with_a_shape(true, 0.65, 0.65, 0.0, 0.0);
-      initialize_phi_with_a_shape(false, 1, 1, 0.0, 0.0);
+      initialize_phi_with_a_shape(false, 0.9, 0.9, 0.0, 0.0);
       initialize_lists();
     }
 

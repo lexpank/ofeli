@@ -104,8 +104,6 @@ int main(int argc, char* argv[]) {
     char* phi_init1_clean = new char[img_size];
     char* phi_init2_clean = new char[img_size];
 
-    int lambda_out1 = 1;
-    int lambda_in1 = 1;
     int kernel_curve1 = 7;
     double std_curve1 = 2;
     int Na1 = 20, Ns1 = 20;
@@ -179,6 +177,7 @@ int main(int argc, char* argv[]) {
     ac->evolve();
     Lout1 = &ac->get_Lout();
     Lin1 = &ac->get_Lin();
+    cout << "Done! Iteration " << ac->get_iteration() << endl;
 
     /**
      * Segmentation

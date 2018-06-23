@@ -1956,6 +1956,8 @@ pixmapwidget.o: pixmapwidget.cpp pixmapwidget.hpp \
 
 console_version.o: console_version.cpp /usr/local/Cellar/qt/5.11.1/lib/QtGui.framework/Headers/QImage \
 		/usr/local/Cellar/qt/5.11.1/lib/QtGui.framework/Headers/qimage.h \
+		/usr/local/Cellar/qt/5.11.1/lib/QtCore.framework/Headers/QFileInfo \
+		/usr/local/Cellar/qt/5.11.1/lib/QtCore.framework/Headers/qfileinfo.h \
 		ac_withoutedges.hpp \
 		activecontour.hpp \
 		linked_list.hpp \
