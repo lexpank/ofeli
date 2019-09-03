@@ -40,7 +40,7 @@
 #ifndef ACTIVECONTOUR_HPP
 #define ACTIVECONTOUR_HPP
 
-#include "linked_list.hpp"
+#include "../linked_list.hpp"
 #include <iostream> // for the objects "std::ostream" and "std::cerr"
 
 namespace ofeli {

@@ -51,11 +51,11 @@
 
 // image processing part of Ofeli
 
-#include "ac_withoutedges.hpp"
-#include "ac_withoutedges_yuv.hpp"
-#include "geodesic_ac.hpp"
-#include "filters.hpp"   // dependent of Boost library
-#include "hausdorff_distance.hpp"
+#include "lib/ac_withoutedges.hpp"
+#include "lib/ac_withoutedges_yuv.hpp"
+#include "lib/geodesic_ac.hpp"
+#include "lib/filters.hpp"   // dependent of Boost library
+#include "lib/hausdorff_distance.hpp"
 
 //////////////////////////////////////////////////////////////
 
