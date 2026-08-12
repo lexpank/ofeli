@@ -105,17 +105,16 @@ namespace ofeli {
     }
 
   ActiveContour::ActiveContour(const ActiveContour& ac) :
-    img_data(ac.img_data), img_width(ac.img_width), img_height(ac.img_height),
-    hasCycle2(ac.hasCycle2), kernel_length(ac.kernel_length), sigma(ac.sigma), Na_max(ac.Na_max), Ns_max(ac.Ns_max),
-    img_size(ac.img_size), kernel_radius(ac.kernel_radius), phi( new char[ac.img_size] ),
-    gaussian_kernel( make_gaussian_kernel(ac.kernel_length,ac.sigma) ), iteration_max(ac.iteration_max),
-    iteration(ac.iteration), Na(ac.Na), Ns(ac.Ns),
-    previous_lists_length(ac.previous_lists_length), lists_length(ac.lists_length),
-    oscillations_in_a_row(ac.oscillations_in_a_row),
-    isStopped(ac.isStopped), hasLastCycle2(ac.hasLastCycle2), hasListsChanges(ac.hasListsChanges),
-    hasOscillation(ac.hasOscillation),
+    img_data(ac.img_data), img_width(ac.img_width), img_height(ac.img_height), img_size(ac.img_size),
+    phi( new char[ac.img_size] ), hasCycle2(ac.hasCycle2), kernel_length(ac.kernel_length),
+    sigma(ac.sigma), gaussian_kernel( make_gaussian_kernel(ac.kernel_length,ac.sigma) ),
+    iteration(ac.iteration), iteration_max(ac.iteration_max), isStopped(ac.isStopped),
+    Lout(ac.Lout), Lin(ac.Lin), kernel_radius(ac.kernel_radius),
     hasOutwardEvolution(ac.hasOutwardEvolution), hasInwardEvolution(ac.hasInwardEvolution),
-    Lout(ac.Lout), Lin(ac.Lin) { // linked list ofeli::list has an implemented copy constructor
+    Na(ac.Na), Na_max(ac.Na_max), Ns(ac.Ns), Ns_max(ac.Ns_max),
+    hasListsChanges(ac.hasListsChanges), lists_length(ac.lists_length),
+    previous_lists_length(ac.previous_lists_length), hasOscillation(ac.hasOscillation),
+    oscillations_in_a_row(ac.oscillations_in_a_row), hasLastCycle2(ac.hasLastCycle2) { // linked list ofeli::list has an implemented copy constructor
       if (img_data == NULL) {
         std::cerr << "\nThe pointer img_data must be a non-null pointer, it must be allocated.\n";
       }
@@ -210,7 +209,7 @@ namespace ofeli {
     iteration = 0;
   }
 
-  const int* const ActiveContour::make_gaussian_kernel(int kernel_length1, double sigma1) {
+  const int* ActiveContour::make_gaussian_kernel(int kernel_length1, double sigma1) {
     // kernel_length impair and strictly positive
     if ( kernel_length1 % 2 == 0 ) {
       kernel_length1--;
@@ -772,6 +771,7 @@ namespace ofeli {
 
   int ActiveContour::compute_external_speed_Fd(int offset) {
     // this function should never be instantiated
+    (void)offset;
     return -1;
     // always an inward movement in each point of the active contour,
     // this speed is not very discriminant...
@@ -869,9 +869,9 @@ namespace ofeli {
 
   void ActiveContour::updates_for_means_out1() { }
 
-  void ActiveContour::updates_for_means_in2(int offset) { }
+  void ActiveContour::updates_for_means_in2(int offset) { (void)offset; }
 
-  void ActiveContour::updates_for_means_out2(int offset) { }
+  void ActiveContour::updates_for_means_out2(int offset) { (void)offset; }
 
   void ActiveContour::initialize_for_each_frame(const unsigned char* img_data1) {
     if ( img_data1 == NULL ) {

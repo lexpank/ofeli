@@ -1,61 +1,164 @@
-\hypertarget{structofeli_1_1list_1_1_node}{\section{ofeli\-:\-:list$<$ T $>$\-:\-:Node Struct Reference}
-\label{structofeli_1_1list_1_1_node}\index{ofeli\-::list$<$ T $>$\-::\-Node@{ofeli\-::list$<$ T $>$\-::\-Node}}
-}
+\doxysection{ofeli::\+list\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}::\+Node Struct Reference}
+\hypertarget{structofeli_1_1list_1_1_node}{}\label{structofeli_1_1list_1_1_node}\index{ofeli::list$<$ T $>$::Node@{ofeli::list$<$ T $>$::Node}}
 
 
 This structure implements a node of class {\itshape list}. It is composed by an element of type {\itshape T} and a pointer on the next node.  
 
 
-
-
-Collaboration diagram for ofeli\-:\-:list$<$ T $>$\-:\-:Node\-:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=224pt]{structofeli_1_1list_1_1_node__coll__graph}
-\end{center}
-\end{figure}
-\subsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{structofeli_1_1list_1_1_node_aa51604521fb273117e7008fb2ebd2949}{\hyperlink{structofeli_1_1list_1_1_node_aa51604521fb273117e7008fb2ebd2949}{Node} (const T \&data1, \hyperlink{classofeli_1_1list_a7765ecb875543506d04dbd466f754503}{Link} next1)}\label{structofeli_1_1list_1_1_node_aa51604521fb273117e7008fb2ebd2949}
-
+\doxymbox{\hyperlink{structofeli_1_1list_1_1_node_aa51604521fb273117e7008fb2ebd2949}{Node}} (const T \&data1, \doxymbox{\hyperlink{classofeli_1_1list_a7765ecb875543506d04dbd466f754503}{Link}} next1)
 \begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
-\hypertarget{structofeli_1_1list_1_1_node_a0dec619f483d887884d5fcd963e65d9b}{bool \hyperlink{structofeli_1_1list_1_1_node_a0dec619f483d887884d5fcd963e65d9b}{end} () const }\label{structofeli_1_1list_1_1_node_a0dec619f483d887884d5fcd963e65d9b}
-
-\begin{DoxyCompactList}\small\item\em Checks if the node is at the end of the list, i.\-e. if the node is the sentinel node. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Static Public Member Functions}
+bool \doxymbox{\hyperlink{structofeli_1_1list_1_1_node_a7e08e78564622992da558f2950116fc9}{end}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the node is at the end of the list, i.\+e. if the node is the sentinel node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{structofeli_1_1list_1_1_node_ac75b630e0b50f5eee672e8a0a8aca132}{static \hyperlink{classofeli_1_1list_a7765ecb875543506d04dbd466f754503}{Link} \hyperlink{structofeli_1_1list_1_1_node_ac75b630e0b50f5eee672e8a0a8aca132}{new\-\_\-} (const T \&data1, \hyperlink{classofeli_1_1list_a7765ecb875543506d04dbd466f754503}{Link} next1)}\label{structofeli_1_1list_1_1_node_ac75b630e0b50f5eee672e8a0a8aca132}
-
+static \doxymbox{\hyperlink{classofeli_1_1list_a7765ecb875543506d04dbd466f754503}{Link}} \doxymbox{\hyperlink{structofeli_1_1list_1_1_node_ac75b630e0b50f5eee672e8a0a8aca132}{new\+\_\+}} (const T \&data1, \doxymbox{\hyperlink{classofeli_1_1list_a7765ecb875543506d04dbd466f754503}{Link}} next1)
 \begin{DoxyCompactList}\small\item\em Collects a node from the linked list memory pool and initializes it. It mimes operator {\ttfamily new}. \end{DoxyCompactList}\item 
-\hypertarget{structofeli_1_1list_1_1_node_a6b9d48c85eee2608978fe420d03b3e73}{static \hyperlink{classofeli_1_1list_a7765ecb875543506d04dbd466f754503}{Link} \hyperlink{structofeli_1_1list_1_1_node_a6b9d48c85eee2608978fe420d03b3e73}{new\-\_\-} (const \hyperlink{structofeli_1_1list_1_1_node}{Node} \&copied)}\label{structofeli_1_1list_1_1_node_a6b9d48c85eee2608978fe420d03b3e73}
-
+static \doxymbox{\hyperlink{classofeli_1_1list_a7765ecb875543506d04dbd466f754503}{Link}} \doxymbox{\hyperlink{structofeli_1_1list_1_1_node_a6b9d48c85eee2608978fe420d03b3e73}{new\+\_\+}} (const \doxymbox{\hyperlink{structofeli_1_1list_1_1_node_aa51604521fb273117e7008fb2ebd2949}{Node}} \&copied)
 \begin{DoxyCompactList}\small\item\em Collects a node from the linked list memory pool and initializes it. It mimes operator {\ttfamily new}. \end{DoxyCompactList}\item 
-\hypertarget{structofeli_1_1list_1_1_node_a42cedc598273b73b0f2bc34f7cd10043}{static void \hyperlink{structofeli_1_1list_1_1_node_a42cedc598273b73b0f2bc34f7cd10043}{delete\-\_\-} (\hyperlink{classofeli_1_1list_a7765ecb875543506d04dbd466f754503}{Link} node)}\label{structofeli_1_1list_1_1_node_a42cedc598273b73b0f2bc34f7cd10043}
-
+static void \doxymbox{\hyperlink{structofeli_1_1list_1_1_node_a42cedc598273b73b0f2bc34f7cd10043}{delete\+\_\+}} (\doxymbox{\hyperlink{classofeli_1_1list_a7765ecb875543506d04dbd466f754503}{Link}} node)
 \begin{DoxyCompactList}\small\item\em Moves a node to the linked list memory pool. It mimes operator {\ttfamily delete}. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Public Attributes}
+\doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{structofeli_1_1list_1_1_node_a50e84fcefcfc088b1beb4db228da2665}{T \hyperlink{structofeli_1_1list_1_1_node_a50e84fcefcfc088b1beb4db228da2665}{data}}\label{structofeli_1_1list_1_1_node_a50e84fcefcfc088b1beb4db228da2665}
-
+T \doxymbox{\hyperlink{structofeli_1_1list_1_1_node_a50e84fcefcfc088b1beb4db228da2665}{data}}
 \begin{DoxyCompactList}\small\item\em Element storage. \end{DoxyCompactList}\item 
-\hypertarget{structofeli_1_1list_1_1_node_a6c04294f1a7e9fe11737c4e041e93f03}{\hyperlink{classofeli_1_1list_a7765ecb875543506d04dbd466f754503}{Link} \hyperlink{structofeli_1_1list_1_1_node_a6c04294f1a7e9fe11737c4e041e93f03}{next}}\label{structofeli_1_1list_1_1_node_a6c04294f1a7e9fe11737c4e041e93f03}
-
+\doxymbox{\hyperlink{classofeli_1_1list_a7765ecb875543506d04dbd466f754503}{Link}} \doxymbox{\hyperlink{structofeli_1_1list_1_1_node_a6c04294f1a7e9fe11737c4e041e93f03}{next}}
 \begin{DoxyCompactList}\small\item\em Pointer to the next node. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
-\subsubsection*{template$<$typename T = int$>$struct ofeli\-::list$<$ T $>$\-::\-Node}
-
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T = int$>$\newline
+struct ofeli::\+list$<$ T $>$::\+\+Node}
 This structure implements a node of class {\itshape list}. It is composed by an element of type {\itshape T} and a pointer on the next node. 
 
-Definition at line 160 of file linked\-\_\-list.\-hpp.
+Definition at line \doxymbox{\hyperlink{linked__list_8hpp_source_l00160}{160}} of file \doxymbox{\hyperlink{linked__list_8hpp_source}{linked\+\_\+list.\+hpp}}.
 
 
 
-The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\label{structofeli_1_1list_1_1_node_doc-constructors}
+\Hypertarget{structofeli_1_1list_1_1_node_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structofeli_1_1list_1_1_node_aa51604521fb273117e7008fb2ebd2949}\index{ofeli::list$<$ T $>$::Node@{ofeli::list$<$ T $>$::Node}!Node@{Node}}
+\index{Node@{Node}!ofeli::list$<$ T $>$::Node@{ofeli::list$<$ T $>$::Node}}
+\doxysubsubsection{\texorpdfstring{Node()}{Node()}}
+{\footnotesize\ttfamily \label{structofeli_1_1list_1_1_node_aa51604521fb273117e7008fb2ebd2949} 
+template$<$typename T = int$>$ \\
+\doxymbox{\hyperlink{classofeli_1_1list}{ofeli::\+list}}$<$ T $>$::\+\+Node::\+\+Node (\begin{DoxyParamCaption}\item[{const T \&}]{data1}{, }\item[{\doxymbox{\hyperlink{classofeli_1_1list_a7765ecb875543506d04dbd466f754503}{Link}}}]{next1}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor. 
+
+
+
+Definition at line \doxymbox{\hyperlink{linked__list_8hpp_source_l00163}{163}} of file \doxymbox{\hyperlink{linked__list_8hpp_source}{linked\+\_\+list.\+hpp}}.
+
+
+
+\label{structofeli_1_1list_1_1_node_doc-func-members}
+\Hypertarget{structofeli_1_1list_1_1_node_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structofeli_1_1list_1_1_node_a42cedc598273b73b0f2bc34f7cd10043}\index{ofeli::list$<$ T $>$::Node@{ofeli::list$<$ T $>$::Node}!delete\_@{delete\_}}
+\index{delete\_@{delete\_}!ofeli::list$<$ T $>$::Node@{ofeli::list$<$ T $>$::Node}}
+\doxysubsubsection{\texorpdfstring{delete\_()}{delete\_()}}
+{\footnotesize\ttfamily \label{structofeli_1_1list_1_1_node_a42cedc598273b73b0f2bc34f7cd10043} 
+template$<$typename T = int$>$ \\
+void \doxymbox{\hyperlink{classofeli_1_1list}{ofeli::\+list}}$<$ T $>$::\+\+Node::\+delete\+\_\+ (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classofeli_1_1list_a7765ecb875543506d04dbd466f754503}{Link}}}]{node}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Moves a node to the linked list memory pool. It mimes operator {\ttfamily delete}. 
+
+
+
+Definition at line \doxymbox{\hyperlink{linked__list_8hpp_source_l00206}{206}} of file \doxymbox{\hyperlink{linked__list_8hpp_source}{linked\+\_\+list.\+hpp}}.
+
+\Hypertarget{structofeli_1_1list_1_1_node_a7e08e78564622992da558f2950116fc9}\index{ofeli::list$<$ T $>$::Node@{ofeli::list$<$ T $>$::Node}!end@{end}}
+\index{end@{end}!ofeli::list$<$ T $>$::Node@{ofeli::list$<$ T $>$::Node}}
+\doxysubsubsection{\texorpdfstring{end()}{end()}}
+{\footnotesize\ttfamily \label{structofeli_1_1list_1_1_node_a7e08e78564622992da558f2950116fc9} 
+template$<$typename T = int$>$ \\
+bool \doxymbox{\hyperlink{classofeli_1_1list}{ofeli::\+list}}$<$ T $>$::\+\+Node::\+end (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if the node is at the end of the list, i.\+e. if the node is the sentinel node. 
+
+
+
+Definition at line \doxymbox{\hyperlink{linked__list_8hpp_source_l00168}{168}} of file \doxymbox{\hyperlink{linked__list_8hpp_source}{linked\+\_\+list.\+hpp}}.
+
+\Hypertarget{structofeli_1_1list_1_1_node_a6b9d48c85eee2608978fe420d03b3e73}\index{ofeli::list$<$ T $>$::Node@{ofeli::list$<$ T $>$::Node}!new\_@{new\_}}
+\index{new\_@{new\_}!ofeli::list$<$ T $>$::Node@{ofeli::list$<$ T $>$::Node}}
+\doxysubsubsection{\texorpdfstring{new\_()}{new\_()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{structofeli_1_1list_1_1_node_a6b9d48c85eee2608978fe420d03b3e73} 
+template$<$typename T = int$>$ \\
+\doxymbox{\hyperlink{classofeli_1_1list_a7765ecb875543506d04dbd466f754503}{Link}} \doxymbox{\hyperlink{classofeli_1_1list}{ofeli::\+list}}$<$ T $>$::\+\+Node::\+new\+\_\+ (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{structofeli_1_1list_1_1_node_aa51604521fb273117e7008fb2ebd2949}{Node}} \&}]{copied}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Collects a node from the linked list memory pool and initializes it. It mimes operator {\ttfamily new}. 
+
+
+
+Definition at line \doxymbox{\hyperlink{linked__list_8hpp_source_l00193}{193}} of file \doxymbox{\hyperlink{linked__list_8hpp_source}{linked\+\_\+list.\+hpp}}.
+
+\Hypertarget{structofeli_1_1list_1_1_node_ac75b630e0b50f5eee672e8a0a8aca132}\index{ofeli::list$<$ T $>$::Node@{ofeli::list$<$ T $>$::Node}!new\_@{new\_}}
+\index{new\_@{new\_}!ofeli::list$<$ T $>$::Node@{ofeli::list$<$ T $>$::Node}}
+\doxysubsubsection{\texorpdfstring{new\_()}{new\_()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{structofeli_1_1list_1_1_node_ac75b630e0b50f5eee672e8a0a8aca132} 
+template$<$typename T = int$>$ \\
+\doxymbox{\hyperlink{classofeli_1_1list_a7765ecb875543506d04dbd466f754503}{Link}} \doxymbox{\hyperlink{classofeli_1_1list}{ofeli::\+list}}$<$ T $>$::\+\+Node::\+new\+\_\+ (\begin{DoxyParamCaption}\item[{const T \&}]{data1}{, }\item[{\doxymbox{\hyperlink{classofeli_1_1list_a7765ecb875543506d04dbd466f754503}{Link}}}]{next1}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Collects a node from the linked list memory pool and initializes it. It mimes operator {\ttfamily new}. 
+
+
+
+Definition at line \doxymbox{\hyperlink{linked__list_8hpp_source_l00179}{179}} of file \doxymbox{\hyperlink{linked__list_8hpp_source}{linked\+\_\+list.\+hpp}}.
+
+
+
+\label{structofeli_1_1list_1_1_node_doc-variable-members}
+\Hypertarget{structofeli_1_1list_1_1_node_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structofeli_1_1list_1_1_node_a50e84fcefcfc088b1beb4db228da2665}\index{ofeli::list$<$ T $>$::Node@{ofeli::list$<$ T $>$::Node}!data@{data}}
+\index{data@{data}!ofeli::list$<$ T $>$::Node@{ofeli::list$<$ T $>$::Node}}
+\doxysubsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily \label{structofeli_1_1list_1_1_node_a50e84fcefcfc088b1beb4db228da2665} 
+template$<$typename T = int$>$ \\
+T \doxymbox{\hyperlink{classofeli_1_1list}{ofeli::\+list}}$<$ T $>$::\+\+Node::\+data}
+
+
+
+Element storage. 
+
+
+
+Definition at line \doxymbox{\hyperlink{linked__list_8hpp_source_l00174}{174}} of file \doxymbox{\hyperlink{linked__list_8hpp_source}{linked\+\_\+list.\+hpp}}.
+
+\Hypertarget{structofeli_1_1list_1_1_node_a6c04294f1a7e9fe11737c4e041e93f03}\index{ofeli::list$<$ T $>$::Node@{ofeli::list$<$ T $>$::Node}!next@{next}}
+\index{next@{next}!ofeli::list$<$ T $>$::Node@{ofeli::list$<$ T $>$::Node}}
+\doxysubsubsection{\texorpdfstring{next}{next}}
+{\footnotesize\ttfamily \label{structofeli_1_1list_1_1_node_a6c04294f1a7e9fe11737c4e041e93f03} 
+template$<$typename T = int$>$ \\
+\doxymbox{\hyperlink{classofeli_1_1list_a7765ecb875543506d04dbd466f754503}{Link}} \doxymbox{\hyperlink{classofeli_1_1list}{ofeli::\+list}}$<$ T $>$::\+\+Node::\+next}
+
+
+
+Pointer to the next node. 
+
+
+
+Definition at line \doxymbox{\hyperlink{linked__list_8hpp_source_l00176}{176}} of file \doxymbox{\hyperlink{linked__list_8hpp_source}{linked\+\_\+list.\+hpp}}.
+
+
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
 \item 
-linked\-\_\-list.\-hpp\end{DoxyCompactItemize}
+linked\+\_\+list.\+hpp\end{DoxyCompactItemize}

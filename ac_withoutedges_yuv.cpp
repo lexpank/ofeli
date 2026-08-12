@@ -50,7 +50,7 @@ namespace ofeli
 ACwithoutEdgesYUV::ACwithoutEdgesYUV(const unsigned char* img_rgb_data1, int img_width1, int img_height1) :
     ActiveContour(img_rgb_data1, img_width1, img_height1,
                   true, 0.65, 0.65, 0.0, 0.0, true, 5, 2.0, 30, 3),
-    lambda_out(1), lambda_in(1), alpha(1), beta(10), gamma(10)
+    alpha(1), beta(10), gamma(10), lambda_out(1), lambda_in(1)
 {
     // a virtual function call in a constructor
     // but the virtual function table is solved at this level of the class hierarchy
@@ -64,7 +64,7 @@ ACwithoutEdgesYUV::ACwithoutEdgesYUV(const unsigned char* img_rgb_data1, int img
     ActiveContour(img_rgb_data1, img_width1, img_height1,
                   hasEllipse1, init_width1, init_height1, center_x1, center_y1,
                   hasCycle2_1, kernel_length1, sigma1, Na1, Ns1),
-    lambda_out(lambda_out1), lambda_in(lambda_in1), alpha(alpha1), beta(beta1), gamma(gamma1)
+    alpha(alpha1), beta(beta1), gamma(gamma1), lambda_out(lambda_out1), lambda_in(lambda_in1)
 {
     // a virtual function call in a constructor
     // but the virtual function table is solved at this level of the class hierarchy
@@ -78,7 +78,7 @@ ACwithoutEdgesYUV::ACwithoutEdgesYUV(const unsigned char* img_rgb_data1, int img
     ActiveContour(img_rgb_data1, img_width1, img_height1,
                   phi_init1,
                   hasCycle2_1, kernel_length1, sigma1, Na1, Ns1),
-    lambda_out(lambda_out1), lambda_in(lambda_in1), alpha(alpha1), beta(beta1), gamma(gamma1)
+    alpha(alpha1), beta(beta1), gamma(gamma1), lambda_out(lambda_out1), lambda_in(lambda_in1)
 {
     // a virtual function call in a constructor
     // but the virtual function table is solved at this level of the class hierarchy
@@ -87,12 +87,14 @@ ACwithoutEdgesYUV::ACwithoutEdgesYUV(const unsigned char* img_rgb_data1, int img
 
 ACwithoutEdgesYUV::ACwithoutEdgesYUV(const ACwithoutEdgesYUV& ac) :
     ActiveContour(ac),
-    lambda_out(ac.lambda_out), lambda_in(ac.lambda_in), alpha(ac.alpha), beta(ac.beta), gamma(ac.gamma),
+    R(ac.R), G(ac.G), B(ac.B),
     CoutR(ac.CoutR), CoutG(ac.CoutG), CoutB(ac.CoutB),
     CinR(ac.CinR), CinG(ac.CinG), CinB(ac.CinB),
+    alpha(ac.alpha), beta(ac.beta), gamma(ac.gamma),
+    lambda_out(ac.lambda_out), lambda_in(ac.lambda_in),
     sum_out_R(ac.sum_out_R), sum_in_R(ac.sum_in_R), sum_out_G(ac.sum_out_G),
     sum_in_G(ac.sum_in_G), sum_out_B(ac.sum_out_B), sum_in_B(ac.sum_in_B),
-    n_out(ac.n_out), n_in(ac.n_in), R(ac.R), G(ac.G), B(ac.B)
+    n_out(ac.n_out), n_in(ac.n_in)
 {
     for( int index = 0; index < 3; index++ )
     {

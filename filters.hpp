@@ -172,7 +172,7 @@ private :
     int find_offset(int x, int y, int color_channel) const;
 
     //! Creates a gaussian kernel with the kernel length and the standard deviation sigma.
-    static const double* const gaussian_kernel(int kernel_length, double sigma);
+    static const double* gaussian_kernel(int kernel_length, double sigma);
 
     //! Swaps two values of an array.
     static void swap(unsigned char* const array, int a, int b);
@@ -217,7 +217,7 @@ inline T Filters::square(const T& value)
 //! Moreover, there are seven operators of mathematical morphology (erosion, dilation, morphological gradient, opening, closing and the both top-hat transforms) with a square for a structuring element. \n
 //! Furthermore, there are two edge preserving filters : a median filter and a Perona-Malik anisotropic diffusion. \n
 //! The order filters (i.e. the median filter and the morphological filters) are implemented in a naïve version and in an optimized version (using Simon Perreault's algorithm). \n
-//! In addition, there are three functions to add noise, implemented with the random variables of Boost library : gaussian white noise, impulsional noise or salt and pepper and speckle.
+//! In addition, there are three functions to add noise, implemented with the C++ standard library random distributions: gaussian white noise, impulsional noise or salt and pepper and speckle.
 
 /**
  * \fn void Filters::anisotropic_diffusion(int max_itera, double lambda, double kappa, int option)

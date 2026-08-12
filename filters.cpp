@@ -38,18 +38,29 @@
 ****************************************************************************/
 
 #include "filters.hpp"
-#include <boost/random.hpp>
-#include <boost/random/normal_distribution.hpp>
 #include <cmath> // for the function "std::exp"
 #include <cstring> // for the function "std::memcpy"
 #include <iostream> // for the object "std::cerr"
+#include <random>
+
+namespace
+{
+
+std::mt19937& noise_generator()
+{
+    thread_local std::mt19937 generator{std::random_device{}()};
+    return generator;
+}
+
+}
 
 namespace ofeli
 {
 
 Filters::Filters(const unsigned char* img_data1, int img_width1, int img_height1, int byte_per_pixel1) :
-    img_data(img_data1), img_width(img_width1), img_height(img_height1), byte_per_pixel(byte_per_pixel1),
-    img_size(img_width1*img_height1), columns_histo( new int [256*img_width1] )
+    img_data(img_data1), img_width(img_width1), img_height(img_height1),
+    img_size(img_width1*img_height1), byte_per_pixel(byte_per_pixel1),
+    columns_histo( new int [256*img_width1] )
 {
     if( img_data1 == NULL )
     {
@@ -1754,7 +1765,7 @@ void Filters::mean_filtering(int kernel_length)
     return;
 }
 
-const double* const Filters::gaussian_kernel(int kernel_length, double sigma)
+const double* Filters::gaussian_kernel(int kernel_length, double sigma)
 {
     // to protect the input : kernel_length impair et strictly positive
     if( kernel_length % 2 == 0 )
@@ -2371,20 +2382,13 @@ void Filters::median_filtering_o1(int kernel_length)
 
 void Filters::gaussian_white_noise(double sigma)
 {
-    // generator
-    boost::mt19937 rng(time(0));
-    // distribution
-    boost::normal_distribution<> nd(0.0, sigma);
-
-    // link between the generator and the distribution
-    boost::variate_generator<boost::mt19937&,
-                             boost::normal_distribution<> > var_nor(rng, nd);
+    std::normal_distribution<double> distribution(0.0, sigma);
 
     int filtered_int;
 
     for( int offset = 0; offset < byte_per_pixel*img_size; offset++ )
     {
-        filtered_int = int(filtered[offset]) + (int)(var_nor());
+        filtered_int = int(filtered[offset]) + int(distribution(noise_generator()));
 
         if( filtered_int < 0 )
         {
@@ -2402,22 +2406,15 @@ void Filters::gaussian_white_noise(double sigma)
 
 void Filters::salt_pepper_noise(double proba)
 {
-    // generator
-    boost::mt19937 rng(time(0));
-    // distribution
-    boost::uniform_01<> ud;
-
-    // link between the generator and the distribution
-    boost::variate_generator<boost::mt19937&,
-                             boost::uniform_01<> > var_uni(rng, ud);
+    std::uniform_real_distribution<double> distribution(0.0, 1.0);
 
     for( int color_channel = 0; color_channel < byte_per_pixel; color_channel++ )
     {
         for( int offset = 0; offset < img_size; offset++ )
         {
-            if( var_uni() < proba )
+            if( distribution(noise_generator()) < proba )
             {
-                if( var_uni() < 0.5 )
+                if( distribution(noise_generator()) < 0.5 )
                 {
                     filtered[byte_per_pixel*offset+color_channel] = 0;
                 }
@@ -2434,14 +2431,7 @@ void Filters::salt_pepper_noise(double proba)
 
 void Filters::speckle(double sigma)
 {
-    // generator
-    boost::mt19937 rng(time(0));
-    // distribution
-    boost::uniform_01<> ud;
-
-    // link between the generator and the distribution
-    boost::variate_generator<boost::mt19937&,
-                             boost::uniform_01<> > var_uni(rng, ud);
+    std::uniform_real_distribution<double> distribution(0.0, 1.0);
 
     int filtered_int;
 
@@ -2451,7 +2441,7 @@ void Filters::speckle(double sigma)
         // with X a random variable from a uniform distribution centered at 0
         // and of a standard deviation sigma
         // sigma * sqrt(12) is the interval of the uniform distribution
-        filtered_int = int(filtered[offset]) + int (double(filtered[offset]) * sigma * sqrt(12.0) * (var_uni()-0.5));
+        filtered_int = int(filtered[offset]) + int(double(filtered[offset]) * sigma * std::sqrt(12.0) * (distribution(noise_generator())-0.5));
 
         if( filtered_int < 0 )
         {

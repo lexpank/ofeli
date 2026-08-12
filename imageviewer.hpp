@@ -40,12 +40,8 @@
 #ifndef IMAGEVIEWER_HPP
 #define IMAGEVIEWER_HPP
 
-#define QT_NO_PRINTER
-
 #include <QMainWindow>
-#ifndef QT_NO_PRINTER
 #include <QPrinter>
-#endif
 
 QT_BEGIN_NAMESPACE
 class QAction;
@@ -703,9 +699,7 @@ protected :
     void dropEventB(QDropEvent* event);
     void dragLeaveEventB(QDragLeaveEvent* event);
 
-#ifndef QT_NO_PRINTER
     QPrinter printer;
-#endif
 
     QAction* openAct;
     QAction* separatorAct;
@@ -744,5 +738,5 @@ signals :
 #endif
 
 //! \class ofeli::ImageViewer
-//! The class ImageViewer is a graphical user interface using the Qt4 framework (QtCore and QtGui) to show an image with the active contour, to configure the parameters of the active contour and optionally the preprocessing step and to evaluate two segmentation results thanks to the evaluation window.
-//! It based on the Qt example of the documentation http://doc.qt.nokia.com/4.7/widgets-imageviewer.html.
+//! The class ImageViewer is a graphical user interface using the Qt6 framework (QtCore, QtGui, QtWidgets and QtPrintSupport) to show an image with the active contour, to configure the parameters of the active contour and optionally the preprocessing step and to evaluate two segmentation results thanks to the evaluation window.
+//! It is based on a legacy Qt image-viewer example.

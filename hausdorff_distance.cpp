@@ -51,7 +51,7 @@ HausdorffDistance::HausdorffDistance(const int* list1_1, int list1_1_length, int
     list2(list2_1), list2_length(list2_1_length), img2_width(img2_1_width), img2_height(img2_1_height),
     max_dist( calculate_max_dist(img1_1_width,img1_1_height,img2_1_width,img2_1_height) )
 {
-    if( list1_1 == NULL )
+    if( list1_1 == nullptr )
     {
         std::cerr << std::endl << "The pointer list1_1 must be a non-null pointer, it must be allocated." << std::endl;
     }
@@ -60,7 +60,7 @@ HausdorffDistance::HausdorffDistance(const int* list1_1, int list1_1_length, int
         std::cerr << std::endl << "list1_1 must not be empty." << std::endl;
     }
 
-    if( list2_1 == NULL )
+    if( list2_1 == nullptr )
     {
         std::cerr << std::endl << "The pointer list2_1 must be a non-null pointer, it must be allocated." << std::endl;
     }

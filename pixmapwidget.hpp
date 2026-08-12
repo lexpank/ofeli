@@ -94,5 +94,5 @@ private :
 #endif // PIXMAPWIDGET_HPP
 
 //! \class ofeli::PixmapWidget
-//! The class PixmapWidget is a Qt4 widget to display fastly an image (function drawPixmap in a PaintEvent is faster than function setPixmap) and gives the possibility to zoom with a mouse wheel event in function of the position of the cursor.
-//! Thanks to Johan Thelin. This class is based on this example http://qt4.digitalfanatics.org/articles/zoomer.html.
+//! The class PixmapWidget is a Qt6 widget to display an image (function drawPixmap in a PaintEvent is faster than function setPixmap) and gives the possibility to zoom with a mouse wheel event in function of the position of the cursor.
+//! Thanks to Johan Thelin. This class is based on a legacy Qt image-viewer example.

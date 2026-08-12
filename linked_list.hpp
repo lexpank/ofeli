@@ -418,7 +418,7 @@ struct predicate_example
 //! This class implements a singly linked list used by the implementation of Shi and Karl' algorithm. The elements stored are integers by default that correspond of the offset of the level set function buffer.
 
 /**
- * \example linked_list
+ * \par Example
  * \code
  * // How to use the linked list ?
  *
@@ -530,7 +530,7 @@ struct predicate_example
 //! This class defines function objects for the non-equality comparison operation. Generically, function objects are instances of a class with member function \c operator() defined. This member function allows the object to be used with the same syntax as a regular function call, and therefore it can be used in templates instead of a pointer to a function. \c not_equal_to has its \c operator() member defined such that it returns \c true if its two arguments do not compare equal to each other using \c operator!=, and \c false otherwise. This class can be used with the template function \c list<T>::sort(BinaryPredicate compare).
 
 //! \struct ofeli::greater
-//! This class defines function objects for the "greater than" inequality comparison operation. Generically, function objects are instances of a class with member function \c operator() defined. This member function allows the object to be used with the same syntax as a regular function call, and therefore it can be used in templates instead of a pointer to a function. \c greater has its \c operator() member defined such that it returns \c true if its first argument compares greater than the second one using \c operator>, and \c false otherwise. This class can be used with the template function \clist<T>::sort(BinaryPredicate compare).
+//! This class defines function objects for the "greater than" inequality comparison operation. Generically, function objects are instances of a class with member function \c operator() defined. This member function allows the object to be used with the same syntax as a regular function call, and therefore it can be used in templates instead of a pointer to a function. \c greater has its \c operator() member defined such that it returns \c true if its first argument compares greater than the second one using \c operator>, and \c false otherwise. This class can be used with the template function \c list::sort(BinaryPredicate compare).
 
 //! \struct ofeli::less
 //! This class defines function objects for the "less than" inequality comparison operation. Generically, function objects are instances of a class with member function \c operator() defined. This member function allows the object to be used with the same syntax as a regular function call, and therefore it can be used in templates instead of a pointer to a function. \c less has its \c operator() member defined such that it returns \c true if its first argument compares lower than the second one using \c operator<, and \c false otherwise. This class can be used with the template function \c list<T>::sort(BinaryPredicate compare).

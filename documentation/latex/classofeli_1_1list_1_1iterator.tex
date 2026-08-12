@@ -1,6 +1,5 @@
-\hypertarget{classofeli_1_1list_1_1iterator}{\section{ofeli\-:\-:list$<$ T $>$\-:\-:iterator Class Reference}
-\label{classofeli_1_1list_1_1iterator}\index{ofeli\-::list$<$ T $>$\-::iterator@{ofeli\-::list$<$ T $>$\-::iterator}}
-}
+\doxysection{ofeli::\+list\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}::\+iterator Class Reference}
+\hypertarget{classofeli_1_1list_1_1iterator}{}\label{classofeli_1_1list_1_1iterator}\index{ofeli::list$<$ T $>$::iterator@{ofeli::list$<$ T $>$::iterator}}
 
 
 Iterator to modify a list.  
@@ -8,58 +7,153 @@ Iterator to modify a list.
 
 
 
-{\ttfamily \#include $<$linked\-\_\-list.\-hpp$>$}
+{\ttfamily \+\#include $<$linked\+\_\+list.\+hpp$>$}
 
-
-
-Collaboration diagram for ofeli\-:\-:list$<$ T $>$\-:\-:iterator\-:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=228pt]{classofeli_1_1list_1_1iterator__coll__graph}
-\end{center}
-\end{figure}
-\subsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classofeli_1_1list_1_1iterator_a4a8d4e7e15187464c623be990bf3d962}{T \& \hyperlink{classofeli_1_1list_1_1iterator_a4a8d4e7e15187464c623be990bf3d962}{operator$\ast$} () const }\label{classofeli_1_1list_1_1iterator_a4a8d4e7e15187464c623be990bf3d962}
-
+T \& \doxymbox{\hyperlink{classofeli_1_1list_1_1iterator_affd6323b008c3331c94e390290c549d4}{operator\texorpdfstring{$\ast$}{*}}} () const
 \begin{DoxyCompactList}\small\item\em Gets the node data. {\itshape iterator} does not protect the data against writing. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1list_1_1iterator_a687a367e3b5b94b3055e56f59b960567}{bool \hyperlink{classofeli_1_1list_1_1iterator_a687a367e3b5b94b3055e56f59b960567}{end} () const }\label{classofeli_1_1list_1_1iterator_a687a367e3b5b94b3055e56f59b960567}
-
-\begin{DoxyCompactList}\small\item\em Checks if the iterator is at the end of the list, i.\-e. if the node is the sentinel node. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1list_1_1iterator_a9c99a73cccabc3dd1325e1c243aca667}{\hyperlink{classofeli_1_1list_1_1iterator}{iterator} \& \hyperlink{classofeli_1_1list_1_1iterator_a9c99a73cccabc3dd1325e1c243aca667}{operator++} ()}\label{classofeli_1_1list_1_1iterator_a9c99a73cccabc3dd1325e1c243aca667}
-
+bool \doxymbox{\hyperlink{classofeli_1_1list_1_1iterator_afc3d857dcefe0815fbb3993edc6a6442}{end}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the iterator is at the end of the list, i.\+e. if the node is the sentinel node. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{classofeli_1_1list_1_1iterator_ac45584122cd0b4f60d046503595736b1}{iterator}} \& \doxymbox{\hyperlink{classofeli_1_1list_1_1iterator_a8dad90c97028aa821546e3d06d0131c0}{operator++}} ()
 \begin{DoxyCompactList}\small\item\em Increment the iterator. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Private Member Functions}
+\doxysubsubsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classofeli_1_1list_1_1iterator_ac45584122cd0b4f60d046503595736b1}{\hyperlink{classofeli_1_1list_1_1iterator_ac45584122cd0b4f60d046503595736b1}{iterator} (\hyperlink{classofeli_1_1list_a7765ecb875543506d04dbd466f754503}{Link} node1)}\label{classofeli_1_1list_1_1iterator_ac45584122cd0b4f60d046503595736b1}
-
+\doxymbox{\hyperlink{classofeli_1_1list_1_1iterator_ac45584122cd0b4f60d046503595736b1}{iterator}} (\doxymbox{\hyperlink{classofeli_1_1list_a7765ecb875543506d04dbd466f754503}{Link}} node1)
 \begin{DoxyCompactList}\small\item\em Constructor with a node. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Private Attributes}
+\doxysubsubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classofeli_1_1list_1_1iterator_a6be3588fe536436d8c35c7db94beeb08}{\hyperlink{classofeli_1_1list_a7765ecb875543506d04dbd466f754503}{Link} \hyperlink{classofeli_1_1list_1_1iterator_a6be3588fe536436d8c35c7db94beeb08}{node}}\label{classofeli_1_1list_1_1iterator_a6be3588fe536436d8c35c7db94beeb08}
-
-\begin{DoxyCompactList}\small\item\em {\itshape \hyperlink{classofeli_1_1list_1_1const__iterator}{const\-\_\-iterator}} encapsulates a pointer to a node. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Friends}
+\doxymbox{\hyperlink{classofeli_1_1list_a7765ecb875543506d04dbd466f754503}{Link}} \doxymbox{\hyperlink{classofeli_1_1list_1_1iterator_a6be3588fe536436d8c35c7db94beeb08}{node}}
+\begin{DoxyCompactList}\small\item\em {\itshape \doxylink{classofeli_1_1list_1_1const__iterator}{const\+\_\+iterator}} encapsulates a pointer to a node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classofeli_1_1list_1_1iterator_a39e8296e3b93358d0af90000b5d9113c}{class \hyperlink{classofeli_1_1list_1_1iterator_a39e8296e3b93358d0af90000b5d9113c}{list}}\label{classofeli_1_1list_1_1iterator_a39e8296e3b93358d0af90000b5d9113c}
-
+class \doxymbox{\hyperlink{classofeli_1_1list_1_1iterator_a39e8296e3b93358d0af90000b5d9113c}{list}}
 \begin{DoxyCompactList}\small\item\em {\itshape list} has access to the private members of iterator. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
-\subsubsection*{template$<$typename T = int$>$class ofeli\-::list$<$ T $>$\-::iterator}
-
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T = int$>$\newline
+class ofeli::\+list$<$ T $>$::\+iterator}
 Iterator to modify a list. 
 
-Definition at line 119 of file linked\-\_\-list.\-hpp.
+Definition at line \doxymbox{\hyperlink{linked__list_8hpp_source_l00119}{119}} of file \doxymbox{\hyperlink{linked__list_8hpp_source}{linked\+\_\+list.\+hpp}}.
 
 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\label{classofeli_1_1list_1_1iterator_doc-constructors}
+\Hypertarget{classofeli_1_1list_1_1iterator_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classofeli_1_1list_1_1iterator_ac45584122cd0b4f60d046503595736b1}\index{ofeli::list$<$ T $>$::iterator@{ofeli::list$<$ T $>$::iterator}!iterator@{iterator}}
+\index{iterator@{iterator}!ofeli::list$<$ T $>$::iterator@{ofeli::list$<$ T $>$::iterator}}
+\doxysubsubsection{\texorpdfstring{iterator()}{iterator()}}
+{\footnotesize\ttfamily \label{classofeli_1_1list_1_1iterator_ac45584122cd0b4f60d046503595736b1} 
+template$<$typename T = int$>$ \\
+\doxymbox{\hyperlink{classofeli_1_1list}{ofeli::\+list}}$<$ T $>$::\+iterator::\+iterator (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classofeli_1_1list_a7765ecb875543506d04dbd466f754503}{Link}}}]{node1}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Constructor with a node. 
+
+
+
+Definition at line \doxymbox{\hyperlink{linked__list_8hpp_source_l00149}{149}} of file \doxymbox{\hyperlink{linked__list_8hpp_source}{linked\+\_\+list.\+hpp}}.
+
+
+
+\label{classofeli_1_1list_1_1iterator_doc-func-members}
+\Hypertarget{classofeli_1_1list_1_1iterator_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classofeli_1_1list_1_1iterator_afc3d857dcefe0815fbb3993edc6a6442}\index{ofeli::list$<$ T $>$::iterator@{ofeli::list$<$ T $>$::iterator}!end@{end}}
+\index{end@{end}!ofeli::list$<$ T $>$::iterator@{ofeli::list$<$ T $>$::iterator}}
+\doxysubsubsection{\texorpdfstring{end()}{end()}}
+{\footnotesize\ttfamily \label{classofeli_1_1list_1_1iterator_afc3d857dcefe0815fbb3993edc6a6442} 
+template$<$typename T = int$>$ \\
+bool \doxymbox{\hyperlink{classofeli_1_1list}{ofeli::\+list}}$<$ T $>$::\+iterator::\+end (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if the iterator is at the end of the list, i.\+e. if the node is the sentinel node. 
+
+
+
+Definition at line \doxymbox{\hyperlink{linked__list_8hpp_source_l00134}{134}} of file \doxymbox{\hyperlink{linked__list_8hpp_source}{linked\+\_\+list.\+hpp}}.
+
+\Hypertarget{classofeli_1_1list_1_1iterator_affd6323b008c3331c94e390290c549d4}\index{ofeli::list$<$ T $>$::iterator@{ofeli::list$<$ T $>$::iterator}!operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}}
+\index{operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}!ofeli::list$<$ T $>$::iterator@{ofeli::list$<$ T $>$::iterator}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}()}{operator*()}}
+{\footnotesize\ttfamily \label{classofeli_1_1list_1_1iterator_affd6323b008c3331c94e390290c549d4} 
+template$<$typename T = int$>$ \\
+T \& \doxymbox{\hyperlink{classofeli_1_1list}{ofeli::\+list}}$<$ T $>$::\+iterator::\+operator\texorpdfstring{$\ast$}{*} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the node data. {\itshape iterator} does not protect the data against writing. 
+
+
+
+Definition at line \doxymbox{\hyperlink{linked__list_8hpp_source_l00128}{128}} of file \doxymbox{\hyperlink{linked__list_8hpp_source}{linked\+\_\+list.\+hpp}}.
+
+\Hypertarget{classofeli_1_1list_1_1iterator_a8dad90c97028aa821546e3d06d0131c0}\index{ofeli::list$<$ T $>$::iterator@{ofeli::list$<$ T $>$::iterator}!operator++@{operator++}}
+\index{operator++@{operator++}!ofeli::list$<$ T $>$::iterator@{ofeli::list$<$ T $>$::iterator}}
+\doxysubsubsection{\texorpdfstring{operator++()}{operator++()}}
+{\footnotesize\ttfamily \label{classofeli_1_1list_1_1iterator_a8dad90c97028aa821546e3d06d0131c0} 
+template$<$typename T = int$>$ \\
+\doxymbox{\hyperlink{classofeli_1_1list_1_1iterator_ac45584122cd0b4f60d046503595736b1}{iterator}} \& \doxymbox{\hyperlink{classofeli_1_1list}{ofeli::\+list}}$<$ T $>$::\+iterator::\+operator++ (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Increment the iterator. 
+
+
+
+Definition at line \doxymbox{\hyperlink{linked__list_8hpp_source_l00140}{140}} of file \doxymbox{\hyperlink{linked__list_8hpp_source}{linked\+\_\+list.\+hpp}}.
+
+
+
+\label{classofeli_1_1list_1_1iterator_doc-related-members}
+\Hypertarget{classofeli_1_1list_1_1iterator_doc-related-members}
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{classofeli_1_1list_1_1iterator_a39e8296e3b93358d0af90000b5d9113c}\index{ofeli::list$<$ T $>$::iterator@{ofeli::list$<$ T $>$::iterator}!list@{list}}
+\index{list@{list}!ofeli::list$<$ T $>$::iterator@{ofeli::list$<$ T $>$::iterator}}
+\doxysubsubsection{\texorpdfstring{list}{list}}
+{\footnotesize\ttfamily \label{classofeli_1_1list_1_1iterator_a39e8296e3b93358d0af90000b5d9113c} 
+template$<$typename T = int$>$ \\
+friend class list\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+{\itshape list} has access to the private members of iterator. 
+
+
+
+Definition at line \doxymbox{\hyperlink{linked__list_8hpp_source_l00123}{123}} of file \doxymbox{\hyperlink{linked__list_8hpp_source}{linked\+\_\+list.\+hpp}}.
+
+
+
+\label{classofeli_1_1list_1_1iterator_doc-variable-members}
+\Hypertarget{classofeli_1_1list_1_1iterator_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classofeli_1_1list_1_1iterator_a6be3588fe536436d8c35c7db94beeb08}\index{ofeli::list$<$ T $>$::iterator@{ofeli::list$<$ T $>$::iterator}!node@{node}}
+\index{node@{node}!ofeli::list$<$ T $>$::iterator@{ofeli::list$<$ T $>$::iterator}}
+\doxysubsubsection{\texorpdfstring{node}{node}}
+{\footnotesize\ttfamily \label{classofeli_1_1list_1_1iterator_a6be3588fe536436d8c35c7db94beeb08} 
+template$<$typename T = int$>$ \\
+\doxymbox{\hyperlink{classofeli_1_1list_a7765ecb875543506d04dbd466f754503}{Link}} \doxymbox{\hyperlink{classofeli_1_1list}{ofeli::\+list}}$<$ T $>$::\+iterator::\+node\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+{\itshape \doxylink{classofeli_1_1list_1_1const__iterator}{const\+\_\+iterator}} encapsulates a pointer to a node. 
+
+
+
+Definition at line \doxymbox{\hyperlink{linked__list_8hpp_source_l00154}{154}} of file \doxymbox{\hyperlink{linked__list_8hpp_source}{linked\+\_\+list.\+hpp}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
 \item 
-linked\-\_\-list.\-hpp\end{DoxyCompactItemize}
+linked\+\_\+list.\+hpp\end{DoxyCompactItemize}

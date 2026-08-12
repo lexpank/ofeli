@@ -40,10 +40,9 @@
 //! \file main.cpp
 //! \brief Ofeli
 //! \author Fabien Bessy
-//! \version 1.0.7
 //! \date August 2012
 
-/*! \mainpage Developer's documentation
+/*! \page developer_documentation Developer's documentation
  *
  * \section intro_sec Introduction
  *
@@ -64,8 +63,8 @@
  * In this project, the <b>G</b>raphical <b>U</b>ser <b>I</b>nterface (GUI) is clearly separated of the image processing part.
  *
  * GUI part :
- * - file imageviewer.cpp file with the class ofeli::ImageViewer (dependant of framework Qt 5.0, QtCore and QtWidgets modules)
- * - file pixmapwidget.cpp with the class ofeli::PixmapWidget (dependant of framework Qt 5.0, QtCore and QtWidgets modules)
+ * - file imageviewer.cpp file with the class ofeli::ImageViewer (dependent on Qt 6, QtCore, QtGui, QtWidgets and QtPrintSupport modules)
+ * - file pixmapwidget.cpp with the class ofeli::PixmapWidget (dependent on Qt 6, QtCore, QtGui and QtWidgets modules)
  *
  * Image processing part :
  * - file linked_list.tpp with the class ofeli::list
@@ -74,7 +73,7 @@
  *      - file ac_withoutedges_yuv.cpp with the class ofeli::ACwithoutEdgesYUV
  *      - file geodesic_ac.cpp with the class ofeli::GeodesicAC
  * - file hausdorff_distance.cpp with the class ofeli::HausdorffDistance
- * - file filters.cpp with the class ofeli::Filters (dependant of library Boost 1.52 for the random variables)
+ * - file filters.cpp with the class ofeli::Filters (dependent on the C++ standard library random distributions)
  *
  *
  * \section reusability_sec Reusability
@@ -106,6 +105,7 @@
 
 #include <QApplication>
 #include <QCoreApplication>
+#include <QLibraryInfo>
 
 #include "imageviewer.hpp"
 
@@ -114,11 +114,10 @@ int main(int argc, char *argv[])
     // to have the windows theme
     //QApplication::setStyle(new QWindowsStyle);
 
-    QTextCodec::setCodecForLocale( QTextCodec::codecForName("UTF-8") );
-    //QTextCodec::setCodecForCStrings( QTextCodec::codecForName("UTF-8") );
-    //QTextCodec::setCodecForTr( QTextCodec::codecForName("UTF-8") );
-
     QApplication app(argc, argv);
+    QCoreApplication::setApplicationName(QStringLiteral("Ofeli"));
+    QCoreApplication::setOrganizationName(QStringLiteral("Bessy"));
+    QCoreApplication::setApplicationVersion(QStringLiteral(OFELI_VERSION));
 
     QSettings settings("Bessy", "Ofeli");
     int language = settings.value("language",0).toInt();
@@ -150,11 +149,15 @@ int main(int argc, char *argv[])
     }
     }
 
-    translator_qt_widget.load( QString("qt_") + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath) );
-    app.installTranslator(&translator_qt_widget);
+    if( translator_qt_widget.load( QString("qt_") + locale, QLibraryInfo::path(QLibraryInfo::TranslationsPath) ) )
+    {
+        app.installTranslator(&translator_qt_widget);
+    }
 
-    translator_ofeli.load( QString(":Ofeli_") + locale );
-    app.installTranslator(&translator_ofeli);
+    if( translator_ofeli.load( QString(":/i18n/Ofeli_") + locale + QStringLiteral(".qm") ) )
+    {
+        app.installTranslator(&translator_ofeli);
+    }
 
     ofeli::ImageViewer imageViewer;
     imageViewer.show();

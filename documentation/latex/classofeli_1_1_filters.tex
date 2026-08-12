@@ -1,245 +1,849 @@
-\hypertarget{classofeli_1_1_filters}{\section{ofeli\-:\-:Filters Class Reference}
-\label{classofeli_1_1_filters}\index{ofeli\-::\-Filters@{ofeli\-::\-Filters}}
-}
+\doxysection{ofeli::\+Filters Class Reference}
+\hypertarget{classofeli_1_1_filters}{}\label{classofeli_1_1_filters}\index{ofeli::Filters@{ofeli::Filters}}
 
 
-{\ttfamily \#include $<$filters.\-hpp$>$}
+{\ttfamily \+\#include $<$filters.\+hpp$>$}
 
-\subsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classofeli_1_1_filters_afdfd38460d9612c305776f4488a14546}{\hyperlink{classofeli_1_1_filters_afdfd38460d9612c305776f4488a14546}{Filters} (const unsigned char $\ast$img\-\_\-data1, int img\-\_\-width1, int img\-\_\-height1, int byte\-\_\-per\-\_\-pixel1)}\label{classofeli_1_1_filters_afdfd38460d9612c305776f4488a14546}
-
+\doxymbox{\hyperlink{classofeli_1_1_filters_afdfd38460d9612c305776f4488a14546}{Filters}} (const unsigned char \texorpdfstring{$\ast$}{*}img\+\_\+data1, int img\+\_\+width1, int img\+\_\+height1, int byte\+\_\+per\+\_\+pixel1)
 \begin{DoxyCompactList}\small\item\em Constructor with an input pointer on a row-\/wise image data buffer and the dimensions of the image. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_aca1ba583de5930e46a3df2110ebbf21c}{\hyperlink{classofeli_1_1_filters_aca1ba583de5930e46a3df2110ebbf21c}{$\sim$\-Filters} ()}\label{classofeli_1_1_filters_aca1ba583de5930e46a3df2110ebbf21c}
-
+\doxymbox{\hyperlink{classofeli_1_1_filters_aca1ba583de5930e46a3df2110ebbf21c}{\texorpdfstring{$\sim$}{\string~}\+Filters}} ()
 \begin{DoxyCompactList}\small\item\em Desctructor. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_a4bd1f0541cb045674548e292180fff0f}{void \hyperlink{classofeli_1_1_filters_a4bd1f0541cb045674548e292180fff0f}{initialyze\-\_\-filtered} ()}\label{classofeli_1_1_filters_a4bd1f0541cb045674548e292180fff0f}
-
+void \doxymbox{\hyperlink{classofeli_1_1_filters_a4bd1f0541cb045674548e292180fff0f}{initialyze\+\_\+filtered}} ()
 \begin{DoxyCompactList}\small\item\em Copies {\itshape img} buffer to {\itshape filtered} buffer. \end{DoxyCompactList}\item 
-void \hyperlink{classofeli_1_1_filters_ae4a65a5259b3a91a523eefdf2d90b920}{anisotropic\-\_\-diffusion} (int max\-\_\-itera, double lambda, double kappa, int option)
-\begin{DoxyCompactList}\small\item\em Performs a Perona-\/\-Malik anisotropic diffusion with a 8-\/connected neighborhood. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_a95fcd4385d6a115af0617407d91e6901}{void \hyperlink{classofeli_1_1_filters_a95fcd4385d6a115af0617407d91e6901}{morphological\-\_\-gradient} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_a95fcd4385d6a115af0617407d91e6901}
-
-\begin{DoxyCompactList}\small\item\em Performs a morphological\-\_\-gradient with a square structuring element with a naïve algorithm. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_a13b390c3705e19c211c04f47daa17844}{void \hyperlink{classofeli_1_1_filters_a13b390c3705e19c211c04f47daa17844}{morphological\-\_\-gradient\-\_\-o1} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_a13b390c3705e19c211c04f47daa17844}
-
-\begin{DoxyCompactList}\small\item\em Performs a morphological\-\_\-gradient with a square structuring element with the Perreault's algorithm. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_aceefc0f308d675d2cb752bd4a7a22dd1}{void \hyperlink{classofeli_1_1_filters_aceefc0f308d675d2cb752bd4a7a22dd1}{dilation} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_aceefc0f308d675d2cb752bd4a7a22dd1}
-
+void \doxymbox{\hyperlink{classofeli_1_1_filters_a6c0d2bf872f017d3afb4067208612e2e}{anisotropic\+\_\+diffusion}} (int max\+\_\+itera, double lambda, double kappa, int option)
+\begin{DoxyCompactList}\small\item\em Performs a Perona-\/\+Malik anisotropic diffusion with a 8-\/connected neighborhood. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{classofeli_1_1_filters_a95fcd4385d6a115af0617407d91e6901}{morphological\+\_\+gradient}} (int kernel\+\_\+length)
+\begin{DoxyCompactList}\small\item\em Performs a morphological\+\_\+gradient with a square structuring element with a naïve algorithm. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{classofeli_1_1_filters_a13b390c3705e19c211c04f47daa17844}{morphological\+\_\+gradient\+\_\+o1}} (int kernel\+\_\+length)
+\begin{DoxyCompactList}\small\item\em Performs a morphological\+\_\+gradient with a square structuring element with the Perreault\textquotesingle{}s algorithm. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{classofeli_1_1_filters_aceefc0f308d675d2cb752bd4a7a22dd1}{dilation}} (int kernel\+\_\+length)
 \begin{DoxyCompactList}\small\item\em Performs a dilation with a square structuring element with a naïve algorithm. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_a806b4e3976167324fa019d825e00286d}{void \hyperlink{classofeli_1_1_filters_a806b4e3976167324fa019d825e00286d}{dilation\-\_\-o1} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_a806b4e3976167324fa019d825e00286d}
-
-\begin{DoxyCompactList}\small\item\em Performs a dilation with a square structuring element with the Perreault's algorithm. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_ab9bc3d5a53898251178515d5d6be8293}{void \hyperlink{classofeli_1_1_filters_ab9bc3d5a53898251178515d5d6be8293}{erosion} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_ab9bc3d5a53898251178515d5d6be8293}
-
+void \doxymbox{\hyperlink{classofeli_1_1_filters_a806b4e3976167324fa019d825e00286d}{dilation\+\_\+o1}} (int kernel\+\_\+length)
+\begin{DoxyCompactList}\small\item\em Performs a dilation with a square structuring element with the Perreault\textquotesingle{}s algorithm. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{classofeli_1_1_filters_ab9bc3d5a53898251178515d5d6be8293}{erosion}} (int kernel\+\_\+length)
 \begin{DoxyCompactList}\small\item\em Performs an erosion with a square structuring element with a naïve algorithm. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_a8f6d16a2ebbc52ea041cda0c7336343a}{void \hyperlink{classofeli_1_1_filters_a8f6d16a2ebbc52ea041cda0c7336343a}{erosion\-\_\-o1} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_a8f6d16a2ebbc52ea041cda0c7336343a}
-
-\begin{DoxyCompactList}\small\item\em Performs an erosion with a square structuring element with the Perreault's algorithm. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_a01cbcf40deec00feca16f982e3e081a2}{void \hyperlink{classofeli_1_1_filters_a01cbcf40deec00feca16f982e3e081a2}{closing} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_a01cbcf40deec00feca16f982e3e081a2}
-
+void \doxymbox{\hyperlink{classofeli_1_1_filters_a8f6d16a2ebbc52ea041cda0c7336343a}{erosion\+\_\+o1}} (int kernel\+\_\+length)
+\begin{DoxyCompactList}\small\item\em Performs an erosion with a square structuring element with the Perreault\textquotesingle{}s algorithm. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{classofeli_1_1_filters_a01cbcf40deec00feca16f982e3e081a2}{closing}} (int kernel\+\_\+length)
 \begin{DoxyCompactList}\small\item\em Performs a closing with a square structuring element with a naïve algorithm. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_a04f01e51d6feee4246ede96f767d36c5}{void \hyperlink{classofeli_1_1_filters_a04f01e51d6feee4246ede96f767d36c5}{closing\-\_\-o1} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_a04f01e51d6feee4246ede96f767d36c5}
-
-\begin{DoxyCompactList}\small\item\em Performs a closing with a square structuring element with the Perreault's algorithm. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_aab4788b300a3229c61b7cae344eb2142}{void \hyperlink{classofeli_1_1_filters_aab4788b300a3229c61b7cae344eb2142}{opening} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_aab4788b300a3229c61b7cae344eb2142}
-
+void \doxymbox{\hyperlink{classofeli_1_1_filters_a04f01e51d6feee4246ede96f767d36c5}{closing\+\_\+o1}} (int kernel\+\_\+length)
+\begin{DoxyCompactList}\small\item\em Performs a closing with a square structuring element with the Perreault\textquotesingle{}s algorithm. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{classofeli_1_1_filters_aab4788b300a3229c61b7cae344eb2142}{opening}} (int kernel\+\_\+length)
 \begin{DoxyCompactList}\small\item\em Performs a closing with a square structuring element with a naïve algorithm. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_a157720e1dbc58827f515de30a18b546a}{void \hyperlink{classofeli_1_1_filters_a157720e1dbc58827f515de30a18b546a}{opening\-\_\-o1} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_a157720e1dbc58827f515de30a18b546a}
-
-\begin{DoxyCompactList}\small\item\em Performs an opening with a square structuring element with the Perreault's algorithm. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_a29dbdd34e2cffc4f37b104f3fab6ead0}{void \hyperlink{classofeli_1_1_filters_a29dbdd34e2cffc4f37b104f3fab6ead0}{black\-\_\-top\-\_\-hat} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_a29dbdd34e2cffc4f37b104f3fab6ead0}
-
+void \doxymbox{\hyperlink{classofeli_1_1_filters_a157720e1dbc58827f515de30a18b546a}{opening\+\_\+o1}} (int kernel\+\_\+length)
+\begin{DoxyCompactList}\small\item\em Performs an opening with a square structuring element with the Perreault\textquotesingle{}s algorithm. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{classofeli_1_1_filters_a29dbdd34e2cffc4f37b104f3fab6ead0}{black\+\_\+top\+\_\+hat}} (int kernel\+\_\+length)
 \begin{DoxyCompactList}\small\item\em Performs a black top hat transform with a square structuring element with a naïve algorithm. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_a6343e4176fd069a285b6da83de0cd63d}{void \hyperlink{classofeli_1_1_filters_a6343e4176fd069a285b6da83de0cd63d}{black\-\_\-top\-\_\-hat\-\_\-o1} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_a6343e4176fd069a285b6da83de0cd63d}
-
-\begin{DoxyCompactList}\small\item\em Performs a black top hat transform with a square structuring element with the Perreault's algorithm. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_adaade4352062899127d46615a8e31b42}{void \hyperlink{classofeli_1_1_filters_adaade4352062899127d46615a8e31b42}{white\-\_\-top\-\_\-hat} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_adaade4352062899127d46615a8e31b42}
-
+void \doxymbox{\hyperlink{classofeli_1_1_filters_a6343e4176fd069a285b6da83de0cd63d}{black\+\_\+top\+\_\+hat\+\_\+o1}} (int kernel\+\_\+length)
+\begin{DoxyCompactList}\small\item\em Performs a black top hat transform with a square structuring element with the Perreault\textquotesingle{}s algorithm. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{classofeli_1_1_filters_adaade4352062899127d46615a8e31b42}{white\+\_\+top\+\_\+hat}} (int kernel\+\_\+length)
 \begin{DoxyCompactList}\small\item\em Performs a white top hat transform with a square structuring element with a naïve algorithm. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_a2e3a6b4aa3329dcb021430748c83d992}{void \hyperlink{classofeli_1_1_filters_a2e3a6b4aa3329dcb021430748c83d992}{white\-\_\-top\-\_\-hat\-\_\-o1} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_a2e3a6b4aa3329dcb021430748c83d992}
-
-\begin{DoxyCompactList}\small\item\em Performs a white top hat transform with a square structuring element with the Perreault's algorithm. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_a525926351892d87d4fee244474d9ac8f}{void \hyperlink{classofeli_1_1_filters_a525926351892d87d4fee244474d9ac8f}{fas} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_a525926351892d87d4fee244474d9ac8f}
-
+void \doxymbox{\hyperlink{classofeli_1_1_filters_a2e3a6b4aa3329dcb021430748c83d992}{white\+\_\+top\+\_\+hat\+\_\+o1}} (int kernel\+\_\+length)
+\begin{DoxyCompactList}\small\item\em Performs a white top hat transform with a square structuring element with the Perreault\textquotesingle{}s algorithm. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{classofeli_1_1_filters_a525926351892d87d4fee244474d9ac8f}{fas}} (int kernel\+\_\+length)
 \begin{DoxyCompactList}\small\item\em Performs a filter alternate sequential. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_a9b4e4ebbfe46d648181eb4193d829972}{void \hyperlink{classofeli_1_1_filters_a9b4e4ebbfe46d648181eb4193d829972}{mean\-\_\-filtering} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_a9b4e4ebbfe46d648181eb4193d829972}
-
+void \doxymbox{\hyperlink{classofeli_1_1_filters_a9b4e4ebbfe46d648181eb4193d829972}{mean\+\_\+filtering}} (int kernel\+\_\+length)
 \begin{DoxyCompactList}\small\item\em Performs a mean filtering. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_ac34d1b5157e16d92176acc0548f62ff3}{void \hyperlink{classofeli_1_1_filters_ac34d1b5157e16d92176acc0548f62ff3}{nagao\-\_\-filtering} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_ac34d1b5157e16d92176acc0548f62ff3}
-
+void \doxymbox{\hyperlink{classofeli_1_1_filters_ac34d1b5157e16d92176acc0548f62ff3}{nagao\+\_\+filtering}} (int kernel\+\_\+length)
 \begin{DoxyCompactList}\small\item\em Performs a Nagao filtering. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_a22c697b23c38bc3122975e3b923d2bf2}{void \hyperlink{classofeli_1_1_filters_a22c697b23c38bc3122975e3b923d2bf2}{gaussian\-\_\-filtering} (int kernel\-\_\-length, double sigma)}\label{classofeli_1_1_filters_a22c697b23c38bc3122975e3b923d2bf2}
-
+void \doxymbox{\hyperlink{classofeli_1_1_filters_a22c697b23c38bc3122975e3b923d2bf2}{gaussian\+\_\+filtering}} (int kernel\+\_\+length, double sigma)
 \begin{DoxyCompactList}\small\item\em Performs a gaussian filtering with the kernel length and the standard deviation {\ttfamily sigma}. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_a2dff0282c738fff489f18d9173cfec24}{void \hyperlink{classofeli_1_1_filters_a2dff0282c738fff489f18d9173cfec24}{median\-\_\-filtering\-\_\-o\-Nlog\-N} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_a2dff0282c738fff489f18d9173cfec24}
-
-\begin{DoxyCompactList}\small\item\em Performs a median filtering based on the quick sort algorithm. Complexity is in {\ttfamily O}(kernel\-\_\-length×log(kernel\-\_\-length)). \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_a65e7324360cac62a715a61565399ad85}{void \hyperlink{classofeli_1_1_filters_a65e7324360cac62a715a61565399ad85}{median\-\_\-filtering\-\_\-o1} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_a65e7324360cac62a715a61565399ad85}
-
-\begin{DoxyCompactList}\small\item\em Performs a median filtering based on the Perreault's algorithm. Complexity is in {\ttfamily O(1)}. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_a0351b099fb22a9397b27ae1661b6c836}{void \hyperlink{classofeli_1_1_filters_a0351b099fb22a9397b27ae1661b6c836}{gaussian\-\_\-white\-\_\-noise} (double sigma)}\label{classofeli_1_1_filters_a0351b099fb22a9397b27ae1661b6c836}
-
+void \doxymbox{\hyperlink{classofeli_1_1_filters_a2dff0282c738fff489f18d9173cfec24}{median\+\_\+filtering\+\_\+o\+NlogN}} (int kernel\+\_\+length)
+\begin{DoxyCompactList}\small\item\em Performs a median filtering based on the quick sort algorithm. Complexity is in {\ttfamily O}(kernel\+\_\+length×log(kernel\+\_\+length)). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{classofeli_1_1_filters_a65e7324360cac62a715a61565399ad85}{median\+\_\+filtering\+\_\+o1}} (int kernel\+\_\+length)
+\begin{DoxyCompactList}\small\item\em Performs a median filtering based on the Perreault\textquotesingle{}s algorithm. Complexity is in {\ttfamily O(1)}. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{classofeli_1_1_filters_a0351b099fb22a9397b27ae1661b6c836}{gaussian\+\_\+white\+\_\+noise}} (double sigma)
 \begin{DoxyCompactList}\small\item\em Adds a gaussian white noise with the standard deviation {\ttfamily sigma}. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_a268bff23cc4814805605782aaa9e7fa6}{void \hyperlink{classofeli_1_1_filters_a268bff23cc4814805605782aaa9e7fa6}{salt\-\_\-pepper\-\_\-noise} (double proba)}\label{classofeli_1_1_filters_a268bff23cc4814805605782aaa9e7fa6}
-
-\begin{DoxyCompactList}\small\item\em Does an impulsional noise with a probabity of noise for each pixel, i.\-e the density. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_a04349ff8309e50ed6daf714ff66f3239}{void \hyperlink{classofeli_1_1_filters_a04349ff8309e50ed6daf714ff66f3239}{speckle} (double sigma)}\label{classofeli_1_1_filters_a04349ff8309e50ed6daf714ff66f3239}
-
+void \doxymbox{\hyperlink{classofeli_1_1_filters_a268bff23cc4814805605782aaa9e7fa6}{salt\+\_\+pepper\+\_\+noise}} (double proba)
+\begin{DoxyCompactList}\small\item\em Does an impulsional noise with a probabity of noise for each pixel, i.\+e the density. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{classofeli_1_1_filters_a04349ff8309e50ed6daf714ff66f3239}{speckle}} (double sigma)
 \begin{DoxyCompactList}\small\item\em Performs a speckle noise, a multiplicative noise into the image. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_a0ef873a93af4eab1de166af4b500506b}{void \hyperlink{classofeli_1_1_filters_a0ef873a93af4eab1de166af4b500506b}{local\-\_\-binary\-\_\-pattern} (int kernel\-\_\-length)}\label{classofeli_1_1_filters_a0ef873a93af4eab1de166af4b500506b}
-
+void \doxymbox{\hyperlink{classofeli_1_1_filters_a0ef873a93af4eab1de166af4b500506b}{local\+\_\+binary\+\_\+pattern}} (int kernel\+\_\+length)
 \begin{DoxyCompactList}\small\item\em Computes the local binary pattern. \end{DoxyCompactList}\item 
-void \hyperlink{classofeli_1_1_filters_a0f29ec08c3d9febd2f95ba54ec88e524}{morphological\-\_\-gradient\-\_\-yuv} (int kernel\-\_\-length, int alpha, int beta, int gamma)
-\begin{DoxyCompactList}\small\item\em Computes a morphological gradient \hyperlink{classofeli_1_1_filters_a9c02bc4005c55eeb5a426485af0d03a9}{gradient}. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_a6ed876388f175010735b4987a1a6f493}{const unsigned char $\ast$ \hyperlink{classofeli_1_1_filters_a6ed876388f175010735b4987a1a6f493}{get\-\_\-filtered} () const }\label{classofeli_1_1_filters_a6ed876388f175010735b4987a1a6f493}
-
-\begin{DoxyCompactList}\small\item\em Getter function for \hyperlink{classofeli_1_1_filters_aa4afdd919dfccb08023dee3634b03a30}{filtered}. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_a2c2f355ff0267554a4b2257560fc0085}{const unsigned char $\ast$ \hyperlink{classofeli_1_1_filters_a2c2f355ff0267554a4b2257560fc0085}{get\-\_\-gradient} () const }\label{classofeli_1_1_filters_a2c2f355ff0267554a4b2257560fc0085}
-
-\begin{DoxyCompactList}\small\item\em Getter function for \hyperlink{classofeli_1_1_filters_a9c02bc4005c55eeb5a426485af0d03a9}{gradient}. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Private Member Functions}
+void \doxymbox{\hyperlink{classofeli_1_1_filters_a0f29ec08c3d9febd2f95ba54ec88e524}{morphological\+\_\+gradient\+\_\+yuv}} (int kernel\+\_\+length, int alpha, int beta, int gamma)
+\begin{DoxyCompactList}\small\item\em Computes a morphological gradient \doxylink{classofeli_1_1_filters_a9c02bc4005c55eeb5a426485af0d03a9}{gradient}. \end{DoxyCompactList}\item 
+const unsigned char \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classofeli_1_1_filters_a0c82813a9173638c23be2fd5b623e1fa}{get\+\_\+filtered}} () const
+\begin{DoxyCompactList}\small\item\em Getter function for \doxylink{classofeli_1_1_filters_aa4afdd919dfccb08023dee3634b03a30}{filtered}. \end{DoxyCompactList}\item 
+const unsigned char \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classofeli_1_1_filters_ac8ef8cba7b84f2401196a363a548cbd9}{get\+\_\+gradient}} () const
+\begin{DoxyCompactList}\small\item\em Getter function for \doxylink{classofeli_1_1_filters_a9c02bc4005c55eeb5a426485af0d03a9}{gradient}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classofeli_1_1_filters_ac7e55934e49bacdb8dffafa6d60eb948}{int \hyperlink{classofeli_1_1_filters_ac7e55934e49bacdb8dffafa6d60eb948}{find\-\_\-offset} (int x, int y, int color\-\_\-channel) const }\label{classofeli_1_1_filters_ac7e55934e49bacdb8dffafa6d60eb948}
-
-\begin{DoxyCompactList}\small\item\em Calculates the offset the image data buffer with the position ({\itshape x},{\itshape y}, {\itshape color\-\_\-channel}). \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Static Private Member Functions}
+int \doxymbox{\hyperlink{classofeli_1_1_filters_a1b4e71994be1e4292ac0ec8b53f86008}{find\+\_\+offset}} (int x, int y, int color\+\_\+channel) const
+\begin{DoxyCompactList}\small\item\em Calculates the offset the image data buffer with the position ({\itshape x},{\itshape y}, {\itshape color\+\_\+channel}). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classofeli_1_1_filters_abfd6b12417b42693a903e35f01608969}{static const double $\ast$const \hyperlink{classofeli_1_1_filters_abfd6b12417b42693a903e35f01608969}{gaussian\-\_\-kernel} (int kernel\-\_\-length, double sigma)}\label{classofeli_1_1_filters_abfd6b12417b42693a903e35f01608969}
-
+static const double \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classofeli_1_1_filters_a07c9fbb4d5b4a07d71aa33ed28db43f0}{gaussian\+\_\+kernel}} (int kernel\+\_\+length, double sigma)
 \begin{DoxyCompactList}\small\item\em Creates a gaussian kernel with the kernel length and the standard deviation sigma. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_afe930659890f200f2f8874ef68be5a10}{static void \hyperlink{classofeli_1_1_filters_afe930659890f200f2f8874ef68be5a10}{swap} (unsigned char $\ast$const array, int a, int b)}\label{classofeli_1_1_filters_afe930659890f200f2f8874ef68be5a10}
-
+static void \doxymbox{\hyperlink{classofeli_1_1_filters_afe930659890f200f2f8874ef68be5a10}{swap}} (unsigned char \texorpdfstring{$\ast$}{*}const array, int a, int b)
 \begin{DoxyCompactList}\small\item\em Swaps two values of an array. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_a93dda800c3f3a0053cccde23a457656f}{static void \hyperlink{classofeli_1_1_filters_a93dda800c3f3a0053cccde23a457656f}{quick\-\_\-sort} (unsigned char $\ast$const array, int begin, int end)}\label{classofeli_1_1_filters_a93dda800c3f3a0053cccde23a457656f}
-
+static void \doxymbox{\hyperlink{classofeli_1_1_filters_a93dda800c3f3a0053cccde23a457656f}{quick\+\_\+sort}} (unsigned char \texorpdfstring{$\ast$}{*}const array, int begin, int end)
 \begin{DoxyCompactList}\small\item\em Sorts an array with the quick sort algorithm. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_a4db66fc6e849d67e5bc89dbc72fe6282}{{\footnotesize template$<$typename T $>$ }\\static T \hyperlink{classofeli_1_1_filters_a4db66fc6e849d67e5bc89dbc72fe6282}{square} (const T \&value)}\label{classofeli_1_1_filters_a4db66fc6e849d67e5bc89dbc72fe6282}
-
+{\footnotesize template$<$typename T$>$ }\\static T \doxymbox{\hyperlink{classofeli_1_1_filters_a4db66fc6e849d67e5bc89dbc72fe6282}{square}} (const T \&value)
 \begin{DoxyCompactList}\small\item\em Gives the square of a value. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Private Attributes}
+\doxysubsubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classofeli_1_1_filters_a375494bcc04ceef4f48e859f2c8afe09}{const unsigned char $\ast$const \hyperlink{classofeli_1_1_filters_a375494bcc04ceef4f48e859f2c8afe09}{img\-\_\-data}}\label{classofeli_1_1_filters_a375494bcc04ceef4f48e859f2c8afe09}
-
+const unsigned char \texorpdfstring{$\ast$}{*}const \doxymbox{\hyperlink{classofeli_1_1_filters_a375494bcc04ceef4f48e859f2c8afe09}{img\+\_\+data}}
 \begin{DoxyCompactList}\small\item\em Input pointer on the grayscale or grey-\/level image data buffer. This buffer must be row-\/wise. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_aa4afdd919dfccb08023dee3634b03a30}{unsigned char $\ast$ \hyperlink{classofeli_1_1_filters_aa4afdd919dfccb08023dee3634b03a30}{filtered}}\label{classofeli_1_1_filters_aa4afdd919dfccb08023dee3634b03a30}
-
+unsigned char \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classofeli_1_1_filters_aa4afdd919dfccb08023dee3634b03a30}{filtered}}
 \begin{DoxyCompactList}\small\item\em Pointer on the current result image. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_adfafb4edd683c3cc02997328296df055}{const int \hyperlink{classofeli_1_1_filters_adfafb4edd683c3cc02997328296df055}{img\-\_\-width}}\label{classofeli_1_1_filters_adfafb4edd683c3cc02997328296df055}
-
-\begin{DoxyCompactList}\small\item\em Image width, i.\-e. number of columns. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_a433940423042a8efbdbf1576db1cfa70}{const int \hyperlink{classofeli_1_1_filters_a433940423042a8efbdbf1576db1cfa70}{img\-\_\-height}}\label{classofeli_1_1_filters_a433940423042a8efbdbf1576db1cfa70}
-
-\begin{DoxyCompactList}\small\item\em Image height, i.\-e. number of rows. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_a1c8ad08ed27f16f0def6416ff009599c}{const int \hyperlink{classofeli_1_1_filters_a1c8ad08ed27f16f0def6416ff009599c}{img\-\_\-size}}\label{classofeli_1_1_filters_a1c8ad08ed27f16f0def6416ff009599c}
-
-\begin{DoxyCompactList}\small\item\em Image size, i.\-e. number of pixels. Obviously, it egals to \hyperlink{classofeli_1_1_filters_adfafb4edd683c3cc02997328296df055}{img\-\_\-width} × \hyperlink{classofeli_1_1_filters_a433940423042a8efbdbf1576db1cfa70}{img\-\_\-height}. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_a229e0fc77f59c4747d0251e38cee38a9}{const int \hyperlink{classofeli_1_1_filters_a229e0fc77f59c4747d0251e38cee38a9}{byte\-\_\-per\-\_\-pixel}}\label{classofeli_1_1_filters_a229e0fc77f59c4747d0251e38cee38a9}
-
-\begin{DoxyCompactList}\small\item\em Number of byte or octet per pixel, i.\-e number of channels. It is equal 1 for a grayscale or grey-\/level image and 3 for a color image. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_a888566343f6d0f63576c613d2418a83c}{unsigned char $\ast$ \hyperlink{classofeli_1_1_filters_a888566343f6d0f63576c613d2418a83c}{filtered\-\_\-modif}}\label{classofeli_1_1_filters_a888566343f6d0f63576c613d2418a83c}
-
+const int \doxymbox{\hyperlink{classofeli_1_1_filters_adfafb4edd683c3cc02997328296df055}{img\+\_\+width}}
+\begin{DoxyCompactList}\small\item\em Image width, i.\+e. number of columns. \end{DoxyCompactList}\item 
+const int \doxymbox{\hyperlink{classofeli_1_1_filters_a433940423042a8efbdbf1576db1cfa70}{img\+\_\+height}}
+\begin{DoxyCompactList}\small\item\em Image height, i.\+e. number of rows. \end{DoxyCompactList}\item 
+const int \doxymbox{\hyperlink{classofeli_1_1_filters_a1c8ad08ed27f16f0def6416ff009599c}{img\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em Image size, i.\+e. number of pixels. Obviously, it egals to \doxylink{classofeli_1_1_filters_adfafb4edd683c3cc02997328296df055}{img\+\_\+width} × \doxylink{classofeli_1_1_filters_a433940423042a8efbdbf1576db1cfa70}{img\+\_\+height}. \end{DoxyCompactList}\item 
+const int \doxymbox{\hyperlink{classofeli_1_1_filters_a229e0fc77f59c4747d0251e38cee38a9}{byte\+\_\+per\+\_\+pixel}}
+\begin{DoxyCompactList}\small\item\em Number of byte or octet per pixel, i.\+e number of channels. It is equal 1 for a grayscale or grey-\/level image and 3 for a color image. \end{DoxyCompactList}\item 
+unsigned char \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classofeli_1_1_filters_a888566343f6d0f63576c613d2418a83c}{filtered\+\_\+modif}}
 \begin{DoxyCompactList}\small\item\em Pointer on the temporary result because the filters are not in place. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_af5553609150251d5e5dbcf6a320136db}{unsigned char $\ast$ \hyperlink{classofeli_1_1_filters_af5553609150251d5e5dbcf6a320136db}{previous\-\_\-filtered}}\label{classofeli_1_1_filters_af5553609150251d5e5dbcf6a320136db}
-
+unsigned char \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classofeli_1_1_filters_af5553609150251d5e5dbcf6a320136db}{previous\+\_\+filtered}}
 \begin{DoxyCompactList}\small\item\em Pointer used by top-\/hat functions to keep in memory the previous result before opening or closing to subtract the both images then. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_a9c02bc4005c55eeb5a426485af0d03a9}{unsigned char $\ast$ \hyperlink{classofeli_1_1_filters_a9c02bc4005c55eeb5a426485af0d03a9}{gradient}}\label{classofeli_1_1_filters_a9c02bc4005c55eeb5a426485af0d03a9}
-
-\begin{DoxyCompactList}\small\item\em Pointer on the gradient used by the geodesic model in the case of an R\-G\-B image. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_ab7294c70e210d8300f8fab04f6d8a734}{double $\ast$ \hyperlink{classofeli_1_1_filters_ab7294c70e210d8300f8fab04f6d8a734}{diff\-\_\-img}}\label{classofeli_1_1_filters_ab7294c70e210d8300f8fab04f6d8a734}
-
+unsigned char \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classofeli_1_1_filters_a9c02bc4005c55eeb5a426485af0d03a9}{gradient}}
+\begin{DoxyCompactList}\small\item\em Pointer on the gradient used by the geodesic model in the case of an RGB image. \end{DoxyCompactList}\item 
+double \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classofeli_1_1_filters_ab7294c70e210d8300f8fab04f6d8a734}{diff\+\_\+img}}
 \begin{DoxyCompactList}\small\item\em Pointer on the diffused image buffer for the anisotropic diffusion filter. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_af81a398844127108ad6a2742f8079b8d}{double $\ast$ \hyperlink{classofeli_1_1_filters_af81a398844127108ad6a2742f8079b8d}{diff\-\_\-img1}}\label{classofeli_1_1_filters_af81a398844127108ad6a2742f8079b8d}
-
+double \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classofeli_1_1_filters_af81a398844127108ad6a2742f8079b8d}{diff\+\_\+img1}}
 \begin{DoxyCompactList}\small\item\em Pointer on the temporary diffused image buffer for the anisotropic diffusion filter because this filter is not in place. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_a0c4833447639123fc17033fa375d0b8b}{int $\ast$const \hyperlink{classofeli_1_1_filters_a0c4833447639123fc17033fa375d0b8b}{columns\-\_\-histo}}\label{classofeli_1_1_filters_a0c4833447639123fc17033fa375d0b8b}
-
-\begin{DoxyCompactList}\small\item\em Columns histogram used by the Perreault's algorithm. \end{DoxyCompactList}\item 
-\hypertarget{classofeli_1_1_filters_aa48e946134f25fa04373cfd149f1ea0f}{int \hyperlink{classofeli_1_1_filters_aa48e946134f25fa04373cfd149f1ea0f}{kernel\-\_\-histo} \mbox{[}256\mbox{]}}\label{classofeli_1_1_filters_aa48e946134f25fa04373cfd149f1ea0f}
-
-\begin{DoxyCompactList}\small\item\em Kernel histogram used by the Perreault's algorithm. \end{DoxyCompactList}\end{DoxyCompactItemize}
+int \texorpdfstring{$\ast$}{*}const \doxymbox{\hyperlink{classofeli_1_1_filters_a0c4833447639123fc17033fa375d0b8b}{columns\+\_\+histo}}
+\begin{DoxyCompactList}\small\item\em Columns histogram used by the Perreault\textquotesingle{}s algorithm. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{classofeli_1_1_filters_aa48e946134f25fa04373cfd149f1ea0f}{kernel\+\_\+histo}} \+[256]\+
+\begin{DoxyCompactList}\small\item\em Kernel histogram used by the Perreault\textquotesingle{}s algorithm. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
-This class implements filters and noise functions for R\-G\-B images. \par
- There are two linear filters \-: a mean filter and a gaussian filter. \par
- Moreover, there are seven operators of mathematical morphology (erosion, dilation, morphological gradient, opening, closing and the both top-\/hat transforms) with a square for a structuring element. \par
- Furthermore, there are two edge preserving filters \-: a median filter and a Perona-\/\-Malik anisotropic diffusion. \par
- The order filters (i.\-e. the median filter and the morphological filters) are implemented in a naïve version and in an optimized version (using Simon Perreault's algorithm). \par
- In addition, there are three functions to add noise, implemented with the random variables of Boost library \-: gaussian white noise, impulsional noise or salt and pepper and speckle. 
+\doxysubsection{Detailed Description}
+This class implements filters and noise functions for RGB images. ~\newline
+There are two linear filters :\+ a mean filter and a gaussian filter. ~\newline
+Moreover, there are seven operators of mathematical morphology (erosion, dilation, morphological gradient, opening, closing and the both top-\/hat transforms) with a square for a structuring element. ~\newline
+Furthermore, there are two edge preserving filters :\+ a median filter and a Perona-\/\+Malik anisotropic diffusion. ~\newline
+The order filters (i.\+e. the median filter and the morphological filters) are implemented in a naïve version and in an optimized version (using Simon Perreault\textquotesingle{}s algorithm). ~\newline
+In addition, there are three functions to add noise, implemented with the C++ standard library random distributions:\+ gaussian white noise, impulsional noise or salt and pepper and speckle. 
 
-Definition at line 46 of file filters.\-hpp.
+Definition at line \doxymbox{\hyperlink{filters_8hpp_source_l00046}{46}} of file \doxymbox{\hyperlink{filters_8hpp_source}{filters.\+hpp}}.
 
 
 
-\subsection{Member Function Documentation}
-\hypertarget{classofeli_1_1_filters_ae4a65a5259b3a91a523eefdf2d90b920}{\index{ofeli\-::\-Filters@{ofeli\-::\-Filters}!anisotropic\-\_\-diffusion@{anisotropic\-\_\-diffusion}}
-\index{anisotropic\-\_\-diffusion@{anisotropic\-\_\-diffusion}!ofeli::Filters@{ofeli\-::\-Filters}}
-\subsubsection[{anisotropic\-\_\-diffusion}]{\setlength{\rightskip}{0pt plus 5cm}void Filters\-::anisotropic\-\_\-diffusion (
-\begin{DoxyParamCaption}
-\item[{int}]{max\-\_\-itera, }
-\item[{double}]{lambda, }
-\item[{double}]{kappa, }
-\item[{int}]{option}
-\end{DoxyParamCaption}
-)}}\label{classofeli_1_1_filters_ae4a65a5259b3a91a523eefdf2d90b920}
+\label{classofeli_1_1_filters_doc-constructors}
+\Hypertarget{classofeli_1_1_filters_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classofeli_1_1_filters_afdfd38460d9612c305776f4488a14546}\index{ofeli::Filters@{ofeli::Filters}!Filters@{Filters}}
+\index{Filters@{Filters}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{Filters()}{Filters()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_afdfd38460d9612c305776f4488a14546} 
+ofeli::\+\+Filters::\+\+Filters (\begin{DoxyParamCaption}\item[{const unsigned char \texorpdfstring{$\ast$}{*}}]{img\+\_\+data1}{, }\item[{int}]{img\+\_\+width1}{, }\item[{int}]{img\+\_\+height1}{, }\item[{int}]{byte\+\_\+per\+\_\+pixel1}{}\end{DoxyParamCaption})}
 
 
-Performs a Perona-\/\-Malik anisotropic diffusion with a 8-\/connected neighborhood. 
+
+Constructor with an input pointer on a row-\/wise image data buffer and the dimensions of the image. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8cpp_source_l00060}{60}} of file \doxymbox{\hyperlink{filters_8cpp_source}{filters.\+cpp}}.
+
+\Hypertarget{classofeli_1_1_filters_aca1ba583de5930e46a3df2110ebbf21c}\index{ofeli::Filters@{ofeli::Filters}!````~Filters@{\texorpdfstring{$\sim$}{\string~}Filters}}
+\index{````~Filters@{\texorpdfstring{$\sim$}{\string~}Filters}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Filters()}{\string~Filters()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_aca1ba583de5930e46a3df2110ebbf21c} 
+ofeli::\+\+Filters::\+\texorpdfstring{$\sim$}{\string~}\+Filters (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Desctructor. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8cpp_source_l00097}{97}} of file \doxymbox{\hyperlink{filters_8cpp_source}{filters.\+cpp}}.
+
+
+
+\label{classofeli_1_1_filters_doc-func-members}
+\Hypertarget{classofeli_1_1_filters_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classofeli_1_1_filters_a6c0d2bf872f017d3afb4067208612e2e}\index{ofeli::Filters@{ofeli::Filters}!anisotropic\_diffusion@{anisotropic\_diffusion}}
+\index{anisotropic\_diffusion@{anisotropic\_diffusion}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{anisotropic\_diffusion()}{anisotropic\_diffusion()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a6c0d2bf872f017d3afb4067208612e2e} 
+void ofeli::\+\+Filters::\+anisotropic\+\_\+diffusion (\begin{DoxyParamCaption}\item[{int}]{max\+\_\+itera}{, }\item[{double}]{lambda}{, }\item[{double}]{kappa}{, }\item[{int}]{option}{}\end{DoxyParamCaption})}
+
+
+
+Performs a Perona-\/\+Malik anisotropic diffusion with a 8-\/connected neighborhood. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em max\-\_\-itera} & maximum number of iterations \\
+{\em max\+\_\+itera} & maximum number of iterations \\
 \hline
 {\em lambda} & constant of integration ( $0\leq \lambda \leq \frac {1} {4}$ ), max value for the numerical stability \\
 \hline
 {\em kappa} & constant of diffusion \\
 \hline
-{\em option} & choice of the function of conduction coefficient \-: \par
- 1 -\/ $g\left( \nabla I\right) =e^{\left( -\left( \left\| \nabla I\right\| / \kappa\right) ^{2}\right) }$ \par
- 2 -\/ $g\left( \nabla I\right) =\frac {1} {1+\left( \frac {\left\| \nabla I\right\| } {\kappa}\right) ^{2}}$ \\
+{\em option} & choice of the function of conduction coefficient :\+ ~\newline
+1 -\/ $g\left( \nabla I\right) =e^{\left( -\left( \left\| \nabla I\right\| / \kappa\right) ^{2}\right) }$ ~\newline
+2 -\/ $g\left( \nabla I\right) =\frac {1} {1+\left( \frac {\left\| \nabla I\right\| } {\kappa}\right) ^{2}}$ \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 105 of file filters.\-cpp.
+Definition at line \doxymbox{\hyperlink{filters_8cpp_source_l00116}{116}} of file \doxymbox{\hyperlink{filters_8cpp_source}{filters.\+cpp}}.
+
+\Hypertarget{classofeli_1_1_filters_a29dbdd34e2cffc4f37b104f3fab6ead0}\index{ofeli::Filters@{ofeli::Filters}!black\_top\_hat@{black\_top\_hat}}
+\index{black\_top\_hat@{black\_top\_hat}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{black\_top\_hat()}{black\_top\_hat()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a29dbdd34e2cffc4f37b104f3fab6ead0} 
+void ofeli::\+\+Filters::\+black\+\_\+top\+\_\+hat (\begin{DoxyParamCaption}\item[{int}]{kernel\+\_\+length}{}\end{DoxyParamCaption})}
 
 
 
-Here is the call graph for this function\-:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=338pt]{classofeli_1_1_filters_ae4a65a5259b3a91a523eefdf2d90b920_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{classofeli_1_1_filters_a0f29ec08c3d9febd2f95ba54ec88e524}{\index{ofeli\-::\-Filters@{ofeli\-::\-Filters}!morphological\-\_\-gradient\-\_\-yuv@{morphological\-\_\-gradient\-\_\-yuv}}
-\index{morphological\-\_\-gradient\-\_\-yuv@{morphological\-\_\-gradient\-\_\-yuv}!ofeli::Filters@{ofeli\-::\-Filters}}
-\subsubsection[{morphological\-\_\-gradient\-\_\-yuv}]{\setlength{\rightskip}{0pt plus 5cm}void ofeli\-::\-Filters\-::morphological\-\_\-gradient\-\_\-yuv (
-\begin{DoxyParamCaption}
-\item[{int}]{kernel\-\_\-length, }
-\item[{int}]{alpha, }
-\item[{int}]{beta, }
-\item[{int}]{gamma}
-\end{DoxyParamCaption}
-)}}\label{classofeli_1_1_filters_a0f29ec08c3d9febd2f95ba54ec88e524}
-
-
-Computes a morphological gradient \hyperlink{classofeli_1_1_filters_a9c02bc4005c55eeb5a426485af0d03a9}{gradient}. 
-
-Gradient morphologique avec un élement structurant carré de taille kernel\-\_\-length. 
-
-Definition at line 2755 of file filters.\-cpp.
+Performs a black top hat transform with a square structuring element with a naïve algorithm. 
 
 
 
-The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+Definition at line \doxymbox{\hyperlink{filters_8cpp_source_l01617}{1617}} of file \doxymbox{\hyperlink{filters_8cpp_source}{filters.\+cpp}}.
+
+\Hypertarget{classofeli_1_1_filters_a6343e4176fd069a285b6da83de0cd63d}\index{ofeli::Filters@{ofeli::Filters}!black\_top\_hat\_o1@{black\_top\_hat\_o1}}
+\index{black\_top\_hat\_o1@{black\_top\_hat\_o1}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{black\_top\_hat\_o1()}{black\_top\_hat\_o1()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a6343e4176fd069a285b6da83de0cd63d} 
+void ofeli::\+\+Filters::\+black\+\_\+top\+\_\+hat\+\_\+o1 (\begin{DoxyParamCaption}\item[{int}]{kernel\+\_\+length}{}\end{DoxyParamCaption})}
+
+
+
+Performs a black top hat transform with a square structuring element with the Perreault\textquotesingle{}s algorithm. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8cpp_source_l01636}{1636}} of file \doxymbox{\hyperlink{filters_8cpp_source}{filters.\+cpp}}.
+
+\Hypertarget{classofeli_1_1_filters_a01cbcf40deec00feca16f982e3e081a2}\index{ofeli::Filters@{ofeli::Filters}!closing@{closing}}
+\index{closing@{closing}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{closing()}{closing()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a01cbcf40deec00feca16f982e3e081a2} 
+void ofeli::\+\+Filters::\+closing (\begin{DoxyParamCaption}\item[{int}]{kernel\+\_\+length}{}\end{DoxyParamCaption})}
+
+
+
+Performs a closing with a square structuring element with a naïve algorithm. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8cpp_source_l01561}{1561}} of file \doxymbox{\hyperlink{filters_8cpp_source}{filters.\+cpp}}.
+
+\Hypertarget{classofeli_1_1_filters_a04f01e51d6feee4246ede96f767d36c5}\index{ofeli::Filters@{ofeli::Filters}!closing\_o1@{closing\_o1}}
+\index{closing\_o1@{closing\_o1}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{closing\_o1()}{closing\_o1()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a04f01e51d6feee4246ede96f767d36c5} 
+void ofeli::\+\+Filters::\+closing\+\_\+o1 (\begin{DoxyParamCaption}\item[{int}]{kernel\+\_\+length}{}\end{DoxyParamCaption})}
+
+
+
+Performs a closing with a square structuring element with the Perreault\textquotesingle{}s algorithm. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8cpp_source_l01575}{1575}} of file \doxymbox{\hyperlink{filters_8cpp_source}{filters.\+cpp}}.
+
+\Hypertarget{classofeli_1_1_filters_aceefc0f308d675d2cb752bd4a7a22dd1}\index{ofeli::Filters@{ofeli::Filters}!dilation@{dilation}}
+\index{dilation@{dilation}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{dilation()}{dilation()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_aceefc0f308d675d2cb752bd4a7a22dd1} 
+void ofeli::\+\+Filters::\+dilation (\begin{DoxyParamCaption}\item[{int}]{kernel\+\_\+length}{}\end{DoxyParamCaption})}
+
+
+
+Performs a dilation with a square structuring element with a naïve algorithm. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8cpp_source_l00769}{769}} of file \doxymbox{\hyperlink{filters_8cpp_source}{filters.\+cpp}}.
+
+\Hypertarget{classofeli_1_1_filters_a806b4e3976167324fa019d825e00286d}\index{ofeli::Filters@{ofeli::Filters}!dilation\_o1@{dilation\_o1}}
+\index{dilation\_o1@{dilation\_o1}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{dilation\_o1()}{dilation\_o1()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a806b4e3976167324fa019d825e00286d} 
+void ofeli::\+\+Filters::\+dilation\+\_\+o1 (\begin{DoxyParamCaption}\item[{int}]{kernel\+\_\+length}{}\end{DoxyParamCaption})}
+
+
+
+Performs a dilation with a square structuring element with the Perreault\textquotesingle{}s algorithm. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8cpp_source_l00843}{843}} of file \doxymbox{\hyperlink{filters_8cpp_source}{filters.\+cpp}}.
+
+\Hypertarget{classofeli_1_1_filters_ab9bc3d5a53898251178515d5d6be8293}\index{ofeli::Filters@{ofeli::Filters}!erosion@{erosion}}
+\index{erosion@{erosion}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{erosion()}{erosion()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_ab9bc3d5a53898251178515d5d6be8293} 
+void ofeli::\+\+Filters::\+erosion (\begin{DoxyParamCaption}\item[{int}]{kernel\+\_\+length}{}\end{DoxyParamCaption})}
+
+
+
+Performs an erosion with a square structuring element with a naïve algorithm. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8cpp_source_l01166}{1166}} of file \doxymbox{\hyperlink{filters_8cpp_source}{filters.\+cpp}}.
+
+\Hypertarget{classofeli_1_1_filters_a8f6d16a2ebbc52ea041cda0c7336343a}\index{ofeli::Filters@{ofeli::Filters}!erosion\_o1@{erosion\_o1}}
+\index{erosion\_o1@{erosion\_o1}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{erosion\_o1()}{erosion\_o1()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a8f6d16a2ebbc52ea041cda0c7336343a} 
+void ofeli::\+\+Filters::\+erosion\+\_\+o1 (\begin{DoxyParamCaption}\item[{int}]{kernel\+\_\+length}{}\end{DoxyParamCaption})}
+
+
+
+Performs an erosion with a square structuring element with the Perreault\textquotesingle{}s algorithm. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8cpp_source_l01239}{1239}} of file \doxymbox{\hyperlink{filters_8cpp_source}{filters.\+cpp}}.
+
+\Hypertarget{classofeli_1_1_filters_a525926351892d87d4fee244474d9ac8f}\index{ofeli::Filters@{ofeli::Filters}!fas@{fas}}
+\index{fas@{fas}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{fas()}{fas()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a525926351892d87d4fee244474d9ac8f} 
+void ofeli::\+\+Filters::\+fas (\begin{DoxyParamCaption}\item[{int}]{kernel\+\_\+length}{}\end{DoxyParamCaption})}
+
+
+
+Performs a filter alternate sequential. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8cpp_source_l02883}{2883}} of file \doxymbox{\hyperlink{filters_8cpp_source}{filters.\+cpp}}.
+
+\Hypertarget{classofeli_1_1_filters_a1b4e71994be1e4292ac0ec8b53f86008}\index{ofeli::Filters@{ofeli::Filters}!find\_offset@{find\_offset}}
+\index{find\_offset@{find\_offset}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{find\_offset()}{find\_offset()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a1b4e71994be1e4292ac0ec8b53f86008} 
+int ofeli::\+\+Filters::\+find\+\_\+offset (\begin{DoxyParamCaption}\item[{int}]{x}{, }\item[{int}]{y}{, }\item[{int}]{color\+\_\+channel}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Calculates the offset the image data buffer with the position ({\itshape x},{\itshape y}, {\itshape color\+\_\+channel}). 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8hpp_source_l00189}{189}} of file \doxymbox{\hyperlink{filters_8hpp_source}{filters.\+hpp}}.
+
+\Hypertarget{classofeli_1_1_filters_a22c697b23c38bc3122975e3b923d2bf2}\index{ofeli::Filters@{ofeli::Filters}!gaussian\_filtering@{gaussian\_filtering}}
+\index{gaussian\_filtering@{gaussian\_filtering}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{gaussian\_filtering()}{gaussian\_filtering()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a22c697b23c38bc3122975e3b923d2bf2} 
+void ofeli::\+\+Filters::\+gaussian\+\_\+filtering (\begin{DoxyParamCaption}\item[{int}]{kernel\+\_\+length}{, }\item[{double}]{sigma}{}\end{DoxyParamCaption})}
+
+
+
+Performs a gaussian filtering with the kernel length and the standard deviation {\ttfamily sigma}. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8cpp_source_l01815}{1815}} of file \doxymbox{\hyperlink{filters_8cpp_source}{filters.\+cpp}}.
+
+\Hypertarget{classofeli_1_1_filters_a07c9fbb4d5b4a07d71aa33ed28db43f0}\index{ofeli::Filters@{ofeli::Filters}!gaussian\_kernel@{gaussian\_kernel}}
+\index{gaussian\_kernel@{gaussian\_kernel}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{gaussian\_kernel()}{gaussian\_kernel()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a07c9fbb4d5b4a07d71aa33ed28db43f0} 
+const double \texorpdfstring{$\ast$}{*} ofeli::\+\+Filters::\+gaussian\+\_\+kernel (\begin{DoxyParamCaption}\item[{int}]{kernel\+\_\+length}{, }\item[{double}]{sigma}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Creates a gaussian kernel with the kernel length and the standard deviation sigma. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8cpp_source_l01768}{1768}} of file \doxymbox{\hyperlink{filters_8cpp_source}{filters.\+cpp}}.
+
+\Hypertarget{classofeli_1_1_filters_a0351b099fb22a9397b27ae1661b6c836}\index{ofeli::Filters@{ofeli::Filters}!gaussian\_white\_noise@{gaussian\_white\_noise}}
+\index{gaussian\_white\_noise@{gaussian\_white\_noise}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{gaussian\_white\_noise()}{gaussian\_white\_noise()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a0351b099fb22a9397b27ae1661b6c836} 
+void ofeli::\+\+Filters::\+gaussian\+\_\+white\+\_\+noise (\begin{DoxyParamCaption}\item[{double}]{sigma}{}\end{DoxyParamCaption})}
+
+
+
+Adds a gaussian white noise with the standard deviation {\ttfamily sigma}. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8cpp_source_l02383}{2383}} of file \doxymbox{\hyperlink{filters_8cpp_source}{filters.\+cpp}}.
+
+\Hypertarget{classofeli_1_1_filters_a0c82813a9173638c23be2fd5b623e1fa}\index{ofeli::Filters@{ofeli::Filters}!get\_filtered@{get\_filtered}}
+\index{get\_filtered@{get\_filtered}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{get\_filtered()}{get\_filtered()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a0c82813a9173638c23be2fd5b623e1fa} 
+const unsigned char \texorpdfstring{$\ast$}{*} ofeli::\+\+Filters::\+get\+\_\+filtered (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Getter function for \doxylink{classofeli_1_1_filters_aa4afdd919dfccb08023dee3634b03a30}{filtered}. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8cpp_source_l02892}{2892}} of file \doxymbox{\hyperlink{filters_8cpp_source}{filters.\+cpp}}.
+
+\Hypertarget{classofeli_1_1_filters_ac8ef8cba7b84f2401196a363a548cbd9}\index{ofeli::Filters@{ofeli::Filters}!get\_gradient@{get\_gradient}}
+\index{get\_gradient@{get\_gradient}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{get\_gradient()}{get\_gradient()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_ac8ef8cba7b84f2401196a363a548cbd9} 
+const unsigned char \texorpdfstring{$\ast$}{*} ofeli::\+\+Filters::\+get\+\_\+gradient (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Getter function for \doxylink{classofeli_1_1_filters_a9c02bc4005c55eeb5a426485af0d03a9}{gradient}. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8cpp_source_l02897}{2897}} of file \doxymbox{\hyperlink{filters_8cpp_source}{filters.\+cpp}}.
+
+\Hypertarget{classofeli_1_1_filters_a4bd1f0541cb045674548e292180fff0f}\index{ofeli::Filters@{ofeli::Filters}!initialyze\_filtered@{initialyze\_filtered}}
+\index{initialyze\_filtered@{initialyze\_filtered}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{initialyze\_filtered()}{initialyze\_filtered()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a4bd1f0541cb045674548e292180fff0f} 
+void ofeli::\+\+Filters::\+initialyze\+\_\+filtered (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Copies {\itshape img} buffer to {\itshape filtered} buffer. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8cpp_source_l00091}{91}} of file \doxymbox{\hyperlink{filters_8cpp_source}{filters.\+cpp}}.
+
+\Hypertarget{classofeli_1_1_filters_a0ef873a93af4eab1de166af4b500506b}\index{ofeli::Filters@{ofeli::Filters}!local\_binary\_pattern@{local\_binary\_pattern}}
+\index{local\_binary\_pattern@{local\_binary\_pattern}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{local\_binary\_pattern()}{local\_binary\_pattern()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a0ef873a93af4eab1de166af4b500506b} 
+void ofeli::\+\+Filters::\+local\+\_\+binary\+\_\+pattern (\begin{DoxyParamCaption}\item[{int}]{kernel\+\_\+length}{}\end{DoxyParamCaption})}
+
+
+
+Computes the local binary pattern. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8cpp_source_l02460}{2460}} of file \doxymbox{\hyperlink{filters_8cpp_source}{filters.\+cpp}}.
+
+\Hypertarget{classofeli_1_1_filters_a9b4e4ebbfe46d648181eb4193d829972}\index{ofeli::Filters@{ofeli::Filters}!mean\_filtering@{mean\_filtering}}
+\index{mean\_filtering@{mean\_filtering}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{mean\_filtering()}{mean\_filtering()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a9b4e4ebbfe46d648181eb4193d829972} 
+void ofeli::\+\+Filters::\+mean\+\_\+filtering (\begin{DoxyParamCaption}\item[{int}]{kernel\+\_\+length}{}\end{DoxyParamCaption})}
+
+
+
+Performs a mean filtering. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8cpp_source_l01693}{1693}} of file \doxymbox{\hyperlink{filters_8cpp_source}{filters.\+cpp}}.
+
+\Hypertarget{classofeli_1_1_filters_a65e7324360cac62a715a61565399ad85}\index{ofeli::Filters@{ofeli::Filters}!median\_filtering\_o1@{median\_filtering\_o1}}
+\index{median\_filtering\_o1@{median\_filtering\_o1}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{median\_filtering\_o1()}{median\_filtering\_o1()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a65e7324360cac62a715a61565399ad85} 
+void ofeli::\+\+Filters::\+median\+\_\+filtering\+\_\+o1 (\begin{DoxyParamCaption}\item[{int}]{kernel\+\_\+length}{}\end{DoxyParamCaption})}
+
+
+
+Performs a median filtering based on the Perreault\textquotesingle{}s algorithm. Complexity is in {\ttfamily O(1)}. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8cpp_source_l02027}{2027}} of file \doxymbox{\hyperlink{filters_8cpp_source}{filters.\+cpp}}.
+
+\Hypertarget{classofeli_1_1_filters_a2dff0282c738fff489f18d9173cfec24}\index{ofeli::Filters@{ofeli::Filters}!median\_filtering\_oNlogN@{median\_filtering\_oNlogN}}
+\index{median\_filtering\_oNlogN@{median\_filtering\_oNlogN}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{median\_filtering\_oNlogN()}{median\_filtering\_oNlogN()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a2dff0282c738fff489f18d9173cfec24} 
+void ofeli::\+\+Filters::\+median\+\_\+filtering\+\_\+o\+NlogN (\begin{DoxyParamCaption}\item[{int}]{kernel\+\_\+length}{}\end{DoxyParamCaption})}
+
+
+
+Performs a median filtering based on the quick sort algorithm. Complexity is in {\ttfamily O}(kernel\+\_\+length×log(kernel\+\_\+length)). 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8cpp_source_l01942}{1942}} of file \doxymbox{\hyperlink{filters_8cpp_source}{filters.\+cpp}}.
+
+\Hypertarget{classofeli_1_1_filters_a95fcd4385d6a115af0617407d91e6901}\index{ofeli::Filters@{ofeli::Filters}!morphological\_gradient@{morphological\_gradient}}
+\index{morphological\_gradient@{morphological\_gradient}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{morphological\_gradient()}{morphological\_gradient()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a95fcd4385d6a115af0617407d91e6901} 
+void ofeli::\+\+Filters::\+morphological\+\_\+gradient (\begin{DoxyParamCaption}\item[{int}]{kernel\+\_\+length}{}\end{DoxyParamCaption})}
+
+
+
+Performs a morphological\+\_\+gradient with a square structuring element with a naïve algorithm. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8cpp_source_l00320}{320}} of file \doxymbox{\hyperlink{filters_8cpp_source}{filters.\+cpp}}.
+
+\Hypertarget{classofeli_1_1_filters_a13b390c3705e19c211c04f47daa17844}\index{ofeli::Filters@{ofeli::Filters}!morphological\_gradient\_o1@{morphological\_gradient\_o1}}
+\index{morphological\_gradient\_o1@{morphological\_gradient\_o1}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{morphological\_gradient\_o1()}{morphological\_gradient\_o1()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a13b390c3705e19c211c04f47daa17844} 
+void ofeli::\+\+Filters::\+morphological\+\_\+gradient\+\_\+o1 (\begin{DoxyParamCaption}\item[{int}]{kernel\+\_\+length}{}\end{DoxyParamCaption})}
+
+
+
+Performs a morphological\+\_\+gradient with a square structuring element with the Perreault\textquotesingle{}s algorithm. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8cpp_source_l00402}{402}} of file \doxymbox{\hyperlink{filters_8cpp_source}{filters.\+cpp}}.
+
+\Hypertarget{classofeli_1_1_filters_a0f29ec08c3d9febd2f95ba54ec88e524}\index{ofeli::Filters@{ofeli::Filters}!morphological\_gradient\_yuv@{morphological\_gradient\_yuv}}
+\index{morphological\_gradient\_yuv@{morphological\_gradient\_yuv}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{morphological\_gradient\_yuv()}{morphological\_gradient\_yuv()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a0f29ec08c3d9febd2f95ba54ec88e524} 
+void ofeli::\+\+Filters::\+morphological\+\_\+gradient\+\_\+yuv (\begin{DoxyParamCaption}\item[{int}]{kernel\+\_\+length}{, }\item[{int}]{alpha}{, }\item[{int}]{beta}{, }\item[{int}]{gamma}{}\end{DoxyParamCaption})}
+
+
+
+Computes a morphological gradient \doxylink{classofeli_1_1_filters_a9c02bc4005c55eeb5a426485af0d03a9}{gradient}. 
+
+Gradient morphologique avec un élement structurant carré de taille kernel\+\_\+length. 
+
+Definition at line \doxymbox{\hyperlink{filters_8cpp_source_l02745}{2745}} of file \doxymbox{\hyperlink{filters_8cpp_source}{filters.\+cpp}}.
+
+\Hypertarget{classofeli_1_1_filters_ac34d1b5157e16d92176acc0548f62ff3}\index{ofeli::Filters@{ofeli::Filters}!nagao\_filtering@{nagao\_filtering}}
+\index{nagao\_filtering@{nagao\_filtering}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{nagao\_filtering()}{nagao\_filtering()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_ac34d1b5157e16d92176acc0548f62ff3} 
+void ofeli::\+\+Filters::\+nagao\+\_\+filtering (\begin{DoxyParamCaption}\item[{int}]{kernel\+\_\+length}{}\end{DoxyParamCaption})}
+
+
+
+Performs a Nagao filtering. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8cpp_source_l02536}{2536}} of file \doxymbox{\hyperlink{filters_8cpp_source}{filters.\+cpp}}.
+
+\Hypertarget{classofeli_1_1_filters_aab4788b300a3229c61b7cae344eb2142}\index{ofeli::Filters@{ofeli::Filters}!opening@{opening}}
+\index{opening@{opening}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{opening()}{opening()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_aab4788b300a3229c61b7cae344eb2142} 
+void ofeli::\+\+Filters::\+opening (\begin{DoxyParamCaption}\item[{int}]{kernel\+\_\+length}{}\end{DoxyParamCaption})}
+
+
+
+Performs a closing with a square structuring element with a naïve algorithm. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8cpp_source_l01589}{1589}} of file \doxymbox{\hyperlink{filters_8cpp_source}{filters.\+cpp}}.
+
+\Hypertarget{classofeli_1_1_filters_a157720e1dbc58827f515de30a18b546a}\index{ofeli::Filters@{ofeli::Filters}!opening\_o1@{opening\_o1}}
+\index{opening\_o1@{opening\_o1}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{opening\_o1()}{opening\_o1()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a157720e1dbc58827f515de30a18b546a} 
+void ofeli::\+\+Filters::\+opening\+\_\+o1 (\begin{DoxyParamCaption}\item[{int}]{kernel\+\_\+length}{}\end{DoxyParamCaption})}
+
+
+
+Performs an opening with a square structuring element with the Perreault\textquotesingle{}s algorithm. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8cpp_source_l01603}{1603}} of file \doxymbox{\hyperlink{filters_8cpp_source}{filters.\+cpp}}.
+
+\Hypertarget{classofeli_1_1_filters_a93dda800c3f3a0053cccde23a457656f}\index{ofeli::Filters@{ofeli::Filters}!quick\_sort@{quick\_sort}}
+\index{quick\_sort@{quick\_sort}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{quick\_sort()}{quick\_sort()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a93dda800c3f3a0053cccde23a457656f} 
+void ofeli::\+\+Filters::\+quick\+\_\+sort (\begin{DoxyParamCaption}\item[{unsigned char \texorpdfstring{$\ast$}{*}const}]{array}{, }\item[{int}]{begin}{, }\item[{int}]{end}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Sorts an array with the quick sort algorithm. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8cpp_source_l01900}{1900}} of file \doxymbox{\hyperlink{filters_8cpp_source}{filters.\+cpp}}.
+
+\Hypertarget{classofeli_1_1_filters_a268bff23cc4814805605782aaa9e7fa6}\index{ofeli::Filters@{ofeli::Filters}!salt\_pepper\_noise@{salt\_pepper\_noise}}
+\index{salt\_pepper\_noise@{salt\_pepper\_noise}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{salt\_pepper\_noise()}{salt\_pepper\_noise()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a268bff23cc4814805605782aaa9e7fa6} 
+void ofeli::\+\+Filters::\+salt\+\_\+pepper\+\_\+noise (\begin{DoxyParamCaption}\item[{double}]{proba}{}\end{DoxyParamCaption})}
+
+
+
+Does an impulsional noise with a probabity of noise for each pixel, i.\+e the density. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8cpp_source_l02407}{2407}} of file \doxymbox{\hyperlink{filters_8cpp_source}{filters.\+cpp}}.
+
+\Hypertarget{classofeli_1_1_filters_a04349ff8309e50ed6daf714ff66f3239}\index{ofeli::Filters@{ofeli::Filters}!speckle@{speckle}}
+\index{speckle@{speckle}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{speckle()}{speckle()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a04349ff8309e50ed6daf714ff66f3239} 
+void ofeli::\+\+Filters::\+speckle (\begin{DoxyParamCaption}\item[{double}]{sigma}{}\end{DoxyParamCaption})}
+
+
+
+Performs a speckle noise, a multiplicative noise into the image. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8cpp_source_l02432}{2432}} of file \doxymbox{\hyperlink{filters_8cpp_source}{filters.\+cpp}}.
+
+\Hypertarget{classofeli_1_1_filters_a4db66fc6e849d67e5bc89dbc72fe6282}\index{ofeli::Filters@{ofeli::Filters}!square@{square}}
+\index{square@{square}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{square()}{square()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a4db66fc6e849d67e5bc89dbc72fe6282} 
+template$<$typename T$>$ \\
+T ofeli::\+\+Filters::\+square (\begin{DoxyParamCaption}\item[{const T \&}]{value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Gives the square of a value. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8hpp_source_l00204}{204}} of file \doxymbox{\hyperlink{filters_8hpp_source}{filters.\+hpp}}.
+
+\Hypertarget{classofeli_1_1_filters_afe930659890f200f2f8874ef68be5a10}\index{ofeli::Filters@{ofeli::Filters}!swap@{swap}}
+\index{swap@{swap}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{swap()}{swap()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_afe930659890f200f2f8874ef68be5a10} 
+void ofeli::\+\+Filters::\+swap (\begin{DoxyParamCaption}\item[{unsigned char \texorpdfstring{$\ast$}{*}const}]{array}{, }\item[{int}]{a}{, }\item[{int}]{b}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Swaps two values of an array. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8hpp_source_l00194}{194}} of file \doxymbox{\hyperlink{filters_8hpp_source}{filters.\+hpp}}.
+
+\Hypertarget{classofeli_1_1_filters_adaade4352062899127d46615a8e31b42}\index{ofeli::Filters@{ofeli::Filters}!white\_top\_hat@{white\_top\_hat}}
+\index{white\_top\_hat@{white\_top\_hat}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{white\_top\_hat()}{white\_top\_hat()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_adaade4352062899127d46615a8e31b42} 
+void ofeli::\+\+Filters::\+white\+\_\+top\+\_\+hat (\begin{DoxyParamCaption}\item[{int}]{kernel\+\_\+length}{}\end{DoxyParamCaption})}
+
+
+
+Performs a white top hat transform with a square structuring element with a naïve algorithm. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8cpp_source_l01655}{1655}} of file \doxymbox{\hyperlink{filters_8cpp_source}{filters.\+cpp}}.
+
+\Hypertarget{classofeli_1_1_filters_a2e3a6b4aa3329dcb021430748c83d992}\index{ofeli::Filters@{ofeli::Filters}!white\_top\_hat\_o1@{white\_top\_hat\_o1}}
+\index{white\_top\_hat\_o1@{white\_top\_hat\_o1}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{white\_top\_hat\_o1()}{white\_top\_hat\_o1()}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a2e3a6b4aa3329dcb021430748c83d992} 
+void ofeli::\+\+Filters::\+white\+\_\+top\+\_\+hat\+\_\+o1 (\begin{DoxyParamCaption}\item[{int}]{kernel\+\_\+length}{}\end{DoxyParamCaption})}
+
+
+
+Performs a white top hat transform with a square structuring element with the Perreault\textquotesingle{}s algorithm. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8cpp_source_l01674}{1674}} of file \doxymbox{\hyperlink{filters_8cpp_source}{filters.\+cpp}}.
+
+
+
+\label{classofeli_1_1_filters_doc-variable-members}
+\Hypertarget{classofeli_1_1_filters_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classofeli_1_1_filters_a229e0fc77f59c4747d0251e38cee38a9}\index{ofeli::Filters@{ofeli::Filters}!byte\_per\_pixel@{byte\_per\_pixel}}
+\index{byte\_per\_pixel@{byte\_per\_pixel}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{byte\_per\_pixel}{byte\_per\_pixel}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a229e0fc77f59c4747d0251e38cee38a9} 
+const int ofeli::\+\+Filters::\+byte\+\_\+per\+\_\+pixel\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Number of byte or octet per pixel, i.\+e number of channels. It is equal 1 for a grayscale or grey-\/level image and 3 for a color image. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8hpp_source_l00151}{151}} of file \doxymbox{\hyperlink{filters_8hpp_source}{filters.\+hpp}}.
+
+\Hypertarget{classofeli_1_1_filters_a0c4833447639123fc17033fa375d0b8b}\index{ofeli::Filters@{ofeli::Filters}!columns\_histo@{columns\_histo}}
+\index{columns\_histo@{columns\_histo}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{columns\_histo}{columns\_histo}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a0c4833447639123fc17033fa375d0b8b} 
+int\texorpdfstring{$\ast$}{*} const ofeli::\+\+Filters::\+columns\+\_\+histo\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Columns histogram used by the Perreault\textquotesingle{}s algorithm. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8hpp_source_l00167}{167}} of file \doxymbox{\hyperlink{filters_8hpp_source}{filters.\+hpp}}.
+
+\Hypertarget{classofeli_1_1_filters_ab7294c70e210d8300f8fab04f6d8a734}\index{ofeli::Filters@{ofeli::Filters}!diff\_img@{diff\_img}}
+\index{diff\_img@{diff\_img}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{diff\_img}{diff\_img}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_ab7294c70e210d8300f8fab04f6d8a734} 
+double\texorpdfstring{$\ast$}{*} ofeli::\+\+Filters::\+diff\+\_\+img\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer on the diffused image buffer for the anisotropic diffusion filter. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8hpp_source_l00162}{162}} of file \doxymbox{\hyperlink{filters_8hpp_source}{filters.\+hpp}}.
+
+\Hypertarget{classofeli_1_1_filters_af81a398844127108ad6a2742f8079b8d}\index{ofeli::Filters@{ofeli::Filters}!diff\_img1@{diff\_img1}}
+\index{diff\_img1@{diff\_img1}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{diff\_img1}{diff\_img1}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_af81a398844127108ad6a2742f8079b8d} 
+double\texorpdfstring{$\ast$}{*} ofeli::\+\+Filters::\+diff\+\_\+img1\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer on the temporary diffused image buffer for the anisotropic diffusion filter because this filter is not in place. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8hpp_source_l00164}{164}} of file \doxymbox{\hyperlink{filters_8hpp_source}{filters.\+hpp}}.
+
+\Hypertarget{classofeli_1_1_filters_aa4afdd919dfccb08023dee3634b03a30}\index{ofeli::Filters@{ofeli::Filters}!filtered@{filtered}}
+\index{filtered@{filtered}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{filtered}{filtered}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_aa4afdd919dfccb08023dee3634b03a30} 
+unsigned char\texorpdfstring{$\ast$}{*} ofeli::\+\+Filters::\+filtered\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer on the current result image. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8hpp_source_l00142}{142}} of file \doxymbox{\hyperlink{filters_8hpp_source}{filters.\+hpp}}.
+
+\Hypertarget{classofeli_1_1_filters_a888566343f6d0f63576c613d2418a83c}\index{ofeli::Filters@{ofeli::Filters}!filtered\_modif@{filtered\_modif}}
+\index{filtered\_modif@{filtered\_modif}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{filtered\_modif}{filtered\_modif}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a888566343f6d0f63576c613d2418a83c} 
+unsigned char\texorpdfstring{$\ast$}{*} ofeli::\+\+Filters::\+filtered\+\_\+modif\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer on the temporary result because the filters are not in place. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8hpp_source_l00154}{154}} of file \doxymbox{\hyperlink{filters_8hpp_source}{filters.\+hpp}}.
+
+\Hypertarget{classofeli_1_1_filters_a9c02bc4005c55eeb5a426485af0d03a9}\index{ofeli::Filters@{ofeli::Filters}!gradient@{gradient}}
+\index{gradient@{gradient}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{gradient}{gradient}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a9c02bc4005c55eeb5a426485af0d03a9} 
+unsigned char\texorpdfstring{$\ast$}{*} ofeli::\+\+Filters::\+gradient\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer on the gradient used by the geodesic model in the case of an RGB image. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8hpp_source_l00158}{158}} of file \doxymbox{\hyperlink{filters_8hpp_source}{filters.\+hpp}}.
+
+\Hypertarget{classofeli_1_1_filters_a375494bcc04ceef4f48e859f2c8afe09}\index{ofeli::Filters@{ofeli::Filters}!img\_data@{img\_data}}
+\index{img\_data@{img\_data}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{img\_data}{img\_data}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a375494bcc04ceef4f48e859f2c8afe09} 
+const unsigned char\texorpdfstring{$\ast$}{*} const ofeli::\+\+Filters::\+img\+\_\+data\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Input pointer on the grayscale or grey-\/level image data buffer. This buffer must be row-\/wise. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8hpp_source_l00140}{140}} of file \doxymbox{\hyperlink{filters_8hpp_source}{filters.\+hpp}}.
+
+\Hypertarget{classofeli_1_1_filters_a433940423042a8efbdbf1576db1cfa70}\index{ofeli::Filters@{ofeli::Filters}!img\_height@{img\_height}}
+\index{img\_height@{img\_height}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{img\_height}{img\_height}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a433940423042a8efbdbf1576db1cfa70} 
+const int ofeli::\+\+Filters::\+img\+\_\+height\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Image height, i.\+e. number of rows. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8hpp_source_l00147}{147}} of file \doxymbox{\hyperlink{filters_8hpp_source}{filters.\+hpp}}.
+
+\Hypertarget{classofeli_1_1_filters_a1c8ad08ed27f16f0def6416ff009599c}\index{ofeli::Filters@{ofeli::Filters}!img\_size@{img\_size}}
+\index{img\_size@{img\_size}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{img\_size}{img\_size}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_a1c8ad08ed27f16f0def6416ff009599c} 
+const int ofeli::\+\+Filters::\+img\+\_\+size\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Image size, i.\+e. number of pixels. Obviously, it egals to \doxylink{classofeli_1_1_filters_adfafb4edd683c3cc02997328296df055}{img\+\_\+width} × \doxylink{classofeli_1_1_filters_a433940423042a8efbdbf1576db1cfa70}{img\+\_\+height}. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8hpp_source_l00149}{149}} of file \doxymbox{\hyperlink{filters_8hpp_source}{filters.\+hpp}}.
+
+\Hypertarget{classofeli_1_1_filters_adfafb4edd683c3cc02997328296df055}\index{ofeli::Filters@{ofeli::Filters}!img\_width@{img\_width}}
+\index{img\_width@{img\_width}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{img\_width}{img\_width}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_adfafb4edd683c3cc02997328296df055} 
+const int ofeli::\+\+Filters::\+img\+\_\+width\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Image width, i.\+e. number of columns. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8hpp_source_l00145}{145}} of file \doxymbox{\hyperlink{filters_8hpp_source}{filters.\+hpp}}.
+
+\Hypertarget{classofeli_1_1_filters_aa48e946134f25fa04373cfd149f1ea0f}\index{ofeli::Filters@{ofeli::Filters}!kernel\_histo@{kernel\_histo}}
+\index{kernel\_histo@{kernel\_histo}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{kernel\_histo}{kernel\_histo}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_aa48e946134f25fa04373cfd149f1ea0f} 
+int ofeli::\+\+Filters::\+kernel\+\_\+histo\+[256]\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Kernel histogram used by the Perreault\textquotesingle{}s algorithm. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8hpp_source_l00169}{169}} of file \doxymbox{\hyperlink{filters_8hpp_source}{filters.\+hpp}}.
+
+\Hypertarget{classofeli_1_1_filters_af5553609150251d5e5dbcf6a320136db}\index{ofeli::Filters@{ofeli::Filters}!previous\_filtered@{previous\_filtered}}
+\index{previous\_filtered@{previous\_filtered}!ofeli::Filters@{ofeli::Filters}}
+\doxysubsubsection{\texorpdfstring{previous\_filtered}{previous\_filtered}}
+{\footnotesize\ttfamily \label{classofeli_1_1_filters_af5553609150251d5e5dbcf6a320136db} 
+unsigned char\texorpdfstring{$\ast$}{*} ofeli::\+\+Filters::\+previous\+\_\+filtered\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer used by top-\/hat functions to keep in memory the previous result before opening or closing to subtract the both images then. 
+
+
+
+Definition at line \doxymbox{\hyperlink{filters_8hpp_source_l00156}{156}} of file \doxymbox{\hyperlink{filters_8hpp_source}{filters.\+hpp}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
 \item 
-filters.\-hpp\item 
-filters.\-cpp\end{DoxyCompactItemize}
+filters.\+hpp\item 
+filters.\+cpp\end{DoxyCompactItemize}

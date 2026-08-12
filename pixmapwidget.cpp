@@ -39,7 +39,7 @@
 
 // Widget to display fastly an image (function drawPixmap in a PaintEvent is faster than function setPixmap)
 // Thanks to Johan Thelin.
-// This class is based on this example http://qt4.digitalfanatics.org/articles/zoomer.html.
+// This class is based on a legacy Qt image-viewer example.
 
 #include "pixmapwidget.hpp"
 #include <QPainter>
@@ -127,6 +127,7 @@ void PixmapWidget::setZoomFactor(float f)
 
 void PixmapWidget::paintEvent(QPaintEvent* event)
 {
+    (void)event;
 
     if( width() > qimage.width()*zoomFactor )
     {
@@ -170,7 +171,7 @@ void PixmapWidget::wheelEvent(QWheelEvent *event)
 {
     if( doWheelEvent )
     {
-        float f = 0.002f*float( event->delta() ) + zoomFactor;
+        float f = 0.002f*float( event->angleDelta().y() ) + zoomFactor;
 
         if( f < 32.0f/float( qimage.width() ) )
         {

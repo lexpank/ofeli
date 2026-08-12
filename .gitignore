@@ -36,3 +36,19 @@
 
 # Logs
 *.log
+
+# Qt Creator and CMake generated files
+*.pro.user
+.qtc_clangd/
+.qtcreator/
+*.creator
+*.cflags
+*.cxxflags
+*.config
+*.files
+*.includes
+/build/
+/build-*/
+/cmake-build-*/
+/documentation/
+*.qm

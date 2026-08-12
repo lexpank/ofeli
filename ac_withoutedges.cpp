@@ -82,9 +82,9 @@ ACwithoutEdges::ACwithoutEdges(const unsigned char* img_data1, int img_width1, i
 
 ACwithoutEdges::ACwithoutEdges(const ACwithoutEdges& ac) :
     ActiveContour(ac),
-    lambda_out(ac.lambda_out), lambda_in(ac.lambda_in), Cout(ac.Cout), Cin(ac.Cin),
-    sum_out(ac.sum_out), sum_in(ac.sum_in), n_out(ac.n_out), n_in(ac.n_in),
-    I(ac.I)
+    Cout(ac.Cout), Cin(ac.Cin), I(ac.I),
+    lambda_out(ac.lambda_out), lambda_in(ac.lambda_in),
+    sum_out(ac.sum_out), sum_in(ac.sum_in), n_out(ac.n_out), n_in(ac.n_in)
 {
 }
 

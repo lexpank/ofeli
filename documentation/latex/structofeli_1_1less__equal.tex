@@ -1,27 +1,41 @@
-\hypertarget{structofeli_1_1less__equal}{\section{ofeli\-:\-:less\-\_\-equal$<$ T $>$ Struct Template Reference}
-\label{structofeli_1_1less__equal}\index{ofeli\-::less\-\_\-equal$<$ T $>$@{ofeli\-::less\-\_\-equal$<$ T $>$}}
-}
+\doxysection{ofeli::\+less\+\_\+equal\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Struct Template Reference}
+\hypertarget{structofeli_1_1less__equal}{}\label{structofeli_1_1less__equal}\index{ofeli::less\_equal$<$ T $>$@{ofeli::less\_equal$<$ T $>$}}
 
 
-{\ttfamily \#include $<$linked\-\_\-list.\-hpp$>$}
+{\ttfamily \+\#include $<$linked\+\_\+list.\+hpp$>$}
 
-\subsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{structofeli_1_1less__equal_a8691d82bcc8b0cb6aa5e06ebc47d1a1d}{bool {\bfseries operator()} (const T \&x, const T \&y) const }\label{structofeli_1_1less__equal_a8691d82bcc8b0cb6aa5e06ebc47d1a1d}
-
+bool \doxymbox{\hyperlink{structofeli_1_1less__equal_ad76de1bd5a068033473246a5ba1598d4}{operator()}} (const T \&x, const T \&y) const
 \end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
-\subsubsection*{template$<$typename T = int$>$struct ofeli\-::less\-\_\-equal$<$ T $>$}
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T = int$>$\newline
+struct ofeli::\+less\+\_\+equal$<$ T $>$}
+This class defines function objects for the "{}less than or equal to"{} comparison operation (\texorpdfstring{$<$}{<}=). Generically, function objects are instances of a class with member function {\ttfamily operator()} defined. This member function allows the object to be used with the same syntax as a regular function call, and therefore it can be used in templates instead of a pointer to a function. {\ttfamily \doxylink{structofeli_1_1less__equal}{less\+\_\+equal}} has its {\ttfamily operator()} member defined such that it returns {\ttfamily true} if its first argument compares lower than or equal to the second one using {\ttfamily operator\texorpdfstring{$<$}{<}=}, and {\ttfamily false} otherwise. This class can be used with the template function {\ttfamily \doxylink{classofeli_1_1list_aaeedac18b70d233644d84c7ad3a9a3fa}{list$<$\+T$>$::\+sort(\+Binary\+Predicate compare)}}. 
 
-This class defines function objects for the \char`\"{}less than or equal to\char`\"{} comparison operation ($<$=). Generically, function objects are instances of a class with member function {\ttfamily operator()} defined. This member function allows the object to be used with the same syntax as a regular function call, and therefore it can be used in templates instead of a pointer to a function. {\ttfamily \hyperlink{structofeli_1_1less__equal}{less\-\_\-equal}} has its {\ttfamily operator()} member defined such that it returns {\ttfamily true} if its first argument compares lower than or equal to the second one using {\ttfamily operator$<$=}, and {\ttfamily false} otherwise. This class can be used with the template function {\ttfamily \hyperlink{classofeli_1_1list_aaeedac18b70d233644d84c7ad3a9a3fa}{list$<$\-T$>$\-::sort(\-Binary\-Predicate compare)}}. 
-
-Definition at line 391 of file linked\-\_\-list.\-hpp.
+Definition at line \doxymbox{\hyperlink{linked__list_8hpp_source_l00391}{391}} of file \doxymbox{\hyperlink{linked__list_8hpp_source}{linked\+\_\+list.\+hpp}}.
 
 
 
-The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\label{structofeli_1_1less__equal_doc-func-members}
+\Hypertarget{structofeli_1_1less__equal_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structofeli_1_1less__equal_ad76de1bd5a068033473246a5ba1598d4}\index{ofeli::less\_equal$<$ T $>$@{ofeli::less\_equal$<$ T $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!ofeli::less\_equal$<$ T $>$@{ofeli::less\_equal$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily \label{structofeli_1_1less__equal_ad76de1bd5a068033473246a5ba1598d4} 
+template$<$typename T = int$>$ \\
+bool \doxymbox{\hyperlink{structofeli_1_1less__equal}{ofeli::\+less\+\_\+equal}}$<$ T $>$::\+operator() (\begin{DoxyParamCaption}\item[{const T \&}]{x}{, }\item[{const T \&}]{y}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{linked__list_8hpp_source_l00391}{391}} of file \doxymbox{\hyperlink{linked__list_8hpp_source}{linked\+\_\+list.\+hpp}}.
+
+
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
 \item 
-linked\-\_\-list.\-hpp\end{DoxyCompactItemize}
+linked\+\_\+list.\+hpp\end{DoxyCompactItemize}

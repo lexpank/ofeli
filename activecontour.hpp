@@ -191,7 +191,7 @@ namespace ofeli {
 
 
       //! Creates a normalised gaussian kernel without to divide by \a π
-      static const int* const make_gaussian_kernel(int kernel_length1, double sigma1);
+      static const int* make_gaussian_kernel(int kernel_length1, double sigma1);
 
       //! Gives the sign of a value. Return the integer -1 or 1.
       static int signum_function(char value);
@@ -380,7 +380,7 @@ bool hasCycle2_1, int kernel_length1, double sigma1, int Na1, int Ns1)
 */
 
 /**
-* \example interface
+* \par Example
 * \code
 * // It interfaces the algorithm in order to display each iteration
 *

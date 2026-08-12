@@ -38,7 +38,7 @@
 ****************************************************************************/
 
 // origin code from Qt exemple "imageviewer"
-// http://doc.qt.nokia.com/4.7/widgets-imageviewer.html
+// Based on a legacy Qt image-viewer example.
 
 ////////////////////////// Ofeli /////////////////////////////
 
@@ -54,15 +54,14 @@
 #include "ac_withoutedges.hpp"
 #include "ac_withoutedges_yuv.hpp"
 #include "geodesic_ac.hpp"
-#include "filters.hpp"   // dependent of Boost library
+#include "filters.hpp"
 #include "hausdorff_distance.hpp"
 
 //////////////////////////////////////////////////////////////
 
 #include <QtWidgets>
-#ifndef QT_NO_PRINTER
+#include <QCoreApplication>
 #include <QPrintDialog>
-#endif
 
 #include <ctime>         // std::clock_t and std::clock()
 #include <cstdlib>       // std::memcpy
@@ -146,7 +145,7 @@ ImageViewer::ImageViewer()
 
     if( operating_system == 3 )
     {
-        setWindowIcon(QIcon(":Ofeli.png"));
+        setWindowIcon(QIcon(":/Ofeli.png"));
     }
 
     //resize(600,375);
@@ -936,11 +935,11 @@ ImageViewer::ImageViewer()
     QString txt_file;
     if( language == 2 || ( language == 0 && locale == "fr" ) )
     {
-        txt_file=QString(":licence.txt");
+        txt_file=QString(":/licence.txt");
     }
     else
     {
-        txt_file=QString(":license.txt");
+        txt_file=QString(":/license.txt");
     }
     QFile file(txt_file);
     QTextEdit* license_textedit = new QTextEdit(this);
@@ -948,9 +947,7 @@ ImageViewer::ImageViewer()
 
     if( file.open(QIODevice::ReadOnly) )
     {
-        QTextStream ts(&file);
-        ts.setCodec("ISO 8859-1");
-        license_textedit->setText( ts.readAll() );
+        license_textedit->setPlainText(QString::fromLatin1(file.readAll()));
     }
 
     license_textedit->setReadOnly(true);
@@ -1015,7 +1012,7 @@ ImageViewer::ImageViewer()
     QFont font2;
     font2.setPointSize(12);
     imag2->setFont(font2);
-    imag2->setText("Version 1.0.7");
+    imag2->setText(tr("Version %1").arg(QCoreApplication::applicationVersion()));
     imag2->setAlignment(Qt::AlignCenter);
     imag2->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::LinksAccessibleByMouse | Qt::LinksAccessibleByKeyboard);
 
@@ -1028,7 +1025,7 @@ ImageViewer::ImageViewer()
     imag3->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::LinksAccessibleByMouse | Qt::LinksAccessibleByKeyboard);
 
     QLabel* icon_label = new QLabel(this);
-    QImage icon(":Ofeli.png");
+    QImage icon(":/Ofeli.png");
     QPixmap icon_pixmap=QPixmap::fromImage(icon);
     icon_label->setPixmap(icon_pixmap);
     icon_label->setAlignment(Qt::AlignCenter);
@@ -1112,7 +1109,7 @@ ImageViewer::ImageViewer()
 
 void ImageViewer::openWebpage()
 {
-    bool result = QDesktopServices::openUrl(QUrl("http://www.code.google.com/p/ofeli/", QUrl::TolerantMode));
+    QDesktopServices::openUrl(QUrl("http://www.code.google.com/p/ofeli/", QUrl::TolerantMode));
 }
 
 void ImageViewer::openLicense()
@@ -1652,21 +1649,20 @@ void ImageViewer::open()
 void ImageViewer::print()
 //! [5] //! [6]
 {
-    Q_ASSERT(imageLabel->pixmap());
-#ifndef QT_NO_PRINTER
+    const QPixmap pixmap = imageLabel->pixmap();
+    Q_ASSERT(!pixmap.isNull());
 //! [6] //! [7]
     QPrintDialog dialog(&printer, this);
 //! [7] //! [8]
     if (dialog.exec()) {
         QPainter painter(&printer);
         QRect rect = painter.viewport();
-        QSize size = imageLabel->pixmap()->size();
+        QSize size = pixmap.size();
         size.scale(rect.size(), Qt::KeepAspectRatio);
         painter.setViewport(rect.x(), rect.y(), size.width(), size.height());
-        painter.setWindow(imageLabel->pixmap()->rect());
-        painter.drawPixmap(0, 0, *imageLabel->pixmap());
+        painter.setWindow(pixmap.rect());
+        painter.drawPixmap(0, 0, pixmap);
     }
-#endif
 }
 
 void ImageViewer::zoomIn()
@@ -1828,6 +1824,25 @@ void ImageViewer::start()
             img1_filtered = img1;
         }*/
 
+        unsigned char max = 0;
+        unsigned char min = 255;
+
+        if( model == 2 && hasHistoNormaliz )
+        {
+            for( int normalization_offset = 0; normalization_offset < img_size; normalization_offset++ )
+            {
+                if( img1_filtered[normalization_offset] > max )
+                {
+                    max = img1_filtered[normalization_offset];
+                }
+                if( img1_filtered[normalization_offset] < min )
+                {
+                    min = img1_filtered[normalization_offset];
+                }
+            }
+        }
+
+        const double normalization_range = max > min ? double(max-min) : 1.0;
 
         int offset;
 
@@ -1841,15 +1856,13 @@ void ImageViewer::start()
             {
                 if( model == 2 && hasHistoNormaliz )
                 {
-                    int min, max;
-
                     if( outside_combo != 9 )
                     {
                         for( ofeli::list<int>::const_iterator it = Lout1->begin(); !it.end(); ++it )
                         {
                             offset = *it;
 
-                            I = (unsigned char)(255.0*double(img1_filtered[offset]-min)/double(max-min));
+                            I = (unsigned char)(255.0*double(img1_filtered[offset]-min)/normalization_range);
 
                             image_result_uchar[3*offset] = I;
                             image_result_uchar[3*offset+1] = I;
@@ -1863,7 +1876,7 @@ void ImageViewer::start()
                         {
                             offset = *it;
 
-                            I = (unsigned char)(255.0*double(img1_filtered[offset]-min)/double(max-min));
+                            I = (unsigned char)(255.0*double(img1_filtered[offset]-min)/normalization_range);
 
                             image_result_uchar[3*offset] = I;
                             image_result_uchar[3*offset+1] = I;
@@ -2013,30 +2026,13 @@ void ImageViewer::start()
         // affiche une fois le contour actif avec l'image filtrée en dessous
         //////////////////////////////////////////////////////////////////////
 
-        unsigned char max, min;
-
         if( !isRgb1 || model == 2 )
         {
             if( model == 2 && hasHistoNormaliz )
             {
-                max = 0;
-                min = 255;
-
                 for( offset = 0; offset < img_size; offset++ )
                 {
-                    if( img1_filtered[offset] > max )
-                    {
-                        max = img1_filtered[offset];
-                    }
-                    if( img1_filtered[offset] < min )
-                    {
-                        min = img1_filtered[offset];
-                    }
-                }
-
-                for( offset = 0; offset < img_size; offset++ )
-                {
-                    I = (unsigned char)(255.0*double(img1_filtered[offset]-min)/double(max-min));
+                    I = (unsigned char)(255.0*double(img1_filtered[offset]-min)/normalization_range);
 
                     image_result_uchar[3*offset] = I;
                     image_result_uchar[3*offset+1] = I;
@@ -2137,7 +2133,7 @@ void ImageViewer::start()
                     {
                         offset = *it;
 
-                        I = (unsigned char)(255.0*double(img1_filtered[offset]-min)/double(max-min));
+                        I = (unsigned char)(255.0*double(img1_filtered[offset]-min)/normalization_range);
 
                         image_result_uchar[3*offset] = I;
                         image_result_uchar[3*offset+1] = I;
@@ -2151,7 +2147,7 @@ void ImageViewer::start()
                     {
                         offset = *it;
 
-                        I = (unsigned char)(255.0*double(img1_filtered[offset]-min)/double(max-min));
+                        I = (unsigned char)(255.0*double(img1_filtered[offset]-min)/normalization_range);
 
                         image_result_uchar[3*offset] = I;
                         image_result_uchar[3*offset+1] = I;
@@ -2265,7 +2261,7 @@ void ImageViewer::start()
                             {
                                 offset = *it;
 
-                                I = (unsigned char)(255.0*double(img1_filtered[offset]-min)/double(max-min));
+                                I = (unsigned char)(255.0*double(img1_filtered[offset]-min)/normalization_range);
 
                                 image_result_uchar[3*offset] = I;
                                 image_result_uchar[3*offset+1] = I;
@@ -2279,7 +2275,7 @@ void ImageViewer::start()
                             {
                                 offset = *it;
 
-                                I = (unsigned char)(255.0*double(img1_filtered[offset]-min)/double(max-min));
+                                I = (unsigned char)(255.0*double(img1_filtered[offset]-min)/normalization_range);
 
                                 image_result_uchar[3*offset] = I;
                                 image_result_uchar[3*offset+1] = I;
@@ -2619,9 +2615,10 @@ void ImageViewer::createMenus()
 // Fonction d'origine, modifiée pour le changement d'echelle de l'image
 void ImageViewer::scaleImage(double factor)
 {
-    Q_ASSERT(imageLabel->pixmap());
+    const QPixmap pixmap = imageLabel->pixmap();
+    Q_ASSERT(!pixmap.isNull());
     scaleFactor *= factor;
-    imageLabel->resize(scaleFactor * imageLabel->pixmap()->size());
+    imageLabel->resize(scaleFactor * pixmap.size());
 
     // ajout de code, pour récuperer les infos lors d'un zoom pour la segmentation
     /////
@@ -5083,6 +5080,7 @@ void ImageViewer::shape_visu()
 // Surcharge pour avoir une signature identique (memes paramètres) entre signaux et slots de Qt
 void ImageViewer::shape_visu(int value)
 {
+    (void)value;
     shape_visu();
 }
 
@@ -5516,6 +5514,7 @@ void ImageViewer::get_color(int index, unsigned char& R, unsigned char& G, unsig
 // pour les combo box couleurs
 void ImageViewer::phi_visu(int value)
 {
+    (void)value;
     phi_visu(false);
     return;
 }
@@ -6010,9 +6009,11 @@ void ImageViewer::filtering_visu()
                         }
                     }
 
+                    const double normalization_range = max > min ? double(max-min) : 1.0;
+
                     for( int offset = 0; offset < img_size; offset++ )
                     {
-                        I = (unsigned char)(255.0*double(img2_filtered[offset]-min)/double(max-min));
+                        I = (unsigned char)(255.0*double(img2_filtered[offset]-min)/normalization_range);
 
                         image_filter_uchar[3*offset] = I;
                         image_filter_uchar[3*offset+1] = I;
@@ -6074,9 +6075,11 @@ void ImageViewer::filtering_visu()
                     }
                 }
 
+                const double normalization_range = max > min ? double(max-min) : 1.0;
+
                 for( int offset = 0; offset < img_size; offset++ )
                 {
-                    I = (unsigned char)(255.0*double(img2_filtered[offset]-min)/double(max-min));
+                    I = (unsigned char)(255.0*double(img2_filtered[offset]-min)/normalization_range);
 
                     image_filter_uchar[3*offset] = I;
                     image_filter_uchar[3*offset+1] = I;
@@ -6800,7 +6803,7 @@ void ImageViewer::mousePressEvent2(QMouseEvent *event2)
             subtract_visu();
         }
         // clic du milieu, on change un rectangle en ellipse ou vice versa
-        if( event2->button() == Qt::MidButton )
+        if( event2->button() == Qt::MiddleButton )
         {
             if( !rectangle_radio->isChecked() )
             {
@@ -6863,7 +6866,7 @@ void ImageViewer::wheelEvent(QWheelEvent *event)
     if( (img1 != NULL) && onglets->currentIndex() == 1 )
     {
         // nombre de degré et de pas de la molette
-        int numDegrees = event->delta() / 8;
+        int numDegrees = event->angleDelta().y() / 8;
         int numSteps = numDegrees / 15;
 
         // récupération des valeurs des sliders concernant la taille de la forme
@@ -7085,11 +7088,13 @@ void ImageViewer::create_listB()
 
 void ImageViewer::create_listA(int index)
 {
+    (void)index;
     create_listA();
 }
 
 void ImageViewer::create_listB(int index)
 {
+    (void)index;
     create_listB();
 }
 
@@ -7217,6 +7222,7 @@ void ImageViewer::mouseMoveEventB(QMouseEvent *event)
 // Pour sélectionner la couleur de la liste A en cliquant sur l'image A
 void ImageViewer::mousePressEventA(QMouseEvent *event)
 {
+    (void)event;
     if( !image1.isNull() )
     {
         QRgb pix = image1.pixel(positionXa,positionYa);
@@ -7239,6 +7245,7 @@ void ImageViewer::mousePressEventA(QMouseEvent *event)
 // Pour sélectionner la couleur de la liste B en cliquant sur l'image B
 void ImageViewer::mousePressEventB(QMouseEvent *event)
 {
+    (void)event;
     if( !image2.isNull() )
     {
         QRgb pix = image2.pixel(positionXb,positionYb);
@@ -7854,7 +7861,7 @@ void ImageViewer::language ()
 
 void ImageViewer::doc()
 {
-    bool result = QDesktopServices::openUrl( QUrl("http://ofeli.googlecode.com/svn/doc/index.html", QUrl::TolerantMode) );
+    QDesktopServices::openUrl( QUrl("http://ofeli.googlecode.com/svn/doc/index.html", QUrl::TolerantMode) );
 }
 
 void ImageViewer::setCurrentFile(const QString &fileName1)
