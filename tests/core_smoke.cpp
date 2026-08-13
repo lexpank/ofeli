@@ -1,4 +1,5 @@
 #include "ac_withoutedges.hpp"
+#include "ac_withoutedges_yuv.hpp"
 #include "filters.hpp"
 #include "geodesic_ac.hpp"
 #include "linked_list.hpp"
@@ -137,6 +138,28 @@ int main()
     }
     ++geodesic;
     if(geodesic.get_iteration() != 1)
+    {
+        return 1;
+    }
+
+    unsigned char rgb_image[3 * 64 * 64];
+    for(int offset = 0; offset < 64 * 64; ++offset)
+    {
+        rgb_image[3 * offset] = static_cast<unsigned char>(offset % 256);
+        rgb_image[3 * offset + 1] = 128;
+        rgb_image[3 * offset + 2] = static_cast<unsigned char>((255 - offset) % 256);
+    }
+
+    ofeli::ACwithoutEdgesYUV rgb_contour(rgb_image, 64, 64,
+                                         true, 0.5, 0.5, 0.0, 0.0,
+                                         false, 1, 1.0, 1, 1,
+                                         1, 1, 1, 10, 10);
+    if(rgb_contour.get_Lout().empty() || rgb_contour.get_Lin().empty())
+    {
+        return 1;
+    }
+    ++rgb_contour;
+    if(rgb_contour.get_iteration() != 1)
     {
         return 1;
     }

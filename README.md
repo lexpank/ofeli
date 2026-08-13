@@ -42,4 +42,4 @@ If Qt Creator reports `No rule to make target 'all'`, it is using an old qmake/M
 
 ## License
 
-The source files carry CeCILL v2 notices, and license.txt / licence.txt contain the English and French CeCILL license text. The top-level LICENSE file currently contains GPLv3 text and must be reconciled with the copyright holder before a release license is declared.
+Ofeli is distributed under the CeCILL v2 license. The complete English and French license texts are included in `license.txt` and `licence.txt`; source files retain the required CeCILL v2 notices.
