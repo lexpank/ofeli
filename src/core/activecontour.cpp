@@ -54,7 +54,7 @@
 // - bool isRedundantLinPoint(int offset) const
 // - bool isRedundantLoutPoint(int offset) const
 
-#include "activecontour.hpp"
+#include <ofeli/activecontour.hpp>
 #include <cstring> // for the function "std::memcpy"
 #include <cmath> // for the function "std::exp"
 #include <cstdlib> // for the function "std::abs"
@@ -65,7 +65,7 @@ namespace ofeli {
     bool hasEllipse1, double init_width1, double init_height1, double center_x1, double center_y1,
     bool hasCycle2_1, int kernel_length1, double sigma1, int Na1, int Ns1) :
     img_data(img_data1), img_width(img_width1), img_height(img_height1),
-    img_size(img_width1*img_height1), phi( new char[img_width1*img_height1] ),
+    img_size(img_width1*img_height1), phi( img_width1*img_height1 ),
     hasCycle2(hasCycle2_1), kernel_length(kernel_length1),
     sigma(sigma1), gaussian_kernel( make_gaussian_kernel(kernel_length1,sigma1) ), iteration(0),
     iteration_max(5*std::max(img_width1,img_height1)),
@@ -85,7 +85,7 @@ namespace ofeli {
     const char* phi_init1,
     bool hasCycle2_1, int kernel_length1, double sigma1, int Na1, int Ns1) :
     img_data(img_data1), img_width(img_width1), img_height(img_height1),
-    img_size(img_width1*img_height1), phi( new char[img_width1*img_height1] ),
+    img_size(img_width1*img_height1), phi( img_width1*img_height1 ),
     hasCycle2(hasCycle2_1), kernel_length(kernel_length1),
     sigma(sigma1), gaussian_kernel( make_gaussian_kernel(kernel_length1,sigma1) ),
     iteration(0), iteration_max( 5*std::max(img_width1,img_height1) ),
@@ -100,14 +100,14 @@ namespace ofeli {
         std::cerr << "\nThe pointer phi_init1 must be a non-null pointer, it must be allocated.\n";
       }
 
-      std::memcpy(phi, phi_init1, img_size); // initialize phi with a buffer copy
+      std::memcpy(phi.data(), phi_init1, img_size); // initialize phi with a buffer copy
       initialize_lists();
     }
 
   ActiveContour::ActiveContour(const ActiveContour& ac) :
     img_data(ac.img_data), img_width(ac.img_width), img_height(ac.img_height), img_size(ac.img_size),
-    phi( new char[ac.img_size] ), hasCycle2(ac.hasCycle2), kernel_length(ac.kernel_length),
-    sigma(ac.sigma), gaussian_kernel( make_gaussian_kernel(ac.kernel_length,ac.sigma) ),
+    phi(ac.phi), hasCycle2(ac.hasCycle2), kernel_length(ac.kernel_length),
+    sigma(ac.sigma), gaussian_kernel(ac.gaussian_kernel),
     iteration(ac.iteration), iteration_max(ac.iteration_max), isStopped(ac.isStopped),
     Lout(ac.Lout), Lin(ac.Lin), kernel_radius(ac.kernel_radius),
     hasOutwardEvolution(ac.hasOutwardEvolution), hasInwardEvolution(ac.hasInwardEvolution),
@@ -119,7 +119,6 @@ namespace ofeli {
         std::cerr << "\nThe pointer img_data must be a non-null pointer, it must be allocated.\n";
       }
 
-      std::memcpy(phi, ac.phi, img_size); // buffer copy
     }
 
   void ActiveContour::initialize_phi_with_a_shape(bool hasEllipse, double init_width, double init_height,
@@ -159,10 +158,7 @@ namespace ofeli {
       }
   }
 
-  ActiveContour::~ActiveContour() {
-    delete[] gaussian_kernel;
-    delete[] phi;
-  }
+  ActiveContour::~ActiveContour() = default;
 
   void ActiveContour::initialize_lists() {
     // each point of a list must be connected at least by one point of the other list
@@ -209,7 +205,7 @@ namespace ofeli {
     iteration = 0;
   }
 
-  const int* ActiveContour::make_gaussian_kernel(int kernel_length1, double sigma1) {
+  std::vector<int> ActiveContour::make_gaussian_kernel(int kernel_length1, double sigma1) {
     // kernel_length impair and strictly positive
     if ( kernel_length1 % 2 == 0 ) {
       kernel_length1--;
@@ -229,7 +225,7 @@ namespace ofeli {
     const int kernel_size1 = kernel_length1*kernel_length1;
     const int kernel_radius1 = (kernel_length1-1)/2;
 
-    int* const gaussian_kernel1 = new int[kernel_size1];
+    std::vector<int> gaussian_kernel1(kernel_size1);
 
     for ( int offset = 0; offset < kernel_size1; offset++ ) {
       // offset = x+y*kernel_length so
@@ -884,7 +880,7 @@ namespace ofeli {
   }
 
   const char* ActiveContour::get_phi() const {
-    return phi;
+    return phi.data();
   }
 
   const ofeli::list<int>& ActiveContour::get_Lout() const {

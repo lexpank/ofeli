@@ -5,16 +5,37 @@ on:
   pull_request:
 
 jobs:
+  linux-core:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: cmake -S . -B build-core -DOFELI_BUILD_GUI=OFF -DOFELI_BUILD_CLI=OFF -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=Release
+      - run: cmake --build build-core --parallel
+      - run: ctest --test-dir build-core --output-on-failure
+
   linux:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: jurplel/install-qt-action@v4
         with:
-          version: 6.11.1
+          version: 6.5.3
           host: linux
           target: desktop
           modules: qttools
-      - run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+      - run: cmake -S . -B build -DOFELI_BUILD_GUI=ON -DOFELI_BUILD_CLI=ON -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=Release
       - run: cmake --build build --parallel
       - run: ctest --test-dir build --output-on-failure
+
+  linux-sanitizers:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: jurplel/install-qt-action@v4
+        with:
+          version: 6.5.3
+          host: linux
+          target: desktop
+      - run: cmake -S . -B build-sanitize -DOFELI_BUILD_GUI=OFF -DOFELI_BUILD_CLI=ON -DOFELI_ENABLE_SANITIZERS=ON -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=Debug
+      - run: cmake --build build-sanitize --parallel
+      - run: ctest --test-dir build-sanitize --output-on-failure

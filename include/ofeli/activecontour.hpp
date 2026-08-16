@@ -42,6 +42,7 @@
 
 #include "linked_list.hpp"
 #include <iostream> // for the objects "std::ostream" and "std::cerr"
+#include <vector>
 
 namespace ofeli {
   class ActiveContour {
@@ -61,6 +62,10 @@ namespace ofeli {
 
       //! Destructor to delete #phi and #gaussian_kernel.
       virtual ~ActiveContour();
+
+      ActiveContour& operator=(const ActiveContour&) = delete;
+      ActiveContour(ActiveContour&&) = delete;
+      ActiveContour& operator=(ActiveContour&&) = delete;
 
       //! Initialization for each new frame buffer, used for video tracking.
       virtual void initialize_for_each_frame();
@@ -120,7 +125,7 @@ namespace ofeli {
       //! Image size, i.e. number of pixels. Obviously, it egals to #img_width × #img_height.
       const int img_size;
       //! Pointer on the level-set function buffer.
-      char* const phi;
+      std::vector<char> phi;
 
       //! Gives the square of a value.
       template <typename T>
@@ -191,7 +196,7 @@ namespace ofeli {
 
 
       //! Creates a normalised gaussian kernel without to divide by \a π
-      static const int* make_gaussian_kernel(int kernel_length1, double sigma1);
+      static std::vector<int> make_gaussian_kernel(int kernel_length1, double sigma1);
 
       //! Gives the sign of a value. Return the integer -1 or 1.
       static int signum_function(char value);
@@ -206,7 +211,7 @@ namespace ofeli {
       const double sigma;
 
       //! Pointer on the gaussian kernel buffer used to calculate Fint.
-      const int* const gaussian_kernel;
+      std::vector<int> gaussian_kernel;
 
       //! Number of times the active contour has evolved.
       int iteration;

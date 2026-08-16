@@ -46,16 +46,14 @@
 
 #include "imageviewer.hpp"
 #include "pixmapwidget.hpp"
+#include "qt_image_io.hpp"
 
                     /////////////////////
 
 // image processing part of Ofeli
 
-#include "ac_withoutedges.hpp"
-#include "ac_withoutedges_yuv.hpp"
-#include "geodesic_ac.hpp"
-#include "filters.hpp"
-#include "hausdorff_distance.hpp"
+#include <ofeli/filters.hpp>
+#include <ofeli/hausdorff_distance.hpp>
 
 //////////////////////////////////////////////////////////////
 
@@ -65,6 +63,8 @@
 
 #include <ctime>         // std::clock_t and std::clock()
 #include <cstdlib>       // std::memcpy
+#include <algorithm>
+#include <exception>
 // if you want a partial support of DICOM image, without support of JPEG-2000 encapsulated image
 // install DCMTK library to the project
 // uncomment row 72, 1002 and the block at 1074.
@@ -75,6 +75,7 @@ namespace ofeli
 
 // Constructeur
 ImageViewer::ImageViewer()
+    : filters2(nullptr), listA(nullptr), listB(nullptr)
 {
 /*
     list<float> l(500);
@@ -380,36 +381,6 @@ ImageViewer::ImageViewer()
 
     connect( dial_buttons->button(QDialogButtonBox::Reset), SIGNAL(clicked()), this, SLOT(default_settings()) );
 
-
-    // initilisation des variables de classe, pointeurs image (pointeur sur octet)
-    // la mémoire est désallouée (sauf à la première ouverture, d'où l'interet d'initialiser à NULL)
-    // puis allouée à chaque open() appelé d'une image
-    img1 = NULL;
-
-    // initialisation de tous les pointeurs servant à la fenêtre de configuration
-    phi_init1 = NULL;
-    phi_init2 = NULL;
-    phi_init1_clean = NULL;
-    phi_init2_clean = NULL;
-    shape = NULL;
-    shape_points = NULL;
-    Lout_shape1 = NULL;
-    Lin_shape1 = NULL;
-    Lout_2 = NULL;
-    Lin_2 = NULL;
-    filters1 = NULL;
-    filters2 = NULL;
-
-    listA = NULL;
-    listB = NULL;
-
-    image_result_uchar = NULL;
-    image_uchar = NULL;
-    image_filter_uchar = NULL;
-    image_phi_uchar = NULL;
-    image_shape_uchar = NULL;
-
-    ac = NULL;
 
     // création du widget onglets, visible à gauche dans la fenêtre de configuration
     onglets = new QTabWidget(settings_window);
@@ -1218,11 +1189,8 @@ void ImageViewer::open()
         phi_text->setText("ϕ(x,y,t) ∈ { -3, -1, 1, 3 }");
         text->setToolTip(tr("must be strictly less than iteration_max = 5 × max(img_width,img_height) = ")+QString::number(5*std::max(img_width,img_height)));
 
-        if( ac != NULL )
-        {
-            delete ac;
-            ac = NULL;
-        }
+        segmentation_session.reset();
+        segmentation_result = ofeli::SegmentationResult();
 
         image_disp = 1;
         hasResultDisp = false;
@@ -1250,11 +1218,7 @@ void ImageViewer::open()
         // Paramètres d'entrée du contour actif
 
         // Création de img1
-        if( img1 != NULL )
-        {
-            delete[] img1;
-            img1 = NULL;
-        }
+        img1.clear();
 
         int x, y; // current position of the pixel
 
@@ -1262,7 +1226,7 @@ void ImageViewer::open()
         {
             isRgb1 = false;
 
-            img1 = new unsigned char[img_size];
+            img1.resize(img_size);
 
             for( int offset = 0; offset < img_size; offset++ )
             {
@@ -1279,7 +1243,7 @@ void ImageViewer::open()
             {
                 isRgb1 = false;
 
-                img1 = new unsigned char[img_size];
+                img1.resize(img_size);
 
                 QRgb pix;
 
@@ -1298,7 +1262,7 @@ void ImageViewer::open()
             {
                 isRgb1 = true;
 
-                img1 = new unsigned char[3*img_size];
+                img1.resize(3*img_size);
 
                 QRgb pix;
 
@@ -1318,20 +1282,12 @@ void ImageViewer::open()
         }
 
         // création de l'image qui va être affichée et modifiée
-        if( image_uchar != NULL )
-        {
-            delete[] image_uchar;
-            image_uchar = NULL;
-        }
-        if( image_uchar == NULL )
-        {
-            image_uchar = new unsigned char[3*img_size];
-        }
-        image = QImage(image_uchar, img_width, img_height, 3*img_width, QImage::Format_RGB888);
+        image_uchar.assign(3*img_size, 0);
+        image = QImage(image_uchar.data(), img_width, img_height, 3*img_width, QImage::Format_RGB888);
 
         if( isRgb1 )
         {
-            std::memcpy(image_uchar,img1,3*img_size);
+            std::memcpy(image_uchar.data(),img1.data(),3*img_size);
         }
         else
         {
@@ -1347,154 +1303,28 @@ void ImageViewer::open()
             }
         }
 
-        if( shape != NULL )
-        {
-            delete[] shape;
-            shape = NULL;
-        }
-        if( shape == NULL )
-        {
-            shape = new char[img_size];
-        }
+        shape.assign(img_size, 0);
+        shape_points.assign(2*img_size+1, 0);
+        shape_points[0] = list_end;
+        Lout_shape1.assign(img_size+1, 0);
+        Lout_shape1[0] = list_end;
+        Lin_shape1.assign(img_size+1, 0);
+        Lin_shape1[0] = list_end;
+        Lout_2.assign(img_size+1, 0);
+        Lout_2[0] = list_end;
+        Lin_2.assign(img_size+1, 0);
+        Lin_2[0] = list_end;
+        phi_init2.assign(img_size, 0);
+        phi_init1_clean.assign(img_size, 0);
+        phi_init2_clean.assign(img_size, 0);
+        phi_init1.assign(img_size, 0);
 
-        if( shape_points != NULL )
-        {
-            delete[] shape_points;
-            shape_points = NULL;
-        }
-        if( shape_points == NULL )
-        {
-            shape_points = new int[2*img_size+1];
-            shape_points[0] = list_end;
-        }
-
-        if( Lout_shape1 != NULL )
-        {
-            delete[] Lout_shape1;
-            Lout_shape1 = NULL;
-        }
-        if( Lout_shape1 == NULL )
-        {
-            Lout_shape1 = new int[img_size+1];
-            Lout_shape1[0] = list_end;
-        }
-
-        if( Lin_shape1 != NULL )
-        {
-            delete[] Lin_shape1;
-            Lin_shape1 = NULL;
-        }
-        if( Lin_shape1 == NULL )
-        {
-            Lin_shape1 = new int[img_size+1];
-            Lin_shape1[0] = list_end;
-        }
-
-        if( Lout_2 != NULL )
-        {
-            delete[] Lout_2;
-            Lout_2 = NULL;
-        }
-        if( Lout_2 == NULL )
-        {
-            Lout_2 = new int[img_size+1];
-            Lout_2[0] = list_end;
-        }
-
-        if( Lin_2 != NULL )
-        {
-            delete[] Lin_2;
-            Lin_2 = NULL;
-        }
-        if( Lin_2 == NULL )
-        {
-            Lin_2 = new int[img_size+1];
-            Lin_2[0] = list_end;
-        }
-
-        if( phi_init2 != NULL )
-        {
-            delete[] phi_init2;
-            phi_init2 = NULL;
-        }
-        if( phi_init2 == NULL )
-        {
-            phi_init2 = new char[img_size];
-        }
-
-        if( phi_init1_clean != NULL )
-        {
-            delete[] phi_init1_clean;
-            phi_init1_clean = NULL;
-        }
-        if( phi_init1_clean == NULL )
-        {
-            phi_init1_clean = new char[img_size];
-        }
-
-        if( phi_init2_clean != NULL )
-        {
-            delete[] phi_init2_clean;
-            phi_init2_clean = NULL;
-        }
-        if( phi_init2_clean == NULL )
-        {
-            phi_init2_clean = new char[img_size];
-        }
-
-        if( phi_init1 != NULL )
-        {
-            delete[] phi_init1;
-            phi_init1 = NULL;
-        }
-        if( phi_init1 == NULL )
-        {
-            phi_init1 = new char[img_size];
-        }
-
-        if( image_result_uchar != NULL )
-        {
-            delete[] image_result_uchar;
-            image_result_uchar = NULL;
-        }
-        if( image_result_uchar == NULL )
-        {
-            image_result_uchar = new unsigned char[3*img_size];
-        }
-        image_result = QImage(image_result_uchar, img_width, img_height, 3*img_width,QImage::Format_RGB888);
-
-        if( image_filter_uchar != NULL )
-        {
-            delete[] image_filter_uchar;
-            image_filter_uchar = NULL;
-        }
-        if( image_filter_uchar == NULL )
-        {
-            image_filter_uchar = new unsigned char[3*img_size];
-        }
-        image_filter = QImage(image_filter_uchar, img_width, img_height, 3*img_width, QImage::Format_RGB888);
-
-        if( image_phi_uchar != NULL )
-        {
-            delete[] image_phi_uchar;
-            image_phi_uchar = NULL;
-        }
-        if( image_phi_uchar == NULL )
-        {
-            image_phi_uchar = new unsigned char[3*img_size];
-        }
-        image_phi = QImage(image_phi_uchar, img_width, img_height, 3*img_width, QImage::Format_RGB888);
-
-        if( image_shape_uchar != NULL )
-        {
-            delete[] image_shape_uchar;
-            image_shape_uchar = NULL;
-        }
-        if( image_shape_uchar == NULL )
-        {
-            image_shape_uchar = new unsigned char[3*img_size];
-        }
-        image_shape = QImage(image_shape_uchar, img_width, img_height, 3*img_width, QImage::Format_RGB888);
+        image_filter_uchar.assign(3*img_size, 0);
+        image_filter = QImage(image_filter_uchar.data(), img_width, img_height, 3*img_width, QImage::Format_RGB888);
+        image_phi_uchar.assign(3*img_size, 0);
+        image_phi = QImage(image_phi_uchar.data(), img_width, img_height, 3*img_width, QImage::Format_RGB888);
+        image_shape_uchar.assign(3*img_size, 0);
+        image_shape = QImage(image_shape_uchar.data(), img_width, img_height, 3*img_width, QImage::Format_RGB888);
 
         if( isRgb1 )
         {
@@ -1603,11 +1433,11 @@ void ImageViewer::open()
         {
             if( isRgb1 )
             {
-                filters2 = new ofeli::Filters(img1, img_width, img_height, 3);
+                filters2 = new ofeli::Filters(img1.data(), img_width, img_height, 3);
             }
             else
             {
-                filters2 = new ofeli::Filters(img1, img_width, img_height, 1);
+                filters2 = new ofeli::Filters(img1.data(), img_width, img_height, 1);
             }
         }
 
@@ -1629,7 +1459,7 @@ void ImageViewer::open()
         connect(scale_spin,SIGNAL(valueChanged(int)),this,SLOT(do_scale(int)));
         connect(scale_spin0,SIGNAL(valueChanged(int)),this,SLOT(do_scale0(int)));
 
-        if( img1 != NULL )
+        if( !img1.empty() )
         {
             hasAlgoBreaking = false;
             hasStepByStep = false;
@@ -1691,301 +1521,22 @@ void ImageViewer::start()
     openAct->setEnabled(false);
     stopAct->setEnabled(true);
 
-    if( img1 != NULL )
+    if(img1.empty())
     {
-        if( filters1 != NULL )
-        {
-            delete filters1;
-            filters1 = NULL;
-        }
+        startAct->setEnabled(true);
+        openAct->setEnabled(true);
+        stopAct->setEnabled(false);
+        return;
+    }
 
-        if( filters1 == NULL )
-        {
-            if( isRgb1 )
-            {
-                filters1 = new ofeli::Filters(img1, img_width, img_height, 3);
-            }
-            else
-            {
-                filters1 = new ofeli::Filters(img1, img_width, img_height, 1);
-            }
-        }
+    try
+    {
+        segmentation_session = std::make_unique<ofeli::SegmentationSession>(
+            ofeli::Image{img_width, img_height, isRgb1 ? 3 : 1,
+                         img1},
+            segmentation_options());
 
-        if( hasPreprocess )
-        {
-            if( hasGaussianNoise )
-            {
-                filters1->gaussian_white_noise(std_noise);
-            }
-            if( hasSaltNoise )
-            {
-                filters1->salt_pepper_noise(proba_noise);
-            }
-            if( hasSpeckleNoise )
-            {
-                filters1->speckle(std_speckle_noise);
-            }
-
-            if( hasMeanFilt )
-            {
-                filters1->mean_filtering(kernel_mean_length1);
-            }
-            if( hasGaussianFilt )
-            {
-                filters1->gaussian_filtering(kernel_gaussian_length1, sigma);
-            }
-
-            if( hasMedianFilt )
-            {
-                if( hasO1algo1 )
-                {
-                    filters1->median_filtering_o1(kernel_median_length1);
-                }
-                else
-                {
-                    filters1->median_filtering_oNlogN(kernel_median_length1);
-                }
-            }
-            if( hasAnisoDiff )
-            {
-                filters1->anisotropic_diffusion(max_itera1, lambda1, kappa1, aniso_option1);
-            }
-            if( hasOpenFilt )
-            {
-                if( hasO1morpho1 )
-                {
-                    filters1->opening_o1(kernel_open_length1);
-                }
-                else
-                {
-                    filters1->opening(kernel_open_length1);
-                }
-            }
-            if( hasCloseFilt )
-            {
-                if( hasO1morpho1 )
-                {
-                    filters1->closing_o1(kernel_close_length1);
-                }
-                else
-                {
-                    filters1->closing(kernel_close_length1);
-                }
-            }
-            if( hasTophatFilt )
-            {
-                if( isWhiteTophat )
-                {
-                    if( hasO1morpho1 )
-                    {
-                        filters1->white_top_hat_o1(kernel_tophat_length1);
-                    }
-                    else
-                    {
-                        filters1->white_top_hat(kernel_tophat_length1);
-                    }
-                }
-                else
-                {
-                    if( hasO1morpho1 )
-                    {
-                        filters1->black_top_hat_o1(kernel_tophat_length1);
-                    }
-                    else
-                    {
-                        filters1->black_top_hat(kernel_tophat_length1);
-                    }
-                }
-            }
-        }
-
-        const unsigned char* img1_filtered = NULL;
-
-        if( model == 1 )
-        {
-            img1_filtered = filters1->get_filtered();
-        }
-        if( model == 2 )
-        {
-            if( isRgb1 )
-            {
-                filters1->morphological_gradient_yuv(kernel_gradient_length1,alpha1,beta1,gamma1);
-                img1_filtered = filters1->get_gradient();
-            }
-            else
-            {
-                filters1->morphological_gradient(kernel_gradient_length1);
-                img1_filtered = filters1->get_filtered();
-            }
-        }
-
-        /*if( show_original )
-        {
-            img1_filtered = img1;
-        }*/
-
-        unsigned char max = 0;
-        unsigned char min = 255;
-
-        if( model == 2 && hasHistoNormaliz )
-        {
-            for( int normalization_offset = 0; normalization_offset < img_size; normalization_offset++ )
-            {
-                if( img1_filtered[normalization_offset] > max )
-                {
-                    max = img1_filtered[normalization_offset];
-                }
-                if( img1_filtered[normalization_offset] < min )
-                {
-                    min = img1_filtered[normalization_offset];
-                }
-            }
-        }
-
-        const double normalization_range = max > min ? double(max-min) : 1.0;
-
-        int offset;
-
-        unsigned char I;
-
-        // if not a new image is loaded
-        if( ac != NULL )
-        {
-            // efface les contours de la QImage
-            if( !isRgb1 || model == 2 )
-            {
-                if( model == 2 && hasHistoNormaliz )
-                {
-                    if( outside_combo != 9 )
-                    {
-                        for( ofeli::list<int>::const_iterator it = Lout1->begin(); !it.end(); ++it )
-                        {
-                            offset = *it;
-
-                            I = (unsigned char)(255.0*double(img1_filtered[offset]-min)/normalization_range);
-
-                            image_result_uchar[3*offset] = I;
-                            image_result_uchar[3*offset+1] = I;
-                            image_result_uchar[3*offset+2] = I;
-                        }
-                    }
-
-                    if( inside_combo != 9 )
-                    {
-                        for( ofeli::list<int>::const_iterator it = Lin1->begin(); !it.end(); ++it )
-                        {
-                            offset = *it;
-
-                            I = (unsigned char)(255.0*double(img1_filtered[offset]-min)/normalization_range);
-
-                            image_result_uchar[3*offset] = I;
-                            image_result_uchar[3*offset+1] = I;
-                            image_result_uchar[3*offset+2] = I;
-                        }
-                    }
-                }
-
-                else
-                {
-                    if( outside_combo != 9 )
-                    {
-                        for( ofeli::list<int>::const_iterator it = Lout1->begin(); !it.end(); ++it )
-                        {
-                            offset = *it;
-
-                            I = img1_filtered[offset];
-
-                            image_result_uchar[3*offset] = I;
-                            image_result_uchar[3*offset+1] = I;
-                            image_result_uchar[3*offset+2] = I;
-                        }
-                    }
-
-                    if( inside_combo != 9 )
-                    {
-                        for( ofeli::list<int>::const_iterator it = Lin1->begin(); !it.end(); ++it )
-                        {
-                            offset = *it;
-
-                            I = img1_filtered[offset];
-
-                            image_result_uchar[3*offset] = I;
-                            image_result_uchar[3*offset+1] = I;
-                            image_result_uchar[3*offset+2] = I;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                if( outside_combo != 9 )
-                {
-                    for( ofeli::list<int>::const_iterator it = Lout1->begin(); !it.end(); ++it )
-                    {
-                        offset = *it*3;
-
-                        image_result_uchar[offset] = img1_filtered[offset];
-                        image_result_uchar[offset+1] = img1_filtered[offset+1];
-                        image_result_uchar[offset+2] = img1_filtered[offset+2];
-                    }
-                }
-
-                if( inside_combo != 9 )
-                {
-                    for( ofeli::list<int>::const_iterator it = Lin1->begin(); !it.end(); ++it )
-                    {
-                        offset = *it*3;
-
-                        image_result_uchar[offset] = img1_filtered[offset];
-                        image_result_uchar[offset+1] = img1_filtered[offset+1];
-                        image_result_uchar[offset+2] = img1_filtered[offset+2];
-                    }
-                }
-            }
-        }
-
-        // Création d'un objet contour actif
-
-        // objets crees en dynamique et appel du 2eme constructeur
-        if( ac != NULL )
-        {
-            delete ac;
-            ac = NULL;
-        }
-
-        if( model == 1 )
-        {
-            if( isRgb1 )
-            {
-                ac = new ofeli::ACwithoutEdgesYUV(img1_filtered, img_width, img_height, phi_init1_clean, hasSmoothingCycle1, kernel_curve1, std_curve1, Na1, Ns1, lambda_out1, lambda_in1, alpha1, beta1, gamma1);
-            }
-            else
-            {
-                ac = new ofeli::ACwithoutEdges(img1_filtered, img_width, img_height, phi_init1_clean, hasSmoothingCycle1, kernel_curve1, std_curve1, Na1, Ns1, lambda_out1, lambda_in1);
-            }
-        }
-
-        if( model == 2 )
-        {
-            ac = new ofeli::GeodesicAC(img1_filtered, img_width, img_height, phi_init1_clean, hasSmoothingCycle1, kernel_curve1, std_curve1, Na1, Ns1);
-        }
-
-        show_phi_list_value();
-
-        // Conditions de la boucle do-while
-
-        iteration1 = ac->get_iteration();
-
-        if( hasAlgoBreaking )
-        {
-            hasAlgoBreaking = false;
-            startAct->setEnabled(true);
-            openAct->setEnabled(true);
-            stopAct->setEnabled(false);
-            return;
-        }
-
-        if( outside_combo == 8 )
+        if(outside_combo == 8)
         {
             Rout1 = Rout_selected1;
             Gout1 = Gout_selected1;
@@ -1993,10 +1544,10 @@ void ImageViewer::start()
         }
         else
         {
-            get_color(outside_combo,Rout1,Gout1,Bout1);
+            get_color(outside_combo, Rout1, Gout1, Bout1);
         }
 
-        if( inside_combo == 8 )
+        if(inside_combo == 8)
         {
             Rin1 = Rin_selected1;
             Gin1 = Gin_selected1;
@@ -2004,460 +1555,222 @@ void ImageViewer::start()
         }
         else
         {
-            get_color(inside_combo,Rin1,Gin1,Bin1);
+            get_color(inside_combo, Rin1, Gin1, Bin1);
         }
 
-        Lout1 = &ac->get_Lout();
-        Lin1 = &ac->get_Lin();
-
+        stackedWidget->setCurrentIndex(model == 2 ? 1 : 0);
+        imageLabel->setMouseTracking(false);
+        statusBar()->showMessage(tr("Active contour evolving."));
         time_text->setText(tr("time ="));
 
-        if( model == 1 )
-        {
-            stackedWidget->setCurrentIndex(0);
-        }
-
-        if( model == 2 )
-        {
-            stackedWidget->setCurrentIndex(1);
-        }
-
-        //////////////////////////////////////////////////////////////////////
-        // affiche une fois le contour actif avec l'image filtrée en dessous
-        //////////////////////////////////////////////////////////////////////
-
-        if( !isRgb1 || model == 2 )
-        {
-            if( model == 2 && hasHistoNormaliz )
-            {
-                for( offset = 0; offset < img_size; offset++ )
-                {
-                    I = (unsigned char)(255.0*double(img1_filtered[offset]-min)/normalization_range);
-
-                    image_result_uchar[3*offset] = I;
-                    image_result_uchar[3*offset+1] = I;
-                    image_result_uchar[3*offset+2] = I;
-                }
-            }
-
-            else
-            {
-                for( offset = 0; offset < img_size; offset++ )
-                {
-                    I = img1_filtered[offset];
-
-                    image_result_uchar[3*offset] = I;
-                    image_result_uchar[3*offset+1] = I;
-                    image_result_uchar[3*offset+2] = I;
-                }
-            }
-        }
-        else
-        {
-            std::memcpy(image_result_uchar,img1_filtered,3*img_size);
-        }
-
-        if( hasGaussianNoise || hasSaltNoise || hasSpeckleNoise || hasMeanFilt || hasGaussianFilt || hasMedianFilt || hasAnisoDiff || hasOpenFilt || hasCloseFilt || hasTophatFilt || model == 2 )
-        {
-            if( isRgb1 )
-            {
-                image_save_preprocess = image_result.copy(0,0,img_width,img_height);
-            }
-            else
-            {
-                QVector<QRgb> table(256);
-                for( int I = 0; I < 256; I++ )
-                {
-                    table[I] = qRgb(I,I,I);
-                }
-                image_save_preprocess.setColorTable(table);
-
-                int x, y; // position
-
-                for( int offset = 0; offset < img_size; offset++ )
-                {
-                    // offset = x+y*img_width <==>
-                    y = offset/img_width;
-                    x = offset-y*img_width;
-
-                    *( image_save_preprocess.scanLine(y)+x ) = img1_filtered[offset];
-                }
-            }
-        }
-
-        // marque les contours
-        if( outside_combo != 9 )
-        {
-            for( ofeli::list<int>::const_iterator it = Lout1->begin(); !it.end(); ++it )
-            {
-                offset = *it*3;
-
-                image_result_uchar[offset] = Rout1;
-                image_result_uchar[offset+1] = Gout1;
-                image_result_uchar[offset+2] = Bout1;
-            }
-        }
-
-        if( inside_combo != 9 )
-        {
-            for( ofeli::list<int>::const_iterator it = Lin1->begin(); !it.end(); ++it )
-            {
-                offset = *it*3;
-
-                image_result_uchar[offset] = Rin1;
-                image_result_uchar[offset+1] = Gin1;
-                image_result_uchar[offset+2] = Bin1;
-            }
-        }
-
+        segmentation_result = segmentation_session->snapshot();
         image_disp = 2;
-
+        render_segmentation(segmentation_result);
+        show_phi_list_value();
         QApplication::processEvents();
-        // Affichage
-        imageLabel->set_qimage(image_result);
 
-        if( hasStepByStep )
+        if(hasStepByStep)
         {
             hasClickStopping = true;
         }
         infinite_loop();
 
-        // efface les contours de la QImage
-        if( !isRgb1 || model == 2 )
+        const std::clock_t start_time = std::clock();
+        if(hasDisplayEach)
         {
-            if( model == 2 && hasHistoNormaliz )
+            while(!segmentation_session->finished())
             {
-                if( outside_combo != 9 )
+                if(hasAlgoBreaking)
                 {
-                    for( ofeli::list<int>::const_iterator it = Lout1->begin(); !it.end(); ++it )
-                    {
-                        offset = *it;
-
-                        I = (unsigned char)(255.0*double(img1_filtered[offset]-min)/normalization_range);
-
-                        image_result_uchar[3*offset] = I;
-                        image_result_uchar[3*offset+1] = I;
-                        image_result_uchar[3*offset+2] = I;
-                    }
-                }
-
-                if( inside_combo != 9 )
-                {
-                    for( ofeli::list<int>::const_iterator it = Lin1->begin(); !it.end(); ++it )
-                    {
-                        offset = *it;
-
-                        I = (unsigned char)(255.0*double(img1_filtered[offset]-min)/normalization_range);
-
-                        image_result_uchar[3*offset] = I;
-                        image_result_uchar[3*offset+1] = I;
-                        image_result_uchar[3*offset+2] = I;
-                    }
-                }
-            }
-
-            else
-            {
-                if( outside_combo != 9 )
-                {
-                    for( ofeli::list<int>::const_iterator it = Lout1->begin(); !it.end(); ++it )
-                    {
-                        offset = *it;
-
-                        I = img1_filtered[offset];
-
-                        image_result_uchar[3*offset] = I;
-                        image_result_uchar[3*offset+1] = I;
-                        image_result_uchar[3*offset+2] = I;
-                    }
-                }
-
-                if( inside_combo != 9 )
-                {
-                    for( ofeli::list<int>::const_iterator it = Lin1->begin(); !it.end(); ++it )
-                    {
-                        offset = *it;
-
-                        I = img1_filtered[offset];
-
-                        image_result_uchar[3*offset] = I;
-                        image_result_uchar[3*offset+1] = I;
-                        image_result_uchar[3*offset+2] = I;
-                    }
-                }
-            }
-        }
-        else
-        {
-            if( outside_combo != 9 )
-            {
-                for( ofeli::list<int>::const_iterator it = Lout1->begin(); !it.end(); ++it )
-                {
-                    offset = *it*3;
-
-                    image_result_uchar[offset] = img1_filtered[offset];
-                    image_result_uchar[offset+1] = img1_filtered[offset+1];
-                    image_result_uchar[offset+2] = img1_filtered[offset+2];
-                }
-            }
-
-            if( inside_combo != 9 )
-            {
-                for( ofeli::list<int>::const_iterator it = Lin1->begin(); !it.end(); ++it )
-                {
-                    offset = *it*3;
-
-                    image_result_uchar[offset] = img1_filtered[offset];
-                    image_result_uchar[offset+1] = img1_filtered[offset+1];
-                    image_result_uchar[offset+2] = img1_filtered[offset+2];
-                }
-            }
-        }
-
-        //////////////////////////////////////////////////////////////////////
-        // fin de
-        //////////////////////////////////////////////////////////////////////
-
-        imageLabel->setMouseTracking(false);
-
-        double elapsedTime;
-        std::clock_t startTime, stopTime;
-
-        statusBar()->showMessage(tr("Active contour evolving."));
-        time_text->setText("<font color=green>"+tr("time = _._____ s"));
-
-        if( hasDisplayEach )
-        {
-            // Pour calculer le temps d'exécution
-            startTime = std::clock();
-
-            //////////////////////////////////////////////////////////////////////
-            // Boucle do-while, évolution de l'algorithme
-            //////////////////////////////////////////////////////////////////////
-            while( !ac->get_isStopped() )
-            {
-                if( hasAlgoBreaking )
-                {
+                    segmentation_session->cancel();
                     hasAlgoBreaking = false;
-                    startAct->setEnabled(true);
-                    openAct->setEnabled(true);
-                    stopAct->setEnabled(false);
-                    return;
+                    hasClickStopping = false;
+                    break;
                 }
 
-                if( hasStepByStep )
+                if(hasStepByStep)
                 {
                     hasClickStopping = true;
                 }
 
-                // efface les contours de la QImage
-                if( !isRgb1 || model == 2 )
-                {
-                    if( model == 2 && hasHistoNormaliz )
-                    {
-                        if( outside_combo != 9 )
-                        {
-                            for( ofeli::list<int>::const_iterator it = Lout1->begin(); !it.end(); ++it )
-                            {
-                                offset = *it;
-
-                                I = (unsigned char)(255.0*double(img1_filtered[offset]-min)/normalization_range);
-
-                                image_result_uchar[3*offset] = I;
-                                image_result_uchar[3*offset+1] = I;
-                                image_result_uchar[3*offset+2] = I;
-                            }
-                        }
-
-                        if( inside_combo != 9 )
-                        {
-                            for( ofeli::list<int>::const_iterator it = Lin1->begin(); !it.end(); ++it )
-                            {
-                                offset = *it;
-
-                                I = (unsigned char)(255.0*double(img1_filtered[offset]-min)/normalization_range);
-
-                                image_result_uchar[3*offset] = I;
-                                image_result_uchar[3*offset+1] = I;
-                                image_result_uchar[3*offset+2] = I;
-                            }
-                        }
-
-                    }
-
-                    else
-                    {
-                        if( outside_combo != 9 )
-                        {
-                            for( ofeli::list<int>::const_iterator it = Lout1->begin(); !it.end(); ++it )
-                            {
-                                offset = *it;
-
-                                I = img1_filtered[offset];
-
-                                image_result_uchar[3*offset] = I;
-                                image_result_uchar[3*offset+1] = I;
-                                image_result_uchar[3*offset+2] = I;
-                            }
-                        }
-
-                        if( inside_combo != 9 )
-                        {
-                            for( ofeli::list<int>::const_iterator it = Lin1->begin(); !it.end(); ++it )
-                            {
-                                offset = *it;
-
-                                I = img1_filtered[offset];
-
-                                image_result_uchar[3*offset] = I;
-                                image_result_uchar[3*offset+1] = I;
-                                image_result_uchar[3*offset+2] = I;
-                            }
-                        }
-                    }
-                }
-
-                else
-                {
-                    if( outside_combo != 9 )
-                    {
-                        for( ofeli::list<int>::const_iterator it = Lout1->begin(); !it.end(); ++it )
-                        {
-                            offset = *it*3;
-
-                            image_result_uchar[offset] = img1_filtered[offset];
-                            image_result_uchar[offset+1] = img1_filtered[offset+1];
-                            image_result_uchar[offset+2] = img1_filtered[offset+2];
-                        }
-                    }
-
-                    if( inside_combo != 9 )
-                    {
-                        for( ofeli::list<int>::const_iterator it = Lin1->begin(); !it.end(); ++it )
-                        {
-                            offset = *it*3;
-
-                            image_result_uchar[offset] = img1_filtered[offset];
-                            image_result_uchar[offset+1] = img1_filtered[offset+1];
-                            image_result_uchar[offset+2] = img1_filtered[offset+2];
-                        }
-                    }
-                }
-
-                ++(*ac);
-                Lout1 = &ac->get_Lout();
-                Lin1 = &ac->get_Lin();
-
-                // marque les contours dans la QImage
-                if( outside_combo != 9 )
-                {
-                    for( ofeli::list<int>::const_iterator it = Lout1->begin(); !it.end(); ++it )
-                    {
-                        offset = *it*3;
-
-                        image_result_uchar[offset] = Rout1;
-                        image_result_uchar[offset+1] = Gout1;
-                        image_result_uchar[offset+2] = Bout1;
-                    }
-                }
-
-                if( inside_combo != 9 )
-                {
-                    for( ofeli::list<int>::const_iterator it = Lin1->begin(); !it.end(); ++it )
-                    {
-                        offset = *it*3;
-
-                        image_result_uchar[offset] = Rin1;
-                        image_result_uchar[offset+1] = Gin1;
-                        image_result_uchar[offset+2] = Bin1;
-                    }
-                }
-
-                // Pour afficher plusieurs fois dans une boucle
+                segmentation_session->step();
+                segmentation_result = segmentation_session->snapshot();
+                render_segmentation(segmentation_result);
                 QApplication::processEvents();
-                // Affichage
-                imageLabel->update();
 
-                if( hasClickStopping )
+                if(hasClickStopping)
                 {
                     show_phi_list_value();
                 }
                 infinite_loop();
             }
-
-            // Temps d'exécution de la boucle do-while
-            stopTime = std::clock();
-            elapsedTime = (stopTime - startTime) / double(CLOCKS_PER_SEC);
         }
-        // on affiche rien du tout pour evaluer le temps de calcul
-        // if( !hasDisplayEach )
         else
         {
-            startTime = std::clock();
-
-            ac->evolve();
-            Lout1 = &ac->get_Lout();
-            Lin1 = &ac->get_Lin();
-
-            // Temps d'exécution
-            stopTime = std::clock();
-            elapsedTime = (stopTime - startTime) / double(CLOCKS_PER_SEC);
-
-            // marque les contours dans la QImage
-            if( outside_combo != 9 )
+            while(!segmentation_session->finished())
             {
-                for( ofeli::list<int>::const_iterator it = Lout1->begin(); !it.end(); ++it )
+                if(hasAlgoBreaking)
                 {
-                    offset = *it*3;
-
-                    image_result_uchar[offset] = Rout1;
-                    image_result_uchar[offset+1] = Gout1;
-                    image_result_uchar[offset+2] = Bout1;
+                    segmentation_session->cancel();
+                    hasAlgoBreaking = false;
+                    hasClickStopping = false;
+                    break;
                 }
+                segmentation_session->step();
+                QApplication::processEvents();
             }
-            if( inside_combo != 9 )
-            {
-                for( ofeli::list<int>::const_iterator it = Lin1->begin(); !it.end(); ++it )
-                {
-                    offset = *it*3;
-
-                    image_result_uchar[offset] = Rin1;
-                    image_result_uchar[offset+1] = Gin1;
-                    image_result_uchar[offset+2] = Bin1;
-                }
-            }
-
-            // Pour afficher plusieurs fois dans une boucle
-            QApplication::processEvents();
-            // Affichage
-            imageLabel->update();
-
-            if( hasClickStopping )
-            {
-                show_phi_list_value();
-            }
-            infinite_loop();
         }
 
-        time_text->setText("<font color=red>"+tr("time = ")+QString::number(elapsedTime)+" s");
+        segmentation_result = segmentation_session->snapshot();
+        render_segmentation(segmentation_result);
         show_phi_list_value();
+
+        const double elapsed_time = (std::clock() - start_time) / double(CLOCKS_PER_SEC);
+        time_text->setText("<font color=red>" + tr("time = ") + QString::number(elapsed_time) + " s");
         statusBar()->clearMessage();
-
-        imageLabel->setMouseTracking(true);
-
         hasResultDisp = true;
-
-        openAct->setEnabled(true);
-
         statusBar()->showMessage(tr("Push the left mouse button or click on the right mouse button in the window."));
     }
+    catch(const std::exception& error)
+    {
+        segmentation_session.reset();
+        segmentation_result = ofeli::SegmentationResult();
+        QMessageBox::critical(this, tr("Segmentation error - Ofeli"),
+                               QString::fromLocal8Bit(error.what()));
+    }
 
+    imageLabel->setMouseTracking(true);
     hasStepByStep = false;
+    hasClickStopping = false;
+    hasAlgoBreaking = false;
     startAct->setEnabled(true);
+    openAct->setEnabled(true);
     stopAct->setEnabled(false);
-
 }
 
+ofeli::SegmentationOptions ImageViewer::segmentation_options() const
+{
+    ofeli::SegmentationOptions options;
+    options.model = model == 2 ? ofeli::SegmentationModel::Geodesic
+                               : ofeli::SegmentationModel::ChanVese;
+
+    options.initialization.shape = hasEllipse1
+        ? ofeli::InitializationShape::Ellipse : ofeli::InitializationShape::Rectangle;
+    options.initialization.width = init_width1;
+    options.initialization.height = init_height1;
+    options.initialization.center_x = center_x1;
+    options.initialization.center_y = center_y1;
+    if(!phi_init1_clean.empty())
+    {
+        std::vector<unsigned char> mask(static_cast<std::size_t>(img_size));
+        for(int offset = 0; offset < img_size; ++offset)
+        {
+            mask[static_cast<std::size_t>(offset)] = phi_init1_clean[offset] < 0 ? 255 : 0;
+        }
+        options.initialization.mask = std::move(mask);
+    }
+
+    options.smoothing.enabled = hasSmoothingCycle1;
+    options.smoothing.iterations = Ns1;
+    options.smoothing.kernel = kernel_curve1;
+    options.smoothing.sigma = std_curve1;
+    options.gradient.kernel = kernel_gradient_length1;
+    options.chan_vese.external_iterations = Na1;
+    options.chan_vese.outside_weight = lambda_out1;
+    options.chan_vese.inside_weight = lambda_in1;
+    options.yuv.y_weight = alpha1;
+    options.yuv.u_weight = beta1;
+    options.yuv.v_weight = gamma1;
+
+    ofeli::PreprocessingOptions& preprocessing = options.preprocessing;
+    preprocessing.enabled = hasPreprocess;
+    preprocessing.gaussian_noise = hasGaussianNoise;
+    preprocessing.gaussian_noise_sigma = std_noise;
+    preprocessing.salt_pepper_noise = hasSaltNoise;
+    preprocessing.salt_pepper_probability = proba_noise;
+    preprocessing.speckle_noise = hasSpeckleNoise;
+    preprocessing.speckle_sigma = std_speckle_noise;
+    preprocessing.median = hasMedianFilt;
+    preprocessing.median_kernel = kernel_median_length1;
+    preprocessing.optimized_median = hasO1algo1;
+    preprocessing.mean = hasMeanFilt;
+    preprocessing.mean_kernel = kernel_mean_length1;
+    preprocessing.gaussian = hasGaussianFilt;
+    preprocessing.gaussian_kernel = kernel_gaussian_length1;
+    preprocessing.gaussian_sigma = sigma;
+    preprocessing.anisotropic = hasAnisoDiff;
+    preprocessing.anisotropic_iterations = max_itera1;
+    preprocessing.anisotropic_lambda = lambda1;
+    preprocessing.anisotropic_kappa = kappa1;
+    preprocessing.anisotropic_option = aniso_option1;
+    preprocessing.opening = hasOpenFilt;
+    preprocessing.opening_kernel = kernel_open_length1;
+    preprocessing.closing = hasCloseFilt;
+    preprocessing.closing_kernel = kernel_close_length1;
+    preprocessing.top_hat = hasTophatFilt;
+    preprocessing.top_hat_kernel = kernel_tophat_length1;
+    preprocessing.optimized_morphology = hasO1morpho1;
+    preprocessing.white_top_hat = isWhiteTophat;
+    return options;
+}
+
+void ImageViewer::render_segmentation(const ofeli::SegmentationResult& result)
+{
+    image_save_preprocess = ofeli::image_to_qimage(result.preprocessed);
+    QImage displayed = image_save_preprocess.convertToFormat(QImage::Format_RGB888);
+
+    if(model == 2 && hasHistoNormaliz && result.preprocessed.channels == 1)
+    {
+        unsigned char minimum = 255;
+        unsigned char maximum = 0;
+        for(unsigned char value : result.preprocessed.pixels)
+        {
+            minimum = std::min(minimum, value);
+            maximum = std::max(maximum, value);
+        }
+        const double range = maximum > minimum ? double(maximum - minimum) : 1.0;
+        for(int y = 0; y < result.height; ++y)
+        {
+            unsigned char* row = displayed.scanLine(y);
+            for(int x = 0; x < result.width; ++x)
+            {
+                const unsigned char value = result.preprocessed.pixels[
+                    static_cast<std::size_t>(y) * result.width + x];
+                const unsigned char normalized = static_cast<unsigned char>(
+                    255.0 * double(value - minimum) / range);
+                row[3 * x] = normalized;
+                row[3 * x + 1] = normalized;
+                row[3 * x + 2] = normalized;
+            }
+        }
+    }
+
+    for(int offset : result.Lout)
+    {
+        if(outside_combo != 9)
+        {
+            unsigned char* pixel = displayed.scanLine(offset / result.width)
+                + 3 * (offset % result.width);
+            pixel[0] = Rout1;
+            pixel[1] = Gout1;
+            pixel[2] = Bout1;
+        }
+    }
+    for(int offset : result.Lin)
+    {
+        if(inside_combo != 9)
+        {
+            unsigned char* pixel = displayed.scanLine(offset / result.width)
+                + 3 * (offset % result.width);
+            pixel[0] = Rin1;
+            pixel[1] = Gin1;
+            pixel[2] = Bin1;
+        }
+    }
+
+    image_result = displayed;
+    imageLabel->set_qimage(image_result);
+}
 void ImageViewer::wait(double seconds)
 {
   QApplication::processEvents();
@@ -3859,14 +3172,14 @@ void ImageViewer::apply_settings()
 
     ////////////////////////////////////////////////////////
 
-    if( (phi_init1 != NULL) && (phi_init2 != NULL) )
+    if( !phi_init1.empty() && !phi_init2.empty() )
     {
-        std::memcpy(phi_init1,phi_init2,img_size);
+        std::memcpy(phi_init1.data(),phi_init2.data(),img_size);
     }
-    clean_boundaries(phi_init2,phi_init2_clean);
-    if( (phi_init1_clean != NULL) && (phi_init2_clean != NULL) )
+    clean_boundaries(phi_init2.data(),phi_init2_clean.data());
+    if( !phi_init1_clean.empty() && !phi_init2_clean.empty() )
     {
-        std::memcpy(phi_init1_clean,phi_init2_clean,img_size);
+        std::memcpy(phi_init1_clean.data(),phi_init2_clean.data(),img_size);
     }
     phiInit2imgPhi();
 
@@ -4233,14 +3546,14 @@ void  ImageViewer::cancel_settings()
 
     ////////////////////////////////////////////////////////
 
-    if( (phi_init1 != NULL) && (phi_init2 != NULL) )
+    if( !phi_init1.empty() && !phi_init2.empty() )
     {
-        std::memcpy(phi_init2,phi_init1,img_size);
+        std::memcpy(phi_init2.data(),phi_init1.data(),img_size);
     }
-    clean_boundaries(phi_init1,phi_init1_clean);
-    if( (phi_init1_clean != NULL) && (phi_init2_clean != NULL) )
+    clean_boundaries(phi_init1.data(),phi_init1_clean.data());
+    if( !phi_init1_clean.empty() && !phi_init2_clean.empty() )
     {
-        std::memcpy(phi_init2_clean,phi_init1_clean,img_size);
+        std::memcpy(phi_init2_clean.data(),phi_init1_clean.data(),img_size);
     }
 
     phi_visu(true);
@@ -4483,7 +3796,7 @@ void ImageViewer::default_settings()
 // Fonction appelée pour le changement d 'echelle de l'image dans la fenêtre paramètre
 void ImageViewer::do_scale(int value)
 {
-    if( img1 != NULL )
+    if( !img1.empty() )
     {
         double scale_factor = value/100.0;
         imageLabel_settings->setZoomFactor(scale_factor);
@@ -4658,7 +3971,7 @@ bool ImageViewer::isRedundantPointOfLout(char* phi, int x, int y)
 // Fonction appelée dans l'onglet initalisation pour calculer et afficher l'image+phi(couleur foncé)+forme(couleur clair)
 void ImageViewer::shape_visu()
 {
-    if( shape != NULL )
+    if( !shape.empty() )
     {
         init_width2 = double(width_shape_spin->value())/100.0;
         init_height2 = double(height_shape_spin->value())/100.0;
@@ -5088,15 +4401,15 @@ void ImageViewer::shape_visu(int value)
 // Remet phi_init2_clean a zéro, c'est à dire tout correspond à l'extérieur
 void ImageViewer::clean_phi_visu()
 {
-    if( phi_init2 != NULL && phi_init2_clean != NULL )
+    if( !phi_init2.empty() && !phi_init2_clean.empty() )
     {
-        clean_boundaries(phi_init2, phi_init2_clean);
+        clean_boundaries(phi_init2.data(), phi_init2_clean.data());
         for( int offset = 0; offset < img_size; offset++ )
         {
             phi_init2[offset] = 1;
             phi_init2_clean[offset] = 3;
         }
-        clean_boundaries(phi_init2, phi_init2_clean);
+        clean_boundaries(phi_init2.data(), phi_init2_clean.data());
 
         shape_visu();
 
@@ -5106,7 +4419,7 @@ void ImageViewer::clean_phi_visu()
 // Soustrait une forme à phi_init2
 void ImageViewer::phi_subtract_shape()
 {
-    if( shape != NULL && phi_init2 != NULL )
+    if( !shape.empty() && !phi_init2.empty() )
     {
 
         int offset, x, y;
@@ -5167,7 +4480,7 @@ void ImageViewer::phi_subtract_shape()
             }
         }
 
-        clean_boundaries(phi_init2, phi_init2_clean);
+        clean_boundaries(phi_init2.data(), phi_init2_clean.data());
 
         if( !phi_init2_modif )
         {
@@ -5199,7 +4512,7 @@ void ImageViewer::phi_subtract_shape()
 // Ajoute une forme à phi_init2
 void ImageViewer::phi_add_shape()
 {
-    if( shape != NULL && phi_init2 != NULL )
+    if( !shape.empty() && !phi_init2.empty() )
     {
         int offset, x, y;
 
@@ -5257,7 +4570,7 @@ void ImageViewer::phi_add_shape()
             }
         }
 
-        clean_boundaries(phi_init2, phi_init2_clean);
+        clean_boundaries(phi_init2.data(), phi_init2_clean.data());
 
         if( !phi_init2_modif )
         {
@@ -5291,7 +4604,7 @@ void ImageViewer::phi_add_shape()
 // ou qu'on appuie sur les bouttons add subtract
 void ImageViewer::phi_visu(bool dark_color)
 {
-    if( img1 != NULL )
+    if( !img1.empty() )
     {
         if( outsidecolor_combobox->currentIndex() == 8 )
         {
@@ -5667,7 +4980,7 @@ void ImageViewer::color_in()
 // Calcule et affiche l'image prétraitéé
 void ImageViewer::filtering_visu()
 {
-    if( img1 != NULL && filters2 != NULL )
+    if( !img1.empty() && filters2 != NULL )
     {
         // récupération de tous les états des widgets de l'onglet preprocessing
 
@@ -5984,9 +5297,9 @@ void ImageViewer::filtering_visu()
 
             if( model2 == 1 )
             {
-                std::memcpy(image_filter_uchar,img2_filtered,3*img_size);
-                std::memcpy(image_phi_uchar,img2_filtered,3*img_size);
-                std::memcpy(image_shape_uchar,img2_filtered,3*img_size);
+                std::memcpy(image_filter_uchar.data(),img2_filtered,3*img_size);
+                std::memcpy(image_phi_uchar.data(),img2_filtered,3*img_size);
+                std::memcpy(image_shape_uchar.data(),img2_filtered,3*img_size);
             }
             if( model2 == 2 )
             {
@@ -6126,7 +5439,7 @@ void ImageViewer::filtering_visu()
 // Fonction appelée lorsque on change de taille d'image dans l'onglet Display
 void ImageViewer::change_display_size()
 {
-    if( img1 != NULL )
+    if( !img1.empty() )
     {
         phi_visu(false);
     }
@@ -6135,7 +5448,7 @@ void ImageViewer::change_display_size()
 // Fonction appelée à chaque changement d'onglet
 void ImageViewer::tab_visu(int value)
 {
-    if( img1 != NULL )
+    if( !img1.empty() )
     {
         // si onglet initilisation
         if( value == 1 )
@@ -6158,7 +5471,7 @@ void ImageViewer::tab_visu(int value)
 void ImageViewer::mousePressEvent(QMouseEvent *event)
 {
     // si l'image est chargée
-    if( img1 != NULL )
+    if( !img1.empty() )
     {
         if( !startAct->isEnabled() )
         {
@@ -6198,7 +5511,7 @@ void ImageViewer::mousePressEvent(QMouseEvent *event)
 void ImageViewer::mouseReleaseEvent(QMouseEvent *event)
 {
     // si l'image est chargée
-    if( img1 != NULL )
+    if( !img1.empty() )
     {
         if( event->button() == Qt::LeftButton )
         {
@@ -6216,7 +5529,7 @@ void ImageViewer::mouseReleaseEvent(QMouseEvent *event)
 void ImageViewer::keyPressEvent(QKeyEvent *event)
 {
     // si l'image est chargée
-    if( img1 != NULL )
+    if( !img1.empty() )
     {
         if( !startAct->isEnabled() )
         {
@@ -6260,7 +5573,7 @@ void ImageViewer::keyPressEvent(QKeyEvent *event)
 void ImageViewer::keyReleaseEvent(QKeyEvent *event)
 {
     // si l'image est chargée
-    if( img1 != NULL )
+    if( !img1.empty() )
     {
         if( !event->isAutoRepeat() )
         {
@@ -6302,7 +5615,7 @@ void ImageViewer::infinite_loop()
 void ImageViewer::mouseMoveEvent(QMouseEvent *event)
 {
     // si l'image est chargée
-    if( img1 != NULL )
+    if( !img1.empty() )
     {
         positionX = int(double(img_width)*double(   (  (event->pos()).x() -imageLabel->get_xoffset()    ) /double(imageLabel->getPixWidth())));
         positionY = int(double(img_height)*double(   (  (event->pos()).y() -imageLabel->get_yoffset()   ) /double(imageLabel->getPixHeight())));
@@ -6328,8 +5641,6 @@ void ImageViewer::mouseMoveEvent(QMouseEvent *event)
 
             if( image_disp == 2 )
             {
-                const unsigned char* img1_filtered;
-
                 QString img_str;
                 if( hasGaussianNoise || hasSaltNoise || hasSpeckleNoise || hasMeanFilt || hasGaussianFilt || hasMedianFilt || hasAnisoDiff || hasOpenFilt || hasCloseFilt || hasTophatFilt || model == 2 )
                 {
@@ -6340,32 +5651,25 @@ void ImageViewer::mouseMoveEvent(QMouseEvent *event)
                     img_str = tr("img(");
                 }
 
-                if( !isRgb1 )
+                const ofeli::Image& preprocessed = segmentation_result.preprocessed;
+                const int offset = positionX + positionY * img_width;
+                if(preprocessed.pixels.empty())
                 {
-                    img1_filtered = filters1->get_filtered();
-                    int I = img1_filtered[positionX+positionY*img_width];
+                    return;
+                }
+
+                if( preprocessed.channels == 1 )
+                {
+                    int I = preprocessed.pixels[static_cast<std::size_t>(offset)];
                     QColor RGB(I,I,I);
                     pixel_text->setText(img_str+QString::number(positionX)+","+QString::number(positionY)+") = "+"<font color="+RGB.name()+">"+QString::number(I));
                 }
-
                 else
                 {
-                    if( model == 1 )
-                    {
-                        img1_filtered = filters1->get_filtered();
-
-                        QColor RGB(img1_filtered[3*(positionX+positionY*img_width)],img1_filtered[3*(positionX+positionY*img_width)+1],img1_filtered[3*(positionX+positionY*img_width)+2]);
-
-                        pixel_text->setText(img_str+QString::number(positionX)+","+QString::number(positionY)+") = "+"<font color="+RGB.name()+">"+"("+QString::number(img1_filtered[3*(positionX+positionY*img_width)])+","+QString::number(img1_filtered[3*(positionX+positionY*img_width)+1])+","+QString::number(img1_filtered[3*(positionX+positionY*img_width)+2])+")");
-                    }
-                    if( model == 2 )
-                    {
-                        img1_filtered = filters1->get_gradient();
-
-                        int I = img1_filtered[ positionX+positionY*img_width ];
-                        QColor RGB(I,I,I);
-                        pixel_text->setText(img_str+QString::number(positionX)+","+QString::number(positionY)+") = "+"<font color="+RGB.name()+">"+QString::number(I));
-                    }
+                    const std::size_t pixel = static_cast<std::size_t>(3 * offset);
+                    QColor RGB(preprocessed.pixels[pixel], preprocessed.pixels[pixel + 1],
+                               preprocessed.pixels[pixel + 2]);
+                    pixel_text->setText(img_str+QString::number(positionX)+","+QString::number(positionY)+") = "+"<font color="+RGB.name()+">"+"("+QString::number(preprocessed.pixels[pixel])+","+QString::number(preprocessed.pixels[pixel + 1])+","+QString::number(preprocessed.pixels[pixel + 2])+")");
 
                 }
             }
@@ -6377,27 +5681,17 @@ void ImageViewer::mouseMoveEvent(QMouseEvent *event)
 
 void ImageViewer::show_phi_list_value()
 {
-    QColor RGBout, RGBin;
-    int Cout1, Cin1, CoutR, CoutG, CoutB, CinR, CinG, CinB;
-    QColor RGBout_list(Rout1,Gout1,Bout1);
-    QColor RGBin_list(Rin1,Gin1,Bin1);
+    QColor RGBout_list(Rout1, Gout1, Bout1);
+    QColor RGBin_list(Rin1, Gin1, Bin1);
+    const QString Cout_str = QString("<font color=" + RGBout_list.name()
+                                     + ">" + "Cout" + "<font color=black>" + " = ");
+    const QString Cin_str = QString("<font color=" + RGBin_list.name()
+                                    + ">" + "Cin" + "<font color=black>" + " = ");
 
-    QString Cout_str = QString("<font color="+RGBout_list.name()+">"+"Cout"+"<font color=black>"+" = ");
-    QString Cin_str = QString("<font color="+RGBin_list.name()+">"+"Cin"+"<font color=black>"+" = ");
-
-    unsigned char otsu_threshold1;
-    int iteration_max1;
-
-    const char* phi = NULL;
-
-    if( ac != NULL )
+    if(segmentation_session && !segmentation_result.phi.empty())
     {
-        phi = ac->get_phi();
-
-        iteration1 = ac->get_iteration();
-        iteration_max1 = ac->get_iteration_max();
-
-        if( iteration1 < iteration_max1 )
+        iteration1 = segmentation_result.iteration;
+        if(iteration1 < segmentation_result.iteration_max)
         {
             text->setText("<font color=green>"+tr("iteration t = ")+QString::number(iteration1));
         }
@@ -6406,7 +5700,7 @@ void ImageViewer::show_phi_list_value()
             text->setText("<font color=red>"+tr("iteration t = ")+QString::number(iteration1));
         }
 
-        if( ac->get_hasListsChanges() )
+        if(segmentation_result.has_lists_changes)
         {
             changes_text->setText("<font color=green>"+tr("lists changes = true"));
         }
@@ -6415,7 +5709,7 @@ void ImageViewer::show_phi_list_value()
             changes_text->setText("<font color=red>"+tr("lists changes = false"));
         }
 
-        if( ac->get_hasOscillation() )
+        if(segmentation_result.has_oscillation)
         {
             oscillation_text->setText("<font color=red>"+tr("oscillation = true"));
         }
@@ -6424,87 +5718,76 @@ void ImageViewer::show_phi_list_value()
             oscillation_text->setText("<font color=green>"+tr("oscillation = false"));
         }
 
-
-        if( model == 1 )
+        if(model == 1 && !isRgb1 && segmentation_result.outside_mean
+           && segmentation_result.inside_mean)
         {
-            if( !isRgb1 )
-            {
-                // pour l'affichage
-                if( dynamic_cast<ofeli::ACwithoutEdges*>(ac) != NULL )
-                {
-                    Cout1 = dynamic_cast<ofeli::ACwithoutEdges*>(ac)->get_Cout();
-                    Cin1 = dynamic_cast<ofeli::ACwithoutEdges*>(ac)->get_Cin();
-                    RGBout = QColor(Cout1,Cout1,Cout1);
-                    RGBin = QColor(Cin1,Cin1,Cin1);
-                    Cout_text->setText(Cout_str+"<font color="+RGBout.name()+">"+QString::number(Cout1));
-                    Cin_text->setText(Cin_str+"<font color="+RGBin.name()+">"+QString::number(Cin1));
-                }
-            }
-            else
-            {
-                if( dynamic_cast<ofeli::ACwithoutEdgesYUV*>(ac) != NULL )
-                {
-                    CoutR = dynamic_cast<ofeli::ACwithoutEdgesYUV*>(ac)->get_CoutR();
-                    CoutG = dynamic_cast<ofeli::ACwithoutEdgesYUV*>(ac)->get_CoutG();
-                    CoutB = dynamic_cast<ofeli::ACwithoutEdgesYUV*>(ac)->get_CoutB();
-
-                    CinR = dynamic_cast<ofeli::ACwithoutEdgesYUV*>(ac)->get_CinR();
-                    CinG = dynamic_cast<ofeli::ACwithoutEdgesYUV*>(ac)->get_CinG();
-                    CinB = dynamic_cast<ofeli::ACwithoutEdgesYUV*>(ac)->get_CinB();
-
-                    RGBout = QColor(CoutR,CoutG,CoutB);
-                    RGBin = QColor(CinR,CinG,CinB);
-
-                    Cout_text->setText(Cout_str+"<font color="+RGBout.name()+">"+"("+QString::number(CoutR)+","+QString::number(CoutG)+","+QString::number(CoutB)+")");
-                    Cin_text->setText(Cin_str+"<font color="+RGBin.name()+">"+"("+QString::number(CinR)+","+QString::number(CinB)+","+QString::number(CinB)+")");
-                }
-            }
+            const int outside = *segmentation_result.outside_mean;
+            const int inside = *segmentation_result.inside_mean;
+            const QColor outside_color(outside, outside, outside);
+            const QColor inside_color(inside, inside, inside);
+            Cout_text->setText(Cout_str+"<font color="+outside_color.name()+">"+QString::number(outside));
+            Cin_text->setText(Cin_str+"<font color="+inside_color.name()+">"+QString::number(inside));
+        }
+        else if(model == 1 && isRgb1 && segmentation_result.outside_rgb_mean
+                && segmentation_result.inside_rgb_mean)
+        {
+            const auto& outside = *segmentation_result.outside_rgb_mean;
+            const auto& inside = *segmentation_result.inside_rgb_mean;
+            const QColor outside_color(outside[0], outside[1], outside[2]);
+            const QColor inside_color(inside[0], inside[1], inside[2]);
+            Cout_text->setText(Cout_str+"<font color="+outside_color.name()+">"+"("+QString::number(outside[0])+","+QString::number(outside[1])+","+QString::number(outside[2])+")");
+            Cin_text->setText(Cin_str+"<font color="+inside_color.name()+">"+"("+QString::number(inside[0])+","+QString::number(inside[1])+","+QString::number(inside[2])+")");
         }
 
-        if( model == 2 )
+        if(model == 2 && segmentation_result.otsu_threshold)
         {
-            if( dynamic_cast<ofeli::GeodesicAC*>(ac) != NULL )
-            {
-                // pour l'affichage
-                otsu_threshold1 = dynamic_cast<ofeli::GeodesicAC*>(ac)->get_otsu_threshold();
-                threshold_text->setText(tr("Otsu's threshold of gradient = ")+QString::number(otsu_threshold1));
-            }
+            threshold_text->setText(tr("Otsu's threshold of gradient = ")
+                                    + QString::number(*segmentation_result.otsu_threshold));
         }
     }
 
-    if( phi != NULL )
+    if(segmentation_result.phi.empty()
+       || positionX < 0 || positionX >= img_width
+       || positionY < 0 || positionY >= img_height)
     {
-        QColor RGBout(Rout1,Gout1,Bout1);
-        QColor RGBin(Rin1,Gin1,Bin1);
+        return;
+    }
 
-        if( phi[ positionX+positionY*img_width ] == 3 )
-        {
-            phi_text->setText("ϕ(x,y,t) = <font color="+RGBout.name()+">"+QString::number(phi[positionX+positionY*img_width]));
-            lists_text->setText("(x,y) ∉ <font color="+RGBout.name()+">"+"Lout"+"<font color=black>"+"(t) & ∉ "+"<font color="+RGBin.name()+">"+"Lin"+"<font color=black>"+"(t)");
-        }
-        if( phi[ positionX+positionY*img_width ] == -3 )
-        {
-            phi_text->setText("ϕ(x,y,t) = <font color="+RGBin.name()+">"+QString::number(phi[positionX+positionY*img_width]));
-            lists_text->setText("(x,y) ∉ <font color="+RGBin.name()+">"+"Lin"+"<font color=black>"+"(t) & ∉ "+"<font color="+RGBout.name()+">"+"Lout"+"<font color=black>"+"(t)");
-        }
-        if( phi[ positionX+positionY*img_width ] == 1 )
-        {
-            phi_text->setText("ϕ(x,y,t) = <font color="+RGBout.name()+">"+QString::number(phi[positionX+positionY*img_width]));
-            lists_text->setText("(x,y) ∈ <font color="+RGBout.name()+">"+"Lout"+"<font color=black>"+"(t)");
-        }
-        if( phi[ positionX+positionY*img_width ] == -1 )
-        {
-            phi_text->setText("ϕ(x,y,t) = <font color="+RGBin.name()+">"+QString::number(phi[positionX+positionY*img_width]));
-            lists_text->setText("(x,y) ∈ <font color="+RGBin.name()+">"+"Lin"+"<font color=black>"+"(t)");
-        }
+    const char phi = segmentation_result.phi[
+        static_cast<std::size_t>(positionX + positionY * img_width)];
+    const QColor RGBout(Rout1, Gout1, Bout1);
+    const QColor RGBin(Rin1, Gin1, Bin1);
+
+    if(phi == 3)
+    {
+        phi_text->setText("ϕ(x,y,t) = <font color="+RGBout.name()+">"+QString::number(phi));
+        lists_text->setText("(x,y) ∉ <font color="+RGBout.name()+">"+"Lout"+"<font color=black>"+"(t) & ∉ "+"<font color="+RGBin.name()+">"+"Lin"+"<font color=black>"+"(t)");
+    }
+    if(phi == -3)
+    {
+        phi_text->setText("ϕ(x,y,t) = <font color="+RGBin.name()+">"+QString::number(phi));
+        lists_text->setText("(x,y) ∉ <font color="+RGBin.name()+">"+"Lin"+"<font color=black>"+"(t) & ∉ "+"<font color="+RGBout.name()+">"+"Lout"+"<font color=black>"+"(t)");
+    }
+    if(phi == 1)
+    {
+        phi_text->setText("ϕ(x,y,t) = <font color="+RGBout.name()+">"+QString::number(phi));
+        lists_text->setText("(x,y) ∈ <font color="+RGBout.name()+">"+"Lout"+"<font color=black>"+"(t)");
+    }
+    if(phi == -1)
+    {
+        phi_text->setText("ϕ(x,y,t) = <font color="+RGBin.name()+">"+QString::number(static_cast<int>(phi)));
+        lists_text->setText("(x,y) ∈ <font color="+RGBin.name()+">"+"Lin"+"<font color=black>"+"(t)");
     }
 }
 
-// Pour arrêter manuellement l'algorithme, s'il y a un problème au niveau des conditions d'arrêts ou du temps de calcul sur les grandes images
 void ImageViewer::stop()
 {
     hasClickStopping = false;
     hasAlgoBreaking = true;
+    if(segmentation_session)
+    {
+        segmentation_session->cancel();
+    }
 }
 
 // Filtre des événements pour avoir le tracking au niveau du widget image de la fenêtre principale et de la fenêtre de parametres et pour ne pas avoir le tracking/la position au niveau de l'ensemble de chaque fenêtre
@@ -6518,7 +5801,7 @@ bool ImageViewer::eventFilter(QObject *object, QEvent *event)
     }
 
     // molette prise en compte que sur la zone de imageLabel
-    if( object == imageLabel && event->type() == QEvent::Wheel && img1 != NULL )
+    if( object == imageLabel && event->type() == QEvent::Wheel && !img1.empty() )
     {
         imageLabel->set_hasText(false);
         imageLabel->setBackgroundRole(QPalette::Dark);
@@ -6554,7 +5837,7 @@ bool ImageViewer::eventFilter(QObject *object, QEvent *event)
 
     if( (object == scale_spin0 || object == scale_slider0 || object == scale_spin || object == scale_slider) && event->type() == QEvent::MouseButtonPress )
     {
-        if( img1 != NULL )
+        if( !img1.empty() )
         {
             imageLabel->set_hasText(false);
             imageLabel->setBackgroundRole(QPalette::Dark);
@@ -6581,7 +5864,7 @@ bool ImageViewer::eventFilter(QObject *object, QEvent *event)
     }
 
     // molette prise en compte que sur la zone de imageLabel_settings
-    if( object == imageLabel_settings && event->type() == QEvent::Wheel && img1 != NULL )
+    if( object == imageLabel_settings && event->type() == QEvent::Wheel && !img1.empty() )
     {
         imageLabel_settings->set_hasText(false);
         imageLabel_settings->setBackgroundRole(QPalette::Dark);
@@ -6764,7 +6047,7 @@ bool ImageViewer::eventFilter(QObject *object, QEvent *event)
 void ImageViewer::mouseMoveEvent2(QMouseEvent *event2)
 {
     // si l'image est chargée et si on est dans l'onglet initialisation
-    if( img1 != NULL )
+    if( !img1.empty() )
     {
         // position de la souris dans l'image
         positionX = int(double(img_width)*double(   (  (event2->pos()).x() -imageLabel_settings->get_xoffset()   ) /double(imageLabel_settings->getPixWidth())));
@@ -6790,7 +6073,7 @@ void ImageViewer::mouseMoveEvent2(QMouseEvent *event2)
 void ImageViewer::mousePressEvent2(QMouseEvent *event2)
 {
     // si on est dans l'onglet d'initilisation
-    if( (img1 != NULL) && onglets->currentIndex() == 1 )
+    if( !img1.empty() && onglets->currentIndex() == 1 )
     {
         // clic gauche, on ajoute une forme
         if( event2->button() == Qt::LeftButton )
@@ -6818,7 +6101,7 @@ void ImageViewer::mousePressEvent2(QMouseEvent *event2)
     }
 
     // pour cacher ou non au clic gauche le contour actif initial quand on est dans l'onglet Preprocessing
-    if( (img1 != NULL) && onglets->currentIndex() == 2 )
+    if( !img1.empty() && onglets->currentIndex() == 2 )
     {
         if( event2->button() == Qt::RightButton )
         {
@@ -6853,7 +6136,7 @@ void ImageViewer::mousePressEvent2(QMouseEvent *event2)
 // Fonction pour afficher l'image de départ par clic gauche dans l'onglet preprocessing
 void ImageViewer::img1_visu()
 {
-    if( img1 != NULL )
+    if( !img1.empty() )
     {
         imageLabel_settings->set_qimage(img);
     }
@@ -6863,7 +6146,7 @@ void ImageViewer::img1_visu()
 void ImageViewer::wheelEvent(QWheelEvent *event)
 {
     // si une image est déja chargée et si on est dans l'onglet d'initialisation
-    if( (img1 != NULL) && onglets->currentIndex() == 1 )
+    if( !img1.empty() && onglets->currentIndex() == 1 )
     {
         // nombre de degré et de pas de la molette
         int numDegrees = event->angleDelta().y() / 8;
@@ -7294,7 +6577,7 @@ void ImageViewer::compute(int index)
 // Fonction appelée pour le changement d'échelle dans la fenêtre viewer
 void ImageViewer::do_scale0(int value)
 {
-    if( img1 != NULL )
+    if( !img1.empty() )
     {
         double scale_factor = value/100.0;
         imageLabel->setZoomFactor(scale_factor);
@@ -7555,7 +6838,7 @@ void ImageViewer::openFilenamePhi()
 
 void ImageViewer::open_phi()
 {
-    if( img1 != NULL )
+    if( !img1.empty() )
     {
         if( !fileName_phi.isEmpty() )
         {
@@ -7653,8 +6936,8 @@ void ImageViewer::open_phi()
                 }
             }
 
-            clean_boundaries(phi_init1,phi_init1_clean);
-            clean_boundaries(phi_init2,phi_init2_clean);
+            clean_boundaries(phi_init1.data(),phi_init1_clean.data());
+            clean_boundaries(phi_init2.data(),phi_init2_clean.data());
         }
 
         tab_visu(onglets->currentIndex());
@@ -7663,7 +6946,7 @@ void ImageViewer::open_phi()
 
 void ImageViewer::save_phi()
 {
-    if( phi_init2_clean != NULL )
+    if( !phi_init2_clean.empty() )
     {
         QImage img_phi_save = QImage(img_width,img_height, QImage::Format_Indexed8);
         QVector<QRgb> table(256);
@@ -7702,7 +6985,7 @@ void ImageViewer::save_phi()
 
 void ImageViewer::phiInit2imgPhi()
 {
-    if( phi_init1_clean != NULL )
+    if( !phi_init1_clean.empty() )
     {
         img_phi = QImage(img_width,img_height, QImage::Format_Indexed8);
         QVector<QRgb> table(256);
@@ -7734,7 +7017,7 @@ void ImageViewer::phiInit2imgPhi()
 
 void ImageViewer::imgPhi2phiInit()
 {
-    if( phi_init1 != NULL && phi_init2 != NULL && !img_phi.isNull() )
+    if( !phi_init1.empty() && !phi_init2.empty() && !img_phi.isNull() )
     {
         if( img_phi.format() == 3 )
         {
@@ -7785,8 +7068,8 @@ void ImageViewer::imgPhi2phiInit()
             }
         }
 
-        clean_boundaries(phi_init1,phi_init1_clean);
-        clean_boundaries(phi_init2,phi_init2_clean);
+        clean_boundaries(phi_init1.data(),phi_init1_clean.data());
+        clean_boundaries(phi_init2.data(),phi_init2_clean.data());
     }
 }
 

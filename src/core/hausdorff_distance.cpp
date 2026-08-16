@@ -37,7 +37,7 @@
 **
 ****************************************************************************/
 
-#include "hausdorff_distance.hpp"
+#include <ofeli/hausdorff_distance.hpp>
 #include <cmath> // for the function "std::sqrt"
 #include <algorithm> // for the functions "std::max" and "std::swap"
 #include <iostream> // for the object "std::cerr"

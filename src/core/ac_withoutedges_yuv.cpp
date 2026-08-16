@@ -42,7 +42,7 @@
 //#define RGB_PLANAR_IMAGE_DATA_BUFFER
 // function affected by the define : void RGB_from_buffer(int offset)
 
-#include "ac_withoutedges_yuv.hpp"
+#include <ofeli/ac_withoutedges_yuv.hpp>
 
 namespace ofeli
 {

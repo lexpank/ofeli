@@ -37,7 +37,7 @@
 **
 ****************************************************************************/
 
-#include "ac_withoutedges.hpp"
+#include <ofeli/ac_withoutedges.hpp>
 
 namespace ofeli
 {

@@ -37,11 +37,12 @@
 **
 ****************************************************************************/
 
-#include "filters.hpp"
+#include <ofeli/filters.hpp>
 #include <cmath> // for the function "std::exp"
 #include <cstring> // for the function "std::memcpy"
 #include <iostream> // for the object "std::cerr"
 #include <random>
+#include <utility>
 
 namespace
 {
@@ -60,7 +61,13 @@ namespace ofeli
 Filters::Filters(const unsigned char* img_data1, int img_width1, int img_height1, int byte_per_pixel1) :
     img_data(img_data1), img_width(img_width1), img_height(img_height1),
     img_size(img_width1*img_height1), byte_per_pixel(byte_per_pixel1),
-    columns_histo( new int [256*img_width1] )
+    filtered(byte_per_pixel1 * img_width1 * img_height1),
+    filtered_modif(byte_per_pixel1 * img_width1 * img_height1),
+    previous_filtered(byte_per_pixel1 * img_width1 * img_height1),
+    gradient(byte_per_pixel1 == 3 ? img_width1 * img_height1 : 0),
+    diff_img(img_width1 * img_height1),
+    diff_img1(img_width1 * img_height1),
+    columns_histo(256 * img_width1)
 {
     if( img_data1 == NULL )
     {
@@ -69,48 +76,13 @@ Filters::Filters(const unsigned char* img_data1, int img_width1, int img_height1
         << std::endl;
     }
 
-    filtered = new unsigned char[byte_per_pixel*img_size];
-
     initialyze_filtered();
-
-    filtered_modif = new unsigned char[byte_per_pixel*img_size];
-
-    // buffer for the top-hat transform
-    previous_filtered = new unsigned char[byte_per_pixel*img_size];
-
-    // buffers for the anisotropic filter
-    diff_img = new double[img_size];
-    diff_img1 = new double[img_size];
-
-    if( byte_per_pixel == 3 )
-    {
-        gradient = new unsigned char[img_size];
-    }
 }
 
 void Filters::initialyze_filtered()
 {
-    std::memcpy(filtered,img_data,byte_per_pixel*img_size);
+    std::memcpy(filtered.data(), img_data, byte_per_pixel*img_size);
     return;
-}
-
-Filters::~Filters()
-{
-    delete[] previous_filtered;
-    delete[] filtered_modif;
-    delete[] filtered;
-
-    // buffers deleted for the anisotropic filter
-    delete[] diff_img;
-    delete[] diff_img1;
-
-    // buffer deleted for the Perreault's algorithm
-    delete[] columns_histo;
-
-    if( byte_per_pixel == 3 )
-    {
-        delete[] gradient;
-    }
 }
 
 void Filters::anisotropic_diffusion(int max_itera, double lambda, double kappa, int option)
@@ -147,8 +119,6 @@ void Filters::anisotropic_diffusion(int max_itera, double lambda, double kappa, 
         double c;
 
         // temporary pointer to swap the pointers of diffused images
-        double* ptemp_aniso;
-
         int x, y; // position of the current pixel
 
 
@@ -223,9 +193,7 @@ void Filters::anisotropic_diffusion(int max_itera, double lambda, double kappa, 
                 }
 
                 // swap pointers
-                ptemp_aniso = diff_img;
-                diff_img = diff_img1;
-                diff_img1 = ptemp_aniso;
+                std::swap(diff_img, diff_img1);
             }
 
             break;
@@ -299,9 +267,7 @@ void Filters::anisotropic_diffusion(int max_itera, double lambda, double kappa, 
                 }
 
                 // swap pointers
-                ptemp_aniso = diff_img;
-                diff_img = diff_img1;
-                diff_img1 = ptemp_aniso;
+                std::swap(diff_img, diff_img1);
             }
         }
         }
@@ -392,9 +358,7 @@ void Filters::morphological_gradient(int kernel_length)
     }
 
     // swap pointers
-    unsigned char* ptemp = filtered;
-    filtered = filtered_modif;
-    filtered_modif = ptemp;
+    std::swap(filtered, filtered_modif);
 
     return;
 }
@@ -758,9 +722,7 @@ void Filters::morphological_gradient_o1(int kernel_length)
     if( kernel_length != 1 )
     {
         // swap pointers
-        unsigned char* ptemp = filtered;
-        filtered = filtered_modif;
-        filtered_modif = ptemp;
+    std::swap(filtered, filtered_modif);
     }
 
     return;
@@ -833,9 +795,7 @@ void Filters::dilation(int kernel_length)
     }
 
     // swap pointers
-    unsigned char* ptemp = filtered;
-    filtered = filtered_modif;
-    filtered_modif = ptemp;
+    std::swap(filtered, filtered_modif);
 
     return;
 }
@@ -1155,9 +1115,7 @@ void Filters::dilation_o1(int kernel_length)
     if( kernel_length != 1 )
     {
         // swap pointers
-        unsigned char* ptemp = filtered;
-        filtered = filtered_modif;
-        filtered_modif = ptemp;
+    std::swap(filtered, filtered_modif);
     }
 
     return;
@@ -1229,9 +1187,7 @@ void Filters::erosion(int kernel_length)
     }
 
     // swap pointers
-    unsigned char* ptemp = filtered;
-    filtered = filtered_modif;
-    filtered_modif = ptemp;
+    std::swap(filtered, filtered_modif);
 
     return;
 }
@@ -1550,9 +1506,7 @@ void Filters::erosion_o1(int kernel_length)
     if( kernel_length != 1 )
     {
         // swap pointers
-        unsigned char* ptemp = filtered;
-        filtered = filtered_modif;
-        filtered_modif = ptemp;
+    std::swap(filtered, filtered_modif);
     }
 
     return;
@@ -1563,9 +1517,7 @@ void Filters::closing(int kernel_length)
     dilation(kernel_length);
 
     // for the top-hat function eventually
-    unsigned char* ptemp = filtered_modif;
-    filtered_modif = previous_filtered;
-    previous_filtered = ptemp;
+    std::swap(filtered_modif, previous_filtered);
 
     erosion(kernel_length);
 
@@ -1577,9 +1529,7 @@ void Filters::closing_o1(int kernel_length)
     dilation_o1(kernel_length);
 
     // for the top-hat function eventually
-    unsigned char* ptemp = filtered_modif;
-    filtered_modif = previous_filtered;
-    previous_filtered = ptemp;
+    std::swap(filtered_modif, previous_filtered);
 
     erosion_o1(kernel_length);
 
@@ -1591,9 +1541,7 @@ void Filters::opening(int kernel_length)
     erosion(kernel_length);
 
     // for the top-hat function eventually
-    unsigned char* ptemp = filtered_modif;
-    filtered_modif = previous_filtered;
-    previous_filtered = ptemp;
+    std::swap(filtered_modif, previous_filtered);
 
     dilation(kernel_length);
 
@@ -1605,9 +1553,7 @@ void Filters::opening_o1(int kernel_length)
     erosion_o1(kernel_length);
 
     // for the top-hat function eventually
-    unsigned char* ptemp = filtered_modif;
-    filtered_modif = previous_filtered;
-    previous_filtered = ptemp;
+    std::swap(filtered_modif, previous_filtered);
 
     dilation_o1(kernel_length);
 
@@ -1758,14 +1704,12 @@ void Filters::mean_filtering(int kernel_length)
     }
 
     // swap pointers
-    unsigned char* ptemp = filtered;
-    filtered = filtered_modif;
-    filtered_modif = ptemp;
+    std::swap(filtered, filtered_modif);
 
     return;
 }
 
-const double* Filters::gaussian_kernel(int kernel_length, double sigma)
+std::vector<double> Filters::gaussian_kernel(int kernel_length, double sigma)
 {
     // to protect the input : kernel_length impair et strictly positive
     if( kernel_length % 2 == 0 )
@@ -1785,7 +1729,7 @@ const double* Filters::gaussian_kernel(int kernel_length, double sigma)
 
     const int kernel_size = kernel_length*kernel_length;
 
-    double* const kernel = new double[kernel_size];
+    std::vector<double> kernel(kernel_size);
 
     int x;
     int y;
@@ -1830,7 +1774,7 @@ void Filters::gaussian_filtering(int kernel_length, double sigma)
         sigma = 0.000000001;
     }
 
-    const double* const mask = gaussian_kernel(kernel_length, sigma);
+    const std::vector<double> mask = gaussian_kernel(kernel_length, sigma);
 
     int x, y; // position of the current pixel
 
@@ -1887,12 +1831,8 @@ void Filters::gaussian_filtering(int kernel_length, double sigma)
         }
     }
 
-    delete[] mask;
-
     // swap pointers
-    unsigned char* ptemp = filtered;
-    filtered = filtered_modif;
-    filtered_modif = ptemp;
+    std::swap(filtered, filtered_modif);
 
     return;
 }
@@ -1957,7 +1897,7 @@ void Filters::median_filtering_oNlogN(int kernel_length) {
     int m;
 
     const int length = kernel_length*kernel_length;
-    unsigned char* const median_kernel = new unsigned char[length];
+    std::vector<unsigned char> median_kernel(length);
 
     for( int color_channel = 0; color_channel < byte_per_pixel; color_channel++ )
     {
@@ -2007,17 +1947,13 @@ void Filters::median_filtering_oNlogN(int kernel_length) {
                 }
             }
 
-            quick_sort(median_kernel,0,length-1);
+            quick_sort(median_kernel.data(),0,length-1);
 
             filtered_modif[byte_per_pixel*offset+color_channel] = median_kernel[(length-1)/2];
         }
     }
-    delete[] median_kernel;
-
     // swap pointers
-    unsigned char* ptemp = filtered;
-    filtered = filtered_modif;
-    filtered_modif = ptemp;
+    std::swap(filtered, filtered_modif);
 
     return;
 
@@ -2372,9 +2308,7 @@ void Filters::median_filtering_o1(int kernel_length)
     if( kernel_length != 1 )
     {
         // swap pointers
-        unsigned char* ptemp = filtered;
-        filtered = filtered_modif;
-        filtered_modif = ptemp;
+    std::swap(filtered, filtered_modif);
     }
 
     return;
@@ -2525,9 +2459,7 @@ void Filters::local_binary_pattern(int kernel_length)
     }
 
     // swap pointers
-    unsigned char* ptemp = filtered;
-    filtered = filtered_modif;
-    filtered_modif = ptemp;
+    std::swap(filtered, filtered_modif);
 
     return;
 }
@@ -2734,9 +2666,7 @@ void Filters::nagao_filtering(int kernel_length)
     }
 
     // swap pointers
-    unsigned char* ptemp = filtered;
-    filtered = filtered_modif;
-    filtered_modif = ptemp;
+    std::swap(filtered, filtered_modif);
 
     return;
 }
@@ -2891,12 +2821,12 @@ void Filters::fas(int kernel_length)
 
 const unsigned char* Filters::get_filtered() const
 {
-    return filtered;
+    return filtered.data();
 }
 
 const unsigned char* Filters::get_gradient() const
 {
-    return gradient;
+    return gradient.data();
 }
 
 }

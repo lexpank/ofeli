@@ -37,7 +37,7 @@
 **
 ****************************************************************************/
 
-#include "geodesic_ac.hpp"
+#include <ofeli/geodesic_ac.hpp>
 
 namespace ofeli {
   GeodesicAC::GeodesicAC(const unsigned char* img_gradient_data1, int img_width1, int img_height1) :

@@ -40,6 +40,8 @@
 #ifndef FILTERS_HPP
 #define FILTERS_HPP
 
+#include <vector>
+
 namespace ofeli
 {
 
@@ -52,7 +54,12 @@ public :
     Filters(const unsigned char* img_data1, int img_width1, int img_height1, int byte_per_pixel1);
 
     //! Desctructor.
-    ~Filters();
+    ~Filters() = default;
+
+    Filters(const Filters&) = delete;
+    Filters& operator=(const Filters&) = delete;
+    Filters(Filters&&) = delete;
+    Filters& operator=(Filters&&) = delete;
 
     //! Copies \a img buffer to \a filtered buffer.
     void initialyze_filtered();
@@ -138,8 +145,6 @@ private :
 
     //! Input pointer on the grayscale or grey-level image data buffer. This buffer must be row-wise.
     const unsigned char* const img_data;
-    //! Pointer on the current result image.
-    unsigned char* filtered;
 
     //! Image width, i.e. number of columns.
     const int img_width;
@@ -150,21 +155,22 @@ private :
     //! Number of byte or octet per pixel, i.e number of channels. It is equal 1 for a grayscale or grey-level image and 3 for a color image.
     const int byte_per_pixel;
 
-    //! Pointer on the temporary result because the filters are not in place.
-    unsigned char* filtered_modif;
-    //! Pointer used by top-hat functions to keep in memory the previous result before opening or closing to subtract the both images then.
-    unsigned char* previous_filtered;
-    //! Pointer on the gradient used by the geodesic model in the case of an RGB image.
-    unsigned char* gradient;
+    //! Current result image.
+    std::vector<unsigned char> filtered;
+    //! Temporary result because the filters are not in place.
+    std::vector<unsigned char> filtered_modif;
+    //! Previous result used by top-hat functions.
+    std::vector<unsigned char> previous_filtered;
+    //! Gradient used by the geodesic model in the case of an RGB image.
+    std::vector<unsigned char> gradient;
 
     // pour le filtre anisotrope
-    //! Pointer on the diffused image buffer for the anisotropic diffusion filter.
-    double* diff_img;
-    //! Pointer on the temporary diffused image buffer for the anisotropic diffusion filter because this filter is not in place
-    double* diff_img1;
+    //! Diffused image buffers for the anisotropic diffusion filter.
+    std::vector<double> diff_img;
+    std::vector<double> diff_img1;
 
     //! Columns histogram used by the Perreault's algorithm.
-    int* const columns_histo;
+    std::vector<int> columns_histo;
     //! Kernel histogram used by the Perreault's algorithm.
     int kernel_histo[256];
 
@@ -172,7 +178,7 @@ private :
     int find_offset(int x, int y, int color_channel) const;
 
     //! Creates a gaussian kernel with the kernel length and the standard deviation sigma.
-    static const double* gaussian_kernel(int kernel_length, double sigma);
+    static std::vector<double> gaussian_kernel(int kernel_length, double sigma);
 
     //! Swaps two values of an array.
     static void swap(unsigned char* const array, int a, int b);

@@ -42,6 +42,10 @@
 
 #include <QMainWindow>
 #include <QPrinter>
+#include <memory>
+#include <vector>
+
+#include <ofeli/segmentation.hpp>
 
 QT_BEGIN_NAMESPACE
 class QAction;
@@ -58,7 +62,6 @@ namespace ofeli
 {
 
 // forward declarations instead of includes
-class ActiveContour;
 template <typename T> class list;
 class Filters;
 class PixmapWidget;
@@ -206,7 +209,7 @@ private :
     QString fileName_phi;
     // buffer et informations des images
     // buffer 8 bits
-    unsigned char* img1;
+    std::vector<unsigned char> img1;
     bool isRgb1;
     int image_format;
     // buffer 24 bits si possible
@@ -222,12 +225,12 @@ private :
     //    objets et variable liés au slot start()    //
     ///////////////////////////////////////////////////
 
-    // objet filtre
-    ofeli::Filters* filters1;
-    ofeli::ActiveContour* ac;
+    std::unique_ptr<ofeli::SegmentationSession> segmentation_session;
+    ofeli::SegmentationResult segmentation_result;
+    ofeli::SegmentationOptions segmentation_options() const;
+    void render_segmentation(const ofeli::SegmentationResult& result);
 
     QImage image_result;
-    unsigned char* image_result_uchar;
     QImage image_save_preprocess;
     void wait (double seconds);
 
@@ -237,32 +240,28 @@ private :
 
     ofeli::Filters* filters2;
     // phi avant nettoyage des frontières
-    char* phi_init1;
-    char* phi_init2;
+    std::vector<char> phi_init1;
+    std::vector<char> phi_init2;
     // phi initial utilisé lors de l'execution du slot start() pour effectuer la segmentation
-    char* phi_init1_clean;
+    std::vector<char> phi_init1_clean;
     // phi initial déterminé par la fenêtre de configuration
-    char* phi_init2_clean;
+    std::vector<char> phi_init2_clean;
     // forme servant a etre ajouté ou retiré a phi
-    char* shape;
-    int* shape_points;
-    int* Lout_shape1;
-    int* Lin_shape1;
-    int* Lout_2;
-    int* Lin_2;
+    std::vector<char> shape;
+    std::vector<int> shape_points;
+    std::vector<int> Lout_shape1;
+    std::vector<int> Lin_shape1;
+    std::vector<int> Lout_2;
+    std::vector<int> Lin_2;
     QImage img;
     QImage image;
-    unsigned char* image_uchar;
+    std::vector<unsigned char> image_uchar;
     QImage image_filter;
-    unsigned char* image_filter_uchar;
+    std::vector<unsigned char> image_filter_uchar;
     QImage image_phi;
-    unsigned char* image_phi_uchar;
+    std::vector<unsigned char> image_phi_uchar;
     QImage image_shape;
-    unsigned char* image_shape_uchar;
-    // Paramètres de sortie du contour actif et de résultat
-    const ofeli::list<int>* Lout1;
-    const ofeli::list<int>* Lin1;
-
+    std::vector<unsigned char> image_shape_uchar;
     QPixmap pixmap_settings;
 
     void phi_add_shape();

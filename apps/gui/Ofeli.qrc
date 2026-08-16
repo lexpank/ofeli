@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="licence.txt">../../licence.txt</file>
+        <file alias="license.txt">../../license.txt</file>
+        <file>Ofeli.png</file>
+    </qresource>
+</RCC>

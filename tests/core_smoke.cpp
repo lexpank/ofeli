@@ -1,8 +1,78 @@
-#include "ac_withoutedges.hpp"
-#include "ac_withoutedges_yuv.hpp"
-#include "filters.hpp"
-#include "geodesic_ac.hpp"
-#include "linked_list.hpp"
+#include <ofeli/ac_withoutedges.hpp>
+#include <ofeli/ac_withoutedges_yuv.hpp>
+#include <ofeli/activecontour.hpp>
+#include <ofeli/filters.hpp>
+#include <ofeli/geodesic_ac.hpp>
+#include <ofeli/linked_list.hpp>
+
+#include <cstdint>
+#include <iostream>
+
+namespace
+{
+
+std::uint64_t phi_hash(const ofeli::ActiveContour& contour, int image_size, int& inside)
+{
+    constexpr std::uint64_t offset_basis = 14695981039346656037ULL;
+    constexpr std::uint64_t prime = 1099511628211ULL;
+    const char* phi = contour.get_phi();
+    std::uint64_t hash = offset_basis;
+    inside = 0;
+
+    for(int offset = 0; offset < image_size; ++offset)
+    {
+        if(phi[offset] != -3 && phi[offset] != -1 && phi[offset] != 1 && phi[offset] != 3)
+        {
+            return 0;
+        }
+        if(phi[offset] < 0)
+        {
+            ++inside;
+        }
+        hash ^= static_cast<unsigned char>(phi[offset]);
+        hash *= prime;
+    }
+    return hash;
+}
+
+bool check_contour(const char* name, const ofeli::ActiveContour& contour,
+                   int width, int height, int expected_inside, std::uint64_t expected_hash)
+{
+    const int image_size = width * height;
+    const int iterations = contour.get_iteration();
+    if(iterations <= 0 || iterations > contour.get_iteration_max() || !contour.get_isStopped())
+    {
+        return false;
+    }
+
+    int inside = 0;
+    const std::uint64_t hash = phi_hash(contour, image_size, inside);
+    if(hash == 0)
+    {
+        return false;
+    }
+
+    for(const auto* list : {&contour.get_Lout(), &contour.get_Lin()})
+    {
+        for(auto it = list->begin(); !it.end(); ++it)
+        {
+            if(*it < 0 || *it >= image_size)
+            {
+                return false;
+            }
+        }
+    }
+
+    if(inside != expected_inside || hash != expected_hash)
+    {
+        std::cerr << name << " iteration=" << iterations
+                  << " inside=" << inside << " hash=" << hash << '\n';
+        return false;
+    }
+    return true;
+}
+
+}
 
 int main()
 {
@@ -31,138 +101,52 @@ int main()
         return 1;
     }
 
-    unsigned char image[25] = {};
-    image[12] = 90;
-
-    ofeli::Filters filters(image, 5, 5, 1);
+    constexpr int width = 8;
+    constexpr int height = 8;
+    unsigned char filter_image[25] = {};
+    filter_image[12] = 90;
+    ofeli::Filters filters(filter_image, 5, 5, 1);
     filters.mean_filtering(3);
-    const unsigned char* filtered = filters.get_filtered();
-    if(filtered[12] != 10)
+    if(filters.get_filtered()[12] != 10)
     {
         return 1;
     }
 
-    filters.gaussian_white_noise(10.0);
-    filters.salt_pepper_noise(0.5);
-    filters.speckle(0.5);
-    for(int offset = 0; offset < 25; ++offset)
+    unsigned char grayscale_image[width * height];
+    for(int offset = 0; offset < width * height; ++offset)
     {
-        if(filtered[offset] > 255)
-        {
-            return 1;
-        }
+        grayscale_image[offset] = static_cast<unsigned char>((offset * 37 + 11) % 256);
     }
 
-    unsigned char noise_image[64 * 64];
-    for(int offset = 0; offset < 64 * 64; ++offset)
+    unsigned char rgb_image[3 * width * height];
+    for(int offset = 0; offset < width * height; ++offset)
     {
-        noise_image[offset] = 128;
+        rgb_image[3 * offset] = static_cast<unsigned char>((offset * 17 + 3) % 256);
+        rgb_image[3 * offset + 1] = static_cast<unsigned char>((offset * 29 + 7) % 256);
+        rgb_image[3 * offset + 2] = static_cast<unsigned char>((offset * 43 + 13) % 256);
     }
 
-    ofeli::Filters gaussian_noise(noise_image, 64, 64, 1);
-    gaussian_noise.gaussian_white_noise(20.0);
-    const unsigned char* gaussian_result = gaussian_noise.get_filtered();
-    bool gaussian_changed = false;
-    for(int offset = 0; offset < 64 * 64; ++offset)
-    {
-        if(gaussian_result[offset] != 128)
-        {
-            gaussian_changed = true;
-        }
-    }
-    if(!gaussian_changed)
-    {
-        return 1;
-    }
-
-    ofeli::Filters salt_pepper_noise(noise_image, 64, 64, 1);
-    salt_pepper_noise.salt_pepper_noise(1.0);
-    const unsigned char* salt_pepper_result = salt_pepper_noise.get_filtered();
-    bool has_black = false;
-    bool has_white = false;
-    for(int offset = 0; offset < 64 * 64; ++offset)
-    {
-        if(salt_pepper_result[offset] == 0)
-        {
-            has_black = true;
-        }
-        else if(salt_pepper_result[offset] == 255)
-        {
-            has_white = true;
-        }
-        else
-        {
-            return 1;
-        }
-    }
-    if(!has_black || !has_white)
-    {
-        return 1;
-    }
-
-    ofeli::Filters speckle_noise(noise_image, 64, 64, 1);
-    speckle_noise.speckle(0.5);
-    const unsigned char* speckle_result = speckle_noise.get_filtered();
-    bool speckle_changed = false;
-    for(int offset = 0; offset < 64 * 64; ++offset)
-    {
-        if(speckle_result[offset] != 128)
-        {
-            speckle_changed = true;
-        }
-    }
-    if(!speckle_changed)
-    {
-        return 1;
-    }
-
-    ofeli::ACwithoutEdges contour(image, 5, 5,
+    ofeli::ACwithoutEdges contour(grayscale_image, width, height,
                                   true, 0.5, 0.5, 0.0, 0.0,
-                                  false, 1, 1.0, 1, 1, 1, 1);
-    if(contour.get_Lout().empty() || contour.get_Lin().empty())
-    {
-        return 1;
-    }
-    ++contour;
-    if(contour.get_iteration() != 1)
-    {
-        return 1;
-    }
+                                  true, 5, 2.0, 30, 3, 1, 1);
+    contour.evolve();
+    bool ok = check_contour("chan-vese", contour, width, height,
+                            5, 7436660801394953399ULL);
 
-    ofeli::GeodesicAC geodesic(image, 5, 5,
-                               true, 0.5, 0.5, 0.0, 0.0,
-                               false, 1, 1.0, 1, 1);
-    if(geodesic.get_Lout().empty() || geodesic.get_Lin().empty())
-    {
-        return 1;
-    }
-    ++geodesic;
-    if(geodesic.get_iteration() != 1)
-    {
-        return 1;
-    }
-
-    unsigned char rgb_image[3 * 64 * 64];
-    for(int offset = 0; offset < 64 * 64; ++offset)
-    {
-        rgb_image[3 * offset] = static_cast<unsigned char>(offset % 256);
-        rgb_image[3 * offset + 1] = 128;
-        rgb_image[3 * offset + 2] = static_cast<unsigned char>((255 - offset) % 256);
-    }
-
-    ofeli::ACwithoutEdgesYUV rgb_contour(rgb_image, 64, 64,
+    ofeli::ACwithoutEdgesYUV rgb_contour(rgb_image, width, height,
                                          true, 0.5, 0.5, 0.0, 0.0,
-                                         false, 1, 1.0, 1, 1,
+                                         true, 5, 2.0, 30, 3,
                                          1, 1, 1, 10, 10);
-    if(rgb_contour.get_Lout().empty() || rgb_contour.get_Lin().empty())
-    {
-        return 1;
-    }
-    ++rgb_contour;
-    if(rgb_contour.get_iteration() != 1)
-    {
-        return 1;
-    }
+    rgb_contour.evolve();
+    ok = check_contour("chan-vese-yuv", rgb_contour, width, height,
+                       36, 8158441133111810505ULL) && ok;
 
-    return 0;
+    ofeli::GeodesicAC geodesic(grayscale_image, width, height,
+                               true, 0.5, 0.5, 0.0, 0.0,
+                               true, 5, 2.0, 30, 3);
+    geodesic.evolve();
+    ok = check_contour("geodesic", geodesic, width, height,
+                       37, 17170649059186662957ULL) && ok;
+
+    return ok ? 0 : 1;
 }

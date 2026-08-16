@@ -1,7 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>licence.txt</file>
-        <file>license.txt</file>
-        <file>Ofeli.png</file>
-    </qresource>
-</RCC>
