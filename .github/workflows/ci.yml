@@ -22,7 +22,6 @@ jobs:
           version: 6.5.3
           host: linux
           target: desktop
-          modules: qttools
       - run: cmake -S . -B build -DOFELI_BUILD_GUI=ON -DOFELI_BUILD_CLI=ON -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=Release
       - run: cmake --build build --parallel
       - run: ctest --test-dir build --output-on-failure
